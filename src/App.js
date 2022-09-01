@@ -9,7 +9,10 @@ import Home from './pages/Home';
 import User from './pages/User';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Products from './pages/Products';
+import ProductsMilk from './pages/Products/ProductsMilk';
+import ProductsJuice from './pages/Products/ProductsJuice';
+import ProductsSnack from './pages/Products/ProductsSnack';
+import ProductsSale from './pages/Products/ProductsSale';
 import Recipes from './pages/Recipes';
 import ShoppingCart from './pages/ShoppingCart';
 import NotFound from './pages/NotFound.js';
@@ -25,12 +28,15 @@ function App() {
         <Route path="user" element={<User />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-        <Route path="products/milk" element={<Products />} />
-        {/* <Route path="products/juice" element={<Products />} />
-        <Route path="products/snack" element={<Products />} /> */}
+
+        <Route path="products/milk" element={<ProductsMilk />} />
+        <Route path="products/juice" element={<ProductsJuice />} />
+        <Route path="products/snack" element={<ProductsSnack />} />
+        <Route path="products/sale" element={<ProductsSale />} />
+
         <Route path="recipes/beverage" element={<Recipes />} />
-        {/* <Route path="recipes/bake" element={<Recipes />} />
-        <Route path="recipes/light" element={<Recipes />} /> */}
+        <Route path="recipes/bake" element={<Recipes />} />
+        <Route path="recipes/light" element={<Recipes />} />
         <Route path="shoppingCart" element={<ShoppingCart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
