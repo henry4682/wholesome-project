@@ -10,6 +10,7 @@ import User from './pages/User';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Products from './pages/Products';
+import Milk from './pages/Products/components/Milk';
 import Recipes from './pages/Recipes';
 import ShoppingCart from './pages/ShoppingCart';
 import NotFound from './pages/NotFound.js';
@@ -25,7 +26,7 @@ function App() {
         <Route path="user" element={<User />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-        <Route path="products/milk" element={<Products />} />
+        <Route path="products/*" element={<Products />} />
         {/* <Route path="products/juice" element={<Products />} />
         <Route path="products/snack" element={<Products />} /> */}
         <Route path="recipes/beverage" element={<Recipes />} />
