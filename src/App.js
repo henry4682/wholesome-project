@@ -26,7 +26,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <Menu />
+      {/* <Menu /> */}
       {/* 路由表 */}
       <Routes>
         <Route path="/" element={<Home />} />

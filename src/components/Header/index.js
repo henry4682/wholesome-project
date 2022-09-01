@@ -13,8 +13,8 @@ function Header() {
             alt="logo"
           />
         </div>
-        <nav>
-          <ul className="d-flex">
+        <nav className="nav d-flex justify-content-center align-items-center">
+          <ul className="d-flex list-unstyled">
             <li>
               <Link to="products/milk">植物奶</Link>
             </li>
