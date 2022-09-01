@@ -4,7 +4,14 @@ function Header() {
   return (
     <header className="header">
       <div className="container-fluid p-0">
-        <p className="header-highlight bg-primary"></p>
+        <div className="header-highlight bg-primary"></div>
+        <div className="logo-container d-flex justify-content-center align-items-center">
+          <img
+            className="logo"
+            src={require('../../Assets/Logo/logo.png')}
+            alt="logo"
+          />
+        </div>
       </div>
     </header>
   );
