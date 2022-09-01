@@ -9,11 +9,16 @@ import Home from './pages/Home';
 import User from './pages/User';
 import Login from './pages/Login';
 import Register from './pages/Register';
+
 import ProductsMilk from './pages/Products/ProductsMilk';
 import ProductsJuice from './pages/Products/ProductsJuice';
 import ProductsSnack from './pages/Products/ProductsSnack';
 import ProductsSale from './pages/Products/ProductsSale';
-import Recipes from './pages/Recipes';
+
+import RecipesBeverage from './pages/Recipes/RecipesBeverage';
+import RecipesBake from './pages/Recipes/RecipesBake';
+import RecipesLight from './pages/Recipes/RecipesLight';
+
 import ShoppingCart from './pages/ShoppingCart';
 import NotFound from './pages/NotFound.js';
 
@@ -34,9 +39,9 @@ function App() {
         <Route path="products/snack" element={<ProductsSnack />} />
         <Route path="products/sale" element={<ProductsSale />} />
 
-        <Route path="recipes/beverage" element={<Recipes />} />
-        <Route path="recipes/bake" element={<Recipes />} />
-        <Route path="recipes/light" element={<Recipes />} />
+        <Route path="recipes/beverage" element={<RecipesBeverage />} />
+        <Route path="recipes/bake" element={<RecipesBake />} />
+        <Route path="recipes/light" element={<RecipesLight />} />
         <Route path="shoppingCart" element={<ShoppingCart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

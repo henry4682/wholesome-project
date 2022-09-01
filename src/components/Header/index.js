@@ -27,6 +27,9 @@ function Header() {
             <li>
               <Link to="products/sale">本月優惠</Link>
             </li>
+            <li>
+              <Link to="recipes/beverage">美味食譜</Link>
+            </li>
           </ul>
         </nav>
       </div>
