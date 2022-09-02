@@ -6,7 +6,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 // 以下為各頁面元件
 import Home from './pages/Home';
-import User from './pages/User';
+import AccountInfo from './pages/Account/AccountInfo';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
@@ -30,7 +30,7 @@ function App() {
       {/* 路由表 */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="user" element={<User />} />
+        <Route path="account" element={<AccountInfo />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
 

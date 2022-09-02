@@ -6,6 +6,7 @@
 }
 .logo-container {
   height: 86px;
+  position: relative;
 }
 .logo {
   height: 60px;
@@ -13,4 +14,9 @@
 }
 .nav {
   height: 58px;
+}
+.icon-box {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
