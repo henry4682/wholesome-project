@@ -9,10 +9,14 @@ import Breadcrumb from '../components/Breadcrumb';
 import Aside from '../components/Aside';
 
 function ProductsMilk() {
+  //利用useState抽換productsMainCategory頁面的內容?
+  const [category, setCategory] = useState('植物奶');
+
   const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
   const dropdownList = [...dropdownElementList].map(
     (dropdownToggleEl) => new Dropdown(dropdownToggleEl)
   );
+  
   return (
     <main>
       <div>ProductsMilk</div>

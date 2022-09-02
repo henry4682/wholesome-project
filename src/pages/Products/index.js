@@ -13,7 +13,6 @@ import axios from 'axios';
 function Products() {
   return (
     <container>
-      
       <h1>Products</h1>
       TODO:切版&試試看引入後端資料
       <div class="d-flex justify-content-around">
