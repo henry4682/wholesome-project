@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './index.scss';
 function Header() {
   return (
@@ -12,6 +13,25 @@ function Header() {
             alt="logo"
           />
         </div>
+        <nav className="nav d-flex justify-content-center align-items-center">
+          <ul className="d-flex list-unstyled">
+            <li>
+              <Link to="products/milk">植物奶</Link>
+            </li>
+            <li>
+              <Link to="products/juice">營養蔬果汁</Link>
+            </li>
+            <li>
+              <Link to="products/snack">營養點心</Link>
+            </li>
+            <li>
+              <Link to="products/sale">本月優惠</Link>
+            </li>
+            <li>
+              <Link to="recipes/beverage">美味食譜</Link>
+            </li>
+          </ul>
+        </nav>
       </div>
     </header>
   );
