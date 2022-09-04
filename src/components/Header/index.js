@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaRegUser } from 'react-icons/fa';
+import { BsCart3 } from 'react-icons/bs';
+
 import './index.scss';
 function Header() {
   return (
@@ -12,6 +15,17 @@ function Header() {
             src={require('../../Assets/Logo/logo.png')}
             alt="logo"
           />
+          <div className="icon-box d-flex">
+            <div>
+              <Link to="account">
+                <FaRegUser />
+              </Link>
+            </div>
+            <div>
+              <BsCart3 />
+            </div>
+            <div>搜尋</div>
+          </div>
         </div>
         <nav className="nav d-flex justify-content-center align-items-center">
           <ul className="d-flex list-unstyled">
