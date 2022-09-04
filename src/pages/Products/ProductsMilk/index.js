@@ -9,6 +9,9 @@ import Breadcrumb from '../components/Breadcrumb';
 import Aside from '../components/Aside';
 
 function ProductsMilk() {
+  const [data, setData] = useState([
+    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
+  ]);
   //利用useState抽換productsMainCategory頁面的內容?
   const [category, setCategory] = useState('植物奶');
 
@@ -16,7 +19,7 @@ function ProductsMilk() {
   const dropdownList = [...dropdownElementList].map(
     (dropdownToggleEl) => new Dropdown(dropdownToggleEl)
   );
-  
+
   return (
     <main>
       <div>ProductsMilk</div>
@@ -72,38 +75,20 @@ function ProductsMilk() {
               </div>
             </div>
           </div>
-          <div class="card-list d-flex justify-content-around">
+          <div class="card-list d-flex flex-wrap justify-content-around">
             {/* 抓到資料後 map card */}
-            <div class="card  col-4">
-              <img src="" class="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">商品名</h5>
-                <p class="card-text">$123元</p>
-                {/* <a href="/" class="btn btn-primary">
-                  Go somewhere
-                </a> */}
-              </div>
-            </div>
-            <div class="card  col-4">
-              <img src="" class="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">商品名</h5>
-                <p class="card-text">$123元</p>
-                {/* <a href="/" class="btn btn-primary">
-                  Go somewhere
-                </a> */}
-              </div>
-            </div>
-            <div class="card  col-4">
-              <img src="" class="card-img-top" alt="..." />
-              <div class="card-body">
-                <h5 class="card-title">商品名</h5>
-                <p class="card-text">$123元</p>
-                {/* <a href="/" class="btn btn-primary">
-                  Go somewhere
-                </a> */}
-              </div>
-            </div>
+            {/* {data.map((item, index) => {
+              return (
+                <div key={index} class="card  col-4">
+                  <img src="" class="card-img-top" alt="..." />
+                  <div class="card-body">
+                    <h5 class="card-title">商品名</h5>
+                    <p class="card-text">$123元</p>
+                    
+                  </div>
+                </div>
+              )
+            })*/}
           </div>
           {/* 頁數元件化? */}
           <nav>

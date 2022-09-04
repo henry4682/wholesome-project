@@ -39,10 +39,10 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
 {/* <<<<<<< HEAD */}
-        <Route path="products/" element={<ProductsMilk />} />
-        {/* <Route path="products/juice" element={<Products />} />
-        <Route path="products/snack" element={<Products />} /> */}
-        <Route path="recipes/beverage" element={<Recipes />} />
+        {/* <Route path="products/" element={<ProductsMilk />} />
+        <Route path="products/juice" element={<Products />} />
+        <Route path="products/snack" element={<Products />} />
+        <Route path="recipes/beverage" element={<Recipes />} /> */}
         {/* <Route path="recipes/bake" element={<Recipes />} />
         <Route path="recipes/light" element={<Recipes />} /> */}
 {/* ======= */}
