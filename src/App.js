@@ -8,9 +8,11 @@ import Home from './pages/Home';
 import AccountInfo from './pages/Account/AccountInfo';
 import AccountEdit from './pages/Account/AccountEdit';
 import AccountModifyPassword from './pages/Account/AccountModifyPassword';
-import AccountCoupons from './pages/Account/AccountCoupons';
 import AccountOrders from './pages/Account/AccountOrders';
+import AccountAddresses from './pages/Account/AccountAddresses';
+import AccountCoupons from './pages/Account/AccountCoupons';
 import AccountTracking from './pages/Account/AccountTracking';
+import AccountMessages from './pages/Account/AccountMessages';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
@@ -34,15 +36,17 @@ function App() {
       {/* 路由表 */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="account" element={<AccountInfo />} />
-        <Route path="account/edit" element={<AccountEdit />} />
-        <Route
-          path="account/modifypassword"
-          element={<AccountModifyPassword />}
-        />
-        <Route path="account/coupons" element={<AccountCoupons />} />
-        <Route path="account/orders" element={<AccountOrders />} />
-        <Route path="account/tracking" element={<AccountTracking />} />
+
+        <Route path="/account/*" element={<AccountInfo />}>
+          <Route path="edit" element={<AccountEdit />} />
+          <Route path="modifypassword" element={<AccountModifyPassword />} />
+          <Route path="orders" element={<AccountOrders />} />
+          <Route path="addresses" element={<AccountAddresses />} />
+          <Route path="coupons" element={<AccountCoupons />} />
+          <Route path="tracking" element={<AccountTracking />} />
+          <Route path="messages" element={<AccountMessages />} />
+        </Route>
+
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
 
