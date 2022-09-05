@@ -1,12 +1,19 @@
 .account_info {
-  background-color: rgb(236, 192, 207);
+  // border: 1px solid rgb(236, 192, 207);
+  padding: 40px;
   &-card {
-    background-color: peachpuff;
+    border: 1px solid #e2e2e2;
+    border-radius: 5px;
+    padding: 30px;
     &-left {
-      background-color: rgb(198, 237, 198);
+      // border: 1px solid rgb(198, 237, 198);
+    }
+    &-name {
+      font-size: 20px;
     }
     &-right {
-      background-color: rgb(136, 136, 223);
+      border-left: 1px solid #e2e2e2;
+      padding: 10px 20px;
     }
   }
 }
