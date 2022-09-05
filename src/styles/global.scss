@@ -8,7 +8,7 @@ $secondary: #e2e2e2;
 
 // 其它要導入覆蓋掉原本的預設bootstrap樣式要放在這下面
 // 全站都會使用的共同樣式
-
+@import './reset.scss';
 html {
   font-size: 16px;
 }

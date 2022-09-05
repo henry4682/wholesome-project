@@ -1,12 +1,20 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import React from 'react';
 //版面組合用元件
-import Menu from './components/Menu';
 import Header from './components/Header';
 import Footer from './components/Footer';
 // 以下為各頁面元件
 import Home from './pages/Home';
-import User from './pages/User';
+// Account
+import AccountLayout from './pages/Account/AccountLayouts';
+import AccountInfo from './pages/Account/AccountInfo';
+import AccountEdit from './pages/Account/AccountEdit';
+import AccountModifyPassword from './pages/Account/AccountModifyPassword';
+import AccountOrders from './pages/Account/AccountOrders';
+import AccountAddresses from './pages/Account/AccountAddresses';
+import AccountCoupons from './pages/Account/AccountCoupons';
+import AccountTracking from './pages/Account/AccountTracking';
+import AccountMessages from './pages/Account/AccountMessages';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
@@ -30,7 +38,18 @@ function App() {
       {/* 路由表 */}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="user" element={<User />} />
+
+        <Route path="/account/*" element={<AccountLayout />}>
+          <Route index element={<AccountInfo />} />
+          <Route path="edit" element={<AccountEdit />} />
+          <Route path="modifypassword" element={<AccountModifyPassword />} />
+          <Route path="orders" element={<AccountOrders />} />
+          <Route path="addresses" element={<AccountAddresses />} />
+          <Route path="coupons" element={<AccountCoupons />} />
+          <Route path="tracking" element={<AccountTracking />} />
+          <Route path="messages" element={<AccountMessages />} />
+        </Route>
+
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
 
