@@ -6,6 +6,10 @@
   --main-cat-font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
 }
 
+body::-webkit-scrollbar {
+  display: none;//測試用隱藏 scrollbar
+}
+
 header{
 display: flex;
 flex-direction: column;
@@ -110,8 +114,32 @@ nav{
 }
 
 
+//產品種類標題
 
+.category-title{
+  border-left:3px solid #000;
+  padding-left: 13px;
+  color: #565656;
+  font-family: 'Noto Sans TC';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 30px;
+}
+.order_search{
+  height: 52px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 10px;
+  
+}
 
+.order_search p{
+  
+  margin: auto;
+}
 
 
 
@@ -120,22 +148,72 @@ nav{
   width: 836px;
   height: 2666px;
 }
+.category-product-box {
+  width: 100%;
+}
+.dropdown-toggle{
+  border: 1px solid #767676;
+  border-radius: 0px;
+  background: #fff;
+}
 
+.form-control {
+  border: 1px solid #000;
+  background: #fff;
+  border-radius: 0;
+
+}
+.btn{
+  border: 1px solid #000;
+  border-radius: 0;
+}
 .card-list{
-width: 836px;
-height: 2666px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 20px;
 }
 
 .card{
   width: 264px;
   height: 333px;
+  border: none;
   img{
     height: 264px;
   }
 }
 
+.card-title{
+  
+  font-family: 'Noto Sans TC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+
+  text-align: center;
+
+  color: #565656;
+}
+
 
 .card-text{
+  width: 100%;
+  height: 15px;
+  
+  /* price-original */
+  
+  font-family: 'Noto Sans TC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 15px;
+  /* identical to box height, or 107% */
+  
   text-align: right;
+  justify-self: end;
+  
+  color: #7B7B7B;
 }
 

@@ -18,14 +18,13 @@ import AccountMessages from './pages/Account/AccountMessages';
 import Login from './pages/Login';
 import Register from './pages/Register';
 // <<<<<<< HEAD
-import Products from './pages/Products';
 import Recipes from './pages/Recipes';
 // =======
+import Products from './pages/Products/Products';
 
-import ProductsMilk from './pages/Products/ProductsMilk';
-import ProductsJuice from './pages/Products/ProductsJuice';
-import ProductsSnack from './pages/Products/ProductsSnack';
 import ProductsSale from './pages/Products/ProductsSale';
+
+import ProductDetail from './pages/ProductDetail';
 
 import RecipesBeverage from './pages/Recipes/RecipesBeverage';
 import RecipesBake from './pages/Recipes/RecipesBake';
@@ -57,24 +56,24 @@ function App() {
 
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-{/* <<<<<<< HEAD */}
-        <Route path="products/" element={<ProductsMilk />} />
-        {/* <Route path="products/juice" element={<Products />} />
-        <Route path="products/snack" element={<Products />} /> */}
-        <Route path="recipes/beverage" element={<Recipes />} />
-        {/* <Route path="recipes/bake" element={<Recipes />} />
-        <Route path="recipes/light" element={<Recipes />} /> */}
-{/* ======= */}
+        {/* <<<<<<< HEAD */}
+        <Route path="/products/*" element={<Products />}>
+          <Route index element={<Products />} />
+        </Route>
+        <Route path="/productDetail/*" element={ProductDetail} />
 
-        <Route path="products/milk" element={<ProductsMilk />} />
-        <Route path="products/juice" element={<ProductsJuice />} />
-        <Route path="products/snack" element={<ProductsSnack />} />
+        <Route path="beverage" element={<Recipes />} />
+        <Route path="bake" element={<Recipes />} />
+        <Route path="light" element={<Recipes />} />
+
+        {/* ======= */}
+
         <Route path="products/sale" element={<ProductsSale />} />
 
         <Route path="recipes/beverage" element={<RecipesBeverage />} />
         <Route path="recipes/bake" element={<RecipesBake />} />
         <Route path="recipes/light" element={<RecipesLight />} />
-{/* >>>>>>> 80c15c7506c277da982a71dde8ecf26285c44c61 */}
+        {/* >>>>>>> 80c15c7506c277da982a71dde8ecf26285c44c61 */}
         <Route path="shoppingCart" element={<ShoppingCart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
