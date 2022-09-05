@@ -18,14 +18,17 @@ import AccountMessages from './pages/Account/AccountMessages';
 import Login from './pages/Login';
 import Register from './pages/Register';
 
-import ProductsMilk from './pages/Products/ProductsMilk';
-import ProductsJuice from './pages/Products/ProductsJuice';
-import ProductsSnack from './pages/Products/ProductsSnack';
+//products
+import ProductsLayout from './pages/Products/ProductsLayout';
+import ProductsList from './pages/Products/ProductsList';
+import ProductDetail from './pages/Products/ProductDetail';
+
 import ProductsSale from './pages/Products/ProductsSale';
 
-import RecipesBeverage from './pages/Recipes/RecipesBeverage';
-import RecipesBake from './pages/Recipes/RecipesBake';
-import RecipesLight from './pages/Recipes/RecipesLight';
+//recipe
+import RecipesLayout from './pages/Recipes/RecipesLayout';
+import RecipesList from './pages/Recipes/RecipesList';
+import RecipeDetail from './pages/Recipes/RecipeDetail';
 
 import ShoppingCart from './pages/ShoppingCart';
 import NotFound from './pages/NotFound.js';
@@ -53,14 +56,17 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
 
-        <Route path="products/milk" element={<ProductsMilk />} />
-        <Route path="products/juice" element={<ProductsJuice />} />
-        <Route path="products/snack" element={<ProductsSnack />} />
-        <Route path="products/sale" element={<ProductsSale />} />
+        <Route path="/products" element={<ProductsLayout />}>
+          <Route index element={<ProductsList />} />
+          <Route path="productDetail/:productId" element={<ProductDetail />} />
+          {/* <Route path="sale" element={<ProductsSale />} /> */}
+        </Route>
 
-        <Route path="recipes/beverage" element={<RecipesBeverage />} />
-        <Route path="recipes/bake" element={<RecipesBake />} />
-        <Route path="recipes/light" element={<RecipesLight />} />
+        <Route path="/recipes" element={<RecipesLayout />}>
+          <Route index element={<RecipesList />} />
+          <Route path="recipeDetail/:recipeId" element={<RecipeDetail />} />
+        </Route>
+
         <Route path="shoppingCart" element={<ShoppingCart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
