@@ -5,6 +5,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 // 以下為各頁面元件
 import Home from './pages/Home';
+// Account
+import AccountLayout from './pages/Account/AccountLayouts';
 import AccountInfo from './pages/Account/AccountInfo';
 import AccountEdit from './pages/Account/AccountEdit';
 import AccountModifyPassword from './pages/Account/AccountModifyPassword';
@@ -37,7 +39,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
 
-        <Route path="/account/*" element={<AccountInfo />}>
+        <Route path="/account/*" element={<AccountLayout />}>
+          <Route index element={<AccountInfo />} />
           <Route path="edit" element={<AccountEdit />} />
           <Route path="modifypassword" element={<AccountModifyPassword />} />
           <Route path="orders" element={<AccountOrders />} />

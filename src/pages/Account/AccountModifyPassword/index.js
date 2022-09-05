@@ -1,6 +1,6 @@
 import React from 'react';
-import Aside from '../components/Aside';
-import Breadcrumb from '../components/Breadcrumb';
+import Aside from '../AccountLayouts/Aside';
+import Breadcrumb from '../AccountLayouts/Breadcrumb';
 import './index.scss';
 
 function AccountModifyPassword() {

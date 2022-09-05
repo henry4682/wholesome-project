@@ -8,7 +8,9 @@ function Aside() {
       <aside className="account_aside">
         <p className="account_aside-title">我的帳戶</p>
         <ul className="list-unstyled account_aside-list ">
-          <li>我的帳戶</li>
+          <li>
+            <Link to="">我的帳戶</Link>
+          </li>
           <li>
             <Link to="edit">更新個人資訊</Link>
           </li>
