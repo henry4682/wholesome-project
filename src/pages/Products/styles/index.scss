@@ -1,3 +1,11 @@
+#root{
+  --main-cat-color:#565656;
+  --main-cat-font-weight: 400;
+  --main-cat-font-size: 16px;
+  --main-cat-line-height: 24px;
+  --main-cat-font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
+}
+
 header{
 display: flex;
 flex-direction: column;
@@ -12,42 +20,122 @@ top: 0px;
 
 }
 
-main {
-  margin:0 auto;
+.container{
+  
   width: 1113.5px;
   height: 2745px;
-  left: 302px;
-  top: 300px;
 }
 
-.accordion{
-  width: 238px;
-  height: 498px;
+main{
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 37px;
+  margin-top: 132px;
+  width: 1110.5px;
+  height: 2666px;
+  
+  
 }
 
-
+//麵包屑
 nav{
   --bs-breadcrumb-divider: '>';
 }
-.card-box{
 
+.breadcrumb-whole{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 12px 0px;
+  gap: 12px;
+  width: 112.36px;
+  height: 44px;
 }
+.breadcrumb{
+  margin: auto 0px;
+}
+
+.breadcrumb-item{
+  color:#7B7B7B;
+  font-size: 13px;
+  line-height: 19.5px;
+    a {
+      color:#7B7B7B;
+    }
+
+  }
+
+//側欄選單
+
+.accordion{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+  width: 238px;
+  height: 498px;
+  --bs-accordion-btn-focus-border-color:#000;
+  --bs-accordion-active-color:#000;
+  color:var(--main-cat-color);
+  font-weight: var(--main-cat-font-weight);
+  font-size: var(--main-cat-font-size);
+  line-height: var(--main-cat-line-height);
+  font-family: var(--main-cat-font-family);
+}
+.accordion-item{
+  width: 100%;
+}
+.accordion-button:focus{
+    background: #fff;
+    text-decoration: none;
+  
+}
+.accordion-button:not(.collapsed){
+  color: #000;
+  background: #fff;
+  box-shadow: none;
+}
+.accordion-button{
+  text-align: left;
+  padding-left: 0px ;
+}
+.list-group-item{
+  border: none ;
+  a{
+    color:#000;
+    text-decoration: none;
+  }
+}
+
+
+
+
+
+
+
 
 .content{
   width: 836px;
   height: 2666px;
 }
 
+.card-list{
+width: 836px;
+height: 2666px;
+}
+
 .card{
   width: 264px;
   height: 333px;
+  img{
+    height: 264px;
+  }
 }
-.card img{
-  
-  
-  height: 264px;
-}
+
 
 .card-text{
   text-align: right;
 }
+
