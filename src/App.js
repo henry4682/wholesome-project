@@ -22,13 +22,17 @@ import Recipes from './pages/Recipes';
 // =======
 import Products from './pages/Products/Products';
 
+//products
+import ProductsLayout from './pages/Products/ProductsLayout';
+import ProductsList from './pages/Products/ProductsList';
+import ProductDetail from './pages/Products/ProductDetail';
+
 import ProductsSale from './pages/Products/ProductsSale';
 
-import ProductDetail from './pages/ProductDetail';
-
-import RecipesBeverage from './pages/Recipes/RecipesBeverage';
-import RecipesBake from './pages/Recipes/RecipesBake';
-import RecipesLight from './pages/Recipes/RecipesLight';
+//recipe
+import RecipesLayout from './pages/Recipes/RecipesLayout';
+import RecipesList from './pages/Recipes/RecipesList';
+import RecipeDetail from './pages/Recipes/RecipeDetail';
 
 // >>>>>>> 80c15c7506c277da982a71dde8ecf26285c44c61
 import ShoppingCart from './pages/ShoppingCart';
@@ -68,12 +72,17 @@ function App() {
 
         {/* ======= */}
 
-        <Route path="products/sale" element={<ProductsSale />} />
+        <Route path="/products" element={<ProductsLayout />}>
+          <Route index element={<ProductsList />} />
+          <Route path="productDetail/:productId" element={<ProductDetail />} />
+          {/* <Route path="sale" element={<ProductsSale />} /> */}
+        </Route>
 
-        <Route path="recipes/beverage" element={<RecipesBeverage />} />
-        <Route path="recipes/bake" element={<RecipesBake />} />
-        <Route path="recipes/light" element={<RecipesLight />} />
-        {/* >>>>>>> 80c15c7506c277da982a71dde8ecf26285c44c61 */}
+        <Route path="/recipes" element={<RecipesLayout />}>
+          <Route index element={<RecipesList />} />
+          <Route path="recipeDetail/:recipeId" element={<RecipeDetail />} />
+        </Route>
+
         <Route path="shoppingCart" element={<ShoppingCart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

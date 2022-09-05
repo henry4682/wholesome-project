@@ -1,8 +1,8 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-function ProductsLayout() {
+function RecipesLayout() {
   return <Outlet />;
 }
 
-export default ProductsLayout;
+export default RecipesLayout;
