@@ -34,13 +34,13 @@ function Aside() {
             <div class="accordion-body">
               <ul class="list-group">
                 <li class="list-group-item">
-                  <Link to="/products/milk/oak_milk">燕麥奶</Link>
+                  <Link to="/products">燕麥奶</Link>
                 </li>
                 <li class="list-group-item">
-                  <Link to="/products/milk/almond_milk">杏仁奶</Link>
+                  <Link to="/products">杏仁奶</Link>
                 </li>
                 <li class="list-group-item">
-                  <Link to="/products/milk/nut_milk">堅果奶</Link>
+                  <Link to="/products">堅果奶</Link>
                 </li>
               </ul>
             </div>
@@ -68,15 +68,15 @@ function Aside() {
             <div class="accordion-body">
               <ul class="list-group">
                 <li class="list-group-item">
-                  <Link to="/products/juice/juice&fruit_vinegar">
+                  <Link to="/products">
                     果汁、果醋
                   </Link>
                 </li>
                 <li class="list-group-item">
-                  <Link to="/products/juice/vegetable_juice">蔬菜汁</Link>
+                  <Link to="/products">蔬菜汁</Link>
                 </li>
                 <li class="list-group-item">
-                  <Link to="/products/juice/smoothies">果昔</Link>
+                  <Link to="/products">果昔</Link>
                 </li>
               </ul>
             </div>
@@ -104,13 +104,13 @@ function Aside() {
             <div class="accordion-body">
               <ul class="list-group">
                 <li class="list-group-item">
-                  <Link to="/products/snack/granola&muesli&oat">麥片</Link>
+                  <Link to="/products">麥片</Link>
                 </li>
                 <li class="list-group-item">
-                  <Link to="/products/snack/energy_bar">燕麥棒、蛋白棒</Link>
+                  <Link to="/products">燕麥棒、蛋白棒</Link>
                 </li>
                 <li class="list-group-item">
-                  <Link to="/products/snack/nut">堅果</Link>
+                  <Link to="/products">堅果</Link>
                 </li>
               </ul>
             </div>

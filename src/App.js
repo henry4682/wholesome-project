@@ -60,21 +60,10 @@ function App() {
 
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
-        {/* <<<<<<< HEAD */}
-        <Route path="/products/*" element={<Products />}>
-          <Route index element={<Products />} />
-        </Route>
-        <Route path="/productDetail/*" element={ProductDetail} />
-
-        <Route path="beverage" element={<Recipes />} />
-        <Route path="bake" element={<Recipes />} />
-        <Route path="light" element={<Recipes />} />
-
-        {/* ======= */}
 
         <Route path="/products" element={<ProductsLayout />}>
           <Route index element={<ProductsList />} />
-          <Route path="productDetail/:productId" element={<ProductDetail />} />
+          <Route path="productDetail/1" element={<ProductDetail />} />
           {/* <Route path="sale" element={<ProductsSale />} /> */}
         </Route>
 

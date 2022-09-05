@@ -6,6 +6,7 @@ import '../styles/index.scss';
 function Breadcrumb() {
   return (
     <>
+      {/* {有沒有參數 ? <></> : <></>} */}
       <nav class="breadcrumb-whole align-items-center" aria-label="breadcrumb">
         <ol class="breadcrumb align-items-center">
           <li class="breadcrumb-item">
