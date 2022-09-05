@@ -4,7 +4,7 @@ import './index.scss';
 function Breadcrumb() {
   return (
     <>
-      <div className="account-breadcrumb">
+      <div className="account-breadcrumb d-flex align-items-center">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">Home</li>
