@@ -26,19 +26,44 @@ img{
   width: 591px;
   height:  502px;
 }
+.info-box{
+  width: 535px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  gap: 10px;
+
+}
 
 .product-title{
-
-width: 459px;
-margin-bottom: 16px;
-font-family: 'Noto Sans TC';
-font-style: normal;
-font-weight: 400;
-font-size: 24px;
-line-height: 28px;
+  color:  #565656;
+  font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+  text-decoration: none solid rgb(86, 86, 86);
+  text-align: left;
 }
 .product-description{
-  width: 50%;
+  margin: 6px 0 6px 0;
+  font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  text-decoration: none solid rgb(123, 123, 123);
+  text-align: left;
+  color:  #7B7B7B
+  
+}
+.product-price{
+  font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
+  text-decoration: none solid rgb(154, 171, 130);
+  text-align: left;
+  vertical-align: middle;
+  color:  #9AAB82
 }
 .detail-btn-group{
   width: 571px;
@@ -46,25 +71,68 @@ line-height: 28px;
   display: flex;
   justify-content: space-evenly;
 }
-.btn{
+.product-btn{
   box-sizing: border-box;
-
-
   width: 262px;
   height: 40px;
-
-
+  font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
+  font-size: 15px;
+  line-height: 26px;
   border: 1px solid #9AAB82;
   border-radius: 6px;
+  text-decoration: none solid rgb(255, 255, 255);
+  text-align: center;
+  vertical-align: middle;
+}
+.add-cart-btn{
+  color:#9AAB82;
+}
+.checkout-btn{
+ 
+  background-color:  #9AAB82;
+  color:  #FFFFFF;
+}
+.like-btn{
+  border: none;
+  text-align: left;
 }
 .empty{
-  color: grey
+  color: grey;
+  transition: .4s;
 }
 .heart{
   color: red;
 }
-.info-box{
-  width: 459px;
-  height: 390px;
 
+
+.product-detail{
+ 
+width: 1110px;
+padding: 32px 0;
+margin: 0 auto;
+}
+
+.detail-title{
+  font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 24px;
+  text-decoration: none solid rgb(86, 86, 86);
+  text-align: left;
+  color:  #565656;
+  height: 24px;
+  border-left: 2px solid  #565656;
+  margin: 0 0 8px 0;
+  padding: 0 0 0 10px;
+}
+.detail-content{
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 21px;
+  text-decoration: none solid rgb(51, 51, 51);
+  text-align: left;
+  color:  #333333;
+  display: inline;
+  margin: 0 0 16px 0
 }
