@@ -11,9 +11,12 @@ import Breadcrumb from '../ProductsLayout/Breadcrumb';
 import Aside from '../ProductsLayout/Aside';
 
 function ProductsList() {
-  const [data, setData] = useState([
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
-  ]);
+  //測試用 造出有15個元素的陣列
+  const arr = Array(15)
+    .fill(1)
+    .map((num, index) => index + 1);
+
+  const [data, setData] = useState(arr);
   //利用useState抽換productsMainCategory頁面的內容?
   const [category, setCategory] = useState('植物奶');
 
@@ -108,9 +111,15 @@ function ProductsList() {
             {/* 頁數元件化? */}
             <nav>
               <ul class="d-flex gx-1">
-                <Link class="page" to="">前一頁</Link>
-                <Link class="page" to="">1</Link>
-                <Link class="page" to="">後一頁</Link>
+                <Link class="page" to="">
+                  前一頁
+                </Link>
+                <Link class="page" to="">
+                  1
+                </Link>
+                <Link class="page" to="">
+                  後一頁
+                </Link>
               </ul>
             </nav>
           </div>

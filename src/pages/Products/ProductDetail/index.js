@@ -4,8 +4,11 @@ import './index.scss';
 import { FaHeart } from 'react-icons/fa';
 import BreadcrumbForDetail from '../components/BreadcrumbForDetail';
 
+import ReactStars from 'react-rating-stars-component';
+
 function ProductDetail() {
   const [like, setLike] = useState(false);
+
   return (
     <>
       <BreadcrumbForDetail />
@@ -48,8 +51,8 @@ function ProductDetail() {
           </button>
         </div>
       </div>
-      <div class="product-detail">
-        <div class="detail-title">商品介紹</div>
+      <section class="product-detail">
+        <div class="section-title">商品介紹</div>
         <div class="detail-content">
           Pacific Foods 有機燕麥原味牛奶讓燕麥的甜味閃耀在這款奶油飲料中。
           富含鈣和維他命 D
@@ -59,7 +62,25 @@ function ProductDetail() {
           我們避免使用防腐劑、添加劑和轉基因生物,並始終會。
           我們的使命是滋養每一個身體,一次一餐。 ​
         </div>
-      </div>
+      </section>
+      <section class="product-comment">
+        <div class="section-title">買家評論</div>
+        <div class="score-box">
+          //TODO:處理STARS
+          <div class="average-score">
+            <div class="score">4.5</div>
+            <div class="stars">★★★★☆</div>
+          </div>
+          <div class="score-bar">
+            <div>評價分佈顯示</div>
+            {/* 可能跑迴圈? */}
+            <div class="star-count">
+              <p>5顆星(8)</p>
+              <div class="bar"></div>
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }
