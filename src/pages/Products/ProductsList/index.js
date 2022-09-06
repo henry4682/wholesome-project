@@ -7,8 +7,8 @@ import { Dropdown } from 'bootstrap';
 import { FaSearch } from 'react-icons/fa';
 
 import Home from '../../Home';
-import Breadcrumb from '../components/Breadcrumb';
-import Aside from '../components/Aside';
+import Breadcrumb from '../ProductsLayout/Breadcrumb';
+import Aside from '../ProductsLayout/Aside';
 
 function ProductsList() {
   const [data, setData] = useState([
@@ -107,10 +107,10 @@ function ProductsList() {
 
             {/* 頁數元件化? */}
             <nav>
-              <ul>
-                <Link to="">前一頁</Link>
-                <Link to="">1</Link>
-                <Link to="">後一頁</Link>
+              <ul class="d-flex gx-1">
+                <Link class="page" to="">前一頁</Link>
+                <Link class="page" to="">1</Link>
+                <Link class="page" to="">後一頁</Link>
               </ul>
             </nav>
           </div>

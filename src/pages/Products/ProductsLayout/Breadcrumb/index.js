@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { FaHome } from 'react-icons/fa';
-import '../styles/index.scss';
+import './index.scss';
 
 function Breadcrumb() {
   return (

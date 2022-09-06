@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Collapse from 'bootstrap/js/dist/collapse';
 import { Link } from 'react-router-dom';
+import './index.scss'
 
 function Aside() {
   useEffect(() => {

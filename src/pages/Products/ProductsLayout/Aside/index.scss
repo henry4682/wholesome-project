@@ -1,0 +1,42 @@
+//側欄選單
+
+.accordion{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+  width: 238px;
+  height: 498px;
+  --bs-accordion-btn-focus-border-color:#000;
+  --bs-accordion-active-color:#000;
+  color:var(--main-cat-color);
+  font-weight: var(--main-cat-font-weight);
+  font-size: var(--main-cat-font-size);
+  line-height: var(--main-cat-line-height);
+  font-family: var(--main-cat-font-family);
+}
+.accordion-item{
+  width: 100%;
+}
+.accordion-button:focus{
+    background: #fff;
+    text-decoration: none;
+  
+}
+.accordion-button:not(.collapsed){
+  color: #000;
+  background: #fff;
+  box-shadow: none;
+}
+.accordion-button{
+  text-align: left;
+  padding-left: 0px ;
+}
+.list-group-item{
+  border: none ;
+  a{
+    color:#000;
+    text-decoration: none;
+  }
+}
