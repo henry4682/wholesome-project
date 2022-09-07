@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
-import './index.scss';
+import './Products.scss';
 import { Dropdown } from 'bootstrap';
 
 import { FaSearch } from 'react-icons/fa';

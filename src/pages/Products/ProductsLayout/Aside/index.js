@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Collapse from 'bootstrap/js/dist/collapse';
 import { Link } from 'react-router-dom';
-import './index.scss'
+import './ProductsLayoutAside.scss';
 
 function Aside() {
   useEffect(() => {
@@ -11,12 +11,12 @@ function Aside() {
     );
   }, []);
   return (
-    <>
-      <div class="accordion accordion-flush" id="accordionFlushExample">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingOne">
+    <div className="">
+      <div className="accordion accordion-flush" id="accordionFlushExample">
+        <div className="accordion-item">
+          <h2 className="accordion-header" id="flush-headingOne">
             <button
-              class="accordion-button collapsed"
+              className="accordion-button collapsed"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#flush-collapseOne"
@@ -28,29 +28,29 @@ function Aside() {
           </h2>
           <div
             id="flush-collapseOne"
-            class="accordion-collapse collapse"
+            className="accordion-collapse collapse"
             aria-labelledby="flush-headingOne"
             data-bs-parent="#accordionFlushExample"
           >
-            <div class="accordion-body">
-              <ul class="list-group">
-                <li class="list-group-item">
+            <div className="accordion-body">
+              <ul className="list-group">
+                <li className="list-group-item">
                   <Link to="/products">燕麥奶</Link>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <Link to="/products">杏仁奶</Link>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <Link to="/products">堅果奶</Link>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingTwo">
+        <div className="accordion-item">
+          <h2 className="accordion-header" id="flush-headingTwo">
             <button
-              class="accordion-button collapsed"
+              className="accordion-button collapsed"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#flush-collapseTwo"
@@ -62,31 +62,29 @@ function Aside() {
           </h2>
           <div
             id="flush-collapseTwo"
-            class="accordion-collapse collapse"
+            className="accordion-collapse collapse"
             aria-labelledby="flush-headingTwo"
             data-bs-parent="#accordionFlushExample"
           >
-            <div class="accordion-body">
-              <ul class="list-group">
-                <li class="list-group-item">
-                  <Link to="/products">
-                    果汁、果醋
-                  </Link>
+            <div className="accordion-body">
+              <ul className="list-group">
+                <li className="list-group-item">
+                  <Link to="/products">果汁、果醋</Link>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <Link to="/products">蔬菜汁</Link>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <Link to="/products">果昔</Link>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingThree">
+        <div className="accordion-item">
+          <h2 className="accordion-header" id="flush-headingThree">
             <button
-              class="accordion-button collapsed"
+              className="accordion-button collapsed"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#flush-collapseThree"
@@ -98,19 +96,19 @@ function Aside() {
           </h2>
           <div
             id="flush-collapseThree"
-            class="accordion-collapse collapse"
+            className="accordion-collapse collapse"
             aria-labelledby="flush-headingThree"
             data-bs-parent="#accordionFlushExample"
           >
-            <div class="accordion-body">
-              <ul class="list-group">
-                <li class="list-group-item">
+            <div className="accordion-body">
+              <ul className="list-group">
+                <li className="list-group-item">
                   <Link to="/products">麥片</Link>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <Link to="/products">燕麥棒、蛋白棒</Link>
                 </li>
-                <li class="list-group-item">
+                <li className="list-group-item">
                   <Link to="/products">堅果</Link>
                 </li>
               </ul>
@@ -118,7 +116,7 @@ function Aside() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
