@@ -1,7 +1,7 @@
-.navbar {
+.recipe-navbar {
   padding: 20px 40%;
 }
-.navbar Link {
+.recipe-navbar Link {
   margin: 10px;
   color: black;
 }
@@ -18,7 +18,7 @@
 .recipe_img img{
     width: 300px;
 }
-.card-body{
+.recipe-card-body{
     padding: 15px;
 }
 .recipe_date{
@@ -34,13 +34,13 @@
     font-size: 15px;
     color: #999;   
 }
-.readmore{
+.recipe-readmore{
     margin-top: 10px;
     font-size: 14px;
     font-weight: 800;
     color: #999; 
 }
-.pagination{
+.recipe-pagination{
     justify-content: center;
     margin-top: 20px;
 }

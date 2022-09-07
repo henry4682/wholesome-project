@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function RecipesList() {
   return (
     <>
-      <div className="navbar d-flex bg-secondary container-fluid">
+      <div className="recipe-navbar d-flex bg-secondary container-fluid">
         <Link to="/recipes">飲品</Link>
         <Link to="/recipes">烘焙</Link>
         <Link to="/recipes">輕食</Link>
@@ -29,7 +29,7 @@ function RecipesList() {
           <RecipeCard />
 
           <nav aria-label="Page navigation ">
-            <ul class="pagination">
+            <ul class="recipe-pagination">
               <li class="page-item">
                 <a class="page-link" href="#" aria-label="Previous">
                   <span aria-hidden="true">&laquo;</span>
@@ -46,7 +46,7 @@ function RecipesList() {
                 </a>
               </li>
               <li class="page-item">
-                <a class="page-link" href="#">
+                <a class="recipe-page-link" href="#">
                   3
                 </a>
               </li>

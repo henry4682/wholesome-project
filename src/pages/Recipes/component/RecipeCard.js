@@ -10,7 +10,7 @@ function RecipeCard() {
           <div className="recipe_img">
             <img src={recipeImage}></img>
           </div>
-          <div className="card-body">
+          <div className="recipe-card-body">
             <div className="recipe_date">張宇平 營養師 | 2022-08-17</div>
             <div className="recipe_title">
               <h4>
@@ -20,7 +20,7 @@ function RecipeCard() {
             <div className="recipe_content text-truncate">
               鮮嫩多汁的雞翅帶點蜂蜜的甜味與香氣，嘴饞的時候的最佳良伴
             </div>
-            <div className="readmore">
+            <div className="recipe-readmore">
               <a>閱讀更多</a>
             </div>
           </div>
