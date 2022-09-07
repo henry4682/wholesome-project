@@ -26,6 +26,14 @@ function AccountEdit() {
             <input type="date" className="form-control" />
           </div>
           <div>
+            <label className="form-label">收件地址</label>
+            <input
+              type="text"
+              className="form-control"
+              value={'台北市中正區重慶南路一段122號'}
+            />
+          </div>
+          <div>
             <label className="form-label">性別</label>
             <div className="form-check">
               <input
@@ -51,6 +59,7 @@ function AccountEdit() {
               </label>
             </div>
           </div>
+
           <div>
             <button className="btn btn btn-primary text-white" type="submit">
               確定修改

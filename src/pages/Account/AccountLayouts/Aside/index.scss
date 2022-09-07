@@ -1,10 +1,11 @@
 .account_aside {
-  width: 200px;
+  width: 250px;
   &-title {
     font-size: 20px;
     padding-bottom: 20px;
   }
   &-list {
+    width: 80%;
     font-size: 14px;
     line-height: 14px;
     & li {
