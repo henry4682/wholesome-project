@@ -11,7 +11,7 @@ import AccountInfo from './pages/Account/AccountInfo';
 import AccountEdit from './pages/Account/AccountEdit';
 import AccountModifyPassword from './pages/Account/AccountModifyPassword';
 import AccountOrders from './pages/Account/AccountOrders';
-import AccountAddresses from './pages/Account/AccountAddresses';
+import AccountOrderDetail from './pages/Account/AccountOrderDetail';
 import AccountCoupons from './pages/Account/AccountCoupons';
 import AccountTracking from './pages/Account/AccountTracking';
 import AccountMessages from './pages/Account/AccountMessages';
@@ -47,7 +47,7 @@ function App() {
           <Route path="edit" element={<AccountEdit />} />
           <Route path="modifypassword" element={<AccountModifyPassword />} />
           <Route path="orders" element={<AccountOrders />} />
-          <Route path="addresses" element={<AccountAddresses />} />
+          <Route path="addresses" element={<AccountOrderDetail />} />
           <Route path="coupons" element={<AccountCoupons />} />
           <Route path="tracking" element={<AccountTracking />} />
           <Route path="messages" element={<AccountMessages />} />
