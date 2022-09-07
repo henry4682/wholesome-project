@@ -1,0 +1,309 @@
+.product-intro{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 10px 220px;
+  gap: 140px;
+
+
+  width: 1920px;
+  height: 598px;
+  margin: 0 auto;
+
+}
+
+img{
+  max-width: 513px;
+  max-height: 491px;
+}
+.product-box{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  gap: 10px;
+
+  width: 591px;
+  height:  502px;
+}
+.info-box{
+  width: 535px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  gap: 10px;
+
+}
+
+.product-title{
+  color:  #565656;
+  font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+  text-decoration: none solid rgb(86, 86, 86);
+  text-align: left;
+}
+.product-description{
+  margin: 6px 0 6px 0;
+  font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  text-decoration: none solid rgb(123, 123, 123);
+  text-align: left;
+  color:  #7B7B7B
+  
+}
+.product-price{
+  font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
+  text-decoration: none solid rgb(154, 171, 130);
+  text-align: left;
+  vertical-align: middle;
+  color:  #9AAB82
+}
+.detail-btn-group{
+  width: 571px;
+  height: 40px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.product-btn{
+  box-sizing: border-box;
+  width: 262px;
+  height: 40px;
+  font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
+  font-size: 15px;
+  line-height: 26px;
+  border: 1px solid #9AAB82;
+  border-radius: 6px;
+  text-decoration: none solid rgb(255, 255, 255);
+  text-align: center;
+  vertical-align: middle;
+}
+.add-cart-btn{
+  color:#9AAB82;
+}
+.checkout-btn{
+ 
+  background-color:  #9AAB82;
+  color:  #FFFFFF;
+}
+.like-btn{
+  border: none;
+  text-align: left;
+}
+.empty{
+  color: grey;
+  transition: .4s;
+}
+.heart{
+  color: red;
+}
+
+
+section{
+  width: 1110px;
+  padding: 32px 0;
+  margin: 0 auto;
+}
+
+.section-title{
+  font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 24px;
+  text-decoration: none solid rgb(86, 86, 86);
+  text-align: left;
+  color:  #565656;
+  height: 24px;
+  border-left: 2px solid  #565656;
+  margin: 0 0 8px 0;
+  padding: 0 0 0 10px;
+}
+.detail-content{
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 21px;
+  text-decoration: none solid rgb(51, 51, 51);
+  text-align: left;
+  color:  #333333;
+  display: inline;
+  margin: 0 0 16px 0
+}
+
+.score-box{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 73px 220px;
+  gap: 54px;
+}
+
+.average-score-box{
+  width: 237.33px;
+  height: 202px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 10px 8px;
+  gap: 10px;
+  border: 1px solid #DDDDDD;
+
+}
+.average-score{
+  
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  //TODO:顏色可能要調
+  // 原色:color: #C20E1A;
+  color:#9AAB82;
+  background-color:#D9D9D9 ;
+
+  font-family:  "Noto Sans TC", "Noto Sans JP", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 96px;
+  text-align: center;
+}
+
+.stars{
+display: flex;
+justify-content: center;
+align-items:center ;
+
+
+width: 217.33px;
+height: 49.36px;
+}
+
+.score-bar{
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  gap: 8px;
+  width: 766px;
+  height: 294px;
+  background: #FFFFFF;
+  border: 1px solid #DDDDDD;
+  font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 24px;
+}
+
+.star-bar{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 9px 7px;
+  gap: 10px;
+  width: 756px;
+  height: 42px;
+}
+.bar-section{
+  width: 665px;
+  height: 16px;
+}
+
+.comment-box{
+  box-sizing: border-box;
+  border: 1px solid #E2E0DB;
+}
+ 
+.comment-top{
+  display: flex;
+  justify-content: space-between;
+}
+.comment-info{
+  display: flex;
+  gap:20px;
+  color: #89817D;
+}
+
+.comment-title{
+  padding: 8px 90px;
+  font-family: 'Microsoft JhengHei';
+  letter-spacing: 0.84px;
+  color: #564E4A;
+  font-size: 16px;
+  line-height: 32px;
+}
+.comment-info{
+  padding: 9px 33px;
+}
+.comment-top-text{
+  font-family: 'Microsoft JhengHei';
+  font-size: 14px;
+  line-height: 32px;
+  color: #89817D;
+  text-decoration: none;
+}
+
+
+.user-comment-box{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  width: 948px;
+  border:0 0 0 1px solid #E2E0DB  ;
+
+ 
+}
+.user-img{
+  width: 64px;
+  height: 64px;
+  box-sizing: border-box;
+  align-self: flex-start;
+}
+.user-text{
+  width: 874px;
+  display: flex;
+  flex-direction: column;
+  justify-content:center ;
+  align-items:flex-start;
+  gap: 10px;
+}
+.user-comment{
+  display: flex;
+  flex-direction: column;
+  justify-content:space-between ;
+  gap: 22px;
+  
+}
+
+.comment-text{
+  font-family: 'Microsoft JhengHei';
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.84px;
+
+  color: #564E4A;
+}
+.user-star{
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  gap: 10px;
+
+
+  width: 874px;
+  height: 28px;
+  
+}
