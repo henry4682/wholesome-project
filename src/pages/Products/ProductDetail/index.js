@@ -36,7 +36,10 @@ function ProductDetail() {
       <BreadcrumbForDetail />
       <div className="product_detail-product-intro">
         <figure>
-          <img className='product_detail-img' src={require('../../../Assets/products/milk1001.jpg')} />
+          <img
+            className="product_detail-img"
+            src={require('../../../Assets/products/milk1001.jpg')}
+          />
         </figure>
         <div className="product_detail-product-box">
           <div className="product_detail-info-box">
@@ -55,21 +58,32 @@ function ProductDetail() {
           </div>
 
           <div className="product_detail-detail-btn-group">
-            <button className="btn product_detail-product-btn product_detail-add-cart-btn" type="button">
+            <button
+              className="btn product_detail-product-btn product_detail-add-cart-btn"
+              type="button"
+            >
               加入購物車
             </button>
-            <button className="btn  product_detail-product-btn product_detail-checkout-btn" type="submit">
+            <button
+              className="btn  product_detail-product-btn product_detail-checkout-btn"
+              type="submit"
+            >
               立即購買
             </button>
           </div>
           <button
-            className="btn  product_detail-product-btn product_detail-like-btn"
+            className="btn product_detail-product-btn product_detail-like-btn"
             type="button"
             onClick={() => {
               setIsLike(!isLike);
             }}
           >
-            <FaHeart className={isLike ? 'heart' : 'empty'} /> 加入最愛
+            <FaHeart
+              className={
+                isLike ? 'product_detail-heart' : 'product_detail-empty'
+              }
+            />{' '}
+            加入最愛
           </button>
         </div>
       </div>
@@ -159,7 +173,6 @@ function ProductDetail() {
               </div>
             </div>
           </section>
-          
         </div>
       </section>
     </>
