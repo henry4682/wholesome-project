@@ -65,35 +65,35 @@
 }
 
 .products_list-card{
-  width: 264px;
-  height: 333px;
+  max-width: 264px;
+  max-height: 333px;
   border: none;
-  img{
-    height: 264px;
-  }
 }
 
 .products_list-card-title{
   
-  font-family: 'Noto Sans TC';
+  font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
   line-height: 18px;
 
-  text-decoration: none;
+  text-decoration: none solid rgb(86, 86, 86);
 
   color: #565656;
 }
 
+.products_list-card-body{
+  display: flex;
+  flex-direction: column;
+  gap:8px
+}
 
 .products_list-card-text{
   width: 100%;
   height: 15px;
   
-  /* price-original */
-  
-  font-family: 'Noto Sans TC';
+  font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -103,9 +103,14 @@
   text-align: right;
   justify-self: end;
   
-  color: #7B7B7B;
+  color: #9AAB82;
+}
+.products_list-pagination{
+  padding: 20px 0;
 }
 
+
 .products_list-page{
+  text-decoration: none;
   padding: 10px;
 }
