@@ -52,7 +52,7 @@ function App() {
           <Route path="edit" element={<AccountEdit />} />
           <Route path="modifypassword" element={<AccountModifyPassword />} />
           <Route path="orders" element={<AccountOrders />} />
-          <Route path="addresses" element={<AccountOrderDetail />} />
+          <Route path="orders/:orderId" element={<AccountOrderDetail />} />
           <Route path="coupons" element={<AccountCoupons />} />
           <Route path="tracking" element={<AccountTracking />} />
           <Route path="messages" element={<AccountMessages />} />
