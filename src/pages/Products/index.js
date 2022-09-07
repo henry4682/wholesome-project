@@ -6,7 +6,7 @@ import ProductsJuice from './ProductsJuice';
 import ProductsSnack from './ProductsSnack';
 import ProductsSale from './ProductsSale';
 
-import './styles/index.scss';
+
 
 import axios from 'axios';
 

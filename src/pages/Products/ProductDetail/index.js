@@ -1,13 +1,35 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { useState } from 'react';
 import './index.scss';
 import { FaHeart } from 'react-icons/fa';
 import BreadcrumbForDetail from '../components/BreadcrumbForDetail';
 
 import ReactStars from 'react-rating-stars-component';
+import ProgressBar from '@ramonak/react-progress-bar';
 
 function ProductDetail() {
-  const [like, setLike] = useState(false);
+  //收藏用TODO:useState裡的true/false要隨著使用者做更換
+  const [isLike, setIsLike] = useState(false);
+
+  //星星平均用
+  const [averageScore, setAverageScore] = useState(4.5);
+  //測試用:做出star bar的陣列
+  const starArr = Array(5)
+    .fill(5)
+    .map((num, index) => num - index);
+  //下面幾個是測試用可能會用json格式把star的內容包起來
+  const [stars, setStars] = useState([
+    {
+      starCount: 8,
+      starPercentage: '50',
+    },
+  ]);
+
+  //幾顆星的數量
+  const [starCount, setStarCount] = useState(8);
+  //star bar 的百分比
+  const [star, setStar] = useState('50');
 
   return (
     <>
@@ -44,10 +66,10 @@ function ProductDetail() {
             class="btn  product-btn like-btn"
             type="button"
             onClick={() => {
-              setLike(!like);
+              setIsLike(!isLike);
             }}
           >
-            <FaHeart class={like ? 'heart' : 'empty'} /> 加入最愛
+            <FaHeart class={isLike ? 'heart' : 'empty'} /> 加入最愛
           </button>
         </div>
       </div>
@@ -63,22 +85,81 @@ function ProductDetail() {
           我們的使命是滋養每一個身體,一次一餐。 ​
         </div>
       </section>
-      <section class="product-comment">
+      <section class="product-comment-score">
         <div class="section-title">買家評論</div>
         <div class="score-box">
-          //TODO:處理STARS
-          <div class="average-score">
-            <div class="score">4.5</div>
-            <div class="stars">★★★★☆</div>
+          <div class="average-score-box">
+            <div class="average-score">{averageScore}</div>
+            <div class="stars">
+              <ReactStars
+                value={averageScore}
+                count={5}
+                size={24}
+                edit={false}
+                activeColor="#ffd700"
+                isHalf={true}
+              />
+            </div>
           </div>
           <div class="score-bar">
             <div>評價分佈顯示</div>
             {/* 可能跑迴圈? */}
-            <div class="star-count">
-              <p>5顆星(8)</p>
-              <div class="bar"></div>
+            {starArr.map((num, i) => {
+              return (
+                <div class="star-bar">
+                  <p>
+                    {num}顆星({starCount})
+                  </p>
+                  <span class="bar-section">
+                    <ProgressBar
+                      completed={star}
+                      customLabel={star + '%'}
+                      className="wrapper"
+                      bgColor={'#9AAB82'}
+                      baseBgColor={'#D9D9D9'}
+                      borderRadius="0px"
+                      labelAlignment="right"
+                      labelSize="11px"
+                    />
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div class="comment-box">
+          <div class="comment-top">
+            <div class="comment-title">留言</div>
+            <div class="comment-info">
+              <div class="comment-top-text">共 7 則</div>
+              <Link class="comment-top-text" to="">
+                查看全部
+              </Link>
             </div>
           </div>
+          <section class="user-comment-box">
+            <div class="user-img">
+              <img src={require('../../../Assets/member.png')} alt="圖片" />
+            </div>
+            <div class="user-text">
+              <div class="user-comment">
+                <div class="comment-text">王沛慈</div>
+                <p class="comment-text">我今天也來試試</p>
+              </div>
+              <div class="user-star">
+                <div class="comment-text">2022/07/14</div>
+                <ReactStars
+                  value={5}
+                  count={5}
+                  size={24}
+                  edit={false}
+                  activeColor="#ffd700"
+                  isHalf={true}
+                />
+              </div>
+            </div>
+          </section>
+          
         </div>
       </section>
     </>
