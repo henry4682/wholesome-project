@@ -10,29 +10,6 @@
 //   display: none;//測試用隱藏 scrollbar
 // }
 
-
-
-.container{
-  min-width: 1113.5px;
-  height: 2745px;
-}
-
-main{
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 0px;
-  gap: 37px;
-  margin-top: 132px;
-  width: 1110.5px;
-  height: 2666px;
-  
-  
-}
-
-
-
-
-
 //產品種類標題
 
 .category-title{
@@ -65,7 +42,7 @@ main{
 
 .content{
   width: 836px;
-  height: 2666px;
+ 
 }
 .category-product-box {
   width: 100%;
