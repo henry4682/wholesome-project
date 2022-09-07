@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
-import './index.scss';
+import './Products.scss';
 import { Dropdown } from 'bootstrap';
 
 import { FaSearch } from 'react-icons/fa';
 
 import Home from '../../Home';
-import Breadcrumb from '../components/Breadcrumb';
-import Aside from '../components/Aside';
+import Breadcrumb from '../ProductsLayout/Breadcrumb';
+import Aside from '../ProductsLayout/Aside';
 
 function Products() {
   const [data, setData] = useState([
@@ -111,7 +111,7 @@ function Products() {
 
             {/* 頁數元件化? */}
             <nav>
-              <ul>
+              <ul class="d-flex ">
                 <Link to="">前一頁</Link>
                 <Link to="">1</Link>
                 <Link to="">後一頁</Link>

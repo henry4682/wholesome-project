@@ -1,3 +1,11 @@
 .account_password {
-  background-color: rosybrown;
+  padding: 50px;
+  &-form {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    gap: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
 }

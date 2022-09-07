@@ -1,19 +1,19 @@
 .account_info {
-  // border: 1px solid rgb(236, 192, 207);
-  padding: 40px;
+  padding: 50px;
   &-card {
-    border: 1px solid #e2e2e2;
+    border: 1px solid #ddd;
     border-radius: 5px;
     padding: 30px;
-    &-left {
-      // border: 1px solid rgb(198, 237, 198);
-    }
+
     &-name {
       font-size: 20px;
     }
     &-right {
-      border-left: 1px solid #e2e2e2;
+      border-left: 1px solid #ddd;
       padding: 10px 20px;
+    }
+    &-text {
+      margin-bottom: 30px;
     }
   }
 }

@@ -1,20 +1,26 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { FaHome } from 'react-icons/fa';
-import '../Products/index.scss';
+import './ProductsLayoutBreadcrumb.scss';
 
 function Breadcrumb() {
   return (
     <>
       {/* {有沒有參數 ? <></> : <></>} */}
-      <nav class="breadcrumb-whole align-items-center" aria-label="breadcrumb">
-        <ol class="breadcrumb align-items-center">
-          <li class="breadcrumb-item">
+      <nav
+        className="products_layout-breadcrumb-whole align-items-center"
+        aria-label="breadcrumb"
+      >
+        <ol className="breadcrumb products_layout-breadcrumb align-items-center">
+          <li className="breadcrumb-item products_layout-breadcrumb-item">
             <Link to="/">
               <FaHome />
             </Link>
           </li>
-          <li class="breadcrumb-item active" aria-current="page">
+          <li
+            className="breadcrumb-item products_layout-breadcrumb-item active"
+            aria-current="page"
+          >
             植物奶
             {/* 抽換 用context*/}
           </li>

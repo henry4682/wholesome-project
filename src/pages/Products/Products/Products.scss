@@ -1,0 +1,116 @@
+#root{
+  --main-cat-color:#565656;
+  --main-cat-font-weight: 400;
+  --main-cat-font-size: 16px;
+  --main-cat-line-height: 24px;
+  --main-cat-font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
+}
+
+//產品種類標題
+
+.products_list-category-title{
+  border-left:3px solid #000;
+  padding-left: 13px;
+  color: #565656;
+  font-family: 'Noto Sans TC';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 19px;
+  line-height: 30px;
+}
+.products_list-order_search{
+  height: 52px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 10px;
+  
+}
+
+.products_list-order_search p{
+  margin: auto;
+}
+
+.products_list-content{
+  width: 836px;
+ 
+}
+.products_list-category-product-box {
+  width: 100%;
+}
+.dropdown-toggle{
+  border: 1px solid #767676;
+  border-radius: 0px;
+  background: #fff;
+}
+
+.products_list-search-input {
+  border: 1px solid #000;
+  background: #fff;
+  border-radius: 0;
+
+}
+.products_list-btn{
+  border: 1px solid #000;
+  border-radius: 0;
+}
+.products_list-card-list{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 20px;
+
+}
+
+.products_list-card{
+  max-width: 264px;
+  max-height: 333px;
+  border: none;
+}
+
+.products_list-card-title{
+  
+  font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 18px;
+
+  text-decoration: none solid rgb(86, 86, 86);
+
+  color: #565656;
+}
+
+.products_list-card-body{
+  display: flex;
+  flex-direction: column;
+  gap:8px
+}
+
+.products_list-card-text{
+  width: 100%;
+  height: 15px;
+  
+  font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 15px;
+  /* identical to box height, or 107% */
+  
+  text-align: right;
+  justify-self: end;
+  
+  color: #9AAB82;
+}
+.products_list-pagination{
+  padding: 20px 0;
+}
+
+
+.products_list-page{
+  text-decoration: none;
+  padding: 10px;
+}
