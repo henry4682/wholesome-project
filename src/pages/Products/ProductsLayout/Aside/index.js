@@ -11,12 +11,15 @@ function Aside() {
     );
   }, []);
   return (
-    <div className="">
-      <div className="accordion accordion-flush" id="accordionFlushExample">
-        <div className="accordion-item">
+    <div>
+      <div
+        className="accordion products_layout-aside-accordion accordion-flush"
+        id="accordionFlushExample"
+      >
+        <div className="accordion-item products_layout-aside-accordion-item">
           <h2 className="accordion-header" id="flush-headingOne">
             <button
-              className="accordion-button collapsed"
+              className="accordion-button products_layout-aside-accordion-button collapsed"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#flush-collapseOne"
@@ -34,23 +37,23 @@ function Aside() {
           >
             <div className="accordion-body">
               <ul className="list-group">
-                <li className="list-group-item">
+                <li className="list-group-item products_layout-aside-list-group-item">
                   <Link to="/products">燕麥奶</Link>
                 </li>
-                <li className="list-group-item">
+                <li className="list-group-item products_layout-aside-list-group-item">
                   <Link to="/products">杏仁奶</Link>
                 </li>
-                <li className="list-group-item">
+                <li className="list-group-item products_layout-aside-list-group-item">
                   <Link to="/products">堅果奶</Link>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <div className="accordion-item">
+        <div className="accordion-item products_layout-aside-accordion-item">
           <h2 className="accordion-header" id="flush-headingTwo">
             <button
-              className="accordion-button collapsed"
+              className="accordion-button products_layout-aside-accordion-button collapsed"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#flush-collapseTwo"
@@ -68,23 +71,23 @@ function Aside() {
           >
             <div className="accordion-body">
               <ul className="list-group">
-                <li className="list-group-item">
+                <li className="list-group-item products_layout-aside-list-group-item">
                   <Link to="/products">果汁、果醋</Link>
                 </li>
-                <li className="list-group-item">
+                <li className="list-group-item products_layout-aside-list-group-item">
                   <Link to="/products">蔬菜汁</Link>
                 </li>
-                <li className="list-group-item">
+                <li className="list-group-item products_layout-aside-list-group-item">
                   <Link to="/products">果昔</Link>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <div className="accordion-item">
+        <div className="accordion-item products_layout-aside-accordion-item">
           <h2 className="accordion-header" id="flush-headingThree">
             <button
-              className="accordion-button collapsed"
+              className="accordion-button products_layout-aside-accordion-button collapsed"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#flush-collapseThree"
@@ -102,13 +105,13 @@ function Aside() {
           >
             <div className="accordion-body">
               <ul className="list-group">
-                <li className="list-group-item">
+                <li className="list-group-item products_layout-aside-list-group-item">
                   <Link to="/products">麥片</Link>
                 </li>
-                <li className="list-group-item">
+                <li className="list-group-item products_layout-aside-list-group-item">
                   <Link to="/products">燕麥棒、蛋白棒</Link>
                 </li>
-                <li className="list-group-item">
+                <li className="list-group-item products_layout-aside-list-group-item">
                   <Link to="/products">堅果</Link>
                 </li>
               </ul>

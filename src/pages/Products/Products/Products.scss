@@ -8,7 +8,7 @@
 
 //產品種類標題
 
-.category-title{
+.products_list-category-title{
   border-left:3px solid #000;
   padding-left: 13px;
   color: #565656;
@@ -18,7 +18,7 @@
   font-size: 19px;
   line-height: 30px;
 }
-.order_search{
+.products_list-order_search{
   height: 52px;
   display: flex;
   flex-direction: row;
@@ -28,15 +28,15 @@
   
 }
 
-.order_search p{
+.products_list-order_search p{
   margin: auto;
 }
 
-.content{
+.products_list-content{
   width: 836px;
  
 }
-.category-product-box {
+.products_list-category-product-box {
   width: 100%;
 }
 .dropdown-toggle{
@@ -45,17 +45,17 @@
   background: #fff;
 }
 
-.form-control {
+.products_list-search-input {
   border: 1px solid #000;
   background: #fff;
   border-radius: 0;
 
 }
-.btn{
+.products_list-btn{
   border: 1px solid #000;
   border-radius: 0;
 }
-.card-list{
+.products_list-card-list{
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -64,7 +64,7 @@
 
 }
 
-.card{
+.products_list-card{
   width: 264px;
   height: 333px;
   border: none;
@@ -73,7 +73,7 @@
   }
 }
 
-.card-title{
+.products_list-card-title{
   
   font-family: 'Noto Sans TC';
   font-style: normal;
@@ -87,7 +87,7 @@
 }
 
 
-.card-text{
+.products_list-card-text{
   width: 100%;
   height: 15px;
   
@@ -106,6 +106,6 @@
   color: #7B7B7B;
 }
 
-.page{
+.products_list-page{
   padding: 10px;
 }

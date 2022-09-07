@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { useState } from 'react';
 import './ProductDetail.scss';
 import { FaHeart } from 'react-icons/fa';
-import BreadcrumbForDetail from '../components/BreadcrumbForDetail';
+import BreadcrumbForDetail from '../ProductsLayout/BreadcrumbForDetail';
 
 import ReactStars from 'react-rating-stars-component';
 import ProgressBar from '@ramonak/react-progress-bar';
@@ -34,36 +34,36 @@ function ProductDetail() {
   return (
     <>
       <BreadcrumbForDetail />
-      <div className="product-intro">
+      <div className="product_detail-product-intro">
         <figure>
-          <img src={require('../../../Assets/products/milk1001.jpg')} />
+          <img className='product_detail-img' src={require('../../../Assets/products/milk1001.jpg')} />
         </figure>
-        <div className="product-box">
-          <div className="info-box">
-            <h1 className="product-title">
+        <div className="product_detail-product-box">
+          <div className="product_detail-info-box">
+            <h1 className="product_detail-product-title">
               Pacific Foods Organic Oat Original 植物牛奶,有機燕麥 - 原創,32
               液體盎司(約 12 毫升)
             </h1>
-            <div className="product-description">
+            <div className="product_detail-product-description">
               ．絕佳的牛奶替代品,可作為飲料、穀片或從肉汁到杯子蛋糕的一切食用。不含酵母。猶太潔食品。
               ．鈣和維他命 D
               的良好來源是低脂肪、乳糖、膽固醇、角叉菜膠、無酵母、無大豆、素食主義者,包括
               4 克蛋白質和 17 克添加糖。 ．12 包32 盎司紙盒。 可架式不含雙酚 A
               的紙盒保留風味和新鮮度。 開封後冷藏。
             </div>
-            <h2 className="product-price">$123</h2>
+            <h2 className="product_detail-product-price">$123</h2>
           </div>
 
-          <div className="detail-btn-group">
-            <button className="btn product-btn add-cart-btn" type="button">
+          <div className="product_detail-detail-btn-group">
+            <button className="btn product_detail-product-btn product_detail-add-cart-btn" type="button">
               加入購物車
             </button>
-            <button className="btn  product-btn checkout-btn" type="submit">
+            <button className="btn  product_detail-product-btn product_detail-checkout-btn" type="submit">
               立即購買
             </button>
           </div>
           <button
-            className="btn  product-btn like-btn"
+            className="btn  product_detail-product-btn product_detail-like-btn"
             type="button"
             onClick={() => {
               setIsLike(!isLike);
@@ -73,9 +73,9 @@ function ProductDetail() {
           </button>
         </div>
       </div>
-      <section className="product-detail">
-        <div className="section-title">商品介紹</div>
-        <div className="detail-content">
+      <section className="product_detail-section product_detail-product-detail">
+        <div className="product_detail-section-title">商品介紹</div>
+        <div className="product_detail-detail-content">
           Pacific Foods 有機燕麥原味牛奶讓燕麥的甜味閃耀在這款奶油飲料中。
           富含鈣和維他命 D
           的良好來源,這款飲料也含有低脂、乳糖、膽固醇和無大豆成分,是純素食主義者,並通過
@@ -85,12 +85,12 @@ function ProductDetail() {
           我們的使命是滋養每一個身體,一次一餐。 ​
         </div>
       </section>
-      <section className="product-comment-score">
-        <div className="section-title">買家評論</div>
-        <div className="score-box">
-          <div className="average-score-box">
-            <div className="average-score">{averageScore}</div>
-            <div className="stars">
+      <section className="product_detail-section product_detail-product-comment-score">
+        <div className="product_detail-section-title">買家評論</div>
+        <div className="product_detail-score-box">
+          <div className="product_detail-average-score-box">
+            <div className="product_detail-average-score">{averageScore}</div>
+            <div className="product_detail-stars">
               <ReactStars
                 value={averageScore}
                 count={5}
@@ -101,20 +101,20 @@ function ProductDetail() {
               />
             </div>
           </div>
-          <div className="score-bar">
+          <div className="product_detail-score-bar">
             <div>評價分佈顯示</div>
             {/* 可能跑迴圈? */}
             {starArr.map((num, i) => {
               return (
-                <div key={i} className="star-bar">
+                <div key={i} className="product_detail-star-bar">
                   <p>
                     {num}顆星({starCount})
                   </p>
-                  <span className="bar-section">
+                  <span className="product_detail-bar-section">
                     <ProgressBar
                       completed={star}
                       customLabel={star + '%'}
-                      classNameName="wrapper"
+                      className="wrapper"
                       bgColor={'#9AAB82'}
                       baseBgColor={'#D9D9D9'}
                       borderRadius="0px"
@@ -127,27 +127,27 @@ function ProductDetail() {
             })}
           </div>
         </div>
-        <div className="comment-box">
-          <div className="comment-top">
-            <div className="comment-title">留言</div>
-            <div className="comment-info">
-              <div className="comment-top-text">共 7 則</div>
-              <Link className="comment-top-text" to="">
+        <div className="product_detail-comment-box">
+          <div className="product_detail-comment-top">
+            <div className="product_detail-comment-title">留言</div>
+            <div className="product_detail-comment-info">
+              <div className="product_detail-comment-top-text">共 7 則</div>
+              <Link className="product_detail-comment-top-text" to="">
                 查看全部
               </Link>
             </div>
           </div>
-          <section className="user-comment-box">
-            <div className="user-img">
+          <section className="product_detail-section product_detail-user-comment-box">
+            <div className="product_detail-user-img">
               <img src={require('../../../Assets/member.png')} alt="圖片" />
             </div>
-            <div className="user-text">
-              <div className="user-comment">
-                <div className="comment-text">王沛慈</div>
-                <p className="comment-text">我今天也來試試</p>
+            <div className="product_detail-user-text">
+              <div className="product_detail-user-comment">
+                <div className="product_detail-comment-text">王沛慈</div>
+                <p className="product_detail-comment-text">我今天也來試試</p>
               </div>
-              <div className="user-star">
-                <div className="comment-text">2022/07/14</div>
+              <div className="product_detail-user-star">
+                <div className="product_detail-comment-text">2022/07/14</div>
                 <ReactStars
                   value={5}
                   count={5}
