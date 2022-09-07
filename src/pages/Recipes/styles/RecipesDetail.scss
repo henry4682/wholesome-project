@@ -1,8 +1,6 @@
-h3 {
-  font-size: 20px;
-}
-.container {
-  margin: 0 auto;
+
+.recipe-detail-container{
+  margin: 30px auto;
 }
 .recipe-title h1 {
   margin: 20px 0;
@@ -77,6 +75,10 @@ h3 {
 
 .recipe-review {
   width: 90%;
+}
+
+.recipe-review h3{
+  font-size: 20px;
 }
 
 .review-name {
