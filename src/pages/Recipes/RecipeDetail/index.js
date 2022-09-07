@@ -14,7 +14,7 @@ import recipeImage from '../Asset/food.jpg';
 function RecipeDetail() {
   return (
     <>
-      <div className="container row">
+      <div className="container recipe-detail-container row">
         <div className="main col-12 col-md-8 col-lg-8 ">
           <div className="recipe-title ">
             <h1>早安水果麵包</h1>
