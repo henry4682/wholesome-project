@@ -3,7 +3,9 @@
   // outline: 1px solid black;
 }
 
-
+::placeholder{
+  font-size: 12px;
+}
 
 ul {
   list-style-type: none;
@@ -141,6 +143,8 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+
 
 button {
   cursor: pointer;

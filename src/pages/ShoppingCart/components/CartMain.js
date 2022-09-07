@@ -25,9 +25,9 @@ function CartMain(props) {
               <div className="delete col-1"></div>
             </li>
             <li className="d-flex row align-items-center my-3">
-              <div className="d-flex detail col-2">
+              <div className="d-flex detail col-5 align-items-center ">
                 <img className="product_pic" src="" alt="" />
-                <div className="m-5">蘋果醋</div>
+                <div className="ms-3">蘋果醋</div>
               </div>
               <div className="price col-2">
                 <div>
@@ -59,7 +59,7 @@ function CartMain(props) {
           <div className="title ms-2 my-3">訂單加購商品區</div>
 
           <hr />
-          <div >
+          <div>
             <ul className="d-flex justify-content-between">
               <button className="bg-secondary">
                 <IoIosArrowDropleftCircle size={30} />
