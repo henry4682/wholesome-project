@@ -30,19 +30,19 @@ function Header() {
         <nav className="nav d-flex justify-content-center align-items-center">
           <ul className="d-flex list-unstyled">
             <li>
-              <Link to="products/milk">植物奶</Link>
+              <Link to="products">植物奶</Link>
             </li>
             <li>
-              <Link to="products/juice">營養蔬果汁</Link>
+              <Link to="products">營養蔬果汁</Link>
             </li>
             <li>
-              <Link to="products/snack">營養點心</Link>
+              <Link to="products">營養點心</Link>
             </li>
             <li>
               <Link to="products/sale">本月優惠</Link>
             </li>
             <li>
-              <Link to="recipes/beverage">美味食譜</Link>
+              <Link to="recipes">美味食譜</Link>
             </li>
           </ul>
         </nav>
