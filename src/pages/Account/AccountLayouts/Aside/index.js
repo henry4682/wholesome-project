@@ -20,9 +20,7 @@ function Aside() {
           <li>
             <Link to="orders">訂單查詢</Link>
           </li>
-          <li>
-            <Link to="addresses">收件地址管理</Link>
-          </li>
+
           <li>
             <Link to="coupons">專屬優惠券</Link>
           </li>
