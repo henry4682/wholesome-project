@@ -12,12 +12,12 @@ function CartMain(props) {
     <div>
       <div>
         <div>
-          <div className="position-absolute number rounded-circle bg-secondary "></div>
+          <div className="position-absolute cart_number rounded-circle bg-secondary "></div>
           <RiNumber1 className="mx-auto ms-1 " />
           {/* 購物車內容 */}
           <span className="title ms-2"> 購物車內容</span>
-          <ul className="mt-3 card product_list">
-            <li className="d-flex row py-3 bg-secondary heading">
+          <ul className="mt-3 card cart_product_list">
+            <li className="d-flex row py-3 bg-secondary cart_heading">
               <div className="detail col-5">商品明細</div>
               <div className="price col-2">單價</div>
               <div className="amount col-2">數量</div>
@@ -26,24 +26,24 @@ function CartMain(props) {
             </li>
             <li className="d-flex row align-items-center my-3">
               <div className="d-flex detail col-5 align-items-center ">
-                <img className="product_pic" src="" alt="" />
+                <img className="cart_product_pic" src="" alt="" />
                 <div className="ms-3">蘋果醋</div>
               </div>
-              <div className="price col-2">
+              <div className="cart_price col-2">
                 <div>
-                  NT$ <em>3,566</em>
+                  NT$ <em className='cart'>3,566</em>
                 </div>
               </div>
-              <div className="d-flex counter col-2 align-items-center">
+              <div className="d-flex cart_counter col-2 align-items-center">
                 <button className="add p-1 border border-secondary">
                   <BiMinus />
                 </button>
-                <div className="total_amount mx-2">1</div>
+                <div className="cart_total_amount mx-2">1</div>
                 <button className="sub p-1 border border-secondary">
                   <BiPlus />
                 </button>
               </div>
-              <div className="subtotal col-2">
+              <div className="cart_subtotal col-2">
                 <div>
                   NT$ <em>3,566</em>
                 </div>

@@ -9,7 +9,7 @@ import './styles/index.scss';
 
 function ShoppingCart() {
   return (
-    <div className="container">
+    <div className="cart_container">
       <div className="mt-4 row d-flex justify-content-around  ">
         <div className="col-2">
           <SideSection />
