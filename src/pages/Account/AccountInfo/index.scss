@@ -24,6 +24,7 @@
 
 @media screen and (max-width: 992px) {
   .account_info {
+    padding: 35px;
     &-card {
       flex-direction: column;
       &-left {
@@ -41,5 +42,11 @@
         flex-direction: column;
       }
     }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .account_info {
+    padding: 20px;
   }
 }

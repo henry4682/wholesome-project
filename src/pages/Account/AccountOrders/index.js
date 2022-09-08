@@ -34,6 +34,25 @@ function AccountOrders() {
             </tr>
           </tbody>
         </table>
+        {/* mobile */}
+        <ul className="border border-secondary">
+          <li className="d-flex">
+            <div>訂單編號</div>
+            <div>A20220728Q12</div>
+          </li>
+          <li className="d-flex">
+            <div>訂購時間</div>
+            <div>2022-07-28 11:30</div>
+          </li>
+          <li className="d-flex">
+            <div>訂單金額</div>
+            <div>NT$598</div>
+          </li>
+          <li className="d-flex">
+            <div>備註</div>
+            <div>無</div>
+          </li>
+        </ul>
       </div>
     </>
   );
