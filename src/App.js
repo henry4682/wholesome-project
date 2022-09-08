@@ -11,7 +11,7 @@ import AccountInfo from './pages/Account/AccountInfo';
 import AccountEdit from './pages/Account/AccountEdit';
 import AccountModifyPassword from './pages/Account/AccountModifyPassword';
 import AccountOrders from './pages/Account/AccountOrders';
-import AccountAddresses from './pages/Account/AccountAddresses';
+import AccountOrderDetail from './pages/Account/AccountOrderDetail';
 import AccountCoupons from './pages/Account/AccountCoupons';
 import AccountTracking from './pages/Account/AccountTracking';
 import AccountMessages from './pages/Account/AccountMessages';
@@ -20,7 +20,7 @@ import Register from './pages/Register';
 // <<<<<<< HEAD
 import Recipes from './pages/Recipes';
 // =======
-import Products from './pages/Products/Products';
+
 
 //products
 import ProductsLayout from './pages/Products/ProductsLayout';
@@ -52,7 +52,7 @@ function App() {
           <Route path="edit" element={<AccountEdit />} />
           <Route path="modifypassword" element={<AccountModifyPassword />} />
           <Route path="orders" element={<AccountOrders />} />
-          <Route path="addresses" element={<AccountAddresses />} />
+          <Route path="orders/:orderId" element={<AccountOrderDetail />} />
           <Route path="coupons" element={<AccountCoupons />} />
           <Route path="tracking" element={<AccountTracking />} />
           <Route path="messages" element={<AccountMessages />} />
@@ -63,7 +63,7 @@ function App() {
 
         <Route path="/products" element={<ProductsLayout />}>
           <Route index element={<ProductsList />} />
-          <Route path="productDetail/1" element={<ProductDetail />} />
+          <Route path="productDetail/:productId" element={<ProductDetail />} />
           {/* <Route path="sale" element={<ProductsSale />} /> */}
         </Route>
 
