@@ -9,3 +9,13 @@
     border-radius: 5px;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .account_edit {
+    padding: 20px;
+    &-form {
+      padding: 15px;
+      gap: 10px;
+    }
+  }
+}
