@@ -8,9 +8,14 @@
     border: 1px solid #dddddd;
     font-size: 14px;
   }
+  &-mobile {
+    display: none;
+    border: 1px solid #dddddd;
+    padding: 10px;
+    border-radius: 5px;
+  }
   &-price {
     font-size: 14px;
-    padding: 5px 0px;
 
     li {
       padding: 2px 0;
@@ -18,9 +23,26 @@
   }
   &-total {
     font-size: 20px;
-    padding: 10px 15px;
   }
   img {
     width: 80px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .account_order_detail {
+    padding: 35px;
+    &-table {
+      display: none;
+    }
+    &-mobile {
+      display: block;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .account_order_detail {
+    padding: 20px;
   }
 }
