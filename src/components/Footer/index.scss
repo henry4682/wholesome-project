@@ -6,10 +6,22 @@
     }
   }
 
+  &-links {
+    gap: 20px;
+  }
+
   &_info {
     &-title {
       font-size: 16px;
       line-height: 18px;
     }
+  }
+
+  &-icons {
+    font-size: 30px;
+  }
+
+  &-copyright {
+    border-top: 1px solid #fff;
   }
 }
