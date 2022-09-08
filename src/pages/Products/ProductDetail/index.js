@@ -44,7 +44,7 @@ function ProductDetail() {
       <div className="product_detail-product-intro">
         <figure>
           <img
-            className="product_detail-img img-fluid"
+            className="product_detail-img "
             src={require('../../../Assets/products/milk1001.jpg')}
           />
         </figure>
