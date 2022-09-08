@@ -35,22 +35,27 @@ function AccountOrders() {
           </tbody>
         </table>
         {/* mobile */}
-        <ul className="border border-secondary">
-          <li className="d-flex">
-            <div>訂單編號</div>
-            <div>A20220728Q12</div>
+        <ul className="account_orders-mobile">
+          <li className="d-flex p-1">
+            <div>訂單編號:</div>
+            <div className="ms-1">A20220728Q12</div>
           </li>
-          <li className="d-flex">
-            <div>訂購時間</div>
-            <div>2022-07-28 11:30</div>
+          <li className="d-flex p-1">
+            <div>訂購時間:</div>
+            <div className="ms-1">2022-07-28 11:30</div>
           </li>
-          <li className="d-flex">
-            <div>訂單金額</div>
-            <div>NT$598</div>
+          <li className="d-flex p-1">
+            <div>訂單金額:</div>
+            <div className="ms-1">NT$598</div>
           </li>
-          <li className="d-flex">
-            <div>備註</div>
-            <div>無</div>
+          <li className="d-flex p-1">
+            <div>備註:</div>
+            <div className="ms-1">無</div>
+          </li>
+          <li className="d-flex p-1">
+            <Link to=":orderId" className="btn btn-primary btn-sm text-white">
+              查看明細
+            </Link>
           </li>
         </ul>
       </div>
