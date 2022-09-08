@@ -1,0 +1,36 @@
+@mixin btn-large($w, $h) {
+  width: $w;
+  height: $h;
+  border: 2px solid #9aab82;
+  border-radius: 10px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@mixin input($w, $h) {
+  width: calc(100% - $w);
+  height: $h;
+  border: #dddddd 1px solid;
+  border-radius: 5px;
+}
+
+.btn-large {
+  @include btn-large(400px, 60px);
+}
+
+.fee {
+  color: #9aab82;
+}
+
+.credit-card input {
+  @include input(100px, 40px);
+}
+
+.member input {
+  @include input(100px, 40px);
+}
+
+.shipping-term input {
+  @include input(95%, 0px);
+  height: 16px;
+}

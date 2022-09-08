@@ -1,20 +1,18 @@
+//商品圖片和簡介
+
 .product_detail-product-intro{
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: flex-start;
-  padding: 10px 220px;
-  gap: 140px;
-
-
-  
-  
-  margin: 0 auto;
+  gap: 40px;
+  margin: 10px auto;
 
 }
 
 .product_detail-img{
   max-width: 513px;
-  max-height: 491px;
+  
 }
 .product_detail-product-box{
   display: flex;
@@ -22,12 +20,9 @@
   align-items: flex-start;
   padding: 10px;
   gap: 10px;
-
-  width: 591px;
-  height:  502px;
 }
 .product_detail-info-box{
-  width: 535px;
+  max-width: 535px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -65,15 +60,18 @@
   vertical-align: middle;
   color:  #9AAB82
 }
+
+//按鈕區
+
 .product_detail-detail-btn-group{
-  width: 571px;
+  min-width: 571px;
   height: 40px;
   display: flex;
   justify-content: space-evenly;
 }
 .product_detail-product-btn{
   box-sizing: border-box;
-  width: 262px;
+  min-width: 262px;
   height: 40px;
   font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
   font-size: 15px;
@@ -105,8 +103,10 @@
 }
 
 
+//商品詳細資訊
+
 .product_detail-section{
-  width: 1110px;
+  max-width: 1110px;
   padding: 32px 0;
   margin: 0 auto;
 }
@@ -116,7 +116,6 @@
   font-size: 20px;
   font-weight: 900;
   line-height: 24px;
-  text-decoration: none solid rgb(86, 86, 86);
   text-align: left;
   color:  #565656;
   height: 24px;
@@ -129,7 +128,6 @@
   font-size: 14px;
   font-weight: 700;
   line-height: 21px;
-  text-decoration: none solid rgb(51, 51, 51);
   text-align: left;
   color:  #333333;
   display: inline;
@@ -139,15 +137,13 @@
 .product_detail-score-box{
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
-  padding: 73px 220px;
+  padding: 73px 0;
   gap: 54px;
 }
 
 .product_detail-average-score-box{
-  width: 237.33px;
-  height: 202px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -213,8 +209,7 @@ height: 49.36px;
   height: 42px;
 }
 .product_detail-bar-section{
-  width: 665px;
-  height: 16px;
+  width: 90%;
 }
 
 .product_detail-comment-box{
@@ -258,7 +253,7 @@ height: 49.36px;
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  width: 948px;
+  max-width: 948px;
   border:0 0 0 1px solid #E2E0DB  ;
 
  
@@ -306,4 +301,56 @@ height: 49.36px;
   width: 874px;
   height: 28px;
   
+}
+
+.product_detail-card{
+  max-width: 18rem;
+  border: none;
+}
+.products_detail-card-body{
+  display: flex;
+  flex-direction: column;
+  gap:8px
+}
+.product_detail-card-title{
+  font-family: 'Noto Sans TC';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 18px;
+text-decoration: none;
+text-align: center;
+justify-self: center;
+color: #565656;
+}
+.product_detail-card-text{
+  width: 100%;
+  height: 15px;
+    
+  /* price-original */
+    
+  font-family: 'Noto Sans TC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 15px;
+  /* identical to box height, or 107% */
+    
+  text-align: center;
+  justify-self: center;
+    
+  color: #9AAB82;
+}
+
+.product_detail-carousel{
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  overflow: hidden;
+}
+.products_detail-carousel-box{
+  width:1920px;
+  display: flex;
+  justify-content: space-evenly;
 }

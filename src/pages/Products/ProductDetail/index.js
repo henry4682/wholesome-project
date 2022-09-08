@@ -36,7 +36,10 @@ function ProductDetail() {
       <BreadcrumbForDetail />
       <div className="product_detail-product-intro">
         <figure>
-          <img className='product_detail-img' src={require('../../../Assets/products/milk1001.jpg')} />
+          <img
+            className="product_detail-img img-fluid"
+            src={require('../../../Assets/products/milk1001.jpg')}
+          />
         </figure>
         <div className="product_detail-product-box">
           <div className="product_detail-info-box">
@@ -55,21 +58,32 @@ function ProductDetail() {
           </div>
 
           <div className="product_detail-detail-btn-group">
-            <button className="btn product_detail-product-btn product_detail-add-cart-btn" type="button">
+            <button
+              className="btn product_detail-product-btn product_detail-add-cart-btn"
+              type="button"
+            >
               加入購物車
             </button>
-            <button className="btn  product_detail-product-btn product_detail-checkout-btn" type="submit">
+            <button
+              className="btn  product_detail-product-btn product_detail-checkout-btn"
+              type="submit"
+            >
               立即購買
             </button>
           </div>
           <button
-            className="btn  product_detail-product-btn product_detail-like-btn"
+            className="btn product_detail-product-btn product_detail-like-btn"
             type="button"
             onClick={() => {
               setIsLike(!isLike);
             }}
           >
-            <FaHeart className={isLike ? 'heart' : 'empty'} /> 加入最愛
+            <FaHeart
+              className={
+                isLike ? 'product_detail-heart' : 'product_detail-empty'
+              }
+            />
+            加入最愛
           </button>
         </div>
       </div>
@@ -159,7 +173,107 @@ function ProductDetail() {
               </div>
             </div>
           </section>
-          
+          <section className="product_detail-section product_detail-user-comment-box">
+            <div className="product_detail-user-img">
+              <img src={require('../../../Assets/member.png')} alt="圖片" />
+            </div>
+            <div className="product_detail-user-text">
+              <div className="product_detail-user-comment">
+                <div className="product_detail-comment-text">王沛慈</div>
+                <p className="product_detail-comment-text">我今天也來試試</p>
+              </div>
+              <div className="product_detail-user-star">
+                <div className="product_detail-comment-text">2022/07/14</div>
+                <ReactStars
+                  value={5}
+                  count={5}
+                  size={24}
+                  edit={false}
+                  activeColor="#ffd700"
+                  isHalf={true}
+                />
+              </div>
+            </div>
+            <br />
+          </section>
+        </div>
+      </section>
+      <section className="product_detail-section">
+        <div className="product_detail-section-title">相關商品</div>
+        {/* TODO:手刻 carousel 去看jquery的範例? */}
+        <div className="product_detail-carousel" on>
+          <div>{'<'}</div>
+          <div className="products_detail-carousel-box">
+            <div className="card product_detail-card">
+              <img
+                src={require('../../../Assets/products/milk1002.jpg')}
+                className="card-img-top"
+                alt="..."
+              />
+              <div className="card-body products_detail-card-body">
+                <Link className="card-title product_detail-card-title" to="">
+                  咖啡師燕麥奶 (1000ml)
+                </Link>
+                <p className="card-text product_detail-card-text">NT156</p>
+              </div>
+            </div>
+            <div className="card product_detail-card">
+              <img
+                src={require('../../../Assets/products/milk1002.jpg')}
+                className="card-img-top"
+                alt="..."
+              />
+              <div className="card-body products_detail-card-body">
+                <Link className="card-title product_detail-card-title" to="">
+                  咖啡師燕麥奶 (1000ml)
+                </Link>
+                <p className="card-text product_detail-card-text">NT156</p>
+              </div>
+            </div>
+            <div className="card product_detail-card">
+              <img
+                src={require('../../../Assets/products/milk1002.jpg')}
+                className="card-img-top"
+                alt="..."
+              />
+              <div className="card-body products_detail-card-body">
+                <Link className="card-title product_detail-card-title" to="">
+                  咖啡師燕麥奶 (1000ml)
+                </Link>
+                <p className="card-text product_detail-card-text">NT156</p>
+              </div>
+            </div>
+            <div className="card product_detail-card">
+              <img
+                src={require('../../../Assets/products/milk1002.jpg')}
+                className="card-img-top"
+                alt="..."
+              />
+              <div className="card-body products_detail-card-body">
+                <Link className="card-title product_detail-card-title" to="">
+                  咖啡師燕麥奶 (1000ml)
+                </Link>
+                <p className="card-text product_detail-card-text">NT156</p>
+              </div>
+            </div>
+            <div className="card product_detail-card">
+              <img
+                src={require('../../../Assets/products/milk1002.jpg')}
+                className="card-img-top"
+                alt="..."
+              />
+              <div className="card-body products_detail-card-body">
+                <Link
+                  className="card-title product_detail-card-title"
+                  to="../productDetail/2"
+                >
+                  咖啡師燕麥奶 (1000ml)
+                </Link>
+                <p className="card-text product_detail-card-text">NT156</p>
+              </div>
+            </div>
+          </div>
+          <div>{'>'}</div>
         </div>
       </section>
     </>
