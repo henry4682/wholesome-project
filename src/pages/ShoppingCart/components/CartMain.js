@@ -12,21 +12,21 @@ function CartMain(props) {
     <div>
       <div>
         <div>
-          <div className="position-absolute number rounded-circle bg-secondary "></div>
+          <div className="position-absolute cart_number rounded-circle bg-secondary "></div>
           <RiNumber1 className="mx-auto ms-1 " />
           {/* 購物車內容 */}
           <span className="title ms-2"> 購物車內容</span>
-          <ul className="mt-3 card product_list">
-            <li className="d-flex row py-3 bg-secondary heading">
+          <ul className="mt-3 card cart_product_list">
+            <li className="d-flex row py-3 bg-secondary cart_heading">
               <div className="detail col-5">商品明細</div>
               <div className="price col-2">單價</div>
               <div className="amount col-2">數量</div>
               <div className="subtotal col-2">小計</div>
-              <div className="delete col-1"></div>
+              <div className="cart_delete col-1"></div>
             </li>
             <li className="d-flex row align-items-center my-3">
               <div className="d-flex detail col-5 align-items-center ">
-                <img className="product_pic" src="" alt="" />
+                <img className="cart_product_pic" src="" alt="" />
                 <div className="ms-3">蘋果醋</div>
               </div>
               <div className="price col-2">
@@ -38,7 +38,7 @@ function CartMain(props) {
                 <button className="add p-1 border border-secondary">
                   <BiMinus />
                 </button>
-                <div className="total_amount mx-2">1</div>
+                <div className="cart_total_amount mx-2">1</div>
                 <button className="sub p-1 border border-secondary">
                   <BiPlus />
                 </button>
@@ -64,7 +64,7 @@ function CartMain(props) {
               <button className="bg-secondary">
                 <IoIosArrowDropleftCircle size={30} />
               </button>
-              <li className=" product_item text-center py-2 ">
+              <li className=" cart_product_item text-center py-2 ">
                 <img src="" alt="" />
                 <div className="py-1">梅子醋</div>
                 <div className="price-add pt-2">加購價</div>
@@ -75,7 +75,7 @@ function CartMain(props) {
                   我要加購
                 </button>
               </li>
-              <li className=" product_item text-center py-2 ">
+              <li className=" cart_product_item text-center py-2 ">
                 <img src="" alt="" />
                 <div className="py-1">梅子醋</div>
                 <div className="price-add pt-2">加購價</div>
@@ -86,7 +86,7 @@ function CartMain(props) {
                   我要加購
                 </button>
               </li>
-              <li className=" product_item text-center py-2 ">
+              <li className=" cart_product_item text-center py-2 ">
                 <img src="" alt="" />
                 <div className="py-1">梅子醋</div>
                 <div className="price-add pt-2">加購價</div>
@@ -97,7 +97,7 @@ function CartMain(props) {
                   我要加購
                 </button>
               </li>
-              <li className=" product_item text-center py-2 ">
+              <li className=" cart_product_item text-center py-2 ">
                 <img src="" alt="" />
                 <div className="py-1">梅子醋</div>
                 <div className="price-add pt-2">加購價</div>

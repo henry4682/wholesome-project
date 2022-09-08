@@ -1,3 +1,7 @@
-.account_order {
-  background-color: rgb(170, 211, 170);
+.account_orders {
+  padding: 50px;
+  &-table {
+    border: 1px solid #dddddd;
+    font-size: 14px;
+  }
 }

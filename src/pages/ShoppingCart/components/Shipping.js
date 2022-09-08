@@ -11,21 +11,21 @@ function Shipping(props) {
       <span className="title ms-2"> 付款運送方式</span>
       <div className="card mt-3">
         <div className="subtitle">付款方式</div>
-        <button className="btn-large my-3 ">
+        <button className="cart_btn_large my-3 ">
           <div className="d-flex justify-content-between">
             宅配
             <span className="fee">達免運門檻</span>
           </div>
         </button>
         <hr />
-        <button className="btn-large my-3 ">
+        <button className="cart_btn_large my-3 ">
           <div className="d-flex justify-content-between align-items-center">
             <BsCreditCard2Front size={30} />
             信用卡
             <span>(VISA、MasterCard、JCB)</span>
           </div>
         </button>
-        <form action="" className="credit-card mt-3">
+        <form action="" className="cart_credit_card mt-3">
           <label>卡號</label>
           <br />
           <input
@@ -124,7 +124,7 @@ function Shipping(props) {
             placeholder="請填寫詳細地址：路 / 巷 / 弄 / 樓"
           />
           <hr />
-          <div className="d-flex shipping-term my-2">
+          <div className="d-flex cart_shipping_term my-2">
             <input type="checkbox" id="secret" name="secret" />
             <label for="secret">同意會員責任規範及商家會員條款</label>
           </div>

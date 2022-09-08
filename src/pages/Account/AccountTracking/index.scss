@@ -1,3 +1,19 @@
 .account_tracking {
-  background-color: rgb(237, 185, 134);
+  padding: 50px;
+  &-product {
+    border: 1px solid #e2e2e2;
+    border-radius: 5px;
+    padding: 10px;
+    &-img {
+      width: 130px;
+      height: 150px;
+    }
+    &-content {
+      font-size: 14px;
+      line-height: 21px;
+    }
+  }
+  img {
+    height: 100%;
+  }
 }
