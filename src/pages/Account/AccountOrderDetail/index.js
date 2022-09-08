@@ -126,19 +126,19 @@ function AccountOrderDetail() {
           </li>
 
           <li className="p-2 text-end">
-            <div>
+            <div className="mb-1">
               商品總計:<span>NT$1596</span>
             </div>
-            <div>
+            <div className="mb-1">
               優惠券折抵(<span>會員註冊購物金</span>):-NT$100
             </div>
-            <div>
+            <div className="mb-1">
               付款方式:<span>貨到付款</span>
             </div>
-            <div>
+            <div className="mb-1">
               運費:<span>NT$0</span>
             </div>
-            <div>
+            <div className="mb-1 text-primary">
               總金額:NT$<span>1696</span>
             </div>
           </li>
