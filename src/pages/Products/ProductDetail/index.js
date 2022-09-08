@@ -186,6 +186,7 @@ function ProductDetail() {
               </div>
             </div>
           </section>
+          <hr className="product_detail-br"/>
           <section className="product_detail-section product_detail-user-comment-box">
             <div className="product_detail-user-img-box">
               <img
@@ -211,7 +212,6 @@ function ProductDetail() {
                 />
               </div>
             </div>
-            <br />
           </section>
         </div>
       </section>

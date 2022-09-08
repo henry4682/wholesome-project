@@ -10,8 +10,9 @@
 
 }
 
+
 .product_detail-img{
-  max-width: 513px;
+  max-width: 30vw;
   
 }
 .product_detail-product-box{
@@ -22,7 +23,7 @@
   gap: 10px;
 }
 .product_detail-info-box{
-  max-width: 535px;
+  max-width: 30vw;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -41,7 +42,7 @@
   text-align: left;
 }
 .product_detail-product-description{
-  margin: 6px 0 6px 0;
+  margin: 6px 0px;
   font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
   font-size: 14px;
   line-height: 22px;
@@ -64,21 +65,20 @@
 //按鈕區
 
 .product_detail-detail-btn-group{
-  min-width: 571px;
+  width: 100%;
+  gap: 1rem;
   height: 40px;
   display: flex;
   justify-content: space-evenly;
 }
 .product_detail-product-btn{
+  width: 45%;
   box-sizing: border-box;
-  min-width: 262px;
-  height: 40px;
   font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
   font-size: 15px;
   line-height: 26px;
   border: 1px solid #9AAB82;
   border-radius: 6px;
-  text-decoration: none solid rgb(255, 255, 255);
   text-align: center;
   vertical-align: middle;
 }
@@ -106,7 +106,7 @@
 //商品詳細資訊
 
 .product_detail-section{
-  max-width: 1110px;
+  max-width: 70vw;
   padding: 32px 0;
   margin: 0 auto;
 }
@@ -136,11 +136,11 @@
 
 .product_detail-score-box{
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
+  margin:  0 auto;
   align-items: flex-start;
   padding: 73px 0;
-  gap: 54px;
+  gap: 3rem;
 }
 
 .product_detail-average-score-box{
@@ -155,30 +155,26 @@
 }
 .product_detail-average-score{
   
-  width: 100px;
-  height: 100px;
+  min-width: 100px;
+  min-height: 100px;
   border-radius: 50%;
   //TODO:顏色可能要調
   // 原色:color: #C20E1A;
   color:#9AAB82;
   background-color:#D9D9D9 ;
-
   font-family:  "Noto Sans TC", "Noto Sans JP", sans-serif;
   font-style: normal;
-  font-weight: 400;
   font-size: 36px;
-  line-height: 96px;
+  line-height: 6rem;
   text-align: center;
 }
 
 .product_detail-stars{
-display: flex;
-justify-content: center;
-align-items:center ;
-
-
-width: 217.33px;
-height: 49.36px;
+  display: flex;
+  justify-content: center;
+  align-items:center ;
+  width: 15vw;
+  height:6vh;
 }
 
 .product_detail-score-bar{
@@ -197,13 +193,12 @@ height: 49.36px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 9px 7px;
+  padding: 0 px;
   gap: 10px;
-  width: 60vw;
   
 }
 .product_detail-bar-section{
-  width: 70vw;
+  width: 30vw;
 }
 
 .product_detail-comment-box{
@@ -214,7 +209,9 @@ height: 49.36px;
 .product_detail-comment-top{
   display: flex;
   justify-content: space-between;
+  margin-bottom: 90px;
 }
+
 .product_detail-comment-info{
   display: flex;
   gap:20px;
@@ -223,13 +220,12 @@ height: 49.36px;
 
 .product_detail-comment-title{
   display: flex;
-  max-width: 6rem;
+  align-self: center;
   margin-left: 6vw;
   font-family: 'Microsoft JhengHei';
   letter-spacing: 0.84px;
   color: #564E4A;
-  font-size: 16px;
-  line-height: 32px;
+  line-height: 2rem;
 }
 .product_detail-comment-info{
   padding: 9px 33px;
@@ -237,24 +233,29 @@ height: 49.36px;
 .product_detail-comment-top-text{
   font-family: 'Microsoft JhengHei';
   font-size: 0.9rem;
-  line-height: 32px;
+  line-height: 2rem;
   color: #89817D;
   text-decoration: none;
 }
 
-
+.product_detail-br{
+  margin: 0 auto;
+  width: 55vw;
+}
 .product_detail-user-comment-box{
   display: flex;
-  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  padding: 10px 10px;
+
+  padding: 10px 95px;
   gap: 1rem;
-  max-width: 948px;
   border:0 0 0 1px solid #E2E0DB  ;
 
  
 }
+
 .product_detail-user-img-box{
+ 
   align-self: flex-start;
 }
 
@@ -265,7 +266,6 @@ height: 49.36px;
   
 }
 .product_detail-user-text{
-  width: 50vw;
   display: flex;
   flex-direction: column;
   justify-content:flex-start ;
@@ -292,9 +292,7 @@ height: 49.36px;
   display: flex;
   justify-content: space-between;
   align-items: center;
- 
-  width:70vw;
-  height: 10vh;
+  width:50vw
 }
 
 .product_detail-card{
