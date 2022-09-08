@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import './Products.scss';
 import { Navigate } from 'react-router-dom';
 
 import { Dropdown } from 'bootstrap';
@@ -31,19 +32,21 @@ function ProductsList() {
       <Breadcrumb />
 
       {/* TODO:content要改CSS */}
-      <main className="d-flex">
+      <main className="d-flex ">
         {/* 側欄選單 待測試 */}
         <Aside />
-        <div className="products_list-content">
+        <div className="products_list-content mx-auto">
           <div className="products_list-category-product-box d-flex justify-content-between align-items-center ">
             <div className="products_list-category-title ">
+            {/* 商品種類標題 */}
               <h2>植物奶</h2>
             </div>
             <div className="products_list-order_search ">
               <p className="col-4 text-end">共 180 件商品</p>
+              {/* 篩選器 */}
               <span className="dropdown  ">
                 <button
-                  className="btn products_list-btn btn-secondary dropdown-toggle "
+                  className="btn products_list-btn btn-secondary dropdown-toggle products_list-dropdown-toggle"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
@@ -81,17 +84,22 @@ function ProductsList() {
                   aria-label="搜尋"
                   aria-describedby="button-addon2"
                 />
-                <button className="products_list-btn" type="button" id="button">
+                <button
+                  className="products_list-search"
+                  type="submit"
+                  id="button"
+                >
                   <FaSearch />
                 </button>
               </div>
             </div>
           </div>
-          <div className="card-list products_list-card-list d-flex flex-wrap justify-content-around">
+          {/* 商品列表 */}
+          <div className="card-list products_list-card-list d-flex row flex-wrap justify-content-evenly">
             {/* 抓到資料後 map card */}
             {data.map((item, index) => {
               return (
-                <div key={index} className="card products_list-card  col-4">
+                <div key={index} className="card products_list-card  col-4 ">
                   <img
                     src={require('../../../Assets/products/milk1001.jpg')}
                     className="card-img-top products_list-card-img-top"
@@ -99,37 +107,37 @@ function ProductsList() {
                   />
                   <div className=" card-body products_list-card-body">
                     <Link
-                      className=" card-title products_list-card-title"
+                      className=" card-title products_list-card-title word-wrap"
                       to="productDetail/1"
                     >
-                      商品名
+                      Pacific Foods Organic Oat Original 植物牛奶,有機燕麥 -
+                      原創,32 液體盎司(約 12 毫升)
                     </Link>
 
                     <p className=" card-text products_list-card-text">
-                      ${data.price}123元
+                      NT{data.price}123
                     </p>
                   </div>
                 </div>
               );
             })}
-
-            {/* 頁數元件化? */}
-            <nav>
-              <ul className="d-flex gx-1">
-                <Link className="products_list-page" to="">
-                  前一頁
-                </Link>
-                <Link className="products_list-page" to="">
-                  1
-                </Link>
-                <Link className="products_list-page" to="">
-                  後一頁
-                </Link>
-              </ul>
-            </nav>
           </div>
         </div>
       </main>
+      {/* 頁數元件化? TODO:去菀萱那 COPY nav */}
+      <nav>
+        <ul className="products_list-pagination d-flex justify-content-center gx-1">
+          <Link className="products_list-page" to="">
+            前一頁
+          </Link>
+          <Link className="products_list-page" to="1">
+            1
+          </Link>
+          <Link className="products_list-page" to="">
+            後一頁
+          </Link>
+        </ul>
+      </nav>
     </div>
   );
 }

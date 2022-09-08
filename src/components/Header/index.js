@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { FaRegUser } from 'react-icons/fa';
 import { BsCart3 } from 'react-icons/bs';
-
+import MobileNav from '../MobileNav';
 import './index.scss';
 function Header() {
   return (
@@ -27,7 +27,8 @@ function Header() {
             <div>搜尋</div>
           </div>
         </div>
-        <nav className="nav d-flex justify-content-center align-items-center">
+        <MobileNav />
+        <nav className="header-nav d-flex justify-content-center align-items-center">
           <ul className="d-flex list-unstyled">
             <li>
               <Link to="products">植物奶</Link>

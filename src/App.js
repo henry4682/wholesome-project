@@ -20,7 +20,7 @@ import Register from './pages/Register';
 // <<<<<<< HEAD
 import Recipes from './pages/Recipes';
 // =======
-import Products from './pages/Products/Products';
+
 
 //products
 import ProductsLayout from './pages/Products/ProductsLayout';
@@ -52,7 +52,7 @@ function App() {
           <Route path="edit" element={<AccountEdit />} />
           <Route path="modifypassword" element={<AccountModifyPassword />} />
           <Route path="orders" element={<AccountOrders />} />
-          <Route path="addresses" element={<AccountOrderDetail />} />
+          <Route path="orders/:orderId" element={<AccountOrderDetail />} />
           <Route path="coupons" element={<AccountCoupons />} />
           <Route path="tracking" element={<AccountTracking />} />
           <Route path="messages" element={<AccountMessages />} />
@@ -63,7 +63,7 @@ function App() {
 
         <Route path="/products" element={<ProductsLayout />}>
           <Route index element={<ProductsList />} />
-          <Route path="productDetail/1" element={<ProductDetail />} />
+          <Route path="productDetail/:productId" element={<ProductDetail />} />
           {/* <Route path="sale" element={<ProductsSale />} /> */}
         </Route>
 
