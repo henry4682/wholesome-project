@@ -11,13 +11,13 @@ function Home(props) {
       </div>
 
       <div className="d-flex justify-content-between">
-        <div className="bg-primary block"></div>
-        <div className="bg-primary block"></div>
-        <div className="bg-primary block"></div>
+        <div className="bg-primary home_block"></div>
+        <div className="bg-primary home_block"></div>
+        <div className="bg-primary home_block"></div>
       </div>
 
       <div className="recommend mt-5">
-        <p className="title text-center">Hot Sale</p>
+        <p className="home_title text-center">Hot Sale</p>
       </div>
 
       <div className="container">
