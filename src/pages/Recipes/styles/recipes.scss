@@ -5,6 +5,11 @@
   
   background: rgb(233, 233, 233);
 }
+@media screen and (max-width: 768px) {
+    .recipe-navbar {
+          padding: 20px 35%;
+        }
+  }
 .recipe-navbar Link {
   margin: 10px;
 }
