@@ -1,42 +1,37 @@
-.product-intro{
+//商品圖片和簡介
+
+.product_detail-product-intro{
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: flex-start;
-  padding: 10px 220px;
-  gap: 140px;
-
-
-  width: 1920px;
-  height: 598px;
-  margin: 0 auto;
+  gap: 40px;
+  margin: 10px auto;
 
 }
 
-img{
+.product_detail-img{
   max-width: 513px;
-  max-height: 491px;
+  
 }
-.product-box{
+.product_detail-product-box{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  gap: 10px;
+}
+.product_detail-info-box{
+  max-width: 535px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 10px;
   gap: 10px;
 
-  width: 591px;
-  height:  502px;
-}
-.info-box{
-  width: 535px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 10px;
-  gap: 10px;
-
 }
 
-.product-title{
+.product_detail-product-title{
   color:  #565656;
   font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
   font-size: 24px;
@@ -45,7 +40,7 @@ img{
   text-decoration: none solid rgb(86, 86, 86);
   text-align: left;
 }
-.product-description{
+.product_detail-product-description{
   margin: 6px 0 6px 0;
   font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
   font-size: 14px;
@@ -55,7 +50,7 @@ img{
   color:  #7B7B7B
   
 }
-.product-price{
+.product_detail-product-price{
   font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
   font-size: 24px;
   font-weight: 700;
@@ -65,15 +60,18 @@ img{
   vertical-align: middle;
   color:  #9AAB82
 }
-.detail-btn-group{
-  width: 571px;
+
+//按鈕區
+
+.product_detail-detail-btn-group{
+  min-width: 571px;
   height: 40px;
   display: flex;
   justify-content: space-evenly;
 }
-.product-btn{
+.product_detail-product-btn{
   box-sizing: border-box;
-  width: 262px;
+  min-width: 262px;
   height: 40px;
   font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
   font-size: 15px;
@@ -84,39 +82,40 @@ img{
   text-align: center;
   vertical-align: middle;
 }
-.add-cart-btn{
+.product_detail-add-cart-btn{
   color:#9AAB82;
 }
-.checkout-btn{
+.product_detail-checkout-btn{
  
   background-color:  #9AAB82;
   color:  #FFFFFF;
 }
-.like-btn{
+.product_detail-like-btn{
   border: none;
   text-align: left;
 }
-.empty{
+.product_detail-empty{
   color: grey;
   transition: .4s;
 }
-.heart{
+.product_detail-heart{
   color: red;
 }
 
 
-section{
-  width: 1110px;
+//商品詳細資訊
+
+.product_detail-section{
+  max-width: 1110px;
   padding: 32px 0;
   margin: 0 auto;
 }
 
-.section-title{
+.product_detail-section-title{
   font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
   font-size: 20px;
   font-weight: 900;
   line-height: 24px;
-  text-decoration: none solid rgb(86, 86, 86);
   text-align: left;
   color:  #565656;
   height: 24px;
@@ -124,30 +123,27 @@ section{
   margin: 0 0 8px 0;
   padding: 0 0 0 10px;
 }
-.detail-content{
+.product_detail-detail-content{
   font-family: Verdana, Arial, sans-serif;
   font-size: 14px;
   font-weight: 700;
   line-height: 21px;
-  text-decoration: none solid rgb(51, 51, 51);
   text-align: left;
   color:  #333333;
   display: inline;
   margin: 0 0 16px 0
 }
 
-.score-box{
+.product_detail-score-box{
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-start;
-  padding: 73px 220px;
+  padding: 73px 0;
   gap: 54px;
 }
 
-.average-score-box{
-  width: 237.33px;
-  height: 202px;
+.product_detail-average-score-box{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -157,7 +153,7 @@ section{
   border: 1px solid #DDDDDD;
 
 }
-.average-score{
+.product_detail-average-score{
   
   width: 100px;
   height: 100px;
@@ -175,7 +171,7 @@ section{
   text-align: center;
 }
 
-.stars{
+.product_detail-stars{
 display: flex;
 justify-content: center;
 align-items:center ;
@@ -185,7 +181,7 @@ width: 217.33px;
 height: 49.36px;
 }
 
-.score-bar{
+.product_detail-score-bar{
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -203,7 +199,7 @@ height: 49.36px;
   line-height: 24px;
 }
 
-.star-bar{
+.product_detail-star-bar{
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -212,27 +208,26 @@ height: 49.36px;
   width: 756px;
   height: 42px;
 }
-.bar-section{
-  width: 665px;
-  height: 16px;
+.product_detail-bar-section{
+  width: 90%;
 }
 
-.comment-box{
+.product_detail-comment-box{
   box-sizing: border-box;
   border: 1px solid #E2E0DB;
 }
  
-.comment-top{
+.product_detail-comment-top{
   display: flex;
   justify-content: space-between;
 }
-.comment-info{
+.product_detail-comment-info{
   display: flex;
   gap:20px;
   color: #89817D;
 }
 
-.comment-title{
+.product_detail-comment-title{
   padding: 8px 90px;
   font-family: 'Microsoft JhengHei';
   letter-spacing: 0.84px;
@@ -240,10 +235,10 @@ height: 49.36px;
   font-size: 16px;
   line-height: 32px;
 }
-.comment-info{
+.product_detail-comment-info{
   padding: 9px 33px;
 }
-.comment-top-text{
+.product_detail-comment-top-text{
   font-family: 'Microsoft JhengHei';
   font-size: 14px;
   line-height: 32px;
@@ -252,24 +247,24 @@ height: 49.36px;
 }
 
 
-.user-comment-box{
+.product_detail-user-comment-box{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  width: 948px;
+  max-width: 948px;
   border:0 0 0 1px solid #E2E0DB  ;
 
  
 }
-.user-img{
+.product_detail-user-img{
   width: 64px;
   height: 64px;
   box-sizing: border-box;
   align-self: flex-start;
 }
-.user-text{
+.product_detail-user-text{
   width: 874px;
   display: flex;
   flex-direction: column;
@@ -277,7 +272,7 @@ height: 49.36px;
   align-items:flex-start;
   gap: 10px;
 }
-.user-comment{
+.product_detail-user-comment{
   display: flex;
   flex-direction: column;
   justify-content:space-between ;
@@ -285,7 +280,7 @@ height: 49.36px;
   
 }
 
-.comment-text{
+.product_detail-comment-text{
   font-family: 'Microsoft JhengHei';
   font-size: 14px;
   line-height: 24px;
@@ -293,7 +288,7 @@ height: 49.36px;
 
   color: #564E4A;
 }
-.user-star{
+.product_detail-user-star{
   margin: 0 auto;
   display: flex;
   flex-direction: row;
@@ -306,4 +301,56 @@ height: 49.36px;
   width: 874px;
   height: 28px;
   
+}
+
+.product_detail-card{
+  max-width: 18rem;
+  border: none;
+}
+.products_detail-card-body{
+  display: flex;
+  flex-direction: column;
+  gap:8px
+}
+.product_detail-card-title{
+  font-family: 'Noto Sans TC';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 18px;
+text-decoration: none;
+text-align: center;
+justify-self: center;
+color: #565656;
+}
+.product_detail-card-text{
+  width: 100%;
+  height: 15px;
+    
+  /* price-original */
+    
+  font-family: 'Noto Sans TC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 15px;
+  /* identical to box height, or 107% */
+    
+  text-align: center;
+  justify-self: center;
+    
+  color: #9AAB82;
+}
+
+.product_detail-carousel{
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  overflow: hidden;
+}
+.products_detail-carousel-box{
+  width:1920px;
+  display: flex;
+  justify-content: space-evenly;
 }

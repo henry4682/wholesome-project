@@ -3,7 +3,7 @@ nav{
   --bs-breadcrumb-divider: '>';
 }
 
-.breadcrumb-whole{
+.products_layout-breadcrumb-whole{
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -12,7 +12,7 @@ nav{
   width: 112.36px;
   height: 44px;
 }
-.breadcrumb-detail-whole{
+.products_layout-breadcrumb-detail-whole{
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -28,11 +28,11 @@ nav{
   background: #FFFFFF;
 }
 
-.breadcrumb{
+.products_layout-breadcrumb{
   margin: auto 0px;
 }
 
-.breadcrumb-item{
+.products_layout-breadcrumb-item{
   color:#7B7B7B;
   font-size: 13px;
   line-height: 19.5px;
