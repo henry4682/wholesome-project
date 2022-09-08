@@ -60,7 +60,7 @@ function Aside() {
               aria-expanded="false"
               aria-controls="flush-collapseTwo"
             >
-              營養蔬果汁
+              有機蔬果汁
             </button>
           </h2>
           <div
@@ -72,13 +72,13 @@ function Aside() {
             <div className="accordion-body">
               <ul className="list-group">
                 <li className="list-group-item products_layout-aside-list-group-item">
-                  <Link to="/products">果汁、果醋</Link>
+                  <Link to="/products">果汁</Link>
                 </li>
                 <li className="list-group-item products_layout-aside-list-group-item">
-                  <Link to="/products">蔬菜汁</Link>
+                  <Link to="/products">蔬菜汁、氣泡水</Link>
                 </li>
                 <li className="list-group-item products_layout-aside-list-group-item">
-                  <Link to="/products">果昔</Link>
+                  <Link to="/products">果昔、果醋</Link>
                 </li>
               </ul>
             </div>

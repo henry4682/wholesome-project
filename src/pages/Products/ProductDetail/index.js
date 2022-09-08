@@ -55,10 +55,16 @@ function ProductDetail() {
               液體盎司(約 12 毫升)
             </h1>
             <div className="product_detail-product-description">
-              ．絕佳的牛奶替代品,可作為飲料、穀片或從肉汁到杯子蛋糕的一切食用。不含酵母。猶太潔食品。
+              ．絕佳的牛奶替代品,可作為飲料、穀片或從肉汁到杯子蛋糕的一切食用。
+              <br />
+              不含酵母。猶太潔食品。
+              <br />
               ．鈣和維他命 D
               的良好來源是低脂肪、乳糖、膽固醇、角叉菜膠、無酵母、無大豆、素食主義者,包括
-              4 克蛋白質和 17 克添加糖。 ．12 包32 盎司紙盒。 可架式不含雙酚 A
+              4 克蛋白質和 17 克添加糖。 
+              <br />
+              ．12 包32 盎司紙盒。
+               可架式不含雙酚 A
               的紙盒保留風味和新鮮度。 開封後冷藏。
             </div>
             <h2 className="product_detail-product-price">$123</h2>
@@ -79,7 +85,7 @@ function ProductDetail() {
             </button>
           </div>
           <button
-            className="btn product_detail-product-btn product_detail-like-btn"
+            className="btn d-flex align-items-center  product_detail-product-btn product_detail-like-btn"
             type="button"
             onClick={() => {
               setIsLike(!isLike);
@@ -87,7 +93,7 @@ function ProductDetail() {
           >
             <FaHeart
               className={
-                isLike ? 'product_detail-heart' : 'product_detail-empty'
+                ( isLike ? 'product_detail-heart' : 'product_detail-empty')
               }
             />
             加入最愛
@@ -98,11 +104,13 @@ function ProductDetail() {
         <div className="product_detail-section-title">商品介紹</div>
         <div className="product_detail-detail-content">
           Pacific Foods 有機燕麥原味牛奶讓燕麥的甜味閃耀在這款奶油飲料中。
+          <br />
           富含鈣和維他命 D
           的良好來源,這款飲料也含有低脂、乳糖、膽固醇和無大豆成分,是純素食主義者,並通過
-          USDA 有機認證。 在 Pacific
+          USDA 有機認證。 <br />在 Pacific
           Foods,我們非常自豪地使用盡可能靠近家的簡單食譜和乾淨的食材。
           我們避免使用防腐劑、添加劑和轉基因生物,並始終會。
+          <br />
           我們的使命是滋養每一個身體,一次一餐。 ​
         </div>
       </section>
@@ -186,7 +194,7 @@ function ProductDetail() {
               </div>
             </div>
           </section>
-          <hr className="product_detail-br"/>
+          <hr className="product_detail-br" />
           <section className="product_detail-section product_detail-user-comment-box">
             <div className="product_detail-user-img-box">
               <img

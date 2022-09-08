@@ -20,7 +20,7 @@ import Register from './pages/Register';
 // <<<<<<< HEAD
 import Recipes from './pages/Recipes';
 // =======
-import Products from './pages/Products/Products';
+
 
 //products
 import ProductsLayout from './pages/Products/ProductsLayout';

@@ -44,8 +44,8 @@
 .product_detail-product-description{
   margin: 6px 0px;
   font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
-  font-size: 14px;
-  line-height: 22px;
+  font-size: 1rem;
+  line-height: 2rem;
   text-decoration: none solid rgb(123, 123, 123);
   text-align: left;
   color:  #7B7B7B
@@ -95,10 +95,12 @@
   text-align: left;
 }
 .product_detail-empty{
+  margin-right:1rem ;
   color: grey;
   transition: .4s;
 }
 .product_detail-heart{
+  margin-right:1rem ;
   color: red;
 }
 
@@ -120,18 +122,16 @@
   color:  #565656;
   height: 24px;
   border-left: 2px solid  #565656;
-  margin: 0 0 8px 0;
+  margin: 0 0 20px 0;
   padding: 0 0 0 10px;
 }
 .product_detail-detail-content{
   font-family: Verdana, Arial, sans-serif;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 21px;
+  font-weight: 500;
+  line-height: 2rem;
   text-align: left;
   color:  #333333;
   display: inline;
-  margin: 0 0 16px 0
 }
 
 .product_detail-score-box{
