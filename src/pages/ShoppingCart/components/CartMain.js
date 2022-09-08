@@ -29,12 +29,12 @@ function CartMain(props) {
                 <img className="cart_product_pic" src="" alt="" />
                 <div className="ms-3">蘋果醋</div>
               </div>
-              <div className="price col-2">
+              <div className="cart_price col-2">
                 <div>
-                  NT$ <em>3,566</em>
+                  NT$ <em className='cart'>3,566</em>
                 </div>
               </div>
-              <div className="d-flex counter col-2 align-items-center">
+              <div className="d-flex cart_counter col-2 align-items-center">
                 <button className="add p-1 border border-secondary">
                   <BiMinus />
                 </button>
@@ -43,7 +43,7 @@ function CartMain(props) {
                   <BiPlus />
                 </button>
               </div>
-              <div className="subtotal col-2">
+              <div className="cart_subtotal col-2">
                 <div>
                   NT$ <em>3,566</em>
                 </div>
