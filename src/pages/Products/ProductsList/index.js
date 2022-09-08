@@ -43,7 +43,7 @@ function ProductsList() {
               <p className="col-4 text-end">共 180 件商品</p>
               <span className="dropdown  ">
                 <button
-                  className="btn products_list-btn btn-secondary dropdown-toggle "
+                  className="btn products_list-btn btn-secondary dropdown-toggle products_list-dropdown-toggle"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
