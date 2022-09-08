@@ -1,0 +1,22 @@
+@mixin input($w, $h) {
+ width: calc(100% - $w);
+  height: 40px;
+  border: #dddddd 1px solid;
+  border-radius: 5px;
+}
+
+
+.btn-md {
+  background-color: #abb4bb;
+  border-radius: 5px;
+  color: white;
+  height: 40px;
+}
+
+.coupon input {
+ @include input(100px,60px )
+}
+
+.subtitle{
+  font-size: 14px;
+}
