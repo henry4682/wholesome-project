@@ -3,8 +3,7 @@
 }
 
 .home_block {
-  width: 600px;
-  height: 300px;
+  width: 32%
 }
 
 .home_title {
@@ -36,4 +35,29 @@
   font-size: 36px;
   text-align: center;
   color: #dddddd;
+}
+
+@media screen and (max-width: 768px) {
+  .home_block_1 {
+    flex-grow: 1;
+    padding-top: 16px;
+  }
+  .home_block_2  {
+    display: none;
+  }
+
+  .home_block_3  {
+    display: none;
+  }
+
+  .home_h1 {
+    font-size: 32px;
+  }
+  .home_h2 {
+    font-size: 24px;
+  }
+
+  .home_h3 {
+    font-size: 16x;
+  }
 }
