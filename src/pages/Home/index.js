@@ -25,45 +25,41 @@ function Home(props) {
           <li className=" product_item text-center py-2 ">
             <img src="" alt="" />
             <div className="py-1">梅子醋</div>
-            <div className="price-add pt-2">加購價</div>
             <div className="my-2 text-primary">
               NT$ <em className="add-on text-primary">3,566</em>
             </div>
             <button className="btn btn-primary text-light px-4">
-              我要加購
+              加入購物車
             </button>
           </li>
           <li className=" product_item text-center py-2 ">
             <img src="" alt="" />
             <div className="py-1">梅子醋</div>
-            <div className="price-add pt-2">加購價</div>
             <div className="my-2 text-primary">
               NT$ <em className="add-on text-primary">3,566</em>
             </div>
             <button className="btn btn-primary text-light px-4">
-              我要加購
+              加入購物車
             </button>
           </li>
           <li className=" product_item text-center py-2 ">
             <img src="" alt="" />
             <div className="py-1">梅子醋</div>
-            <div className="price-add pt-2">加購價</div>
             <div className="my-2 text-primary">
               NT$ <em className="add-on text-primary">3,566</em>
             </div>
             <button className="btn btn-primary text-light px-4">
-              我要加購
+              加入購物車
             </button>
           </li>
           <li className=" product_item text-center py-2 ">
             <img src="" alt="" />
             <div className="py-1">梅子醋</div>
-            <div className="price-add pt-2">加購價</div>
             <div className="my-2 text-primary">
               NT$ <em className="add-on text-primary">3,566</em>
             </div>
             <button className="btn btn-primary text-light px-4">
-              我要加購
+              加入購物車
             </button>
           </li>
         </ul>

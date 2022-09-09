@@ -31,7 +31,7 @@ function CartMain(props) {
               </div>
               <div className="cart_price col-2">
                 <div>
-                  NT$ <em className='cart'>3,566</em>
+                  NT$ <em className="cart">3,566</em>
                 </div>
               </div>
               <div className="d-flex cart_counter col-2 align-items-center">
@@ -65,9 +65,8 @@ function CartMain(props) {
                 <IoIosArrowDropleftCircle size={30} />
               </button>
               <li className=" product_item text-center py-2 ">
-                <img src="" alt="" />
+                <img src="" alt="" className="cart_product_pic" />
                 <div className="py-1">梅子醋</div>
-                <div className="price-add pt-2">加購價</div>
                 <div className="my-2 text-primary">
                   NT$ <em className="add-on text-primary">3,566</em>
                 </div>
@@ -76,9 +75,9 @@ function CartMain(props) {
                 </button>
               </li>
               <li className=" product_item text-center py-2 ">
-                <img src="" alt="" />
+                <img src="" alt="" className="cart_product_pic" />
+
                 <div className="py-1">梅子醋</div>
-                <div className="price-add pt-2">加購價</div>
                 <div className="my-2 text-primary">
                   NT$ <em className="add-on text-primary">3,566</em>
                 </div>
@@ -87,9 +86,9 @@ function CartMain(props) {
                 </button>
               </li>
               <li className=" product_item text-center py-2 ">
-                <img src="" alt="" />
+                <img src="" alt="" className="cart_product_pic" />
+
                 <div className="py-1">梅子醋</div>
-                <div className="price-add pt-2">加購價</div>
                 <div className="my-2 text-primary">
                   NT$ <em className="add-on text-primary">3,566</em>
                 </div>
@@ -98,9 +97,9 @@ function CartMain(props) {
                 </button>
               </li>
               <li className=" product_item text-center py-2 ">
-                <img src="" alt="" />
+                <img src="" alt="" className="cart_product_pic" />
+
                 <div className="py-1">梅子醋</div>
-                <div className="price-add pt-2">加購價</div>
                 <div className="my-2 text-primary">
                   NT$ <em className="add-on text-primary">3,566</em>
                 </div>
@@ -109,9 +108,8 @@ function CartMain(props) {
                 </button>
               </li>
               <li className=" product_item text-center py-2 ">
-                <img src="" alt="" />
+                <img src="" alt="" className="cart_product_pic" />
                 <div className="py-1">梅子醋</div>
-                <div className="price-add pt-2">加購價</div>
                 <div className="my-2 text-primary">
                   NT$ <em className="add-on text-primary">3,566</em>
                 </div>
