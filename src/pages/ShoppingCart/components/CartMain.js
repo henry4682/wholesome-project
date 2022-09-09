@@ -64,7 +64,7 @@ function CartMain(props) {
               <button className="bg-secondary">
                 <IoIosArrowDropleftCircle size={30} />
               </button>
-              <li className=" product_item text-center py-2 ">
+              <li className="  text-center py-2 ">
                 <img src="" alt="" className="cart_product_pic" />
                 <div className="py-1">梅子醋</div>
                 <div className="my-2 text-primary">
@@ -74,18 +74,7 @@ function CartMain(props) {
                   我要加購
                 </button>
               </li>
-              <li className=" product_item text-center py-2 ">
-                <img src="" alt="" className="cart_product_pic" />
-
-                <div className="py-1">梅子醋</div>
-                <div className="my-2 text-primary">
-                  NT$ <em className="add-on text-primary">3,566</em>
-                </div>
-                <button className="btn btn-primary text-light px-4">
-                  我要加購
-                </button>
-              </li>
-              <li className=" product_item text-center py-2 ">
+              <li className="  text-center py-2 ">
                 <img src="" alt="" className="cart_product_pic" />
 
                 <div className="py-1">梅子醋</div>
@@ -96,7 +85,7 @@ function CartMain(props) {
                   我要加購
                 </button>
               </li>
-              <li className=" product_item text-center py-2 ">
+              <li className="  text-center py-2 ">
                 <img src="" alt="" className="cart_product_pic" />
 
                 <div className="py-1">梅子醋</div>
@@ -107,7 +96,18 @@ function CartMain(props) {
                   我要加購
                 </button>
               </li>
-              <li className=" product_item text-center py-2 ">
+              <li className="  text-center py-2 ">
+                <img src="" alt="" className="cart_product_pic" />
+
+                <div className="py-1">梅子醋</div>
+                <div className="my-2 text-primary">
+                  NT$ <em className="add-on text-primary">3,566</em>
+                </div>
+                <button className="btn btn-primary text-light px-4">
+                  我要加購
+                </button>
+              </li>
+              <li className="  text-center py-2 ">
                 <img src="" alt="" className="cart_product_pic" />
                 <div className="py-1">梅子醋</div>
                 <div className="my-2 text-primary">

@@ -10,14 +10,14 @@ function CartCoupon(props) {
       <span className="title ms-2"> 優惠券</span>
       <div className="card mt-3">
         <form action="" className="coupon">
-          <label className='subtitle'>優惠券代碼</label>
+          <label className="subtitle">優惠券代碼</label>
           <br />
           <input
             className=" mt-3 px-4"
             type="text"
             placeholder="請輸入優惠券代碼"
           />
-          <button className="ms-2 btn-md px-4 py-2">確認</button>
+          <button className="ms-2 cart_btn_md px-4 py-2">確認</button>
         </form>
       </div>
     </div>
