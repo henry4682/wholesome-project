@@ -5,12 +5,12 @@ import { RiNumber2 } from 'react-icons/ri';
 function CartCoupon(props) {
   return (
     <div className="mt-5">
-      <div className="position-absolute number rounded-circle bg-secondary "></div>
+      <div className="position-absolute cart_number rounded-circle bg-secondary "></div>
       <RiNumber2 className="mx-auto ms-1 " />
-      <span className="title ms-2"> 優惠券</span>
+      <span className="cart_title ms-2"> 優惠券</span>
       <div className="card mt-3">
-        <form action="" className="coupon">
-          <label className="subtitle">優惠券代碼</label>
+        <form action="" className="cart_coupon">
+          <label className="cart_subtitle">優惠券代碼</label>
           <br />
           <input
             className=" mt-3 px-4"
