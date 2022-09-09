@@ -16,7 +16,7 @@ function CartMain(props) {
           <RiNumber1 className="mx-auto ms-1 " />
           {/* 購物車內容 */}
           <span className="title ms-2"> 購物車內容</span>
-          <ul className="mt-3 card cart_product_list">
+          <ul className="mt-3 cart_card cart_product_list">
             <li className="d-flex row py-3 bg-secondary cart_heading">
               <div className="detail col-5">商品明細</div>
               <div className="price col-2">單價</div>

@@ -5,7 +5,7 @@ import '../styles/SideSection.scss';
 function SideSection(props) {
   return (
     <div>
-      <div className="card mb-3 ">
+      <div className="cart_card mb-3 ">
         <div className="title ">結帳金額</div>
         <hr />
         <span className="d-flex justify-content-between">
@@ -29,7 +29,7 @@ function SideSection(props) {
           </span>
         </span>
       </div>
-      <div className="card">
+      <div className="cart_card">
         <div className="d-flex title justify-content-between">
           購物車內容
           <a className='d-block'>

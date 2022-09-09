@@ -9,7 +9,7 @@ function Shipping(props) {
       <div className="position-absolute number rounded-circle bg-secondary "></div>
       <RiNumber3 className="mx-auto ms-1 " />
       <span className="title ms-2"> 付款運送方式</span>
-      <div className="card mt-3">
+      <div className="cart_card mt-3">
         <div className="subtitle">付款方式</div>
         <button className="cart_btn_large my-3 ">
           <div className="d-flex justify-content-between">
