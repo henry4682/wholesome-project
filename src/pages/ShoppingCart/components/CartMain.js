@@ -22,7 +22,7 @@ function CartMain(props) {
               <div className="price col-2">單價</div>
               <div className="amount col-2">數量</div>
               <div className="subtotal col-2">小計</div>
-              <div className="delete col-1"></div>
+              <div className="cart_delete col-1"></div>
             </li>
             <li className="d-flex row align-items-center my-3">
               <div className="d-flex detail col-5 align-items-center ">
@@ -64,16 +64,7 @@ function CartMain(props) {
               <button className="bg-secondary">
                 <IoIosArrowDropleftCircle size={30} />
               </button>
-              <li className=" product_item text-center py-2 ">
-                <img src="" alt="" className="cart_product_pic" />
-                <div className="py-1">梅子醋</div>
-                <div className="my-2 text-primary">
-                  NT$ <em className="add-on text-primary">3,566</em>
-                </div>
-                <button className="btn btn-primary text-light px-4">
-                  我要加購
-                </button>
-              </li>
+
               <li className=" product_item text-center py-2 ">
                 <img src="" alt="" className="cart_product_pic" />
 
@@ -85,6 +76,20 @@ function CartMain(props) {
                   我要加購
                 </button>
               </li>
+
+              <li className=" product_item text-center py-2 ">
+                <img src="" alt="" className="cart_product_pic" />
+
+
+                <div className="py-1">梅子醋</div>
+                <div className="my-2 text-primary">
+                  NT$ <em className="add-on text-primary">3,566</em>
+                </div>
+                <button className="btn btn-primary text-light px-4">
+                  我要加購
+                </button>
+              </li>
+
               <li className=" product_item text-center py-2 ">
                 <img src="" alt="" className="cart_product_pic" />
 
@@ -96,8 +101,10 @@ function CartMain(props) {
                   我要加購
                 </button>
               </li>
+
               <li className=" product_item text-center py-2 ">
                 <img src="" alt="" className="cart_product_pic" />
+
 
                 <div className="py-1">梅子醋</div>
                 <div className="my-2 text-primary">
