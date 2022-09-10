@@ -21,11 +21,10 @@ import Register from './pages/Register';
 import Recipes from './pages/Recipes';
 // =======
 
-
 //products
 import ProductsLayout from './pages/Products/ProductsLayout';
 import ProductsList from './pages/Products/ProductsList';
-import ProductDetail from './pages/Products/ProductDetail';
+import ProductDetail from './pages/ProductDetail';
 
 import ProductsSale from './pages/Products/ProductsSale';
 
@@ -63,9 +62,10 @@ function App() {
 
         <Route path="/products" element={<ProductsLayout />}>
           <Route index element={<ProductsList />} />
-          <Route path="productDetail/:productId" element={<ProductDetail />} />
           {/* <Route path="sale" element={<ProductsSale />} /> */}
         </Route>
+
+        <Route path="/productDetail/:productId" element={<ProductDetail />} />
 
         <Route path="/recipes" element={<RecipesLayout />}>
           <Route index element={<RecipesList />} />

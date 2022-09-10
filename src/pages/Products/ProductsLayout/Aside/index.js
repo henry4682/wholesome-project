@@ -3,6 +3,16 @@ import Collapse from 'bootstrap/js/dist/collapse';
 import { Link } from 'react-router-dom';
 import './ProductsLayoutAside.scss';
 
+import {
+  Accordion,
+  AccordionItem,
+  AccordionItemHeading,
+  AccordionItemButton,
+  AccordionItemPanel,
+} from 'react-accessible-accordion';
+
+
+
 function Aside() {
   useEffect(() => {
     const collapseElementList = document.querySelectorAll('.collapse');
@@ -13,7 +23,7 @@ function Aside() {
   return (
     <div>
       <div
-        className="accordion products_layout-aside-accordion accordion-flush"
+        className="accordion products_layout-aside-accordion accordion-flush col-md-3"
         id="accordionFlushExample"
       >
         <div className="accordion-item products_layout-aside-accordion-item">
@@ -119,6 +129,7 @@ function Aside() {
           </div>
         </div>
       </div>
+      
     </div>
   );
 }
