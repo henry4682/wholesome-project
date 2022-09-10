@@ -54,7 +54,7 @@ function ProductsList() {
         <Breadcrumb />
 
         {/* TODO:content要改CSS */}
-        <div className="d-flex product_list-container ">
+        <div className=" product_list-container ">
           {/* 側欄選單 待測試 */}
           <Aside />
           <div className="products_list-content col-lg-9 ">
