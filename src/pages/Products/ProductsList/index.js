@@ -8,9 +8,9 @@ import { Dropdown } from 'bootstrap';
 
 import { FaSearch, FaArrowUp } from 'react-icons/fa';
 
-import Home from '../../Home';
-import Breadcrumb from '../ProductsLayout/Breadcrumb';
-import Aside from '../ProductsLayout/Aside';
+import BreadcrumbForProductsList from '../components/BreadcrumbForProductsList';
+import AsideForProductsList from '../components/AsideForProductsList';
+
 
 function ProductsList() {
   //測試用 造出有15個元素的陣列
@@ -30,33 +30,16 @@ function ProductsList() {
 
   //scrollTop btn
 
-  const [showTopBtn, setShowTopBtn] = useState(false);
-  useEffect(() => {
-    window.addEventListener('scroll', () => {
-      console.log(window.scrollY);
-      if (window.scrollY > 200) {
-        setShowTopBtn(true);
-      } else {
-        setShowTopBtn(false);
-      }
-    });
-  }, []);
-  const goToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
   return (
     <div className="product_list">
       <div className="container ">
         {/* 麵包屑  調整 待測試*/}
-        <Breadcrumb />
+        <BreadcrumbForProductsList />
 
         {/* TODO:content要改CSS */}
         <div className=" product_list-container ">
           {/* 側欄選單 待測試 */}
-          <Aside />
+          <AsideForProductsList />
           <div className="products_list-content col-lg-9 ">
             <div className="products_list-category-product-box  ">
               <div className="products_list-category-title ">
@@ -168,11 +151,7 @@ function ProductsList() {
           </ul>
         </nav>
 
-        <div className="top-to-btm">
-          {showTopBtn && (
-            <FaArrowUp className="icon-position icon-style" onClick={goToTop} />
-          )}
-        </div>
+        
       </div>
     </div>
   );

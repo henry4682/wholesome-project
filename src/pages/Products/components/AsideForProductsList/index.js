@@ -1,19 +1,13 @@
 import { useState, useEffect } from 'react';
 import Collapse from 'bootstrap/js/dist/collapse';
 import { Link } from 'react-router-dom';
-import './ProductsLayoutAside.scss';
-
-import {
-  Accordion,
-  AccordionItem,
-  AccordionItemHeading,
-  AccordionItemButton,
-  AccordionItemPanel,
-} from 'react-accessible-accordion';
+import './AsideForProductsList.scss';
 
 
 
-function Aside() {
+
+
+function AsideForProductsList() {
   useEffect(() => {
     const collapseElementList = document.querySelectorAll('.collapse');
     const collapseList = [...collapseElementList].map(
@@ -134,4 +128,4 @@ function Aside() {
   );
 }
 
-export default Aside;
+export default AsideForProductsList;

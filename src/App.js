@@ -3,6 +3,7 @@ import React from 'react';
 //版面組合用元件
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 // 以下為各頁面元件
 import Home from './pages/Home';
 // Account
@@ -75,6 +76,7 @@ function App() {
         <Route path="shoppingCart" element={<ShoppingCart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <ScrollToTop />
       <Footer />
     </BrowserRouter>
   );
