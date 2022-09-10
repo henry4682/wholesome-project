@@ -6,7 +6,7 @@ import { BsCreditCard2Front } from 'react-icons/bs';
 function Shipping(props) {
   return (
     <div className="my-5">
-      <div className="position-absolute number rounded-circle bg-secondary "></div>
+      <div className="position-absolute cart_number rounded-circle bg-secondary "></div>
       <RiNumber3 className="mx-auto ms-1 " />
       <span className="title ms-2"> 付款運送方式</span>
       <div className="cart_card mt-3">
@@ -124,17 +124,17 @@ function Shipping(props) {
             placeholder="請填寫詳細地址：路 / 巷 / 弄 / 樓"
           />
           <hr />
-          <div className="d-flex cart_shipping_term my-2">
+          <div className=" cart_shipping_term my-2">
             <input type="checkbox" id="secret" name="secret" />
             <label for="secret">同意會員責任規範及商家會員條款</label>
-          </div>
 
-          <button
-            type="submit"
-            className=" btn btn-primary text-light px-4 align-items-stretch"
-          >
-            我要加購
-          </button>
+            <button
+              type="submit"
+              className="col-12 btn  btn-primary text-light px-4   my-3 text-center"
+            >
+             結帳
+            </button>
+          </div>
         </form>
       </div>
     </div>
