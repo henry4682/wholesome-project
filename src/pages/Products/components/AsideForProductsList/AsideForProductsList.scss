@@ -4,21 +4,12 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0px;
+  padding-right: 80px;
   gap: 16px;
-  width: 238px;
-  height: 498px;
-  --bs-accordion-btn-focus-border-color:#000;
-  --bs-accordion-active-color:#000;
-  color:var(--main-cat-color);
-  font-weight: var(--main-cat-font-weight);
-  font-size: var(--main-cat-font-size);
-  line-height: var(--main-cat-line-height);
-  font-family: var(--main-cat-font-family);
-}
-.products_layout-aside-accordion-item{
+  max-width: 25%;
   width: 100%;
 }
+
 .products_layout-aside-accordion-button:focus{
     background: #fff;
     text-decoration: none;
@@ -30,13 +21,20 @@
   box-shadow: none;
 }
 .products_layout-aside-accordion-button{
+  width: 15rem;
   text-align: left;
-  padding-left: 0px ;
+  
 }
 .products_layout-aside-list-group-item{
+  width: 10rem;
   border: none ;
   a{
     color:#000;
     text-decoration: none;
+  }
+}
+@media screen and (max-width:992px) {
+  .products_layout-aside-accordion{
+    display: none;
   }
 }

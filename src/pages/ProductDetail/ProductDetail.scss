@@ -1,29 +1,24 @@
 //商品圖片和簡介
 
 .product_detail-product-intro{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 40px;
-  margin: 10px auto;
+  display: grid;
+  margin: 3rem auto;
+  grid-template-columns: 50%  50% ;
+  column-gap: 40px;
 
 }
 
 
 .product_detail-img{
-  max-width: 30vw;
+  width: 100%;
   
 }
 .product_detail-product-box{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 10px;
-  gap: 10px;
+  display: grid;
+  grid-template-columns: 100%;
 }
 .product_detail-info-box{
-  max-width: 30vw;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -108,9 +103,7 @@
 //商品詳細資訊
 
 .product_detail-section{
-  max-width: 70vw;
   padding: 32px 0;
-  margin: 0 auto;
 }
 
 .product_detail-section-title{
@@ -173,14 +166,14 @@
   display: flex;
   justify-content: center;
   align-items:center ;
-  width: 15vw;
+  min-width: 15vw;
   height:6vh;
 }
 
 .product_detail-score-bar{
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   padding: 10px;
   gap: 8px;
   border: 1px solid #DDDDDD;
@@ -193,7 +186,6 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0 px;
   gap: 10px;
   
 }
@@ -260,9 +252,10 @@
 }
 
 .product_detail-user-img{
-  max-width: 64px;
-  height: 64px;
+  max-width:100px;
+  height: 100px;
   box-sizing: border-box;
+  border-radius: 50%;
   
 }
 .product_detail-user-text{
@@ -292,7 +285,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width:50vw
+  width:50vw;
+  margin: 0 auto;
 }
 
 .product_detail-card{
@@ -318,38 +312,60 @@ color: #565656;
 }
 .product_detail-card-text{
   width: 100%;
- 
-    
-  /* price-original */
-    
   font-family: 'Noto Sans TC';
-  font-style: normal;
-  font-weight: 400;
   font-size: 14px;
   line-height: 15px;
-  /* identical to box height, or 107% */
-    
   text-align: center;
   justify-self: center;
-    
   color: #9AAB82;
 }
 
-//carousel
-.swiper-button-prev{
-  color:#565656;
+
+
+@media screen and (max-width: 991px){
+  .product_detail-img{
+    width: 50%;
+    margin: 50px auto;
+  }
+  .product_detail-product-intro{
+    column-gap: 40px;
+    grid-template-columns: 100%;
+    grid-template-rows: auto auto;
+  }
+}
+
+@media screen and (max-width:767px) {
+
+  .product_detail-score-box{
+    display:block;
+    
+  }
+  .product_detail-score-bar{
+    margin-top: 30px;
+  }
+  .product_detail-score-text{
+    width: 100%;
+    text-align-last: left;
+  }
+  .product_detail-bar-section{
+    min-width: 55vw;
+  }
+  .product_detail-comment-top{
+    flex-direction: column;
   
-}
-.swiper-button-prev:after{
-  font-size: 1rem;
-  line-height: 24px;
-}
-
-.swiper-button-next{
-  color:#565656;
-}
-
-.swiper-button-next:after{
-  font-size: 1rem;
-  line-height: 24px;
+  }
+  .product_detail-comment-title {
+    align-self: flex-start;
+  }
+  .product_detail-user-img{
+    width: 65px;  
+    height: 65px;
+    line-height: 63px;
+    font-size: 27px;
+  }
+  .product_detail-user-star{
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+  }
 }

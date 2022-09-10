@@ -3,6 +3,7 @@ import React from 'react';
 //版面組合用元件
 import Header from './components/Header';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 // 以下為各頁面元件
 import Home from './pages/Home';
 // Account
@@ -21,11 +22,10 @@ import Register from './pages/Register';
 import Recipes from './pages/Recipes';
 // =======
 
-
 //products
 import ProductsLayout from './pages/Products/ProductsLayout';
 import ProductsList from './pages/Products/ProductsList';
-import ProductDetail from './pages/Products/ProductDetail';
+import ProductDetail from './pages/ProductDetail';
 
 import ProductsSale from './pages/Products/ProductsSale';
 
@@ -63,9 +63,10 @@ function App() {
 
         <Route path="/products" element={<ProductsLayout />}>
           <Route index element={<ProductsList />} />
-          <Route path="productDetail/:productId" element={<ProductDetail />} />
           {/* <Route path="sale" element={<ProductsSale />} /> */}
         </Route>
+
+        <Route path="/productDetail/:productId" element={<ProductDetail />} />
 
         <Route path="/recipes" element={<RecipesLayout />}>
           <Route index element={<RecipesList />} />
@@ -75,6 +76,7 @@ function App() {
         <Route path="shoppingCart" element={<ShoppingCart />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <ScrollToTop />
       <Footer />
     </BrowserRouter>
   );
