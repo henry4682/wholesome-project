@@ -2,15 +2,27 @@
   font-size: 12px;
 }
 
-
-
-.cart_container {
-  margin-left: 360px;
-  margin-right: 360px;
-}
-
 button {
   cursor: pointer;
   background-color: transparent;
   border: none;
+}
+
+.cart_tablet {
+  display: none;
+}
+
+.cart_desktop {
+  display: flex;
+  justify-content: space-around;
+}
+
+@media screen and (max-width: 768px) {
+  .cart_tablet {
+    display: block;
+  }
+
+  .cart_desktop {
+    display: none;
+  }
 }

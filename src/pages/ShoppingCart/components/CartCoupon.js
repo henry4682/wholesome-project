@@ -8,7 +8,7 @@ function CartCoupon(props) {
       <div className="position-absolute cart_number rounded-circle bg-secondary "></div>
       <RiNumber2 className="mx-auto ms-1 " />
       <span className="cart_title ms-2"> 優惠券</span>
-      <div className="card mt-3">
+      <div className="cart_card mt-3">
         <form action="" className="cart_coupon">
           <label className="cart_subtitle">優惠券代碼</label>
           <br />
