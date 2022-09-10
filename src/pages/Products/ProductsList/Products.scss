@@ -1,12 +1,26 @@
 
 //產品種類標題
+.product_list-container{
+  display: inline-flex;
+  max-width: min(100%, 1140px);
+}
+
+
 .products_list-content{
-  width: 50vw;
- 
+  @media (min-width: 992px){
+  .col-lg-9 {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+  }
 }
 .products_list-category-product-box{
   margin-bottom: 1.6rem;
+  display:flex;
+  justify-content:space-between ;
+  align-items:center;
  }
+ 
 .products_list-category-title{
   border-left:3px solid #000;
   padding-left: 1rem;
@@ -14,7 +28,7 @@
   font-family: 'Noto Sans TC';
   font-style: normal;
   font-weight: 700;
-  font-size:1.2rem;
+  font-size:1.5rem;
   line-height: 2rem;
 }
 .products_list-order_search{
@@ -40,26 +54,26 @@
 }
 
 .products_list-card-list{
-  display: flex;
-  flex-direction: row;
-  align-items: flex-start;
-  padding: 0px;
-  row-gap: 50px;
+  display: inline-flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .products_list-card{
-  max-width: 264px;
-  max-height: 333px;
+  width:calc(33.3333333333% - 20px);
+  margin-bottom: 2rem ;
+  margin-top: 2rem;
   border: none;
+  
 }
 
 .products_list-card-title{
   font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
-  font-size: 0.9rem;
+  font-size: 15px;
   line-height: 1.2rem;
   text-decoration: none;
   color: #565656;
-  width: 240px;
+  max-width: 25rem;
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
@@ -75,15 +89,13 @@
 
 .products_list-card-text{
   width: 100%;
-  height: 15px;
   font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 0.8rem;
-  line-height: 1rem;
+  font-size: 14px;
+  line-height: 1.5rem;
   text-align: center;
   justify-self: end;
-  
   color: #9AAB82;
 }
 
@@ -98,3 +110,31 @@
   text-decoration: none;
   padding: 10px;
 }
+
+
+
+@media screen and (max-width:576px){
+  .products_list-category-product-box{
+  flex-direction: column;
+  align-items: flex-start;
+  position:relative;
+  }
+  
+  .products_list-order_search{
+    margin-top: 20px;
+    justify-content: space-between;
+    width: 100%;
+  
+  }
+  .text-end{
+    position: absolute;
+    top:10px;
+    right: 0px;
+  }
+  .products_list-input-group{
+    max-width: 150px;
+  }
+  .products_list-card{
+    width: calc(50% - 20px);
+  }
+ }

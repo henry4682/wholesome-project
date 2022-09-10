@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { FaHome } from 'react-icons/fa';
-import './ProductsLayoutBreadcrumb.scss';
+import './BreadcrumbForProductsList.scss';
 
-function Breadcrumb() {
+function BreadcrumbForProductsList() {
   return (
     <>
       {/* {有沒有參數 ? <></> : <></>} */}
@@ -30,4 +30,4 @@ function Breadcrumb() {
   );
 }
 
-export default Breadcrumb;
+export default BreadcrumbForProductsList;
