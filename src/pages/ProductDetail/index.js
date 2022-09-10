@@ -58,7 +58,7 @@ function ProductDetail() {
               ．12 包32 盎司紙盒。 可架式不含雙酚 A 的紙盒保留風味和新鮮度。
               開封後冷藏。
             </div>
-            <h2 className="product_detail-product-price">$123</h2>
+            <h2 className="product_detail-product-price">NT$123</h2>
           </div>
 
           <div className="product_detail-detail-btn-group">
