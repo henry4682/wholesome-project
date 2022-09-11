@@ -10,10 +10,20 @@
   width: 100%;
 }
 
+.link-decoration{
+  color: #000;
+  background: #fff;
+  text-decoration: none;
+}
+.link-decoration:hover{
+  color: #000;
+  background: #fff;
+  text-decoration: none;
+}
+
 .products_layout-aside-accordion-button:focus{
     background: #fff;
     text-decoration: none;
-  
 }
 .products_layout-aside-accordion-button:not(.collapsed){
   color: #000;
@@ -23,7 +33,6 @@
 .products_layout-aside-accordion-button{
   width: 15rem;
   text-align: left;
-  
 }
 .products_layout-aside-list-group-item{
   width: 10rem;

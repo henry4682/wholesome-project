@@ -49,7 +49,6 @@
 }
 .products_list-search {
   border: 1px solid #000;
-  
   background: #9AAB82;
 }
 
@@ -60,13 +59,19 @@
 }
 
 .products_list-card{
-  width:calc(33.3333333333% - 20px);
+  width:calc(33.3333333333% - 20px );
+  height: auto;
   margin-bottom: 2rem ;
   margin-top: 2rem;
   border: none;
   
 }
 
+.products_list-card-img-top{
+
+  height: 270px;
+  object-fit: contain;
+}
 .products_list-card-title{
   font-family: "Noto Sans TC", "Noto Sans JP", sans-serif;
   font-size: 15px;
@@ -74,6 +79,7 @@
   text-decoration: none;
   color: #565656;
   max-width: 25rem;
+  text-align: center;
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
