@@ -1,6 +1,4 @@
-::placeholder {
-  font-size: 12px;
-}
+
 
 button {
   cursor: pointer;
@@ -8,21 +6,25 @@ button {
   border: none;
 }
 
-.cart_tablet {
+.cart_index_tablet {
   display: none;
 }
 
-.cart_desktop {
+.cart_index_desktop {
   display: flex;
   justify-content: space-around;
 }
 
+
 @media screen and (max-width: 768px) {
-  .cart_tablet {
+  .cart_index_desktop {
+    display: none;
+  }
+
+  .cart_index_tablet {
     display: block;
   }
 
-  .cart_desktop {
-    display: none;
-  }
 }
+
+
