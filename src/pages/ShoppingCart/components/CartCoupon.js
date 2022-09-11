@@ -17,7 +17,9 @@ function CartCoupon(props) {
             type="text"
             placeholder="請輸入優惠券代碼"
           />
-          <button className="ms-2 cart_btn_md px-4 py-2">確認</button>
+          <button className=" ms-2 cart_btn_md px-4 py-2">
+            確認
+          </button>
         </form>
       </div>
     </div>
