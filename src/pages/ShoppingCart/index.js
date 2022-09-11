@@ -9,13 +9,24 @@ import './styles/index.scss';
 
 function ShoppingCart() {
   return (
-    <div className="cart_container">
-      <div className="mt-4 row d-flex justify-content-around  ">
+    <div className="container">
+      {/* desktop */}
+      <div className="mt-4 row  cart_desktop ">
         <div className="col-2">
           <SideSection />
         </div>
-
         <div className="col-9">
+          <CartMain />
+          <CartCoupon />
+          <Shipping />
+        </div>
+      </div>
+      {/* tablet */}
+      <div className="mt-4 cart_tablet ">
+        <div >
+          <SideSection />
+        </div>
+        <div >
           <CartMain />
           <CartCoupon />
           <Shipping />
