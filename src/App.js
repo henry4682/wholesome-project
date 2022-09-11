@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import React from 'react';
+import { AuthProvider } from './context/auth';
 //版面組合用元件
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -41,43 +42,45 @@ import NotFound from './pages/NotFound.js';
 function App() {
   return (
     <BrowserRouter>
-      <Header />
-      {/* <Menu /> */}
-      {/* 路由表 */}
-      <Routes>
-        <Route path="/" element={<Home />} />
+      <AuthProvider>
+        <Header />
+        {/* <Menu /> */}
+        {/* 路由表 */}
+        <Routes>
+          <Route path="/" element={<Home />} />
 
-        <Route path="/account/*" element={<AccountLayout />}>
-          <Route index element={<AccountInfo />} />
-          <Route path="edit" element={<AccountEdit />} />
-          <Route path="modifypassword" element={<AccountModifyPassword />} />
-          <Route path="orders" element={<AccountOrders />} />
-          <Route path="orders/:orderId" element={<AccountOrderDetail />} />
-          <Route path="coupons" element={<AccountCoupons />} />
-          <Route path="tracking" element={<AccountTracking />} />
-          <Route path="messages" element={<AccountMessages />} />
-        </Route>
+          <Route path="/account/*" element={<AccountLayout />}>
+            <Route index element={<AccountInfo />} />
+            <Route path="edit" element={<AccountEdit />} />
+            <Route path="modifypassword" element={<AccountModifyPassword />} />
+            <Route path="orders" element={<AccountOrders />} />
+            <Route path="orders/:orderId" element={<AccountOrderDetail />} />
+            <Route path="coupons" element={<AccountCoupons />} />
+            <Route path="tracking" element={<AccountTracking />} />
+            <Route path="messages" element={<AccountMessages />} />
+          </Route>
 
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
 
-        <Route path="/products" element={<ProductsLayout />}>
-          <Route index element={<ProductsList />} />
-          {/* <Route path="sale" element={<ProductsSale />} /> */}
-        </Route>
+          <Route path="/products" element={<ProductsLayout />}>
+            <Route index element={<ProductsList />} />
+            {/* <Route path="sale" element={<ProductsSale />} /> */}
+          </Route>
 
-        <Route path="/productDetail/:productId" element={<ProductDetail />} />
+          <Route path="/productDetail/:productId" element={<ProductDetail />} />
 
-        <Route path="/recipes" element={<RecipesLayout />}>
-          <Route index element={<RecipesList />} />
-          <Route path="recipeDetail/:recipeId" element={<RecipeDetail />} />
-        </Route>
+          <Route path="/recipes" element={<RecipesLayout />}>
+            <Route index element={<RecipesList />} />
+            <Route path="recipeDetail/:recipeId" element={<RecipeDetail />} />
+          </Route>
 
-        <Route path="shoppingCart" element={<ShoppingCart />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <ScrollToTop />
-      <Footer />
+          <Route path="shoppingCart" element={<ShoppingCart />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <ScrollToTop />
+        <Footer />
+      </AuthProvider>
     </BrowserRouter>
   );
 }
