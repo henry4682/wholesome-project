@@ -1,19 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { useState } from 'react';
-import 'swiper/css';
-import 'swiper/css/navigation';
 import './ProductDetail.scss';
 import { FaHeart } from 'react-icons/fa';
-import BreadcrumbForDetail from '../ProductsLayout/BreadcrumbForDetail';
+import BreadcrumbForDetail from './components/BreadcrumbForDetail';
+import SwiperForProduct from './components/SwiperForProduct';
 
 import ReactStars from 'react-rating-stars-component';
 import ProgressBar from '@ramonak/react-progress-bar';
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-
-// Import Swiper styles
 
 function ProductDetail() {
   //收藏用TODO:useState裡的true/false要隨著使用者做更換
@@ -39,15 +33,13 @@ function ProductDetail() {
   const [star, setStar] = useState('50');
 
   return (
-    <>
+    <div className="container">
       <BreadcrumbForDetail />
       <div className="product_detail-product-intro">
-        <figure>
-          <img
-            className="product_detail-img "
-            src={require('../../../Assets/products/milk1001.jpg')}
-          />
-        </figure>
+        <img
+          className="product_detail-img"
+          src={require('../../Assets/products/milk1001.jpg')}
+        />
         <div className="product_detail-product-box">
           <div className="product_detail-info-box">
             <h1 className="product_detail-product-title">
@@ -61,13 +53,12 @@ function ProductDetail() {
               <br />
               ．鈣和維他命 D
               的良好來源是低脂肪、乳糖、膽固醇、角叉菜膠、無酵母、無大豆、素食主義者,包括
-              4 克蛋白質和 17 克添加糖。 
+              4 克蛋白質和 17 克添加糖。
               <br />
-              ．12 包32 盎司紙盒。
-               可架式不含雙酚 A
-              的紙盒保留風味和新鮮度。 開封後冷藏。
+              ．12 包32 盎司紙盒。 可架式不含雙酚 A 的紙盒保留風味和新鮮度。
+              開封後冷藏。
             </div>
-            <h2 className="product_detail-product-price">$123</h2>
+            <h2 className="product_detail-product-price">NT$123</h2>
           </div>
 
           <div className="product_detail-detail-btn-group">
@@ -93,7 +84,7 @@ function ProductDetail() {
           >
             <FaHeart
               className={
-                ( isLike ? 'product_detail-heart' : 'product_detail-empty')
+                isLike ? 'product_detail-heart' : 'product_detail-empty'
               }
             />
             加入最愛
@@ -131,7 +122,7 @@ function ProductDetail() {
             </div>
           </div>
           <div className="product_detail-score-bar">
-            <div>評價分佈顯示</div>
+            <div className="product_detail-score-text">評價分佈顯示</div>
             {/* 可能跑迴圈? */}
             {starArr.map((num, i) => {
               return (
@@ -172,7 +163,7 @@ function ProductDetail() {
             <div className="product_detail-user-img-box">
               <img
                 className="product_detail-user-img"
-                src={require('../../../Assets/member.png')}
+                src={require('../../Assets/member.png')}
                 alt="圖片"
               />
             </div>
@@ -199,7 +190,7 @@ function ProductDetail() {
             <div className="product_detail-user-img-box">
               <img
                 className="product_detail-user-img"
-                src={require('../../../Assets/member.png')}
+                src={require('../../Assets/member.png')}
                 alt="圖片"
               />
             </div>
@@ -221,131 +212,42 @@ function ProductDetail() {
               </div>
             </div>
           </section>
-        </div>
-      </section>
-      <section className="product_detail-section">
-        <div className="product_detail-section-title">相關商品</div>
-        <div className="product_detail-carousel" on>
-          <Swiper
-            modules={[Navigation, A11y]}
-            spaceBetween={50}
-            // 這裡放商品卡數量
-            slidesPerView={4}
-            navigation
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log('slide change')}
-          >
-            <SwiperSlide className="card product_detail-card">
-              <img
-                src={require('../../../Assets/products/milk1002.jpg')}
-                className="card-img-top"
-                alt="..."
-              />
-              <div className="card-body products_detail-card-body">
-                <Link className="card-title product_detail-card-title" to="">
-                  咖啡師燕麥奶 (1000ml)
+          <nav aria-label="Page navigation ">
+            <ul className="pagination recipe-pagination">
+              <li className="page-item">
+                <Link
+                  className="page-link"
+                  to="/productDetail/:productId"
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true">&laquo;</span>
                 </Link>
-                <p className="card-text product_detail-card-text">NT156</p>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="card product_detail-card">
-                <img
-                  src={require('../../../Assets/products/milk1002.jpg')}
-                  className="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body products_detail-card-body">
-                  <Link className="card-title product_detail-card-title" to="">
-                    咖啡師燕麥奶 (1000ml)
-                  </Link>
-                  <p className="card-text product_detail-card-text">NT156</p>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              <div className="card product_detail-card">
-                <img
-                  src={require('../../../Assets/products/milk1002.jpg')}
-                  className="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body products_detail-card-body">
-                  <Link className="card-title product_detail-card-title" to="">
-                    咖啡師燕麥奶 (1000ml)
-                  </Link>
-                  <p className="card-text product_detail-card-text">NT156</p>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              {' '}
-              <div className="card product_detail-card">
-                <img
-                  src={require('../../../Assets/products/milk1002.jpg')}
-                  className="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body products_detail-card-body">
-                  <Link className="card-title product_detail-card-title" to="">
-                    咖啡師燕麥奶 (1000ml)
-                  </Link>
-                  <p className="card-text product_detail-card-text">NT156</p>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              {' '}
-              <div className="card product_detail-card">
-                <img
-                  src={require('../../../Assets/products/milk1002.jpg')}
-                  className="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body products_detail-card-body">
-                  <Link className="card-title product_detail-card-title" to="">
-                    咖啡師燕麥奶 (1000ml)
-                  </Link>
-                  <p className="card-text product_detail-card-text">NT156</p>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              {' '}
-              <div className="card product_detail-card">
-                <img
-                  src={require('../../../Assets/products/milk1002.jpg')}
-                  className="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body products_detail-card-body">
-                  <Link className="card-title product_detail-card-title" to="">
-                    咖啡師燕麥奶 (1000ml)
-                  </Link>
-                  <p className="card-text product_detail-card-text">NT156</p>
-                </div>
-              </div>
-            </SwiperSlide>
-            <SwiperSlide>
-              {' '}
-              <div className="card product_detail-card">
-                <img
-                  src={require('../../../Assets/products/milk1002.jpg')}
-                  className="card-img-top"
-                  alt="..."
-                />
-                <div className="card-body products_detail-card-body">
-                  <Link className="card-title product_detail-card-title" to="">
-                    咖啡師燕麥奶 (1000ml)
-                  </Link>
-                  <p className="card-text product_detail-card-text">NT156</p>
-                </div>
-              </div>
-            </SwiperSlide>
-          </Swiper>
+              </li>
+              <li className="page-item">
+                <Link className="page-link" to="/productDetail/:productId">
+                  1
+                </Link>
+              </li>
+              <li className="page-item">
+                <Link
+                  className="page-link"
+                  to="/productDetail/:productId"
+                  aria-label="Next"
+                >
+                  <span aria-hidden="true">&raquo;</span>
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
       </section>
-    </>
+      <div className="product_detail-section">
+        <div className="product_detail-section-title">相關商品</div>
+        <div className="product_detail-carousel">
+          <SwiperForProduct />
+        </div>
+      </div>
+    </div>
   );
 }
 

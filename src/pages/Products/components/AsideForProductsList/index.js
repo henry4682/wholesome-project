@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
 import Collapse from 'bootstrap/js/dist/collapse';
 import { Link } from 'react-router-dom';
-import './ProductsLayoutAside.scss';
+import './AsideForProductsList.scss';
 
-function Aside() {
+
+
+
+
+function AsideForProductsList() {
   useEffect(() => {
     const collapseElementList = document.querySelectorAll('.collapse');
     const collapseList = [...collapseElementList].map(
@@ -13,7 +17,7 @@ function Aside() {
   return (
     <div>
       <div
-        className="accordion products_layout-aside-accordion accordion-flush"
+        className="accordion products_layout-aside-accordion accordion-flush col-md-3"
         id="accordionFlushExample"
       >
         <div className="accordion-item products_layout-aside-accordion-item">
@@ -119,8 +123,9 @@ function Aside() {
           </div>
         </div>
       </div>
+      
     </div>
   );
 }
 
-export default Aside;
+export default AsideForProductsList;
