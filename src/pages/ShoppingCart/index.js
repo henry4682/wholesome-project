@@ -11,7 +11,7 @@ function ShoppingCart() {
   return (
     <div className="container">
       {/* desktop */}
-      <div className="mt-4 row  cart_desktop ">
+      <div className="mt-4 row  cart_index_desktop ">
         <div className="col-2">
           <SideSection />
         </div>
@@ -22,14 +22,23 @@ function ShoppingCart() {
         </div>
       </div>
       {/* tablet */}
-      <div className="mt-4 cart_tablet ">
-        <div >
+      {/* <div className="mt-4 cart_tablet ">
+        <div>
           <SideSection />
         </div>
-        <div >
+        <div>
           <CartMain />
           <CartCoupon />
           <Shipping />
+        </div>
+      </div> */}
+      {/* mobile &  tablet */}
+      <div className="my-4  cart_index_tablet ">
+        <div>
+          <CartMain />
+          <CartCoupon />
+          <Shipping />
+          <SideSection />
         </div>
       </div>
     </div>
