@@ -3,13 +3,15 @@ import Collapse from 'bootstrap/js/dist/collapse';
 import { Link } from 'react-router-dom';
 import './AsideForProductsList.scss';
 
-function AsideForProductsList(setMainCategory) {
+function AsideForProductsList({ setCategory }) {
+
   useEffect(() => {
     const collapseElementList = document.querySelectorAll('.collapse');
     const collapseList = [...collapseElementList].map(
       (collapseEl) => new Collapse(collapseEl)
     );
   }, []);
+
   return (
     <div
       className="accordion products_layout-aside-accordion accordion-flush col-md-3"
@@ -24,6 +26,9 @@ function AsideForProductsList(setMainCategory) {
             data-bs-target="#flush-collapseOne"
             aria-expanded="false"
             aria-controls="flush-collapseOne"
+            onClick={() => {
+              setCategory('植物奶');
+            }}
           >
             <div className="link-decoration">植物奶</div>
           </button>
@@ -37,13 +42,31 @@ function AsideForProductsList(setMainCategory) {
           <div className="accordion-body">
             <ul className="list-group">
               <li className="list-group-item products_layout-aside-list-group-item">
-                <Link to="/products">燕麥奶</Link>
+                <button
+                  onClick={() => {
+                    setCategory('燕麥奶');
+                  }}
+                >
+                  燕麥奶
+                </button>
               </li>
               <li className="list-group-item products_layout-aside-list-group-item">
-                <Link to="/products">杏仁奶</Link>
+                <button
+                  onClick={() => {
+                    setCategory('杏仁奶');
+                  }}
+                >
+                  杏仁奶
+                </button>
               </li>
               <li className="list-group-item products_layout-aside-list-group-item">
-                <Link to="/products">堅果奶</Link>
+                <button
+                  onClick={() => {
+                    setCategory('堅果奶');
+                  }}
+                >
+                  堅果奶
+                </button>
               </li>
             </ul>
           </div>
@@ -58,10 +81,11 @@ function AsideForProductsList(setMainCategory) {
             data-bs-target="#flush-collapseTwo"
             aria-expanded="false"
             aria-controls="flush-collapseTwo"
+            onClick={() => {
+              setCategory('有機蔬果汁');
+            }}
           >
-            <Link className="link-decoration" to="/products">
-              有機蔬果汁
-            </Link>
+            有機蔬果汁
           </button>
         </h2>
         <div
@@ -73,13 +97,31 @@ function AsideForProductsList(setMainCategory) {
           <div className="accordion-body">
             <ul className="list-group">
               <li className="list-group-item products_layout-aside-list-group-item">
-                <Link to="/products">果汁</Link>
+                <button
+                  onClick={() => {
+                    setCategory('果汁');
+                  }}
+                >
+                  果汁
+                </button>
               </li>
               <li className="list-group-item products_layout-aside-list-group-item">
-                <Link to="/products">蔬菜汁、氣泡水</Link>
+                <button
+                  onClick={() => {
+                    setCategory('蔬菜汁、氣泡水');
+                  }}
+                >
+                  蔬菜汁、氣泡水
+                </button>
               </li>
               <li className="list-group-item products_layout-aside-list-group-item">
-                <Link to="/products">果昔、果醋</Link>
+                <button
+                  onClick={() => {
+                    setCategory('果昔、果醋');
+                  }}
+                >
+                  果昔、果醋
+                </button>
               </li>
             </ul>
           </div>
@@ -94,10 +136,11 @@ function AsideForProductsList(setMainCategory) {
             data-bs-target="#flush-collapseThree"
             aria-expanded="false"
             aria-controls="flush-collapseThree"
+            onClick={() => {
+              setCategory('營養點心');
+            }}
           >
-            <Link className="link-decoration" to="/products">
-              營養點心
-            </Link>
+            營養點心
           </button>
         </h2>
         <div
@@ -109,13 +152,31 @@ function AsideForProductsList(setMainCategory) {
           <div className="accordion-body">
             <ul className="list-group">
               <li className="list-group-item products_layout-aside-list-group-item">
-                <Link to="/products">麥片</Link>
+                <button
+                  onClick={() => {
+                    setCategory('麥片');
+                  }}
+                >
+                  麥片
+                </button>
               </li>
               <li className="list-group-item products_layout-aside-list-group-item">
-                <Link to="/products">燕麥棒、蛋白棒</Link>
+                <button
+                  onClick={() => {
+                    setCategory('燕麥棒、蛋白棒');
+                  }}
+                >
+                  燕麥棒、蛋白棒
+                </button>
               </li>
-              <li className="list-group-item products_layout-aside-list-group-item">
-                <Link to="/products">堅果</Link>
+              <li className="list-group-item products_layout-aside-list-group-item ">
+                <button
+                  onClick={() => {
+                    setCategory('堅果');
+                  }}
+                >
+                  堅果
+                </button>
               </li>
             </ul>
           </div>

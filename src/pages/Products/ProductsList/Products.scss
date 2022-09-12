@@ -15,10 +15,11 @@
   }
 }
 .products_list-category-product-box{
-  margin-bottom: 1.6rem;
+
   display:flex;
   justify-content:space-between ;
   align-items:center;
+  margin: 0 auto 1.6rem auto;
  }
  
 .products_list-category-title{
@@ -54,8 +55,10 @@
 
 .products_list-card-list{
   display: inline-flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  margin: 20px 0 0 20px;
   flex-wrap: wrap;
+  gap: 20px;
 }
 
 .products_list-card{

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
 import './Products.scss';
 import { API_URL } from '../../../utils/config';
 import axios from 'axios';
@@ -13,14 +12,6 @@ import BreadcrumbForProductsList from '../components/BreadcrumbForProductsList';
 import AsideForProductsList from '../components/AsideForProductsList';
 
 function ProductsList() {
-  //測試用 造出有15個元素的陣列
-  const arr = Array(15)
-    .fill(1)
-    .map((num, index) => index + 1);
-  const [data, setData] = useState(arr);
-  //利用useState抽換productsMainCategory頁面的內容?
-  const [category, setCategory] = useState('植物奶');
-
   //側欄選單用
   const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
   const dropdownList = [...dropdownElementList].map(
@@ -28,22 +19,50 @@ function ProductsList() {
   );
 
   //正式資料
-  const [mainCategoryData, setMainCategoryData] = useState('');
-  const [subCategory, setSubCategory] = useState('');
+  const [category, setCategory] = useState('植物奶');
+  const [searchValue, setSearchValue] = useState('');
+  const [order, setOrder] = useState('');
 
   const [allProducts, setAllProducts] = useState([]);
   const [totalPage, setTotalPage] = useState(1);
   const [page, setPage] = useState(1);
+  const [amount, setAmount] = useState(0);
 
   const { productId } = useParams();
-
-  useEffect(() => {}, []);
 
   useEffect(() => {
     console.log('useEffect[allProducts]', allProducts);
     let getAllProducts = async () => {
       // console.log('API_URL', API_URL);
-      let response = await axios.get(`${API_URL}/products?page=${page}`);
+      let response = await axios.get(
+        `${API_URL}/products?category=${category}`
+      );
+      console.log('response.data', response.data);
+      setAllProducts(response.data.data);
+      setTotalPage(response.data.pagination.totalPage);
+      setAmount(response.data.pagination.total);
+    };
+    getAllProducts();
+  }, [category]);
+
+  useEffect(() => {
+    let getSearch = async () => {
+      let response = await axios.get(
+        `${API_URL}/products?category?=${category}&search=${searchValue}`
+      );
+      setAllProducts(response.data.data);
+      setTotalPage(response.data.pagination.totalPage);
+      setAmount(response.data.pagination.total);
+    };
+    getSearch();
+  }, [searchValue]);
+
+  useEffect(() => {
+    let getAllProducts = async () => {
+      // console.log('API_URL', API_URL);
+      let response = await axios.get(
+        `${API_URL}/products?category=${category}&page=${page}`
+      );
       console.log('response.data', response.data);
       setAllProducts(response.data.data);
       setTotalPage(response.data.pagination.totalPage);
@@ -78,15 +97,15 @@ function ProductsList() {
         {/* TODO:content要改CSS */}
         <div className=" product_list-container ">
           {/* 側欄選單 待測試 */}
-          <AsideForProductsList  />
+          <AsideForProductsList setCategory={setCategory} />
           <div className="products_list-content col-lg-9 ">
             <div className="products_list-category-product-box  ">
               <div className="products_list-category-title ">
                 {/* 商品種類標題 */}
-                <h2>植物奶</h2>
+                <h2>{category}</h2>
               </div>
               <div className="products_list-order_search ">
-                <p className="col-4 text-end">共 {allProducts.length} 件商品</p>
+                <p className="col-4 text-end">共 {amount} 件商品</p>
                 {/* 篩選器 */}
                 <span className="dropdown  ">
                   <button
@@ -99,24 +118,20 @@ function ProductsList() {
                   </button>
                   <ul className="dropdown-menu">
                     <li>
-                      <Link className="dropdown-item" to="order_price1">
-                        價錢由高到低
-                      </Link>
+                      <button className="dropdown-item">價錢由高到低</button>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="order_price1">
-                        價錢由低到高
-                      </Link>
+                      <button className="dropdown-item"> 價錢由低到高</button>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="order_price1">
+                      <button className="dropdown-item">
                         上市日期由新到舊
-                      </Link>
+                      </button>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="order_price1">
+                      <button className="dropdown-item">
                         上市日期由舊到新
-                      </Link>
+                      </button>
                     </li>
                   </ul>
                 </span>
@@ -127,6 +142,9 @@ function ProductsList() {
                     placeholder="搜尋"
                     aria-label="搜尋"
                     aria-describedby="button-addon2"
+                    onChange={(e) => {
+                      setSearchValue(e.target.value);
+                    }}
                   />
                   <button
                     className="products_list-search"
@@ -140,37 +158,11 @@ function ProductsList() {
             </div>
             {/* 商品列表 */}
             <div className="card-list products_list-card-list ">
-              {/* 抓到資料後 map card */}
-              {/* {data.map((item, index) => {
-                return (
-                  <div key={index} className="card products_list-card">
-                    <img
-                      src={require('../../../Assets/products/milk1001.jpg')}
-                      className="card-img-top products_list-card-img-top"
-                      alt="..."
-                    />
-                    <div className=" card-body products_list-card-body">
-                      <Link
-                        className=" card-title products_list-card-title word-wrap"
-                        to="/productDetail/:productId"
-                        // to="/productDetail/:productId"
-                      >
-                        Pacific Foods Organic Oat Original 植物牛奶,有機燕麥 -
-                        原創,32 液體盎司(約 12 毫升)
-                      </Link>
-
-                      <p className=" card-text products_list-card-text">
-                        NT${data.price}123
-                      </p>
-                    </div>
-                  </div>
-                );
-              })} */}
               {allProducts.map((item, index) => {
                 return (
                   <div key={index} className="card products_list-card">
                     <img
-                      src={require(`../../../Assets/products/${item.image}.jpg`)}
+                      src={require(`../../../Assets/products/${item.image}`)}
                       className="card-img-top products_list-card-img-top"
                       alt="..."
                     />
@@ -178,7 +170,7 @@ function ProductsList() {
                     <div className=" card-body products_list-card-body">
                       <Link
                         className=" card-title products_list-card-title word-wrap"
-                        to={`/productDetail/${productId}`}
+                        to={`/productDetail/${item.id}`}
                       >
                         {item.name}
                       </Link>
