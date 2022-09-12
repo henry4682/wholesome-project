@@ -1,8 +1,11 @@
 import React from 'react';
-import { BsFillCaretUpFill } from 'react-icons/bs';
+import { useState } from 'react';
+import { BsFillCaretUpFill, BsTypeH1 } from 'react-icons/bs';
 import '../styles/SideSection.scss';
 
 function SideSection(props) {
+  const [show, setShow] = useState(true);
+
   return (
     <div>
       <div className="cart_card my-3 ">
@@ -29,25 +32,32 @@ function SideSection(props) {
           </span>
         </span>
       </div>
-      <div className="cart_card">
+      <div className="cart_card my-3">
         <div className="d-flex title justify-content-between">
           購物車內容
-          <a className='d-block'>
+          <button className="d-block"
+          onClick={()=>setShow(!show)}>
             <BsFillCaretUpFill />
-          </a>
+          </button>
         </div>
         <hr />
+
         <span>
-          <div className="product m-2">芒果果昔</div>
-          <div className="d-flex m-2 justify-content-end">
-            數量 <div>1</div>
-          </div>
-          <hr />
-          <div className="product m-2">梅果果昔</div>
-          <div className="d-flex m-2 justify-content-end">
-            數量 <div>1</div>
-          </div>
-          <hr />
+          {show ? (
+            <div>
+              <div className="cart_product m-2">芒果果昔</div>
+              <div className="d-flex m-2 justify-content-end">
+                數量 <div>1</div>
+              </div>
+              <hr />
+              <div className="cart_product m-2">梅果果昔</div>
+              <div className="d-flex m-2 justify-content-end">
+                數量 <div>1</div>
+              </div>
+              <hr />
+            </div>
+          ) : null}
+
           <span className="m-2">合計有2項商品</span>
         </span>
       </div>

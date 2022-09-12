@@ -6,11 +6,11 @@ function Footer() {
     <>
       <footer className="footer bg-primary text-white p-lg-5 p-md-4 p-3">
         <div className="container">
-          <div className="d-flex justify-content-between">
+          <div className="footer_content ">
             <div>
-              <div className="footer_about">
+              <div className="footer_about mb-md-0 mb-3">
                 <p className="footer_about-title mb-2">關於我們 About us</p>
-                <ul className="footer-links d-flex list-unstyled mb-lg-3">
+                <ul className="footer-links list-unstyled mb-lg-3">
                   <li>我的帳戶</li>
                   <li>會員制度</li>
                   <li>配送時間及運費規則</li>
@@ -30,7 +30,7 @@ function Footer() {
               </div>
             </div>
             <div className="d-flex justify-content-center align-items-end">
-              <div className="footer-icons mb-3">
+              <div className="footer-icons my-3">
                 <BsFacebook className="me-3" />
                 <BsInstagram className="me-3" />
                 <BsLine />
