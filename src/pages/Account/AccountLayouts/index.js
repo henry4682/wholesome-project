@@ -11,7 +11,7 @@ function AccountLayout() {
   }
   return (
     <>
-      <main className="container my-3">
+      <main className="container my-5">
         <Breadcrumb />
         <AsideMobile />
         <div className="d-flex">
