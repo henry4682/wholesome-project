@@ -1,18 +1,35 @@
 .footer {
+  &_content {
+    display: flex;
+    justify-content: space-between;
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
   &_about {
     &-title {
       font-size: 16px;
+      font-weight: 500;
       line-height: 18px;
     }
   }
 
   &-links {
+    font-size: 14px;
     gap: 20px;
+    display: flex;
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      gap: 10px;
+    }
   }
 
   &_info {
+    font-size: 14px;
     &-title {
       font-size: 16px;
+      font-weight: 500;
       line-height: 18px;
     }
   }
