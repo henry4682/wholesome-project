@@ -32,16 +32,18 @@ function SideSection(props) {
           </span>
         </span>
       </div>
-      <div className="cart_card my-3">
+
+      <div className="cart_card my-3 cart_card_side_tablet">
         <div className="d-flex title justify-content-between">
           購物車內容
-          <button className="d-block"
-          onClick={()=>setShow(!show)}>
+          <button
+            className="cart_button d-block"
+            onClick={() => setShow(!show)}
+          >
             <BsFillCaretUpFill />
           </button>
         </div>
         <hr />
-
         <span>
           {show ? (
             <div>
