@@ -227,7 +227,7 @@ function ProductDetail() {
             </div>
           </section>
           <nav aria-label="Page navigation ">
-            <ul className="pagination recipe-pagination">
+            <ul className="pagination product_detail-pagination">
               <li className="page-item">
                 <Link
                   className="page-link"

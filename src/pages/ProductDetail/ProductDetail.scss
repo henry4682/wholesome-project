@@ -129,8 +129,9 @@
 }
 
 .product_detail-score-box{
-  display: flex;
-  justify-content: center;
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
   margin:  0 auto;
   align-items: flex-start;
   padding: 73px 0;
@@ -142,7 +143,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 32px 10px 8px;
+  padding: 32px 0px 8px;
   gap: 10px;
   border: 1px solid #DDDDDD;
 
@@ -195,33 +196,37 @@
 }
 
 .product_detail-comment-box{
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
   border: 1px solid #E2E0DB;
+  margin: 0 auto;
 }
  
 .product_detail-comment-top{
+  width: 45vw;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 90px;
+  align-items: center;
+  margin: 2rem auto ; 
 }
 
 .product_detail-comment-info{
   display: flex;
   gap:20px;
   color: #89817D;
+  padding: 9px 0 9px 0px;
 }
 
 .product_detail-comment-title{
   display: flex;
   align-self: center;
-  margin-left: 6vw;
   font-family: 'Microsoft JhengHei';
   letter-spacing: 0.84px;
   color: #564E4A;
   line-height: 2rem;
-}
-.product_detail-comment-info{
-  padding: 9px 33px;
+  min-height: 2rem;
 }
 .product_detail-comment-top-text{
   font-family: 'Microsoft JhengHei';
@@ -233,7 +238,7 @@
 
 .product_detail-br{
   margin: 0 auto;
-  width: 55vw;
+  width: 45vw;
 }
 .product_detail-user-comment-box{
   display: flex;
@@ -250,11 +255,13 @@
 .product_detail-user-img-box{
  
   align-self: flex-start;
+  object-fit: contain;
 }
 
 .product_detail-user-img{
-  max-width:100px;
-  height: 100px;
+  max-width:50px;
+  height: auto;
+ 
   box-sizing: border-box;
   border-radius: 50%;
   
@@ -279,15 +286,20 @@
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 0.84px;
-
   color: #564E4A;
 }
 .product_detail-user-star{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width:50vw;
+  width:40vw;
   margin: 0 auto;
+}
+.product_detail-pagination{
+  width: 45vw;
+  margin: 2rem auto;
+  display: flex;
+  justify-content: center;
 }
 
 .product_detail-card{
@@ -357,9 +369,10 @@ color: #565656;
     flex-direction: column;
   
   }
-  .product_detail-comment-title {
-    align-self: flex-start;
-  }
+ .products_detail-comment-info{
+    padding: 9px  0px;
+ }
+
   .product_detail-user-img{
     width: 65px;  
     height: 65px;

@@ -6,7 +6,7 @@ import { API_URL } from '../../../utils/config';
 import axios from 'axios';
 
 import { Dropdown } from 'bootstrap';
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaUser } from 'react-icons/fa';
 //元件
 import BreadcrumbForProductsList from '../components/BreadcrumbForProductsList';
 import AsideForProductsList from '../components/AsideForProductsList';
@@ -20,7 +20,7 @@ function ProductsList() {
 
   //正式資料
   const [category, setCategory] = useState('植物奶');
-  const [searchValue, setSearchValue] = useState('');
+  const [search, setSearch] = useState('');
   const [order, setOrder] = useState('');
 
   const [allProducts, setAllProducts] = useState([]);
@@ -45,17 +45,17 @@ function ProductsList() {
     getAllProducts();
   }, [category]);
 
-  useEffect(() => {
-    let getSearch = async () => {
-      let response = await axios.get(
-        `${API_URL}/products?category?=${category}&search=${searchValue}`
-      );
-      setAllProducts(response.data.data);
-      setTotalPage(response.data.pagination.totalPage);
-      setAmount(response.data.pagination.total);
-    };
-    getSearch();
-  }, [searchValue]);
+  // useEffect(() => {
+    // let getSearch = async () => {
+      // let response = await axios.get(
+        // `${API_URL}/products?category?=${category}&search=${search}`
+      // );
+      // setAllProducts(response.data.data);
+      // setTotalPage(response.data.pagination.totalPage);
+      // setAmount(response.data.pagination.total);
+    // };
+    // getSearch();
+  // }, [search]);
 
   useEffect(() => {
     let getAllProducts = async () => {
@@ -137,19 +137,25 @@ function ProductsList() {
                 </span>
                 <div className="input-group  products_list-input-group">
                   <input
+                    id="list-search"
                     type="text"
                     className="form-control products_list-search-input"
                     placeholder="搜尋"
                     aria-label="搜尋"
                     aria-describedby="button-addon2"
-                    onChange={(e) => {
-                      setSearchValue(e.target.value);
+                    onKey={(e) => {
+                      setSearch(e.target.value);
                     }}
                   />
                   <button
                     className="products_list-search"
                     type="submit"
                     id="button"
+                    onClick={() => {
+                      const inputValue =
+                        document.querySelector('#list-search').value;
+                      console.log(inputValue);
+                    }}
                   >
                     <FaSearch />
                   </button>

@@ -61,10 +61,7 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
 
-        <Route path="/products" element={<ProductsLayout />}>
-          <Route index element={<ProductsList />} />
-          {/* <Route path="sale" element={<ProductsSale />} /> */}
-        </Route>
+        <Route path="/products" element={<ProductsList />} />
 
         <Route path="/productDetail/:productId" element={<ProductDetail />} />
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './SwiperForDetail.scss';
@@ -11,18 +11,16 @@ function SwiperForProduct() {
   return (
     <Swiper
       modules={[Navigation, A11y]}
+      slidesPerView={1}
+      spaceBetween={70}
       breakpoints={{
-        '@0.00': {
-          slidesPerView: 1,
-        },
-        '@0.75': {
-          slidesPerView: 2,
-        },
-        '@1.00': {
+        756: {
           slidesPerView: 3,
+          spaceBetween: 50,
         },
-        '@1.50': {
+        990: {
           slidesPerView: 4,
+          spaceBetween: 50,
         },
       }}
       navigation
