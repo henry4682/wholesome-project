@@ -45,7 +45,7 @@ function Register() {
             <li className="breadcrumb-item">註冊新帳號</li>
           </ol>
         </nav>
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center p-2">
           <div className="register">
             <p className="text-center register-title">註冊新帳號</p>
             <form className="register-form ">

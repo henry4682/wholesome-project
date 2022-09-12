@@ -53,10 +53,10 @@ function Login() {
                 <FaHome />
               </Link>
             </li>
-            <li className="breadcrumb-item">註冊新帳號</li>
+            <li className="breadcrumb-item">會員登入</li>
           </ol>
         </nav>
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center p-2">
           <div className="login">
             <p className="text-center login-title">會員登入</p>
             <form className="login-form ">
