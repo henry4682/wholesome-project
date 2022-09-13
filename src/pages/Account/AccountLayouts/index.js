@@ -6,7 +6,7 @@ import AsideMobile from '../components/AsideMobile';
 import { useAuth } from '../../../context/auth';
 function AccountLayout() {
   const { user, setUser } = useAuth();
-  if (!user) {
+  if (!user.id) {
     return <Navigate to="/login" />;
   }
   return (
