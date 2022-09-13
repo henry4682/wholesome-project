@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
-    // 去要要看有沒有會員資料，有要到就是已經登入過
+    // 要會員資料，有的話就是已經登入過
     let getUser = async () => {
       console.log('in APP: check if login');
       let response = await axios.get(`${API_URL}/user`, {
