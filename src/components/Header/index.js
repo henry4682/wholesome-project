@@ -10,7 +10,7 @@ import MobileNav from '../MobileNav';
 import './index.scss';
 function Header() {
   // 把 user, setUser 從 auth context 裡頭拿出來
-  const { user, setUser } = useAuth();
+  const { user, setUser, setIsLogin } = useAuth();
 
   async function handleLogout() {
     let response = await axios.get(`${API_URL}/auth/logout`, {
@@ -18,6 +18,7 @@ function Header() {
     });
     console.log('handleLogout', response.data);
     setUser({ id: null });
+    setIsLogin(false);
   }
 
   return (

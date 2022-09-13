@@ -6,7 +6,7 @@ import { API_URL } from '../../../utils/config';
 import axios from 'axios';
 
 function AccountInfo() {
-  const { user, setUser } = useAuth();
+  const { user, setUser, setIsLogin } = useAuth();
 
   // 登出按鈕
   async function handleLogout() {
@@ -15,6 +15,7 @@ function AccountInfo() {
     });
     console.log('handleLogout', response.data);
     setUser({ id: null });
+    setIsLogin(false);
   }
   return (
     <>
