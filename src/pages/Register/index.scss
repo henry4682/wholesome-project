@@ -21,3 +21,31 @@
     font-size: 14px;
   }
 }
+
+@media screen and (max-width: 992px) {
+  .register {
+    padding: 25px 20px;
+
+    &-form {
+      padding: 25px 50px;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .register {
+    padding: 20px 15px;
+
+    &-form {
+      padding: 20px 35px;
+    }
+  }
+}
+@media screen and (max-width: 576px) {
+  .register {
+    padding: 15px 10px;
+
+    &-form {
+      padding: 15px 20px;
+    }
+  }
+}

@@ -1,19 +1,30 @@
 //側欄選單
 
 .products_layout-aside-accordion{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   padding-right: 80px;
   gap: 16px;
-  max-width: 25%;
-  width: 100%;
+  
+  
+}
+
+.no-border{
+  box-shadow:none;
+}
+
+.link-decoration{
+  color: #000;
+  background: #fff;
+  text-decoration: none;
+}
+.link-decoration:hover{
+  color: #000;
+  background: #fff;
+  text-decoration: none;
 }
 
 .products_layout-aside-accordion-button:focus{
     background: #fff;
     text-decoration: none;
-  
 }
 .products_layout-aside-accordion-button:not(.collapsed){
   color: #000;
@@ -23,7 +34,6 @@
 .products_layout-aside-accordion-button{
   width: 15rem;
   text-align: left;
-  
 }
 .products_layout-aside-list-group-item{
   width: 10rem;

@@ -46,38 +46,43 @@ function Header() {
                 <FaRegUser />
               </Link>
               <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li>
-                  <Link className="dropdown-item" to="login">
-                    <button className="btn btn-primary text-white">
-                      會員登入
-                    </button>
-                  </Link>
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="register">
-                    <button className="btn btn-primary text-white">
-                      會員註冊
-                    </button>
-                  </Link>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-                <li>
-                  <Link className="dropdown-item" to="account">
-                    我的帳戶
-                  </Link>
-                </li>
-                <li>
-                  <div className="dropdown-item">
-                    <button
-                      className="btn btn-sm btn-secondary"
-                      onClick={handleLogout}
-                    >
-                      登出
-                    </button>
-                  </div>
-                </li>
+                {user ? (
+                  <>
+                    <li className="dropdown-item">Hi!{user.name}</li>
+                    <li className="dropdown-item">
+                      <Link className="btn btn-primary text-white" to="account">
+                        我的帳戶
+                      </Link>
+                    </li>
+                    <li>
+                      <div className="dropdown-item">
+                        <button
+                          className="btn btn-sm btn-secondary"
+                          onClick={handleLogout}
+                        >
+                          登出
+                        </button>
+                      </div>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li>
+                      <Link className="dropdown-item" to="login">
+                        <button className="btn btn-primary text-white">
+                          會員登入
+                        </button>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link className="dropdown-item" to="register">
+                        <button className="btn btn-primary text-white">
+                          會員註冊
+                        </button>
+                      </Link>
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
             {/* 購物車 icon */}

@@ -1,17 +1,23 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import './ProductDetail.scss';
+import { API_URL } from '../../utils/config';
 import { FaHeart } from 'react-icons/fa';
 import BreadcrumbForDetail from './components/BreadcrumbForDetail';
 import SwiperForProduct from './components/SwiperForProduct';
 
 import ReactStars from 'react-rating-stars-component';
 import ProgressBar from '@ramonak/react-progress-bar';
+import axios from 'axios';
 
 function ProductDetail() {
+  const [detailData, setDetailData] = useState([]);
   //收藏用TODO:useState裡的true/false要隨著使用者做更換
   const [isLike, setIsLike] = useState(false);
+
+  //接收來自其他頁的參數
+  const { productId } = useParams();
 
   //星星平均用
   const [averageScore, setAverageScore] = useState(4.5);
@@ -31,6 +37,14 @@ function ProductDetail() {
   const [starCount, setStarCount] = useState(8);
   //star bar 的百分比
   const [star, setStar] = useState('50');
+
+  useEffect(() => {
+    let getProductDetail = async () => {
+      let response = await axios.get(`${API_URL}/productDetail/${productId}`);
+      setDetailData(response.data);
+    };
+    getProductDetail();
+  }, []);
 
   return (
     <div className="container">
@@ -213,7 +227,7 @@ function ProductDetail() {
             </div>
           </section>
           <nav aria-label="Page navigation ">
-            <ul className="pagination recipe-pagination">
+            <ul className="pagination product_detail-pagination">
               <li className="page-item">
                 <Link
                   className="page-link"

@@ -37,7 +37,10 @@ function Login() {
       console.error('register Error', e);
     }
   }
-
+  //(?) 為什麼在 account 頁面重新整理會到 login 頁面
+  if (user) {
+    return <Navigate to="/account" />;
+  }
   // 登入後導到首頁
   if (isLogin) {
     return <Navigate to="/" />;
@@ -53,10 +56,10 @@ function Login() {
                 <FaHome />
               </Link>
             </li>
-            <li className="breadcrumb-item">註冊新帳號</li>
+            <li className="breadcrumb-item">會員登入</li>
           </ol>
         </nav>
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center p-2">
           <div className="login">
             <p className="text-center login-title">會員登入</p>
             <form className="login-form ">

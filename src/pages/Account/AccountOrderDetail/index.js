@@ -1,7 +1,26 @@
-import React from 'react';
+import { React, useEffect, useState } from 'react';
 import './index.scss';
-
+import { useParams } from 'react-router-dom';
+import { useAuth } from '../../../context/auth';
+import { API_URL } from '../../../utils/config';
+import axios from 'axios';
 function AccountOrderDetail() {
+  const { user, setUser } = useAuth();
+  const { orderId } = useParams();
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    let getOrders = async () => {
+      // let response = await axios.get(
+      //   `http://localhost:3002/api/1.0/products/${categoryId}`
+      // );
+      let response = await axios.get(`${API_URL}/orders/${orderId}`);
+      console.log(response.data);
+      setData(response.data);
+    };
+    getOrders();
+  }, [orderId]);
+
   return (
     <>
       <div className="account_order_detail w-100">
