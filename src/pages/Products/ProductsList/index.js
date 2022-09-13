@@ -19,16 +19,18 @@ function ProductsList() {
   );
 
   //正式資料
-  const [search, setSearch] = useState('');
-  const [order, setOrder] = useState(''); //排序在前端做
-
+  const { mainCategory, subCategory } = useParams();
+  //從資料庫撈出來的原始資料
   const [allProducts, setAllProducts] = useState([]);
+
+  const [search, setSearch] = useState('');
+  const [order, setOrder] = useState('');
+
+  //最後呈現的資料
   const [displayData, setDisplayData] = useState([]);
   const [totalPage, setTotalPage] = useState(1);
   const [page, setPage] = useState(1);
   const [amount, setAmount] = useState(0);
-
-  const { mainCategory, subCategory } = useParams();
 
   useEffect(() => {
     console.log('useEffect[allProducts]', allProducts);
@@ -84,10 +86,8 @@ function ProductsList() {
   };
 
   //處理排序
-  const handleSort = (allProducts, order) => {
-    let newProducts = [...allProducts];
-    const arr = newProducts.map((v, i) => v.launch_time);
-    console.log('launch_time before', arr);
+  const handleSort = (products, order) => {
+    let newProducts = [...products];
     switch (order) {
       case '1':
         newProducts = newProducts.sort((a, b) => b.price - a.price);
@@ -107,18 +107,37 @@ function ProductsList() {
       default:
         break;
     }
-    const arr2 = newProducts.map((v, i) => v.launch_time);
-    console.log('launch_time after', arr2);
+    return newProducts;
+  };
+
+  //處理搜尋
+  //TODOS:如果要在前台處理搜尋,那頁數也要在前台處理(包含沒有搜尋的頁數)
+  //或先做Detail
+  const handleSearch = (allProducts, search) => {
+    let newProducts = [...allProducts];
+
+    if (search.length) {
+      newProducts = allProducts.filter((item) => item.name.includes(search));
+      setAmount(newProducts.length);
+      console.log('search amount', newProducts);
+      const newArr = newProducts.forEach((v, i) => {
+         console.log(v);
+      });
+      console.log('newArr', newArr);
+    }
     return newProducts;
   };
 
   useEffect(() => {
     let newProducts = [];
+
+    //搜尋
+    newProducts = handleSearch(allProducts, search, page);
     //排序
-    newProducts = handleSort(allProducts, order);
+    newProducts = handleSort(newProducts, order);
 
     setDisplayData(newProducts);
-  }, [order]);
+  }, [order, search]);
 
   return (
     <div className="product_list">
@@ -200,8 +219,8 @@ function ProductsList() {
                     placeholder="搜尋"
                     aria-label="搜尋"
                     aria-describedby="button-addon2"
-                    onKey={(e) => {
-                      setSearch(e.target.value);
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') return setSearch(e.target.value);
                     }}
                   />
                   <button
@@ -212,7 +231,7 @@ function ProductsList() {
                       e.preventDefault();
                       const inputValue =
                         document.querySelector('#list-search').value;
-                      console.log(inputValue);
+                      setSearch(inputValue);
                     }}
                   >
                     <FaSearch />
