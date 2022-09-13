@@ -2,9 +2,20 @@ import React from 'react';
 import './index.scss';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../../context/auth';
+import { API_URL } from '../../../utils/config';
+import axios from 'axios';
 
 function AccountInfo() {
   const { user, setUser } = useAuth();
+
+  // 登出按鈕
+  async function handleLogout() {
+    let response = await axios.get(`${API_URL}/auth/logout`, {
+      withCredentials: true,
+    });
+    console.log('handleLogout', response.data);
+    setUser(null);
+  }
   return (
     <>
       <div className="account_info w-100">
@@ -14,7 +25,12 @@ function AccountInfo() {
             <div className="mb-3">
               <Link to="edit">查看個人資訊</Link>
             </div>
-            <button className="btn btn-sm btn-outline-primary">登出</button>
+            <button
+              className="btn btn-sm btn-outline-primary"
+              onClick={handleLogout}
+            >
+              登出
+            </button>
           </div>
           <div className="account_info-card-right">
             <div className="d-flex account_info-card-text">
