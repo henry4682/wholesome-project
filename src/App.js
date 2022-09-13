@@ -63,7 +63,11 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
 
-        <Route path="/products" element={<ProductsList />} />
+          <Route path="/products/:mainCategory" element={<ProductsList />} />
+          <Route
+            path="/products/:mainCategory/:subCategory"
+            element={<ProductsList />}
+          />
 
           <Route path="/productDetail/:productId" element={<ProductDetail />} />
 

@@ -10,7 +10,7 @@ import { FaSearch, FaUser } from 'react-icons/fa';
 //元件
 import BreadcrumbForProductsList from '../components/BreadcrumbForProductsList';
 import AsideForProductsList from '../components/AsideForProductsList';
-
+//
 function ProductsList() {
   //側欄選單用
   const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
@@ -19,50 +19,45 @@ function ProductsList() {
   );
 
   //正式資料
-  const [category, setCategory] = useState('植物奶');
   const [search, setSearch] = useState('');
-  const [order, setOrder] = useState('');
+  const [order, setOrder] = useState(''); //排序在前端做
 
   const [allProducts, setAllProducts] = useState([]);
+  const [displayData, setDisplayData] = useState([]);
   const [totalPage, setTotalPage] = useState(1);
   const [page, setPage] = useState(1);
   const [amount, setAmount] = useState(0);
 
-  const { productId } = useParams();
+  const { mainCategory, subCategory } = useParams();
 
   useEffect(() => {
     console.log('useEffect[allProducts]', allProducts);
     let getAllProducts = async () => {
       // console.log('API_URL', API_URL);
       let response = await axios.get(
-        `${API_URL}/products?category=${category}`
+        `${API_URL}/products?category=${
+          subCategory ? subCategory : mainCategory
+        }`
       );
+      console.log('Category', mainCategory, subCategory);
       console.log('response.data', response.data);
       setAllProducts(response.data.data);
+      setDisplayData(response.data.data);
       setTotalPage(response.data.pagination.totalPage);
       setAmount(response.data.pagination.total);
     };
     getAllProducts();
-  }, [category]);
-
-  // useEffect(() => {
-    // let getSearch = async () => {
-      // let response = await axios.get(
-        // `${API_URL}/products?category?=${category}&search=${search}`
-      // );
-      // setAllProducts(response.data.data);
-      // setTotalPage(response.data.pagination.totalPage);
-      // setAmount(response.data.pagination.total);
-    // };
-    // getSearch();
-  // }, [search]);
+  }, [mainCategory, subCategory]);
 
   useEffect(() => {
     let getAllProducts = async () => {
       // console.log('API_URL', API_URL);
       let response = await axios.get(
-        `${API_URL}/products?category=${category}&page=${page}`
+        `${API_URL}/products?category=${
+          subCategory ? subCategory : mainCategory
+        }&page=${page}`
       );
+      console.log('page', page);
       console.log('response.data', response.data);
       setAllProducts(response.data.data);
       setTotalPage(response.data.pagination.totalPage);
@@ -88,6 +83,43 @@ function ProductsList() {
     return pages;
   };
 
+  //處理排序
+  const handleSort = (allProducts, order) => {
+    let newProducts = [...allProducts];
+    const arr = newProducts.map((v, i) => v.launch_time);
+    console.log('launch_time before', arr);
+    switch (order) {
+      case '1':
+        newProducts = newProducts.sort((a, b) => b.price - a.price);
+        break;
+      case '2':
+        newProducts = newProducts.sort((a, b) => a.price - b.price);
+        break;
+      case '3':
+        newProducts = newProducts.sort((a, b) => {
+          return new Date(b.launch_time) - new Date(a.launch_time);
+        });
+        break;
+      case '4':
+        newProducts = newProducts.sort((a, b) => {
+          return new Date(a.launch_time) - new Date(b.launch_time);
+        });
+      default:
+        break;
+    }
+    const arr2 = newProducts.map((v, i) => v.launch_time);
+    console.log('launch_time after', arr2);
+    return newProducts;
+  };
+
+  useEffect(() => {
+    let newProducts = [];
+    //排序
+    newProducts = handleSort(allProducts, order);
+
+    setDisplayData(newProducts);
+  }, [order]);
+
   return (
     <div className="product_list">
       <div className="container ">
@@ -97,12 +129,12 @@ function ProductsList() {
         {/* TODO:content要改CSS */}
         <div className=" product_list-container ">
           {/* 側欄選單 待測試 */}
-          <AsideForProductsList setCategory={setCategory} />
+          <AsideForProductsList />
           <div className="products_list-content col-lg-9 ">
             <div className="products_list-category-product-box  ">
               <div className="products_list-category-title ">
                 {/* 商品種類標題 */}
-                <h2>{category}</h2>
+                <h2>{subCategory ? subCategory : mainCategory}</h2>
               </div>
               <div className="products_list-order_search ">
                 <p className="col-4 text-end">共 {amount} 件商品</p>
@@ -118,18 +150,43 @@ function ProductsList() {
                   </button>
                   <ul className="dropdown-menu">
                     <li>
-                      <button className="dropdown-item">價錢由高到低</button>
+                      <button
+                        className="dropdown-item"
+                        onClick={() => {
+                          setOrder('1');
+                        }}
+                      >
+                        價錢由高到低
+                      </button>
                     </li>
                     <li>
-                      <button className="dropdown-item"> 價錢由低到高</button>
+                      <button
+                        className="dropdown-item"
+                        onClick={() => {
+                          setOrder('2');
+                        }}
+                      >
+                        {' '}
+                        價錢由低到高
+                      </button>
                     </li>
                     <li>
-                      <button className="dropdown-item">
+                      <button
+                        className="dropdown-item"
+                        onClick={() => {
+                          setOrder('3');
+                        }}
+                      >
                         上市日期由新到舊
                       </button>
                     </li>
                     <li>
-                      <button className="dropdown-item">
+                      <button
+                        className="dropdown-item"
+                        onClick={() => {
+                          setOrder('4');
+                        }}
+                      >
                         上市日期由舊到新
                       </button>
                     </li>
@@ -151,7 +208,8 @@ function ProductsList() {
                     className="products_list-search"
                     type="submit"
                     id="button"
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.preventDefault();
                       const inputValue =
                         document.querySelector('#list-search').value;
                       console.log(inputValue);
@@ -164,7 +222,7 @@ function ProductsList() {
             </div>
             {/* 商品列表 */}
             <div className="card-list products_list-card-list ">
-              {allProducts.map((item, index) => {
+              {displayData.map((item, index) => {
                 return (
                   <div key={index} className="card products_list-card">
                     <img
@@ -198,7 +256,7 @@ function ProductsList() {
               className="page-item "
               aria-label="Previous"
               onClick={(e) => {
-                setPage(page - 1);
+                // setPage(page - 1 < 1 ? 1 : page - 1);
               }}
             >
               <span className="page-link" aria-hidden="true">
@@ -210,7 +268,7 @@ function ProductsList() {
               className="page-item"
               aria-label="Next"
               onClick={() => {
-                setPage(page + 1);
+                setPage(page + 1 > totalPage ? totalPage : page + 1);
               }}
             >
               <span className="page-link" aria-hidden="true">
