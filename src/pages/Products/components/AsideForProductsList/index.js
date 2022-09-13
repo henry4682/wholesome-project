@@ -3,8 +3,8 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import './AsideForProductsList.scss';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 function AsideForProductsList({ setCategory }) {
   const theme = createTheme({
@@ -44,6 +44,7 @@ function AsideForProductsList({ setCategory }) {
               <ul className="list-group">
                 <li className="list-group-item products_layout-aside-list-group-item">
                   <button
+                    className="link-decoration"
                     onClick={() => {
                       setCategory('燕麥奶');
                     }}
@@ -53,6 +54,7 @@ function AsideForProductsList({ setCategory }) {
                 </li>
                 <li className="list-group-item products_layout-aside-list-group-item">
                   <button
+                  className="link-decoration"
                     onClick={() => {
                       setCategory('杏仁奶');
                     }}
@@ -62,6 +64,7 @@ function AsideForProductsList({ setCategory }) {
                 </li>
                 <li className="list-group-item products_layout-aside-list-group-item">
                   <button
+                  className="link-decoration"
                     onClick={() => {
                       setCategory('堅果奶');
                     }}
@@ -140,6 +143,7 @@ function AsideForProductsList({ setCategory }) {
               <ul className="list-group">
                 <li className="list-group-item products_layout-aside-list-group-item">
                   <button
+                  className="link-decoration"
                     onClick={() => {
                       setCategory('麥片');
                     }}
@@ -149,6 +153,7 @@ function AsideForProductsList({ setCategory }) {
                 </li>
                 <li className="list-group-item products_layout-aside-list-group-item">
                   <button
+                  className="link-decoration"
                     onClick={() => {
                       setCategory('燕麥棒、蛋白棒');
                     }}
@@ -158,6 +163,7 @@ function AsideForProductsList({ setCategory }) {
                 </li>
                 <li className="list-group-item products_layout-aside-list-group-item">
                   <button
+                  className="link-decoration"
                     onClick={() => {
                       setCategory('堅果');
                     }}
