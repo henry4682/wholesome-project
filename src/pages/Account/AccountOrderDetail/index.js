@@ -7,7 +7,8 @@ import axios from 'axios';
 function AccountOrderDetail() {
   const { user, setUser } = useAuth();
   const { orderId } = useParams();
-  const [data, setData] = useState([]);
+  const [orderData, setOrderData] = useState([]);
+  const [orderDetail, setOrderDetail] = useState([]);
 
   useEffect(() => {
     let getOrders = async () => {
@@ -16,7 +17,8 @@ function AccountOrderDetail() {
       // );
       let response = await axios.get(`${API_URL}/orders/${orderId}`);
       console.log(response.data);
-      setData(response.data);
+      setOrderDetail(response.data.orderDetail);
+      setOrderData(response.data.orderData);
     };
     getOrders();
   }, [orderId]);
@@ -26,9 +28,12 @@ function AccountOrderDetail() {
       <div className="account_order_detail w-100">
         <div className="account_order_detail-info">
           <p>
-            訂單編號:<span className="text-primary">A20220728Q12</span>
+            訂單編號:
+            <span className="text-primary">
+              {orderData.map((v) => v.order_sn)}
+            </span>
           </p>
-          <p>2022-07-28 11:30 </p>
+          <p> {orderData.map((v) => v.create_time)}</p>
         </div>
         <table className="account_order_detail-table table table-bordered">
           <thead className="table-secondary">
@@ -41,7 +46,23 @@ function AccountOrderDetail() {
             </tr>
           </thead>
           <tbody>
-            <tr className="border">
+            {orderDetail.map((v, i) => {
+              return (
+                <tr className="border">
+                  <td>
+                    <img
+                      src={require(`../../../Assets/products/${v.image}`)}
+                      alt="apple juice"
+                    />
+                  </td>
+                  <td className="align-middle">{v.name}</td>
+                  <td className="align-middle">{v.product_price}</td>
+                  <td className="align-middle">{v.amount}</td>
+                  <td className="align-middle">{v.product_price * v.amount}</td>
+                </tr>
+              );
+            })}
+            {/* <tr className="border">
               <td>
                 <img
                   src="https://cdn.cybassets.com/media/W1siZiIsIjEzODUwL3Byb2R1Y3RzLzMxOTUxMTA1LzE2MDM0MzQ5NTNfZjFlNjEwOTcxYzcwMWZkMmM3MjEucG5nIl0sWyJwIiwidGh1bWIiLCI2MDB4NjAwIl1d.png?sha=a134d4f53b04b833"
@@ -52,30 +73,23 @@ function AccountOrderDetail() {
               <td className="align-middle">NT$399</td>
               <td className="align-middle">2</td>
               <td className="align-middle">NT$798</td>
-            </tr>
-            <tr className="border">
-              <td>
-                <img
-                  src="https://cdn.cybassets.com/media/W1siZiIsIjEzODUwL3Byb2R1Y3RzLzMxOTUxMTA1LzE2MDM0MzQ5NTNfZjFlNjEwOTcxYzcwMWZkMmM3MjEucG5nIl0sWyJwIiwidGh1bWIiLCI2MDB4NjAwIl1d.png?sha=a134d4f53b04b833"
-                  alt="apple juice"
-                />
-              </td>
-              <td className="align-middle">Voelkel黑棗汁</td>
-              <td className="align-middle">NT$399</td>
-              <td className="align-middle">2</td>
-              <td className="align-middle">NT$798</td>
-            </tr>
+            </tr> */}
             <tr>
               <td colSpan={5}>
                 <ul className="account_order_detail-price">
                   <li className="d-flex justify-content-end">
                     <div>商品總計:</div>
-                    <div>NT$1596</div>
+                    <div>NT${orderData.map((v) => v.total_price)}</div>
                   </li>
                   <li className="d-flex justify-content-end">
                     <div>優惠券折抵</div>
                     <div>
-                      (<span>會員註冊購物金</span>):-NT$100
+                      {orderData.map((v) => (
+                        <>
+                          (<span>{v.name ? v.name : '無'}</span>):-NT$
+                          {v.discount_price ? v.discount_price : '0'}
+                        </>
+                      ))}
                     </div>
                   </li>
                   <li className="d-flex justify-content-end">
@@ -84,7 +98,7 @@ function AccountOrderDetail() {
                   </li>
                   <li className="d-flex justify-content-end">
                     <div>運費:</div>
-                    <div>NT$0</div>
+                    <div>NT$80</div>
                   </li>
                 </ul>
               </td>
@@ -94,7 +108,12 @@ function AccountOrderDetail() {
                 <div className="account_order_detail-total d-flex justify-content-end text-primary">
                   <div>總金額:</div>
                   <div>
-                    NT$<span>1696</span>
+                    NT$
+                    <span>
+                      {orderData.map(
+                        (v) => v.total_price - v.discount_price + 80
+                      )}
+                    </span>
                   </div>
                 </div>
               </td>
