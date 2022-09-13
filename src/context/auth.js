@@ -7,7 +7,7 @@ const AuthContext = createContext(null);
 
 // 建立一個新的 Provider 元件，內容是提供 user 狀態
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({ id: null });
 
   useEffect(() => {
     // 去要要看有沒有會員資料，有要到就是已經登入過

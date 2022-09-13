@@ -18,7 +18,7 @@ function AccountOrders() {
       setData(response.data);
     };
     userOrders();
-  }, []);
+  }, [user.id]);
 
   return (
     <>
@@ -38,7 +38,7 @@ function AccountOrders() {
           <tbody>
             {data.map((v, i) => {
               return (
-                <tr>
+                <tr key={v.id}>
                   <th scope="row">{i + 1}</th>
                   <td>{v.order_sn} </td>
                   <td>{v.create_time}</td>
@@ -47,7 +47,7 @@ function AccountOrders() {
                   <td>{v.note}</td>
                   <td>
                     <Link
-                      to=":orderId"
+                      to={`${v.id}`}
                       className="btn btn-primary btn-sm text-white"
                     >
                       查看明細
