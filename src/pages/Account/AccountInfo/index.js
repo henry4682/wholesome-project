@@ -14,7 +14,7 @@ function AccountInfo() {
       withCredentials: true,
     });
     console.log('handleLogout', response.data);
-    setUser(null);
+    setUser({ id: null });
   }
   return (
     <>
