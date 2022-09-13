@@ -38,9 +38,9 @@ function Login() {
     }
   }
   //(?) 為什麼在 account 頁面重新整理會到 login 頁面
-  // if (user) {
-  //   return <Navigate to="/account" />;
-  // }
+  if (user) {
+    return <Navigate to="/account" />;
+  }
   // 登入後導到首頁
   if (isLogin) {
     return <Navigate to="/" />;
