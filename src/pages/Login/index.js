@@ -7,6 +7,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../utils/config';
 import { useAuth } from '../../context/auth';
+import { BsEye, BsEyeSlash } from 'react-icons/bs';
+
 function Login() {
   const { user, setUser, isLogin, setIsLogin } = useAuth();
 
@@ -14,6 +16,9 @@ function Login() {
     email: '123@test.com',
     password: 'test12345',
   });
+
+  // 呈現密碼用
+  const [showPassword, setShowPassword] = useState(false);
 
   // const [isLogin, setIsLogin] = useState(false);
 
@@ -75,14 +80,31 @@ function Login() {
 
               <div className="mb-4">
                 <label className="form-label">密碼</label>
-                <input
-                  type="password"
-                  className="form-control form-control-lg"
-                  placeholder="請輸入您的密碼"
-                  name="password"
-                  value={loginUser.password}
-                  onChange={handleFieldChange}
-                />
+                <div className="login_password_box">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    className="form-control form-control-lg"
+                    placeholder="請輸入您的密碼"
+                    name="password"
+                    value={loginUser.password}
+                    onChange={handleFieldChange}
+                  />
+                  <div className="login_password_icon">
+                    {showPassword ? (
+                      <BsEye
+                        onClick={(e) => {
+                          setShowPassword(false);
+                        }}
+                      />
+                    ) : (
+                      <BsEyeSlash
+                        onClick={(e) => {
+                          setShowPassword(true);
+                        }}
+                      />
+                    )}
+                  </div>
+                </div>
               </div>
               <button
                 type="submit"
