@@ -7,10 +7,11 @@ const AuthContext = createContext(null);
 
 // 建立一個新的 Provider 元件，內容是提供 user 狀態
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({ id: null });
+  const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
-    // 去要要看有沒有會員資料，有要到就是已經登入過
+    // 要會員資料，有的話就是已經登入過
     let getUser = async () => {
       console.log('in APP: check if login');
       let response = await axios.get(`${API_URL}/user`, {
@@ -26,6 +27,8 @@ export const AuthProvider = ({ children }) => {
       value={{
         user,
         setUser,
+        isLogin,
+        setIsLogin,
       }}
     >
       {children}

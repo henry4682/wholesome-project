@@ -71,6 +71,7 @@ function AccountEdit() {
               name="email"
               value={editUser.email}
               onChange={handleFieldChange}
+              disabled
             />
           </div>
           <div>
@@ -81,6 +82,7 @@ function AccountEdit() {
               name="birthday"
               value={editUser.birthday}
               onChange={handleFieldChange}
+              disabled
             />
           </div>
           <div>

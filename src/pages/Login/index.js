@@ -8,14 +8,14 @@ import axios from 'axios';
 import { API_URL } from '../../utils/config';
 import { useAuth } from '../../context/auth';
 function Login() {
-  const { user, setUser } = useAuth();
+  const { user, setUser, isLogin, setIsLogin } = useAuth();
 
   const [loginUser, setLoginUser] = useState({
     email: '123@test.com',
     password: 'test12345',
   });
 
-  const [isLogin, setIsLogin] = useState(false);
+  // const [isLogin, setIsLogin] = useState(false);
 
   function handleFieldChange(e) {
     setLoginUser({ ...loginUser, [e.target.name]: e.target.value });
