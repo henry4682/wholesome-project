@@ -16,6 +16,22 @@
   height: 175px;
 }
 
+@media screen and (max-width: 768px) {
+  .home_recipe_pic {
+    border-radius: 10px;
+    width: 146px;
+    height: 108px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .home_recipe_pic {
+    border-radius: 10px;
+    width: 235px;
+    height: 175px;
+  }
+}
+
 .home_read {
   font-size: 14px;
   color: #7b7b7b;
@@ -64,14 +80,11 @@
 }
 
 .home_ad {
-  width: 30%;
-  height: 300px;
+  width: 33%;
 }
 
 @media screen and (max-width: 768px) {
   .home_ad {
     width: 100%;
-    height: 170px;
   }
 }
-
