@@ -7,7 +7,9 @@ const AuthContext = createContext(null);
 
 // 建立一個新的 Provider 元件，內容是提供 user 狀態
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState({ id: null });
+  // const [user, setUser] = useState({ id: '0' });
+  const [user, setUser] = useState({ id: '0' });
+
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
