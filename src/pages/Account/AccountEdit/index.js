@@ -1,41 +1,67 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './index.scss';
 import { useAuth } from '../../../context/auth';
 import axios from 'axios';
 import { API_URL } from '../../../utils/config';
 
 function AccountEdit() {
-  const { user, setUser } = useAuth();
+  // const { user, setUser } = useAuth();
+
+  // const [editUser, setEditUser] = useState({
+  //   name: user.name,
+  //   phone: user.phone,
+  //   email: user.email,
+  //   birthday: user.birthday,
+  //   address: user.address,
+  //   gender: user.gender,
+  // });
+  const genderOptions = ['男', '女', '不提供'];
 
   const [editUser, setEditUser] = useState({
-    name: user.name,
-    phone: user.phone,
-    email: user.email,
-    birthday: user.birthday,
-    address: user.address,
-    gender: user.gender,
+    name: '',
+    phone: '',
+    email: '',
+    birthday: '',
+    address: '',
+    gender: '',
   });
-  const genderOptions = ['男', '女', '不提供'];
+
+  // 在元件取得登入資料
+  useEffect(() => {
+    let getUser = async () => {
+      console.log('in APP: check if login');
+      let response = await axios.get(`${API_URL}/user`, {
+        withCredentials: true,
+      });
+      console.log(response.data);
+      setEditUser(response.data);
+    };
+    getUser();
+  }, []);
 
   function handleFieldChange(e) {
     setEditUser({ ...editUser, [e.target.name]: e.target.value });
   }
 
-  // 修改按鈕
+  // '確定修改'按鈕
   async function handleEdit(e) {
     e.preventDefault();
     try {
-      let response = await axios.put(`${API_URL}/user/${user.id}`, editUser, {
-        // 為了可以跨源存取 cookie
-        // 只要是判斷是否登入的請求都要加下面這行
-        withCredentials: true,
-      });
+      let response = await axios.put(
+        `${API_URL}/user/${editUser.id}`,
+        editUser,
+        {
+          // 為了可以跨源存取 cookie
+          // 只要是判斷是否登入的請求都要加下面這行
+          withCredentials: true,
+        }
+      );
       console.log('PUT res', response);
       console.log(response.data);
-      setUser(response.data);
+      setEditUser(response.data);
     } catch (e) {
-      console.error('register Error', e);
+      console.error('Account edit Error', e);
     }
   }
 
