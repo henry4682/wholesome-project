@@ -5,14 +5,14 @@ import './Products.scss';
 import { API_URL } from '../../../utils/config';
 import axios from 'axios';
 
-import { Dropdown } from 'bootstrap';
 import { FaSearch, FaUser } from 'react-icons/fa';
 //元件
+import { Dropdown } from 'bootstrap';
 import BreadcrumbForProductsList from '../components/BreadcrumbForProductsList';
 import AsideForProductsList from '../components/AsideForProductsList';
-//
+
 function ProductsList() {
-  //側欄選單用
+  //排序選單用
   const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
   const dropdownList = [...dropdownElementList].map(
     (dropdownToggleEl) => new Dropdown(dropdownToggleEl)
@@ -63,23 +63,23 @@ function ProductsList() {
       setTotalPage(response.data.pagination.totalPage);
       setAmount(response.data.pagination.total);
     };
-    getSearchProducts()
+    getSearchProducts();
   }, [search, page]);
-  // useEffect(() => {
-  //   let getTotal = async () => {
-  //     let response = await axios.get(
-  //       `${API_URL}/products?category=${
-  //         subCategory ? subCategory : mainCategory
-  //       }&search=${search}&page=${page}`
-  //     );
-  //     setTotalPage(response.data.pagination.totalPage);
-  //     setAmount(response.data.pagination.total);
-  //     console.log('category', mainCategory, subCategory);
-  //     console.log('search', search);
-  //     console.log('page', page);
-  //   };
-  //   getTotal();
-  // }, [page]);
+
+  //排序
+  useEffect(() => {
+    let getOrder = async () => {
+      let response = await axios.get(
+        `${API_URL}/products?category=${
+          subCategory ? subCategory : mainCategory
+        }&search=${search}&order=${order}&page=${page}`
+      );
+      setAllProducts(response.data.data);
+      setTotalPage(response.data.pagination.totalPage);
+      setAmount(response.data.pagination.total);
+    };
+    getOrder();
+  }, [order]);
 
   const getPages = () => {
     let pages = [];
@@ -100,8 +100,9 @@ function ProductsList() {
   };
 
   //處理排序
-  const handleSort = (products, order) => {
-    let newProducts = [...products];
+  const handleSort = (allProducts, order) => {
+    let newProducts = [...allProducts];
+
     switch (order) {
       case '1':
         newProducts = newProducts.sort((a, b) => b.price - a.price);
@@ -121,24 +122,23 @@ function ProductsList() {
       default:
         break;
     }
+    console.log('newProducts', newProducts);
     return newProducts;
   };
 
-  // useEffect(() => {
-  //   let newProducts = [];
+  useEffect(() => {
+    let newProducts = [...allProducts];
+    //資料排序
+    newProducts = handleSort(newProducts, order);
 
-  //   //排序
-  //   newProducts = handleSort(newProducts, order);
-
-  //   setDisplayData(newProducts);
-  // }, [order]);
+    // setAllProducts(newProducts);
+  }, [allProducts, order, page]);
 
   return (
     <div className="product_list">
       <div className="container ">
-        {/* 麵包屑  調整 待測試*/}
+        {/* 麵包屑*/}
         <BreadcrumbForProductsList />
-
         {/* TODO:content要改CSS */}
         <div className=" product_list-container ">
           {/* 側欄選單 待測試 */}
@@ -270,7 +270,7 @@ function ProductsList() {
             </div>
           </div>
         </div>
-        {/* 頁數元件化? TODO:去菀萱那 COPY nav */}
+        {/* 頁數元件化? */}
         <nav aria-label="Page navigation ">
           <ul className="pagination recipe-pagination">
             <li
