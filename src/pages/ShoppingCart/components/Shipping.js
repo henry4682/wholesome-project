@@ -6,9 +6,12 @@ import { BsCreditCard2Front } from 'react-icons/bs';
 function Shipping(props) {
   return (
     <div className="my-5">
-      <div className="position-absolute cart_number rounded-circle bg-secondary "></div>
-      <RiNumber3 className="mx-auto ms-1 " />
-      <span className="title ms-2"> 付款運送方式</span>
+      <div className="d-flex align-items-center">
+        <div className="position-relative cart_number rounded-circle bg-secondary ">
+          <RiNumber3 className="position-absolute top-50 start-50 translate-middle " />
+        </div>
+        <p className="title ms-2"> 付款運送方式</p>
+      </div>
       <div className="cart_card mt-3">
         <div className="subtitle">付款方式</div>
         <button className="cart_btn_large my-3 ">

@@ -8,7 +8,7 @@ function ScrollToTop() {
   const [showTopBtn, setShowTopBtn] = useState(false);
   useEffect(() => {
     window.addEventListener('scroll', () => {
-      console.log(window.scrollY);
+      // console.log(window.scrollY);
       if (window.scrollY > 200) {
         setShowTopBtn(true);
       } else {
