@@ -78,15 +78,15 @@ function Shipping(props) {
         <hr />
         <div className="subtitle mt-4">購買人資訊</div>
 
-        <form action="" className="member">
+        <form action="" className="cart_ship member">
           <label className="mt-4">姓名</label>
           <br />
-          <input className="mt-3 px-4" type="text" placeholder="購買人姓名" />
+          <input className=" mt-3 px-4" type="text" placeholder="購買人姓名" />
           <br />
           <label className="mt-4">聯絡電話</label>
           <br />
           <input
-            className="mt-3 px-4"
+            className=" mt-3 px-4"
             type="text"
             placeholder="購買人聯絡電話"
           />
@@ -119,20 +119,24 @@ function Shipping(props) {
             </div>
           </div>
           <input
-            className="mt-3 px-4"
+            className=" mt-3 px-4"
             type="text"
             placeholder="請填寫詳細地址：路 / 巷 / 弄 / 樓"
           />
           <hr />
           <div className=" cart_shipping_term my-2">
-            <input type="checkbox" id="secret" name="secret" />
-            <label for="secret">同意會員責任規範及商家會員條款</label>
+            <div className="d-flex align-items-center">
+              <input type="checkbox" id="secret" name="secret" />
+              <label for="secret" className="ps-3">
+                同意會員責任規範及商家會員條款
+              </label>
+            </div>
 
             <button
               type="submit"
               className="col-12 btn  btn-primary text-light px-4   my-3 text-center"
             >
-             結帳
+              結帳
             </button>
           </div>
         </form>
