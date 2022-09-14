@@ -31,7 +31,12 @@
 @media screen and (max-width: 768px) {
   .cart_product_pic {
     width: 270px;
-    height: 160px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .cart_product_pic {
+    width: 50%;
   }
 }
 
@@ -60,6 +65,7 @@
 
   .cart_subtotal {
     font-size: 18px;
+    width: 40%;
   }
 }
 

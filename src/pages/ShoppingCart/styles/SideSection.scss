@@ -27,3 +27,12 @@ border: 1px solid #E2E2E2;
 .cart_total {
   font-size: 22px;
 }
+
+@media screen and (max-width: 768px) {
+
+.cart_card_side_tablet{
+  display: none;
+}
+
+
+}
