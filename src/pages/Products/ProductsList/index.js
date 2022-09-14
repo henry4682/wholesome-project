@@ -26,46 +26,62 @@ function ProductsList() {
   const [search, setSearch] = useState('');
   const [order, setOrder] = useState('');
 
-  //最後呈現的資料
-  const [displayData, setDisplayData] = useState([]);
+  // 未搜尋
   const [totalPage, setTotalPage] = useState(1);
   const [page, setPage] = useState(1);
   const [amount, setAmount] = useState(0);
 
-  useEffect(() => {
-    console.log('useEffect[allProducts]', allProducts);
-    let getAllProducts = async () => {
-      // console.log('API_URL', API_URL);
-      let response = await axios.get(
-        `${API_URL}/products?category=${
-          subCategory ? subCategory : mainCategory
-        }`
-      );
-      console.log('Category', mainCategory, subCategory);
-      console.log('response.data', response.data);
-      setAllProducts(response.data.data);
-      setDisplayData(response.data.data);
-      setTotalPage(response.data.pagination.totalPage);
-      setAmount(response.data.pagination.total);
-    };
-    getAllProducts();
-  }, [mainCategory, subCategory]);
-
+  //分類資料
   useEffect(() => {
     let getAllProducts = async () => {
-      // console.log('API_URL', API_URL);
       let response = await axios.get(
         `${API_URL}/products?category=${
           subCategory ? subCategory : mainCategory
         }&page=${page}`
       );
-      console.log('page', page);
+      setAllProducts(response.data.data);
+      setTotalPage(response.data.pagination.totalPage);
+      setAmount(response.data.pagination.total);
+    };
+    getAllProducts();
+    setSearch('');
+  }, [mainCategory, subCategory]);
+  //搜尋資料
+  useEffect(() => {
+    console.log('useEffect[allProducts]', allProducts);
+    console.log('search', search);
+    let getSearchProducts = async () => {
+      // console.log('API_URL', API_URL);
+      let response = await axios.get(
+        `${API_URL}/products?category=${
+          subCategory ? subCategory : mainCategory
+        }&search=${search}&page=${page}`
+      );
+      console.log('Category', mainCategory, subCategory);
       console.log('response.data', response.data);
       setAllProducts(response.data.data);
       setTotalPage(response.data.pagination.totalPage);
+      setAmount(response.data.pagination.total);
     };
-    getAllProducts();
-  }, [page]);
+
+    getSearchProducts();
+  }, [mainCategory, subCategory, search]);
+
+  // useEffect(() => {
+  //   let getTotal = async () => {
+  //     let response = await axios.get(
+  //       `${API_URL}/products?category=${
+  //         subCategory ? subCategory : mainCategory
+  //       }&search=${search}&page=${page}`
+  //     );
+  //     setTotalPage(response.data.pagination.totalPage);
+  //     setAmount(response.data.pagination.total);
+  //     console.log('category', mainCategory, subCategory);
+  //     console.log('search', search);
+  //     console.log('page', page);
+  //   };
+  //   getTotal();
+  // }, [page]);
 
   const getPages = () => {
     let pages = [];
@@ -110,34 +126,14 @@ function ProductsList() {
     return newProducts;
   };
 
-  //處理搜尋
-  //TODOS:如果要在前台處理搜尋,那頁數也要在前台處理(包含沒有搜尋的頁數)
-  //或先做Detail
-  const handleSearch = (allProducts, search) => {
-    let newProducts = [...allProducts];
+  // useEffect(() => {
+  //   let newProducts = [];
 
-    if (search.length) {
-      newProducts = allProducts.filter((item) => item.name.includes(search));
-      setAmount(newProducts.length);
-      console.log('search amount', newProducts);
-      const newArr = newProducts.forEach((v, i) => {
-         console.log(v);
-      });
-      console.log('newArr', newArr);
-    }
-    return newProducts;
-  };
+  //   //排序
+  //   newProducts = handleSort(newProducts, order);
 
-  useEffect(() => {
-    let newProducts = [];
-
-    //搜尋
-    newProducts = handleSearch(allProducts, search, page);
-    //排序
-    newProducts = handleSort(newProducts, order);
-
-    setDisplayData(newProducts);
-  }, [order, search]);
+  //   setDisplayData(newProducts);
+  // }, [order]);
 
   return (
     <div className="product_list">
@@ -241,7 +237,7 @@ function ProductsList() {
             </div>
             {/* 商品列表 */}
             <div className="card-list products_list-card-list ">
-              {displayData.map((item, index) => {
+              {allProducts.map((item, index) => {
                 return (
                   <div key={index} className="card products_list-card">
                     <img
@@ -275,7 +271,7 @@ function ProductsList() {
               className="page-item "
               aria-label="Previous"
               onClick={(e) => {
-                // setPage(page - 1 < 1 ? 1 : page - 1);
+                setPage(page - 1 < 1 ? 1 : page - 1);
               }}
             >
               <span className="page-link" aria-hidden="true">

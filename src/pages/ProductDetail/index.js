@@ -12,12 +12,13 @@ import ProgressBar from '@ramonak/react-progress-bar';
 import axios from 'axios';
 
 function ProductDetail() {
-  const [detailData, setDetailData] = useState([]);
+  const [data, setData] = useState([]);
   //收藏用TODO:useState裡的true/false要隨著使用者做更換
   const [isLike, setIsLike] = useState(false);
 
   //接收來自其他頁的參數
   const { productId } = useParams();
+  console.log('productId', productId);
 
   //星星平均用
   const [averageScore, setAverageScore] = useState(4.5);
@@ -39,9 +40,11 @@ function ProductDetail() {
   const [star, setStar] = useState('50');
 
   useEffect(() => {
+    console.log('inside useEffect');
     let getProductDetail = async () => {
-      let response = await axios.get(`${API_URL}/productDetail/${productId}`);
-      setDetailData(response.data);
+      let response = await axios.get(`${API_URL}/products/${productId}`);
+      setData(response.data);
+      console.log(response.data);
     };
     getProductDetail();
   }, []);
@@ -52,27 +55,17 @@ function ProductDetail() {
       <div className="product_detail-product-intro">
         <img
           className="product_detail-img"
-          src={require('../../Assets/products/milk1001.jpg')}
+          alt="..."
+          //不知為何無法傳入資料庫的圖片字串
+          src={require(`../../Assets/products/milk1001.jpg`)}
         />
         <div className="product_detail-product-box">
           <div className="product_detail-info-box">
-            <h1 className="product_detail-product-title">
-              Pacific Foods Organic Oat Original 植物牛奶,有機燕麥 - 原創,32
-              液體盎司(約 12 毫升)
-            </h1>
+            <h1 className="product_detail-product-title">{data.name}</h1>
             <div className="product_detail-product-description">
-              ．絕佳的牛奶替代品,可作為飲料、穀片或從肉汁到杯子蛋糕的一切食用。
-              <br />
-              不含酵母。猶太潔食品。
-              <br />
-              ．鈣和維他命 D
-              的良好來源是低脂肪、乳糖、膽固醇、角叉菜膠、無酵母、無大豆、素食主義者,包括
-              4 克蛋白質和 17 克添加糖。
-              <br />
-              ．12 包32 盎司紙盒。 可架式不含雙酚 A 的紙盒保留風味和新鮮度。
-              開封後冷藏。
+              {data.description}
             </div>
-            <h2 className="product_detail-product-price">NT$123</h2>
+            <h2 className="product_detail-product-price">NT${data.price}</h2>
           </div>
 
           <div className="product_detail-detail-btn-group">
@@ -108,15 +101,7 @@ function ProductDetail() {
       <section className="product_detail-section product_detail-product-detail">
         <div className="product_detail-section-title">商品介紹</div>
         <div className="product_detail-detail-content">
-          Pacific Foods 有機燕麥原味牛奶讓燕麥的甜味閃耀在這款奶油飲料中。
-          <br />
-          富含鈣和維他命 D
-          的良好來源,這款飲料也含有低脂、乳糖、膽固醇和無大豆成分,是純素食主義者,並通過
-          USDA 有機認證。 <br />在 Pacific
-          Foods,我們非常自豪地使用盡可能靠近家的簡單食譜和乾淨的食材。
-          我們避免使用防腐劑、添加劑和轉基因生物,並始終會。
-          <br />
-          我們的使命是滋養每一個身體,一次一餐。 ​
+          {data.product_intro}​
         </div>
       </section>
       <section className="product_detail-section product_detail-product-comment-score">
