@@ -23,10 +23,10 @@ function ProductsList() {
   //從資料庫撈出來的原始資料
   const [allProducts, setAllProducts] = useState([]);
 
+  const [inputValue, setInputValue] = useState('');
   const [search, setSearch] = useState('');
   const [order, setOrder] = useState('');
 
-  // 未搜尋
   const [totalPage, setTotalPage] = useState(1);
   const [page, setPage] = useState(1);
   const [amount, setAmount] = useState(0);
@@ -37,19 +37,19 @@ function ProductsList() {
       let response = await axios.get(
         `${API_URL}/products?category=${
           subCategory ? subCategory : mainCategory
-        }&page=${page}`
+        }`
       );
       setAllProducts(response.data.data);
       setTotalPage(response.data.pagination.totalPage);
       setAmount(response.data.pagination.total);
     };
     getAllProducts();
-    setSearch('');
   }, [mainCategory, subCategory]);
+
   //搜尋資料
   useEffect(() => {
-    console.log('useEffect[allProducts]', allProducts);
     console.log('search', search);
+    console.log('page', page);
     let getSearchProducts = async () => {
       // console.log('API_URL', API_URL);
       let response = await axios.get(
@@ -63,10 +63,8 @@ function ProductsList() {
       setTotalPage(response.data.pagination.totalPage);
       setAmount(response.data.pagination.total);
     };
-
-    getSearchProducts();
-  }, [mainCategory, subCategory, search]);
-
+    getSearchProducts()
+  }, [search, page]);
   // useEffect(() => {
   //   let getTotal = async () => {
   //     let response = await axios.get(
@@ -144,7 +142,7 @@ function ProductsList() {
         {/* TODO:content要改CSS */}
         <div className=" product_list-container ">
           {/* 側欄選單 待測試 */}
-          <AsideForProductsList />
+          <AsideForProductsList setPage={setPage} setSearch={setSearch} />
           <div className="products_list-content col-lg-9 ">
             <div className="products_list-category-product-box  ">
               <div className="products_list-category-title ">
@@ -210,13 +208,20 @@ function ProductsList() {
                 <div className="input-group  products_list-input-group">
                   <input
                     id="list-search"
+                    value={inputValue}
                     type="text"
                     className="form-control products_list-search-input"
                     placeholder="搜尋"
                     aria-label="搜尋"
                     aria-describedby="button-addon2"
+                    onChange={(e) => {
+                      setInputValue(e.target.value);
+                    }}
                     onKeyDown={(e) => {
-                      if (e.key === 'Enter') return setSearch(e.target.value);
+                      if (e.key === 'Enter') {
+                        setSearch(inputValue);
+                      }
+                      setInputValue('');
                     }}
                   />
                   <button
@@ -225,9 +230,10 @@ function ProductsList() {
                     id="button"
                     onClick={(e) => {
                       e.preventDefault();
-                      const inputValue =
+                      const inputVal =
                         document.querySelector('#list-search').value;
-                      setSearch(inputValue);
+                      setSearch(inputVal);
+                      setInputValue('');
                     }}
                   >
                     <FaSearch />
