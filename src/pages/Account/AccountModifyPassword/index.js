@@ -2,7 +2,6 @@ import { React, useState, useEffect } from 'react';
 import './index.scss';
 import axios from 'axios';
 import { API_URL } from '../../../utils/config';
-import { Co2Sharp } from '@mui/icons-material';
 
 function AccountModifyPassword() {
   // 設定取得會員資料的狀態
