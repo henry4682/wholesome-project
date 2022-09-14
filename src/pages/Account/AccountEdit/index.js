@@ -60,6 +60,7 @@ function AccountEdit() {
       console.log('PUT res', response);
       console.log(response.data);
       setEditUser(response.data);
+      alert('修改成功');
     } catch (e) {
       console.error('Account edit Error', e);
     }
