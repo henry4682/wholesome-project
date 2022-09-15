@@ -59,10 +59,10 @@ function AccountTracking() {
             </div>
             <div className=" text-center">
               <div>
-                <button className="account_tracking_btn mb-1 btn btn-primary text-white">
+                <button className="account_tracking_btn mb-1 btn btn-sm btn-primary text-white">
                   加入購物車
                 </button>
-                <button className="account_tracking_btn btn btn-outline-primary text-primary">
+                <button className="account_tracking_btn btn btn-sm btn-secondary text-primary">
                   移除收藏
                 </button>
               </div>
@@ -86,17 +86,14 @@ function AccountTracking() {
             <div className="account_tracking-product-content align-items-center">
               <div>
                 <p className="account_tracking-product-content-name">
-                  Voelkel 蘋果醋
+                  黑糖珍珠燕麥奶
                 </p>
-                <p className="account_tracking-product-content-price">NT$200</p>
               </div>
             </div>
             <div className=" text-center">
               <div>
-                <button className="account_tracking_btn mb-1 btn btn-primary text-white">
-                  閱讀內容
-                </button>
-                <button className="account_tracking_btn btn btn-outline-primary text-primary">
+                <Link to="#">閱讀內容</Link>
+                <button className="account_tracking_btn btn btn-sm btn-secondary text-primary mt-1">
                   移除收藏
                 </button>
               </div>
