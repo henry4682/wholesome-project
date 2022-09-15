@@ -148,14 +148,14 @@ function ProductsList() {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    預設排序
+                    {order === '' ? '預設排序' : order}
                   </button>
                   <ul className="dropdown-menu">
                     <li>
                       <button
                         className="dropdown-item"
                         onClick={() => {
-                          setOrder('1');
+                          setOrder('價錢由高到低');
                         }}
                       >
                         價錢由高到低
@@ -165,10 +165,9 @@ function ProductsList() {
                       <button
                         className="dropdown-item"
                         onClick={() => {
-                          setOrder('2');
+                          setOrder('價錢由低到高');
                         }}
                       >
-                        {' '}
                         價錢由低到高
                       </button>
                     </li>
@@ -176,7 +175,7 @@ function ProductsList() {
                       <button
                         className="dropdown-item"
                         onClick={() => {
-                          setOrder('3');
+                          setOrder('上市日期由新到舊');
                         }}
                       >
                         上市日期由新到舊
@@ -186,7 +185,7 @@ function ProductsList() {
                       <button
                         className="dropdown-item"
                         onClick={() => {
-                          setOrder('4');
+                          setOrder('上市日期由舊到新');
                         }}
                       >
                         上市日期由舊到新
