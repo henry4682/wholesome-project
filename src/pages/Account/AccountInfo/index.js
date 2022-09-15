@@ -14,7 +14,7 @@ function AccountInfo() {
       withCredentials: true,
     });
     console.log('handleLogout', response.data);
-    setUser({ id: null });
+    setUser(null);
     setIsLogin(false);
   }
   return (
@@ -22,7 +22,7 @@ function AccountInfo() {
       <div className="account_info w-100">
         <div className="account_info-card w-100 d-flex">
           <div className="account_info-card-left ">
-            <p className="account_info-card-name mb-2">{user.name}</p>
+            <p className="account_info-card-name mb-2">{user && user.name}</p>
             <div className="mb-3">
               <Link to="edit">查看個人資訊</Link>
             </div>

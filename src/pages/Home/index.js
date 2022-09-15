@@ -30,9 +30,13 @@ function Home(props) {
         <p className="home_title text-center">Hot Sale</p>
       </div>
       <div className="container">
-        <ul className="d-flex  row">
+        <ul className="d-flex  row justify-content-between">
           <li className="col-sm-5  col-md-4  col-lg-3 text-center py-2 ">
-            <img className="cart_product_pic" src="" alt="" />
+            <img
+              className="cart_product_pic"
+              src={require('../../Assets/products/milk2019.jpg')}
+              alt=""
+            />
             <div className="py-2">梅子醋</div>
             <div className="my-2 text-primary">
               NT$ <em className="add-on text-primary">3,566</em>
@@ -42,7 +46,11 @@ function Home(props) {
             </button>
           </li>
           <li className="col-sm-5 col-md-4 col-lg-3 text-center py-2 ">
-            <img className="cart_product_pic" src="" alt="" />
+            <img
+              className="cart_product_pic"
+              src={require('../../Assets/products/milk2019.jpg')}
+              alt=""
+            />
             <div className="py-2">梅子醋</div>
             <div className="my-2 text-primary">
               NT$ <em className="add-on text-primary">3,566</em>
@@ -52,7 +60,11 @@ function Home(props) {
             </button>
           </li>
           <li className="col-sm-5 col-md-4 col-lg-3 text-center py-2 ">
-            <img className="cart_product_pic" src="" alt="" />
+            <img
+              className="cart_product_pic"
+              src={require('../../Assets/products/milk2019.jpg')}
+              alt=""
+            />
             <div className="py-2">梅子醋</div>
             <div className="my-2 text-primary">
               NT$ <em className="add-on text-primary">3,566</em>
@@ -62,7 +74,11 @@ function Home(props) {
             </button>
           </li>
           <li className=" col-sm-5 col-md-4 col-lg-3 text-center py-2 ">
-            <img className="cart_product_pic" src="" alt="" />
+            <img
+              className="cart_product_pic"
+              src={require('../../Assets/products/milk2019.jpg')}
+              alt=""
+            />
             <div className="py-2">梅子醋</div>
             <div className="my-2 text-primary">
               NT$ <em className="add-on text-primary">3,566</em>
@@ -77,24 +93,40 @@ function Home(props) {
         <p className="home_title text-center">Recipe</p>
       </div>
       <div className="container">
-        <ul className="d-flex row my-5">
-          <li className=" col-md-6 col-lg-3 text-center py-2 ">
-            <img className="home_recipe_pic" src="" alt="" />
+        <ul className="d-flex row my-5  justify-content-between">
+          <li className=" col-sm-5  col-md-4  col-lg-3 text-center py-2 ">
+            <img
+              className="home_recipe_pic"
+              src={require('../../Assets/products/milk2019.jpg')}
+              alt=""
+            />
             <div className="py-2">隔日燕麥</div>
             <a className="home_read"> 繼續閱讀</a>
           </li>
-          <li className="col-md-6 col-lg-3 text-center py-2 ">
-            <img className="home_recipe_pic" src="" alt="" />
+          <li className="col-sm-5  col-md-4  col-lg-3 text-center py-2 ">
+            <img
+              className="home_recipe_pic"
+              src={require('../../Assets/products/milk2019.jpg')}
+              alt=""
+            />
             <div className="py-2">隔日燕麥</div>
             <a className="home_read"> 繼續閱讀</a>
           </li>
-          <li className="col-md-6 col-lg-3 text-center py-2 ">
-            <img className="home_recipe_pic" src="" alt="" />
+          <li className="col-sm-5  col-md-4  col-lg-3 text-center py-2 ">
+            <img
+              className="home_recipe_pic"
+              src={require('../../Assets/products/milk2019.jpg')}
+              alt=""
+            />
             <div className="py-2">隔日燕麥</div>
             <a className="home_read"> 繼續閱讀</a>
           </li>
-          <li className="col-md-6 col-lg-3 text-center py-2 ">
-            <img className="home_recipe_pic" src="" alt="" />
+          <li className="col-sm-5  col-md-4  col-lg-3 text-center py-2 ">
+            <img
+              className="home_recipe_pic"
+              src={require('../../Assets/products/milk2019.jpg')}
+              alt=""
+            />
             <div className="py-2">隔日燕麥</div>
             <a className="home_read"> 繼續閱讀</a>
           </li>

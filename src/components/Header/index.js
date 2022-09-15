@@ -17,7 +17,7 @@ function Header() {
       withCredentials: true,
     });
     console.log('handleLogout', response.data);
-    setUser({ id: null });
+    setUser(null);
     setIsLogin(false);
   }
 
@@ -47,9 +47,9 @@ function Header() {
                 <FaRegUser />
               </Link>
               <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                {user.id ? (
+                {user ? (
                   <>
-                    <li className="dropdown-item">Hi!{user.name}</li>
+                    <li className="dropdown-item">Hi!{user && user.name}</li>
                     <li className="dropdown-item">
                       <Link className="btn btn-primary text-white" to="account">
                         我的帳戶
