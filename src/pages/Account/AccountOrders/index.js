@@ -8,17 +8,31 @@ function AccountOrders() {
   const { user, setUser } = useAuth();
   const [data, setData] = useState([]);
 
+  // 分頁: 增加 lastPage (總頁數) 與 page (目前在第幾頁) 的 state
+  const [lastPage, setLastPage] = useState(1);
+  const [page, setPage] = useState(1);
+
   useEffect(() => {
     let userOrders = async () => {
       // let response = await axios.get(
       //   `http://localhost:3002/api/1.0/products/${categoryId}`
       // );
-      let response = await axios.get(`${API_URL}/user/${user.id}/orders`);
+      let response = await axios.get(
+        `${API_URL}/user/${user.id}/orders?page=${page}`
+      );
       console.log(response.data);
-      setData(response.data);
+      setData(response.data.data);
+      setLastPage(response.data.pagination.lastPage);
     };
     userOrders();
-  }, [user.id]);
+  }, [user.id, page]);
+
+  //製作分頁按鈕
+  let pages = [];
+  for (let i = 1; i <= lastPage; i++) {
+    pages.push(i);
+  }
+  console.log(pages);
 
   return (
     <>
@@ -95,21 +109,22 @@ function AccountOrders() {
                   Previous
                 </a>
               </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  1
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  2
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  3
-                </a>
-              </li>
+              {pages.map((v, i) => {
+                return (
+                  <li
+                    key={i}
+                    className="page-item"
+                    onClick={(e) => {
+                      setPage(v);
+                    }}
+                  >
+                    <Link className="page-link" to="#">
+                      {v}
+                    </Link>
+                  </li>
+                );
+              })}
+
               <li className="page-item">
                 <a className="page-link" href="#">
                   Next
