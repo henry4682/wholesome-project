@@ -5,9 +5,22 @@ function AccountCoupons() {
   return (
     <div className="account_coupons w-100">
       <div className="account_coupons-title d-flex align-items-center">
+        <div className="row g-3 align-items-center">
+          <div className="col-auto">
+            <label className="col-form-label">優惠券代碼:</label>
+          </div>
+          <div className="col-auto">
+            <input type="text" className="form-control form-control-sm" />
+          </div>
+          <div className="col-auto">
+            <button className="btn btn-sm btn-secondary">確認</button>
+          </div>
+        </div>
+      </div>
+      <div className="d-flex justify-content-end mb-2">
         <p>
           可用優惠券總計
-          <span className="account_coupons-count text-primary px-2">1張</span>
+          <span className="account_coupons-count text-primary mx-1">1</span>張
         </p>
       </div>
       <table className="account_coupons-table table table-bordered">
