@@ -55,7 +55,7 @@ function ProductsList() {
       let response = await axios.get(
         `${API_URL}/products?category=${
           subCategory ? subCategory : mainCategory
-        }&search=${search}&page=${page}`
+        }&search=${search}&order=${order}&page=${page}`
       );
       console.log('Category', mainCategory, subCategory);
       console.log('response.data', response.data);
@@ -64,22 +64,7 @@ function ProductsList() {
       setAmount(response.data.pagination.total);
     };
     getSearchProducts();
-  }, [search, page]);
-
-  //排序
-  useEffect(() => {
-    let getOrder = async () => {
-      let response = await axios.get(
-        `${API_URL}/products?category=${
-          subCategory ? subCategory : mainCategory
-        }&search=${search}&order=${order}&page=${page}`
-      );
-      setAllProducts(response.data.data);
-      setTotalPage(response.data.pagination.totalPage);
-      setAmount(response.data.pagination.total);
-    };
-    getOrder();
-  }, [order]);
+  }, [search, order, page]);
 
   const getPages = () => {
     let pages = [];
@@ -142,7 +127,11 @@ function ProductsList() {
         {/* TODO:content要改CSS */}
         <div className=" product_list-container ">
           {/* 側欄選單 待測試 */}
-          <AsideForProductsList setPage={setPage} setSearch={setSearch} />
+          <AsideForProductsList
+            setPage={setPage}
+            setSearch={setSearch}
+            setOrder={setOrder}
+          />
           <div className="products_list-content col-lg-9 ">
             <div className="products_list-category-product-box  ">
               <div className="products_list-category-title ">

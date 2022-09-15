@@ -5,7 +5,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import './AsideForProductsList.scss';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
-function AsideForProductsList({ setPage, setSearch }) {
+function AsideForProductsList({ setPage, setSearch, setOrder }) {
   //設定css
   const theme = createTheme({
     components: {
@@ -36,6 +36,7 @@ function AsideForProductsList({ setPage, setSearch }) {
               onClick={() => {
                 setPage(1);
                 setSearch('');
+                setOrder('');
               }}
             >
               植物奶
@@ -50,6 +51,7 @@ function AsideForProductsList({ setPage, setSearch }) {
                   onClick={() => {
                     setPage(1);
                     setSearch('');
+                    setOrder('');
                   }}
                 >
                   燕麥奶
@@ -63,6 +65,7 @@ function AsideForProductsList({ setPage, setSearch }) {
                   onClick={() => {
                     setPage(1);
                     setSearch('');
+                    setOrder('');
                   }}
                 >
                   杏仁奶
@@ -74,6 +77,8 @@ function AsideForProductsList({ setPage, setSearch }) {
                   to="../products/植物奶/堅果奶"
                   onClick={() => {
                     setPage(1);
+                    setSearch('');
+                    setOrder('');
                   }}
                 >
                   堅果奶
@@ -94,6 +99,7 @@ function AsideForProductsList({ setPage, setSearch }) {
               onClick={() => {
                 setPage(1);
                 setSearch('');
+                setOrder('');
               }}
             >
               有機蔬果汁
@@ -108,6 +114,7 @@ function AsideForProductsList({ setPage, setSearch }) {
                   onClick={() => {
                     setPage(1);
                     setSearch('');
+                    setOrder('');
                   }}
                 >
                   果汁
@@ -120,6 +127,7 @@ function AsideForProductsList({ setPage, setSearch }) {
                   onClick={() => {
                     setPage(1);
                     setSearch('');
+                    setOrder('');
                   }}
                 >
                   蔬菜汁、氣泡水
@@ -132,6 +140,7 @@ function AsideForProductsList({ setPage, setSearch }) {
                   onClick={() => {
                     setPage(1);
                     setSearch('');
+                    setOrder('');
                   }}
                 >
                   果昔、果醋
@@ -152,6 +161,7 @@ function AsideForProductsList({ setPage, setSearch }) {
               onClick={() => {
                 setPage(1);
                 setSearch('');
+                setOrder('');
               }}
             >
               營養點心
@@ -166,6 +176,7 @@ function AsideForProductsList({ setPage, setSearch }) {
                   onClick={() => {
                     setPage(1);
                     setSearch('');
+                    setOrder('');
                   }}
                 >
                   麥片
@@ -178,6 +189,7 @@ function AsideForProductsList({ setPage, setSearch }) {
                   onClick={() => {
                     setPage(1);
                     setSearch('');
+                    setOrder('');
                   }}
                 >
                   燕麥棒、蛋白棒
@@ -190,6 +202,7 @@ function AsideForProductsList({ setPage, setSearch }) {
                   onClick={() => {
                     setPage(1);
                     setSearch('');
+                    setOrder('');
                   }}
                 >
                   堅果
