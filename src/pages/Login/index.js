@@ -89,7 +89,7 @@ function Login() {
                     value={loginUser.password}
                     onChange={handleFieldChange}
                   />
-                  <div className="login_password_icon">
+                  <div className="login_password_icon text-secondary">
                     {showPassword ? (
                       <BsEye
                         onClick={(e) => {

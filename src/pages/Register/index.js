@@ -114,7 +114,7 @@ function Register() {
                     value={user.password}
                     onChange={handleFieldChange}
                   />
-                  <div className="register_password_icon">
+                  <div className="register_password_icon text-secondary">
                     {showPassword ? (
                       <BsEye
                         onClick={(e) => {
@@ -142,7 +142,7 @@ function Register() {
                     value={user.confirmPassword}
                     onChange={handleFieldChange}
                   />
-                  <div className="register_password_icon">
+                  <div className="register_password_icon text-secondary">
                     {showConfirmPassword ? (
                       <BsEye
                         onClick={(e) => {
