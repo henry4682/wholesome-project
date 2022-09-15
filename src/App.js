@@ -63,14 +63,14 @@ function App() {
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
 
-        <Route path="/products" element={<ProductsList />} />
-
+          <Route path="/products" element={<ProductsList />} />
           <Route path="/productDetail/:productId" element={<ProductDetail />} />
 
-          <Route path="/recipes" element={<RecipesLayout />}>
-            <Route index element={<RecipesList />} />
-            <Route path="recipeDetail/:recipeId" element={<RecipeDetail />} />
-          </Route>
+
+          <Route path="recipes/:category" element={<RecipesList />} />
+          <Route path="recipeDetail/:recipeId" element={<RecipeDetail />} />
+
+          
 
           <Route path="shoppingCart" element={<ShoppingCart />} />
           <Route path="*" element={<NotFound />} />
