@@ -32,7 +32,7 @@ function ProductDetail() {
   //下面幾個是測試用之後可能會用json格式把star的內容包起來
 
   // 星星陣列
-  const [eachStar, setEachStar] = useState();
+  const [eachStar, setEachStar] = useState([]);
   //加總分數
   const [totalScore, setTotalScore] = useState();
   //有幾個人的星星
@@ -122,11 +122,13 @@ function ProductDetail() {
         <div className="product_detail-section-title">買家評論</div>
         <div className="product_detail-score-box">
           <div className="product_detail-average-score-box">
-            <div className="product_detail-average-score">{average}</div>
+            <div className="product_detail-average-score">
+              {eachStar.length > 0 ? average : 0}
+            </div>
             <div className="product_detail-stars">
               <Rating
                 name="half-rating-read"
-                value={average}
+                value={eachStar.length > 0 ? average : 0}
                 precision={0.1}
                 readOnly
               />
@@ -140,19 +142,22 @@ function ProductDetail() {
                 <div key={i} className="product_detail-star-bar">
                   <p>
                     {num}顆星(
-                    {eachStar ? eachStar.filter((v) => v === num).length : 0})
+                    {eachStar.length > 0
+                      ? eachStar.filter((v) => v === num).length
+                      : 0}
+                    )
                   </p>
                   <span className="product_detail-bar-section">
                     <ProgressBar
                       completed={
-                        eachStar
+                        eachStar.length > 0
                           ? (eachStar.filter((v) => v === num).length /
                               starCount) *
                             100
                           : 0
                       }
                       customLabel={
-                        eachStar
+                        eachStar.length > 0
                           ? (eachStar.filter((v) => v === num).length /
                               starCount) *
                               100 +
