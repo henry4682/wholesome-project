@@ -60,16 +60,35 @@ function ShoppingCart() {
         <div className="col-2">
           <SideSection />
         </div>
+     
         <div className="col-9">
-          <CartMain
-            products={products}
-            setProducts={setProducts}
-            calcTotalNumber={calcTotalNumber()}
-            calcTotalPrice={calcTotalPrice()}
-          />
-          <CartCoupon />
-          <Shipping />
-        </div>
+             <form action="">
+            <CartMain
+              products={products}
+              setProducts={setProducts}
+              calcTotalNumber={calcTotalNumber()}
+              calcTotalPrice={calcTotalPrice()}
+            />
+            <CartCoupon />
+            <Shipping />
+
+            <div className=" cart_shipping_term my-2">
+              <div className="d-flex align-items-center">
+                <input type="checkbox" id="secret" name="secret" />
+                <label for="secret" className="ps-3">
+                  同意會員責任規範及商家會員條款
+                </label>
+              </div>
+              <button
+                type="submit"
+                className="col-12 btn  btn-primary text-light px-4   my-3 text-center"
+              >
+                結帳
+              </button>
+            </div>
+        </form>
+
+          </div>
       </div>
       {/* tablet */}
       {/* <div className="mt-4 cart_tablet ">
