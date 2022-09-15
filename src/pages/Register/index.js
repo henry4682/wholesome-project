@@ -31,6 +31,7 @@ function Register() {
       let response = await axios.post(`${API_URL}/auth/register`, user);
       console.log('POST res', response);
       console.log(response.data);
+      alert('註冊成功');
     } catch (e) {
       console.error('register Error', e);
     }
