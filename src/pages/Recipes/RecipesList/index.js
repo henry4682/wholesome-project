@@ -10,7 +10,6 @@ import RecipeNavbar from '../component/RecipeNavbar';
 function RecipesList() {
   const [data, setData] = useState([]);
   const { category } = useParams();
-  const { p } = useParams();
 
   //總共有lastPage這麼多頁
   const [lastPage, setLastPage] = useState(1);
@@ -33,7 +32,6 @@ function RecipesList() {
   const getPages = () => {
     let pages = [];
     if (page != 1) {
-      let prevPage = page - 1;
       pages.push(
         <li class="page-item">
           <a
@@ -81,9 +79,13 @@ function RecipesList() {
       );
     }
     if (page !== lastPage) {
-      let nextPage = page + 1;
       pages.push(
-        <li class="page-item">
+        <li
+          class="page-item"
+          onClick={() => {
+            setPage(Number(page) + 1);
+          }}
+        >
           <a class="page-link" href="#" aria-label="Next">
             <span aria-hidden="true">&raquo;</span>
           </a>

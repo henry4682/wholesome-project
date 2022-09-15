@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import {
   BsSearch,
   BsFillPersonFill,
@@ -10,8 +11,20 @@ import {
 import { BiTimeFive } from 'react-icons/bi';
 import '../styles/RecipesDetail.scss';
 import recipeImage from '../Asset/food.jpg';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 function RecipeDetail() {
+  const [data, setData] = useState([]);
+  const { recipeId } = useParams();
+
+  useEffect(() => {
+    let getRecipe = async () => {
+      let response = await axios.get(`http://localhost:3002/api/1.0/recipes/${recipeId}`);
+    };
+    getRecipe();
+  }, []);
+
   return (
     <>
       <div className="container recipe-detail-container row">

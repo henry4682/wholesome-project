@@ -31,7 +31,6 @@ import ProductDetail from './pages/ProductDetail';
 import ProductsSale from './pages/Products/ProductsSale';
 
 //recipe
-import RecipesLayout from './pages/Recipes/RecipesLayout';
 import RecipesList from './pages/Recipes/RecipesList';
 import RecipeDetail from './pages/Recipes/RecipeDetail';
 
