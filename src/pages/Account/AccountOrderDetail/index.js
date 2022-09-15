@@ -56,9 +56,11 @@ function AccountOrderDetail() {
                     />
                   </td>
                   <td className="align-middle">{v.name}</td>
-                  <td className="align-middle">{v.product_price}</td>
+                  <td className="align-middle">NT${v.product_price}</td>
                   <td className="align-middle">{v.amount}</td>
-                  <td className="align-middle">{v.product_price * v.amount}</td>
+                  <td className="align-middle">
+                    NT${v.product_price * v.amount}
+                  </td>
                 </tr>
               );
             })}
@@ -86,8 +88,9 @@ function AccountOrderDetail() {
                     <div>
                       {orderData.map((v) => (
                         <>
-                          (<span>{v.name ? v.name : '無'}</span>):-NT$
-                          {v.discount_price ? v.discount_price : '0'}
+                          (<span>{v.coupon_name ? v.coupon_name : '無'}</span>
+                          ):-NT$
+                          {v.coupon_price ? v.coupon_price : '0'}
                         </>
                       ))}
                     </div>
@@ -111,7 +114,7 @@ function AccountOrderDetail() {
                     NT$
                     <span>
                       {orderData.map(
-                        (v) => v.total_price - v.discount_price + 80
+                        (v) => v.total_price - v.coupon_price + 80
                       )}
                     </span>
                   </div>
