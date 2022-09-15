@@ -31,7 +31,7 @@ function ProductsList() {
   const [page, setPage] = useState(1);
   const [amount, setAmount] = useState(0);
 
-  //分類資料
+  //一開始讀到的分類資料
   useEffect(() => {
     let getAllProducts = async () => {
       let response = await axios.get(
@@ -42,11 +42,14 @@ function ProductsList() {
       setAllProducts(response.data.data);
       setTotalPage(response.data.pagination.totalPage);
       setAmount(response.data.pagination.total);
+      setPage(1);
+      setOrder('');
+      setSearch('');
     };
     getAllProducts();
   }, [mainCategory, subCategory]);
 
-  //搜尋資料
+  //(頁面和總體)資料篩選或變動
   useEffect(() => {
     console.log('search', search);
     console.log('page', page);
@@ -66,6 +69,7 @@ function ProductsList() {
     getSearchProducts();
   }, [search, order, page]);
 
+  // 頁數
   const getPages = () => {
     let pages = [];
     for (let i = 1; i <= totalPage; i++) {
@@ -123,7 +127,10 @@ function ProductsList() {
     <div className="product_list">
       <div className="container ">
         {/* 麵包屑*/}
-        <BreadcrumbForProductsList />
+        <BreadcrumbForProductsList
+          mainCategory={mainCategory}
+          subCategory={subCategory}
+        />
         {/* TODO:content要改CSS */}
         <div className=" product_list-container ">
           {/* 側欄選單 待測試 */}
@@ -136,7 +143,10 @@ function ProductsList() {
             <div className="products_list-category-product-box  ">
               <div className="products_list-category-title ">
                 {/* 商品種類標題 */}
-                <h2>{subCategory ? subCategory : mainCategory}</h2>
+                <h2>
+                  {subCategory ? subCategory : mainCategory}
+                  {search !== '' ? ' - 搜尋' + '"' + search + '"' : ''}
+                </h2>
               </div>
               <div className="products_list-order_search ">
                 <p className="col-4 text-end">共 {amount} 件商品</p>
@@ -156,6 +166,7 @@ function ProductsList() {
                         className="dropdown-item"
                         onClick={() => {
                           setOrder('價錢由高到低');
+                          setPage(1);
                         }}
                       >
                         價錢由高到低
@@ -166,6 +177,7 @@ function ProductsList() {
                         className="dropdown-item"
                         onClick={() => {
                           setOrder('價錢由低到高');
+                          setPage(1);
                         }}
                       >
                         價錢由低到高
@@ -176,6 +188,7 @@ function ProductsList() {
                         className="dropdown-item"
                         onClick={() => {
                           setOrder('上市日期由新到舊');
+                          setPage(1);
                         }}
                       >
                         上市日期由新到舊
@@ -186,6 +199,7 @@ function ProductsList() {
                         className="dropdown-item"
                         onClick={() => {
                           setOrder('上市日期由舊到新');
+                          setPage(1);
                         }}
                       >
                         上市日期由舊到新

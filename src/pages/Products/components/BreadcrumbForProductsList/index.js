@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { FaHome } from 'react-icons/fa';
 import './BreadcrumbForProductsList.scss';
 
-function BreadcrumbForProductsList() {
+function BreadcrumbForProductsList({ mainCategory, subCategory }) {
   return (
     <>
       {/* {有沒有參數 ? <></> : <></>} */}
@@ -17,13 +17,34 @@ function BreadcrumbForProductsList() {
               <FaHome />
             </Link>
           </li>
-          <li
-            className="breadcrumb-item products_layout-breadcrumb-item active"
-            aria-current="page"
-          >
-            植物奶
-            {/* 抽換 用context*/}
-          </li>
+          {subCategory ? (
+            <>
+              <li
+                className="breadcrumb-item products_layout-breadcrumb-item active"
+                aria-current="page"
+              >
+                <Link
+                  className="link-decoration"
+                  to={`../products/${mainCategory}`}
+                >
+                  {mainCategory}
+                </Link>
+              </li>
+              <li
+                className="breadcrumb-item products_layout-breadcrumb-item active"
+                aria-current="page"
+              >
+                {subCategory}
+              </li>
+            </>
+          ) : (
+            <li
+              className="breadcrumb-item products_layout-breadcrumb-item active"
+              aria-current="page"
+            >
+              {mainCategory}
+            </li>
+          )}
         </ol>
       </nav>
     </>

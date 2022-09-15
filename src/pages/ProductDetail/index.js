@@ -7,12 +7,14 @@ import { FaHeart } from 'react-icons/fa';
 import BreadcrumbForDetail from './components/BreadcrumbForDetail';
 import SwiperForProduct from './components/SwiperForProduct';
 
-import ReactStars from 'react-rating-stars-component';
+import Rating from '@mui/material/Rating';
 import ProgressBar from '@ramonak/react-progress-bar';
 import axios from 'axios';
 
 function ProductDetail() {
+  //商品資料
   const [data, setData] = useState([]);
+  const [commentData, setCommentData] = useState([]);
   //收藏用TODO:useState裡的true/false要隨著使用者做更換
   const [isLike, setIsLike] = useState(false);
 
@@ -20,41 +22,47 @@ function ProductDetail() {
   const { productId } = useParams();
   console.log('productId', productId);
 
+  console.log('commentData', commentData);
+
   //星星平均用
-  const [averageScore, setAverageScore] = useState(4.5);
   //測試用:做出star bar的陣列
   const starArr = Array(5)
     .fill(5)
     .map((num, index) => num - index);
   //下面幾個是測試用之後可能會用json格式把star的內容包起來
-  const [stars, setStars] = useState([
-    {
-      starCount: 8,
-      starPercentage: '50',
-    },
-  ]);
 
-  //幾顆星的數量
+  // 星星陣列
+  const [eachStar, setEachStar] = useState();
+  //加總分數
+  const [totalScore, setTotalScore] = useState();
+  //有幾個人的星星
   const [starCount, setStarCount] = useState(8);
-  //star bar 的百分比
-  const [star, setStar] = useState('50');
+  const [average, setAverage] = useState(0);
 
   useEffect(() => {
     console.log('inside useEffect');
     let getProductDetail = async () => {
-      let response = await axios.get(`${API_URL}/products/${productId}`);
-      setData(response.data);
-      console.log('data be', response.data);
+      let response = await axios.get(`${API_URL}/productDetail/${productId}`);
+      setData(response.data.productData);
+      setCommentData(response.data.comment.productComment);
+      setTotalScore(response.data.comment.totalScore);
+      setEachStar(response.data.comment.eachStar);
+      setStarCount(response.data.comment.starCount);
+      setAverage(Number(response.data.comment.average));
+      console.log('commentData', commentData);
+      console.log('data be', response.data.productData);
       console.log('data fe', data);
+      console.log('eachStar', eachStar);
     };
     getProductDetail();
   }, []);
+
   return (
-    <>
+    <div className="container">
+      <BreadcrumbForDetail />
       {data.map((v, i) => {
         return (
-          <div className="container">
-            <BreadcrumbForDetail />
+          <div key={i}>
             <div className="product_detail-product-intro">
               <img
                 className="product_detail-img"
@@ -68,9 +76,7 @@ function ProductDetail() {
                   <div className="product_detail-product-description">
                     {v.description}
                   </div>
-                  <h2 className="product_detail-product-price">
-                    NT${v.price}
-                  </h2>
+                  <h2 className="product_detail-product-price">NT${v.price}</h2>
                 </div>
 
                 <div className="product_detail-detail-btn-group">
@@ -109,64 +115,80 @@ function ProductDetail() {
                 {v.product_intro}​
               </div>
             </section>
-            <section className="product_detail-section product_detail-product-comment-score">
-              <div className="product_detail-section-title">買家評論</div>
-              <div className="product_detail-score-box">
-                <div className="product_detail-average-score-box">
-                  <div className="product_detail-average-score">
-                    {averageScore}
-                  </div>
-                  <div className="product_detail-stars">
-                    <ReactStars
-                      value={averageScore}
-                      count={5}
-                      size={24}
-                      edit={false}
-                      activeColor="#ffd700"
-                      isHalf={true}
+          </div>
+        );
+      })}
+      <section className="product_detail-section product_detail-product-comment-score">
+        <div className="product_detail-section-title">買家評論</div>
+        <div className="product_detail-score-box">
+          <div className="product_detail-average-score-box">
+            <div className="product_detail-average-score">{average}</div>
+            <div className="product_detail-stars">
+              <Rating
+                name="half-rating-read"
+                value={average}
+                precision={0.1}
+                readOnly
+              />
+            </div>
+          </div>
+          <div className="product_detail-score-bar">
+            <div className="product_detail-score-text">評價分佈顯示</div>
+            {/* 可能跑迴圈? */}
+            {starArr.map((num, i) => {
+              return (
+                <div key={i} className="product_detail-star-bar">
+                  <p>
+                    {num}顆星(
+                    {eachStar ? eachStar.filter((v) => v === num).length : 0})
+                  </p>
+                  <span className="product_detail-bar-section">
+                    <ProgressBar
+                      completed={
+                        eachStar
+                          ? (eachStar.filter((v) => v === num).length /
+                              starCount) *
+                            100
+                          : 0
+                      }
+                      customLabel={
+                        eachStar
+                          ? (eachStar.filter((v) => v === num).length /
+                              starCount) *
+                              100 +
+                            '%'
+                          : '0%'
+                      }
+                      className="wrapper"
+                      bgColor={'#9AAB82'}
+                      baseBgColor={'#D9D9D9'}
+                      borderRadius="0px"
+                      labelAlignment="inside"
+                      labelSize="11px"
                     />
-                  </div>
+                  </span>
                 </div>
-                <div className="product_detail-score-bar">
-                  <div className="product_detail-score-text">評價分佈顯示</div>
-                  {/* 可能跑迴圈? */}
-                  {starArr.map((num, i) => {
-                    return (
-                      <div key={i} className="product_detail-star-bar">
-                        <p>
-                          {num}顆星({starCount})
-                        </p>
-                        <span className="product_detail-bar-section">
-                          <ProgressBar
-                            completed={star}
-                            customLabel={star + '%'}
-                            className="wrapper"
-                            bgColor={'#9AAB82'}
-                            baseBgColor={'#D9D9D9'}
-                            borderRadius="0px"
-                            labelAlignment="right"
-                            labelSize="11px"
-                          />
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div className="product_detail-comment-box">
+          <div className="product_detail-comment-top">
+            <div className="product_detail-comment-title">
+              <p>留言</p>
+            </div>
+            <div className="product_detail-comment-info">
+              <div className="product_detail-comment-top-text">
+                共 {commentData.length} 則
               </div>
-              <div className="product_detail-comment-box">
-                <div className="product_detail-comment-top">
-                  <div className="product_detail-comment-title">
-                    <p>留言</p>
-                  </div>
-                  <div className="product_detail-comment-info">
-                    <div className="product_detail-comment-top-text">
-                      共 7 則
-                    </div>
-                    <Link className="product_detail-comment-top-text" to="">
-                      查看全部
-                    </Link>
-                  </div>
-                </div>
+              <Link className="product_detail-comment-top-text" to="">
+                查看全部
+              </Link>
+            </div>
+          </div>
+          {commentData.map((comment) => {
+            return (
+              <div key={comment.id}>
                 <section className="product_detail-section product_detail-user-comment-box">
                   <div className="product_detail-user-img-box">
                     <img
@@ -177,104 +199,68 @@ function ProductDetail() {
                   </div>
                   <div className="product_detail-user-text">
                     <div className="product_detail-user-comment">
-                      <div className="product_detail-comment-text">王沛慈</div>
+                      <div className="product_detail-comment-text">
+                        {comment.name}
+                      </div>
                       <p className="product_detail-comment-text">
-                        我今天也來試試
+                        {comment.comment}
                       </p>
                     </div>
                     <div className="product_detail-user-star">
                       <div className="product_detail-comment-text">
-                        2022/07/14
+                        {comment.time}
                       </div>
-                      <ReactStars
-                        value={5}
-                        count={5}
-                        size={24}
-                        edit={false}
-                        activeColor="#ffd700"
-                        isHalf={true}
+                      <Rating
+                        name="half-rating-read"
+                        value={comment.grade}
+                        precision={0.5}
+                        readOnly
                       />
                     </div>
                   </div>
                 </section>
                 <hr className="product_detail-br" />
-                <section className="product_detail-section product_detail-user-comment-box">
-                  <div className="product_detail-user-img-box">
-                    <img
-                      className="product_detail-user-img"
-                      src={require('../../Assets/member.png')}
-                      alt="圖片"
-                    />
-                  </div>
-                  <div className="product_detail-user-text">
-                    <div className="product_detail-user-comment">
-                      <div className="product_detail-comment-text">王沛慈</div>
-                      <p className="product_detail-comment-text">
-                        我今天也來試試
-                      </p>
-                    </div>
-                    <div className="product_detail-user-star">
-                      <div className="product_detail-comment-text">
-                        2022/07/14
-                      </div>
-                      <ReactStars
-                        value={5}
-                        count={5}
-                        size={24}
-                        edit={false}
-                        activeColor="#ffd700"
-                        isHalf={true}
-                      />
-                    </div>
-                  </div>
-                </section>
-                <nav aria-label="Page navigation ">
-                  <ul className="pagination product_detail-pagination">
-                    <li className="page-item">
-                      <Link
-                        className="page-link"
-                        to="/productDetail/:productId"
-                        aria-label="Previous"
-                      >
-                        <span aria-hidden="true">&laquo;</span>
-                      </Link>
-                    </li>
-                    <li className="page-item">
-                      <Link
-                        className="page-link"
-                        to="/productDetail/:productId"
-                      >
-                        1
-                      </Link>
-                    </li>
-                    <li className="page-item">
-                      <Link
-                        className="page-link"
-                        to="/productDetail/:productId"
-                        aria-label="Next"
-                      >
-                        <span aria-hidden="true">&raquo;</span>
-                      </Link>
-                    </li>
-                  </ul>
-                </nav>
               </div>
-            </section>
-            <div className="product_detail-section">
-              <div className="product_detail-section-title">相關商品</div>
-              <div className="product_detail-carousel">
-                <SwiperForProduct />
-              </div>
-            </div>
-          </div>
-        );
-      })}
-    </>
-  );
+            );
+          })}
 
-  // return (
-  //
-  // );
+          <nav aria-label="Page navigation ">
+            <ul className="pagination product_detail-pagination">
+              <li className="page-item">
+                <Link
+                  className="page-link"
+                  to="/productDetail/:productId"
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true">&laquo;</span>
+                </Link>
+              </li>
+              <li className="page-item">
+                <Link className="page-link" to="/productDetail/:productId">
+                  1
+                </Link>
+              </li>
+              <li className="page-item">
+                <Link
+                  className="page-link"
+                  to="/productDetail/:productId"
+                  aria-label="Next"
+                >
+                  <span aria-hidden="true">&raquo;</span>
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </section>
+      <div className="product_detail-section">
+        <div className="product_detail-section-title">相關商品</div>
+        <div className="product_detail-carousel">
+          <SwiperForProduct />
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default ProductDetail;

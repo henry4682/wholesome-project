@@ -28,11 +28,13 @@ function Header() {
         {/* 手機版 navbar */}
         <MobileNav />
         <div className="logo-container d-md-flex d-none justify-content-center align-items-center">
-          <img
-            className="logo"
-            src={require('../../Assets/Logo/logo.png')}
-            alt="logo"
-          />
+          <Link to="/">
+            <img
+              className="logo"
+              src={require('../../Assets/Logo/logo.png')}
+              alt="logo"
+            />
+          </Link>
           <div className="icon-box d-md-flex d-none">
             {/* 會員 icon -> 下拉式選單 */}
             <div className="dropdown">
