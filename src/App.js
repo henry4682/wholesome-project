@@ -66,8 +66,8 @@ function App() {
           <Route path="/productDetail/:productId" element={<ProductDetail />} />
 
 
-          <Route path="recipes/:category" element={<RecipesList />} />
-          <Route path="recipeDetail/:recipeId" element={<RecipeDetail />} />
+          <Route path="/recipes/:category" element={<RecipesList />} />
+          <Route path="/recipeDetail/:recipeId" element={<RecipeDetail />} />
 
           
 

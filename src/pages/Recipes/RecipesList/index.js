@@ -20,7 +20,7 @@ function RecipesList() {
     let getRecipes = async () => {
       console.log('category  fe', category);
       let response = await axios.get(
-        `http://localhost:3002/api/1.0/recipes?category=${category}&page=${page}`
+        `http://localhost:3002/api/1.0/recipes/${category}?page=${page}`
       );
       setData(response.data.data);
       setLastPage(response.data.pagination.lastPage);
@@ -135,7 +135,7 @@ function RecipesList() {
                         <h4>
                           <Link
                             className="recipe-card-title"
-                            to="/recipes/recipeDetail/123"
+                            to={(`/recipeDetail/${recipe.recipe_id}`)}
                           >
                             {recipe.title}
                           </Link>

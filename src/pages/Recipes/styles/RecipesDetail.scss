@@ -8,6 +8,7 @@
 }
 .recipe-title h4 {
   font-size: 18px;
+  line-height: 30px;
 }
 .recipe-info {
   margin: 20px 0;
@@ -77,6 +78,15 @@
   width: 90%;
 }
 
+.review{
+  margin: 50px 10px;
+}
+@media screen and (max-width: 1200px) {
+  .review-left {
+    display: none;
+  }
+  
+}
 .recipe-review h3{
   font-size: 20px;
 }
