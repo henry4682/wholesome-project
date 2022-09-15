@@ -47,7 +47,7 @@ function Header() {
                 <FaRegUser />
               </Link>
               <ul className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                {user ? (
+                {user && user.id !== '0' ? (
                   <>
                     <li className="dropdown-item">Hi!{user && user.name}</li>
                     <li className="dropdown-item">
