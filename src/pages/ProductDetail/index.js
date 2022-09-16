@@ -74,6 +74,7 @@ function ProductDetail() {
                 <div className="product_detail-info-box">
                   <h1 className="product_detail-product-title">{v.name}</h1>
                   <div className="product_detail-product-description">
+                  {/* TODO:將資料庫裡的句子後面加上| */}
                     {v.description.split('|').map((line, i) => {
                       return (
                         <div key={i}>
