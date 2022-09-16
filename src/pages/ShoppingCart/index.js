@@ -1,73 +1,95 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { IconName } from 'react-icons/fa';
-import CartMain from './components/CartMain/CartMain';
+import CartMain from './components/CartMain';
 import CartCoupon from './components/CartCoupon';
 import Shipping from './components/Shipping';
 import SideSection from './components/SideSection';
-// import '../../styles/global.scss'; //這行不用下喔，上層有引入了
 import './styles/index.scss';
 
-const sampleData = [
-  {
-    id: 1,
-    name: '衣服',
-    price: 100,
-    img: 'https://i.imgur.com/1GrakTl.jpg',
-  },
-  {
-    id: 2,
-    name: '衣服',
-    price: 100,
-    img: 'https://i.imgur.com/ba3tvGm.jpg',
-  },
-  {
-    id: 3,
-    name: '衣服',
-    price: 100,
-    img: 'https://i.imgur.com/pHQ3xT3.jpg',
-  },
-];
-
 function ShoppingCart() {
-  // 擴充product物件多一個count
-  const [products, setProducts] = useState(
-    sampleData.map((v, i) => ({ ...v, count: 1 }))
-  );
+  // const [error, setError] = useState(null);
+  const [data, setData] = useState([]); //資料最後長相是[]
+  const [total, setTotal] = useState(0);
+  const [totalAmount, setTotalAmount] = useState(0);
 
-  //總數
-  const calcTotalNumber = () => {
-    let total = 0;
-    for (let i = 0; i < products.length; i++) {
-      total += products[i].count;
-    }
-    return total;
+  // 阻擋預設表單送出行為
+  const handleSubmit = (e) => {
+    e.preventDefault();
   };
 
-  //總額
-  const calcTotalPrice = () => {
-    let total = 0;
-    for (let i = 0; i < products.length; i++) {
-      total += products[i].count * products[i].price;
-    }
-    return total;
+  //數量增減
+  const handleChange = (item, d) => {
+    const ind = data.indexOf(item);
+    const arr = data;
+    arr[ind].amount += d;
+    if (arr[ind].amount === 0) arr[ind].amount = 1;
+    setData([...arr]);
   };
+
+  //移除產品
+  const handleRemove = (id) => {
+    const arr = data.filter((item) => item.product_id !== id);
+    setData(arr);
+    setTotal(); //重新計算總價
+    setTotalAmount(); //重新計算總數量
+  };
+
+  //計算總價
+  const handleTotal = () => {
+    let total = 0;
+    data.map((item) => {
+      total += item.amount * item.price;
+      setTotal(total);
+    });
+  };
+
+  //計算總數量
+  const handleTotalAmount = () => {
+    let totalAmount = 0;
+    data.map((item) => {
+      totalAmount += item.amount;
+      setTotalAmount(totalAmount);
+    });
+  };
+
+  useEffect(() => {
+    handleTotal();
+    handleTotalAmount();
+  });
 
   return (
     <div className="container">
       {/* desktop */}
       <div className="mt-4 row  cart_index_desktop ">
         <div className="col-2">
-          <SideSection />
+          <SideSection
+            data={data}
+            setData={setData}
+            handleChange={handleChange}
+            handleRemove={handleRemove}
+            total={total}
+            setTotal={setTotal}
+            handleTotal={handleTotal}
+            totalAmount={totalAmount}
+            setTotalAmount={setTotalAmount}
+            handleTotalAmount={handleTotalAmount}
+          />
         </div>
-     
+
         <div className="col-9">
-             <form action="">
+          <form action="">
             <CartMain
-              products={products}
-              setProducts={setProducts}
-              calcTotalNumber={calcTotalNumber()}
-              calcTotalPrice={calcTotalPrice()}
+              data={data}
+              setData={setData}
+              handleChange={handleChange}
+              handleRemove={handleRemove}
+              total={total}
+              setTotal={setTotal}
+              handleTotal={handleTotal}
+              totalAmount={totalAmount}
+              setTotalAmount={setTotalAmount}
+              handleTotalAmount={handleTotalAmount}
             />
             <CartCoupon />
             <Shipping />
@@ -86,27 +108,37 @@ function ShoppingCart() {
                 結帳
               </button>
             </div>
-        </form>
-
-          </div>
+          </form>
+        </div>
       </div>
-      {/* tablet */}
-      {/* <div className="mt-4 cart_tablet ">
-        <div>
-          <SideSection />
-        </div>
-        <div>
-          <CartMain />
-          <CartCoupon />
-          <Shipping />
-        </div>
-      </div> */}
       {/* mobile &  tablet */}
       <div className="my-4  cart_index_tablet ">
         <div>
-          <CartMain />
+          <CartMain
+            data={data}
+            setData={setData}
+            handleChange={handleChange}
+            handleRemove={handleRemove}
+            total={total}
+            setTotal={setTotal}
+            handleTotal={handleTotal}
+            totalAmount={totalAmount}
+            setTotalAmount={setTotalAmount}
+            handleTotalAmount={handleTotalAmount}
+          />
           <CartCoupon />
-          <SideSection />
+          <SideSection
+            data={data}
+            setData={setData}
+            handleChange={handleChange}
+            handleRemove={handleRemove}
+            total={total}
+            setTotal={setTotal}
+            handleTotal={handleTotal}
+            totalAmount={totalAmount}
+            setTotalAmount={setTotalAmount}
+            handleTotalAmount={handleTotalAmount}
+          />
           <Shipping />
         </div>
       </div>

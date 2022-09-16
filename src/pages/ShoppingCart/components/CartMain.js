@@ -1,14 +1,25 @@
 import React from 'react';
-import '../../styles/CartMain.scss';
+import { useState, useEffect } from 'react';
+import '../styles/CartMain.scss';
 import { RiNumber1 } from 'react-icons/ri';
 import { BiX } from 'react-icons/bi';
 import { BiPlus } from 'react-icons/bi';
 import { BiMinus } from 'react-icons/bi';
 import { IoIosArrowDropleftCircle } from 'react-icons/io';
 import { IoIosArrowDroprightCircle } from 'react-icons/io';
-import SwiperForCart from '../SwiperForCart';
+import SwiperForCart from './SwiperForCart';
 
-function CartMain({ products, setProducts, setCount }) {
+function CartMain({
+  data,
+  setData,
+  total,
+  setTotal,
+  totalAmount,
+  setTotalAmount,
+  handleChange,
+  handleRemove,
+  handleTotal,
+}) {
   return (
     <div>
       <div>
@@ -38,43 +49,56 @@ function CartMain({ products, setProducts, setCount }) {
               <div className="cart_delete col-1"></div>
             </li>
 
-            <li className=" d-flex row align-items-center my-3">
-              <div className="d-flex detail col-lg-5 col-md-4 align-items-center ">
-                <img
-                  className="cart_product_pic"
-                  src={require('../../../../Assets/products/milk1004.jpg')}
-                  alt=""
-                />
-                <div className="ms-3">{}</div>
-              </div>
-              <div className="cart_price col-2">
-                <div>
-                  NT$ <em className="cart">3,566</em>
+            {data.map((item) => {
+              return (
+                <div key={item.id}>
+                  <li className=" d-flex row align-items-center my-3">
+                    <div className="d-flex detail col-lg-5 col-md-4 align-items-center ">
+                      <img
+                        className="cart_product_pic"
+                        src=""
+                        // {require(`../../Assets/products/${item.image}`)}
+                        alt=""
+                      />
+                      <div className="ms-3">{item.name}</div>
+                    </div>
+                    <div className="cart_price col-2">
+                      <div>
+                        NT$ <em className="cart">{item.price}</em>
+                      </div>
+                    </div>
+                    <div className="d-flex cart_counter col-2 align-items-center">
+                      <button
+                        name={item.product_id}
+                        onClick={() => handleChange(item, -1)}
+                        className="cart_add p-1 border border-secondary rounded"
+                      >
+                        <BiMinus />
+                      </button>
+                      <div className="cart_total_amount mx-2 ">
+                        {/* amount - 與庫存有關 */}
+                        {item.amount}
+                      </div>
+                      <button
+                        onClick={() => handleChange(item, 1)}
+                        className="cart_sub p-1 border border-secondary rounded"
+                      >
+                        <BiPlus />
+                      </button>
+                    </div>
+                    <div className="cart_subtotal col-1">
+                      <div>NT${item.price * item.amount}</div>
+                    </div>
+                    <button
+                      onClick={() => handleRemove(item.product_id)}
+                      className="cart_button delete col-1"
+                    >
+                      <BiX size={25} />
+                    </button>
+                  </li>
                 </div>
-              </div>
-              <div className="d-flex cart_counter col-2 align-items-center">
-                <button
-                  className="cart_add p-1 border border-secondary rounded"
-                  onClick={() => {
-                    setCount();
-                  }}
-                >
-                  <BiMinus />
-                </button>
-                <div className="cart_total_amount mx-2 ">1</div>
-                <button className="cart_sub p-1 border border-secondary rounded">
-                  <BiPlus />
-                </button>
-              </div>
-              <div className="cart_subtotal col-1">
-                <div>
-                  NT$ <em>{}</em>
-                </div>
-              </div>
-              <button className="cart_button delete col-1">
-                <BiX size={25} />
-              </button>
-            </li>
+              );
+            })}
             <hr />
 
             <li className="justify-content-end mb-2 ms-2">
@@ -90,7 +114,7 @@ function CartMain({ products, setProducts, setCount }) {
               <div className="d-flex">
                 <img
                   className="cart_item_pic"
-                  src={require('../../../../Assets/products/milk1004.jpg')}
+                  src={require('../../../Assets/products/milk1004.jpg')}
                   alt=""
                 />
                 <div className="flex-grow-1">
