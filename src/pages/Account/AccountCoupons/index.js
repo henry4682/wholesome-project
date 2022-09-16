@@ -2,33 +2,50 @@ import { React, useState, useEffect } from 'react';
 import './index.scss';
 import axios from 'axios';
 import { API_URL } from '../../../utils/config';
+import { useAuth } from '../../../context/auth';
 
 function AccountCoupons() {
+  const { user, setUser } = useAuth();
   const [coupons, setCoupons] = useState({ discount_code: '' });
   //設定取得會員資料狀態
-  const [userData, setUserData] = useState({ id: null });
+  // const [userData, setUserData] = useState({ id: null });
+  //取得會員所有優惠券資料的狀態
+  const [userCouponsData, setUserCouponsData] = useState([]);
 
   function handleFieldChange(e) {
     setCoupons({ ...coupons, [e.target.name]: e.target.value });
   }
 
+  // useEffect(() => {
+  //   let getUserData = async () => {
+  //     console.log('in APP: check if login');
+  //     let response = await axios.get(`${API_URL}/user`, {
+  //       withCredentials: true,
+  //     });
+  //     console.log(response.data);
+  //     setUserData(response.data);
+  //     // let couponsResponse=await axios.get(`$API`)
+  //   };
+  //   getUserData();
+  // }, []);
+
   useEffect(() => {
-    let getUserData = async () => {
-      console.log('in APP: check if login');
-      let response = await axios.get(`${API_URL}/user`, {
-        withCredentials: true,
-      });
+    let userCoupons = async () => {
+      // let response = await axios.get(
+      //   `http://localhost:3002/api/1.0/products/${categoryId}`
+      // );
+      let response = await axios.get(`${API_URL}/user/${user.id}/coupons`);
       console.log(response.data);
-      setUserData(response.data);
+      setUserCouponsData(response.data);
     };
-    getUserData();
-  }, []);
+    userCoupons();
+  }, [user.id]);
 
   async function handleCouponSubmit(e) {
     e.preventDefault();
     try {
       let response = await axios.post(
-        `${API_URL}/user/${userData.id}/coupon`,
+        `${API_URL}/user/${user.id}/coupon`,
         coupons
       );
       console.log('POST res', response);
@@ -39,6 +56,8 @@ function AccountCoupons() {
       alert(e.response.data.message);
     }
   }
+
+  let couponCount = userCouponsData.map((v) => v.id);
 
   return (
     <div className="account_coupons w-100">
@@ -70,7 +89,10 @@ function AccountCoupons() {
       <div className="d-flex justify-content-end mb-2">
         <p>
           可用優惠券總計
-          <span className="account_coupons-count text-primary mx-1">1</span>張
+          <span className="account_coupons-count text-primary mx-1">
+            {userCouponsData.length}
+          </span>
+          張
         </p>
       </div>
       <table className="account_coupons-table table table-bordered">
@@ -85,14 +107,18 @@ function AccountCoupons() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>註冊禮金</td>
-            <td>NT$100 </td>
-            <td>NEW100</td>
-            <td>2022-09-01</td>
-            <td>2022-09-30</td>
-          </tr>
+          {userCouponsData.map((v, i) => {
+            return (
+              <tr key={v.id}>
+                <th scope="row">{i + 1}</th>
+                <td>{v.coupon_name}</td>
+                <td>NT${v.coupon_price}</td>
+                <td>{v.coupon_code}</td>
+                <td>{v.coupon_start ? v.coupon_start : '-'}</td>
+                <td>{v.coupon_end ? v.coupon_end : '-'}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
       {/* mobile */}
