@@ -4,16 +4,11 @@ import axios from 'axios';
 import {
   BsSearch,
   BsFillPersonFill,
-  BsStarFill,
-  BsStarHalf,
-  BsStar,
 } from 'react-icons/bs';
 import { BiTimeFive } from 'react-icons/bi';
 import '../styles/RecipesDetail.scss';
-import recipeImage from '../Asset/food.jpg';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import ReactStars from 'react-rating-stars-component';
 import ProgressBar from '@ramonak/react-progress-bar';
 import Rating from '@mui/material/Rating';
 
@@ -22,26 +17,10 @@ function RecipeDetail() {
   const [ingData, setIngData] = useState([]);
   const [stepsData, setStepsData] = useState([]);
   const [commentData, setCommentData] = useState([]);
+  const [starInfo, setStarInfo] = useState([]);
+  const [gradeInfo, setGradeInfo] = useState([]);
+
   const { recipeId } = useParams();
-
-  //星星平均用
-  const [averageScore, setAverageScore] = useState(4.5);
-  //測試用:做出star bar的陣列
-  const starArr = Array(5)
-    .fill(5)
-    .map((num, index) => num - index);
-  //下面幾個是測試用之後可能會用json格式把star的內容包起來
-  const [stars, setStars] = useState([
-    {
-      starCount: 8,
-      starPercentage: '50',
-    },
-  ]);
-
-  //幾顆星的數量
-  const [starCount, setStarCount] = useState(8);
-  //star bar 的百分比
-  const [star, setStar] = useState('50');
 
   useEffect(() => {
     let getRecipe = async () => {
@@ -52,6 +31,8 @@ function RecipeDetail() {
       setIngData(response.data.ingData);
       setStepsData(response.data.stepsData);
       setCommentData(response.data.commentData);
+      setStarInfo(response.data.starInfo);
+      setGradeInfo(response.data.gradeInfo);
     };
     getRecipe();
   }, []);
@@ -120,62 +101,78 @@ function RecipeDetail() {
             })}
           </div>
           <div className="recipe-review mt-5">
-            <div className="review-title d-flex justify-content-between">
-              <h3>食譜評論</h3>
-              <div className="number">共 7 則</div>
-            </div>
-            <hr />
-            <div className="product_detail-average-score-box">
-              <div className="product_detail-average-score">{averageScore}</div>
-              <div className="product_detail-stars">
-              <Rating name="half-rating-read" defaultValue={4.5} precision={0.5} readOnly />
-              </div>
-            </div>
-            <div className="product_detail-score-bar">
-              <div className="product_detail-score-text">評價分佈顯示</div>
-              {starArr.map((num, i) => {
-                return (
-                  <div key={i} className="product_detail-star-bar">
-                    <p>
-                      {num}顆星({starCount})
-                    </p>
-                    <span className="product_detail-bar-section">
-                      <ProgressBar
-                        completed={star}
-                        customLabel={star + '%'}
-                        className="wrapper"
-                        bgColor={'#9AAB82'}
-                        baseBgColor={'#D9D9D9'}
-                        borderRadius="0px"
-                        labelAlignment="right"
-                        labelSize="11px"
-                      />
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-            <div className="review d-flex row">
-              <div className="review-left col-md-2">
-                <BsFillPersonFill size={100} color="#9aab82" />
-              </div>
-              <div className="review-right col-md-10">
-                <div className="review-name">林凱翔</div>
-                <div className="review-content">看起來好好吃!明天來試試看!</div>
-                <div className="review-info d-flex justify-content-between">
-                  <div className="review-date">2022-08-25</div>
-                  <div className="review-stars">
-                    <Rating
-                      name="half-rating-read"
-                      value={0}
-                      precision={0.1}
-                      readOnly
-                    />
-                  </div>
-                </div>
+            <div className="starInfo">
+              <div className="review-title d-flex justify-content-between">
+                <h3>食譜評論</h3>
+                <div className="number">共 {starInfo.total} 則</div>
               </div>
               <hr />
+              <div className="product_detail-average-score-box">
+                <div className="product_detail-average-score">
+                  {starInfo.gradeAverage}
+                </div>
+                {/* TODO: fix  */}
+                <div className="product_detail-stars">
+                  <Rating
+                    name="half-rating-read"
+                    value={starInfo.gradeAverage}
+                    precision={0.5}
+                    readOnly
+                  />
+                </div>
+              </div>
+
+              <div className="product_detail-score-bar">
+                <div className="product_detail-score-text">評價分佈顯示</div>
+                {gradeInfo.map((v, i) => {
+                  return (
+                    <div className="product_detail-star-bar">
+                      <p>
+                        {i + 1}顆星({v.gradeCount})
+                      </p>
+
+                      <span className="product_detail-bar-section">
+                        <ProgressBar
+                          completed={v.gradePercent}
+                          customLabel={v.gradePercent + '%'}
+                          className="wrapper"
+                          bgColor={'#9AAB82'}
+                          baseBgColor={'#D9D9D9'}
+                          borderRadius="0px"
+                          labelAlignment="left"
+                          labelSize="11px"
+                        />
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
+            {commentData.map((comment) => {
+              return (
+                <div className="review d-flex row">
+                  <div className="review-left col-md-2">
+                    <BsFillPersonFill size={100} color="#9aab82" />
+                  </div>
+                  <div className="review-right col-md-10">
+                    <div className="review-name">{comment.name}</div>
+                    <div className="review-content">{comment.comment}</div>
+                    <div className="review-info d-flex justify-content-between">
+                      <div className="review-date">{comment.create_date}</div>
+                      <div className="review-stars">
+                        <Rating
+                          name="half-rating-read"
+                          value={comment.grade}
+                          precision={0.1}
+                          readOnly
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <hr />
+                </div>
+              );
+            })}
           </div>
         </div>
 
