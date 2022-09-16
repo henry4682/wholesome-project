@@ -1,22 +1,72 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 import './index.scss';
+import axios from 'axios';
+import { API_URL } from '../../../utils/config';
 
 function AccountCoupons() {
+  const [coupons, setCoupons] = useState({ discount_code: '' });
+  //設定取得會員資料狀態
+  const [userData, setUserData] = useState({ id: null });
+
+  function handleFieldChange(e) {
+    setCoupons({ ...coupons, [e.target.name]: e.target.value });
+  }
+
+  useEffect(() => {
+    let getUserData = async () => {
+      console.log('in APP: check if login');
+      let response = await axios.get(`${API_URL}/user`, {
+        withCredentials: true,
+      });
+      console.log(response.data);
+      setUserData(response.data);
+    };
+    getUserData();
+  }, []);
+
+  async function handleCouponSubmit(e) {
+    e.preventDefault();
+    try {
+      let response = await axios.post(
+        `${API_URL}/user/${userData.id}/coupon`,
+        coupons
+      );
+      console.log('POST res', response);
+      console.log(response.data);
+      alert('優惠券新增成功');
+    } catch (e) {
+      console.error('Coupon add Error:', e);
+      alert(e.response.data.message);
+    }
+  }
+
   return (
     <div className="account_coupons w-100">
-      <div className="account_coupons-title d-flex align-items-center">
+      <form className="account_coupons-title d-flex align-items-center">
         <div className="row g-3 align-items-center">
           <div className="col-auto">
             <label className="col-form-label">優惠券代碼:</label>
           </div>
           <div className="col-auto">
-            <input type="text" className="form-control form-control-sm" />
+            <input
+              type="text"
+              className="form-control form-control-sm"
+              name="discount_code"
+              value={coupons.discount_code}
+              onChange={handleFieldChange}
+            />
           </div>
           <div className="col-auto">
-            <button className="btn btn-sm btn-secondary">確認</button>
+            <button
+              type="submit"
+              className="btn btn-sm btn-secondary"
+              onClick={handleCouponSubmit}
+            >
+              確認
+            </button>
           </div>
         </div>
-      </div>
+      </form>
       <div className="d-flex justify-content-end mb-2">
         <p>
           可用優惠券總計
