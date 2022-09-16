@@ -14,7 +14,7 @@ function SideSection({
   const [show, setShow] = useState(true);
 
   return (
-    <div>
+    <div className="sticky-top cart_sideSection">
       <div className="cart_card my-3 ">
         <div className="title ">結帳金額</div>
         <hr />
