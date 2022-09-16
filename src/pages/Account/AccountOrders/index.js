@@ -17,9 +17,6 @@ function AccountOrders() {
 
   useEffect(() => {
     let userOrders = async () => {
-      // let response = await axios.get(
-      //   `http://localhost:3002/api/1.0/products/${categoryId}`
-      // );
       let response = await axios.get(
         `${API_URL}/user/${user.id}/orders?page=${page}`
       );
