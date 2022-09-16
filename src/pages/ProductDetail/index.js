@@ -74,7 +74,14 @@ function ProductDetail() {
                 <div className="product_detail-info-box">
                   <h1 className="product_detail-product-title">{v.name}</h1>
                   <div className="product_detail-product-description">
-                    {v.description}
+                    {v.description.split('|').map((line, i) => {
+                      return (
+                        <div key={i}>
+                          <p>{line}</p>
+                          <br />
+                        </div>
+                      );
+                    })}
                   </div>
                   <h2 className="product_detail-product-price">NT${v.price}</h2>
                 </div>
@@ -112,7 +119,15 @@ function ProductDetail() {
             <section className="product_detail-section product_detail-product-detail">
               <div className="product_detail-section-title">商品介紹</div>
               <div className="product_detail-detail-content">
-                {v.product_intro}​
+                {v.product_intro.split('|').map((line, i) => {
+                  return (
+                    <div key={i}>
+                      <p>{line}</p>
+                      <br />
+                    </div>
+                  );
+                })}
+                ​
               </div>
             </section>
           </div>
