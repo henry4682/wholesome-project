@@ -6,12 +6,16 @@ import { API_URL } from '../../utils/config';
 import { FaHeart } from 'react-icons/fa';
 import BreadcrumbForDetail from './components/BreadcrumbForDetail';
 import SwiperForProduct from './components/SwiperForProduct';
-
 import Rating from '@mui/material/Rating';
 import ProgressBar from '@ramonak/react-progress-bar';
 import axios from 'axios';
+import { useAuth } from '../../context/auth';
+import { useCart } from '../../context/cart';
 
 function ProductDetail() {
+  const { user, isLogin, setIsLogin } = useAuth();
+  const { cart, setCart } = useCart();
+  console.log('user:', user, 'cart:', cart);
   //商品資料
   const [data, setData] = useState([]);
   const [commentData, setCommentData] = useState([]);
@@ -43,7 +47,7 @@ function ProductDetail() {
   const [page, setPage] = useState(1);
   const [amount, setAmount] = useState(0);
 
-  const [addCart, setAddCart] = useState(false);
+  // const [addCart, setAddCart] = useState(false);
 
   useEffect(() => {
     console.log('inside useEffect');
@@ -93,6 +97,22 @@ function ProductDetail() {
     return pages;
   };
 
+  console.log('商品資訊', data);
+
+  function addCart() {
+    setCart(...cart, data[0]);
+    // try {
+    //   let response = await axios.post(`${API_URL}/cart/${user.id}`, cart);
+    //   console.log('POST res', response);
+    //   console.log(response.data);
+    //   // setCart(...cart, response.data);
+    //   alert(response.data);
+    // } catch (e) {
+    //   console.error('cart add Error:', e);
+    // }
+  }
+
+  console.log('購物車', cart);
   return (
     <div className="container">
       <BreadcrumbForDetail />
@@ -128,9 +148,7 @@ function ProductDetail() {
                   <button
                     className="btn product_detail-product-btn product_detail-add-cart-btn"
                     type="button"
-                    onClick={() => {
-                      setAddCart(true);
-                    }}
+                    onClick={addCart}
                   >
                     加入購物車
                   </button>
