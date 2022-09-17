@@ -57,8 +57,6 @@ function AccountCoupons() {
     }
   }
 
-  let couponCount = userCouponsData.map((v) => v.id);
-
   return (
     <div className="account_coupons w-100">
       <form className="account_coupons-title d-flex align-items-center">
