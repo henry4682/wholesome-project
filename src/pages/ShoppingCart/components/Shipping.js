@@ -55,29 +55,10 @@ function Shipping(props) {
           />
           <br />
           <label className="mt-4 ">購買人地址</label>
-          <div className="row">
-            <div className=" mt-3 col-4">
-              <input className=" mt-3 px-4" type="text" placeholder="縣市" />
-            </div>
-            <div className=" mt-3 col-4">
-              <input
-                className=" mt-3 px-4"
-                type="text"
-                placeholder="鄉鎮市區"
-              />
-            </div>
-            <div className=" mt-3 col-4">
-              <input
-                className=" mt-3 px-4"
-                type="text"
-                placeholder="郵遞區號"
-              />
-            </div>
-          </div>
           <input
             className=" mt-3 px-4"
             type="text"
-            placeholder="請填寫詳細地址：路 / 巷 / 弄 / 樓"
+            placeholder="請填寫詳細地址"
           />
         </div>
       </div>

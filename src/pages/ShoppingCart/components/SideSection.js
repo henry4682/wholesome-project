@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { BsFillCaretUpFill, BsTypeH1 } from 'react-icons/bs';
 import '../styles/SideSection.scss';
 
+// test
+
 function SideSection({
   data,
   setData,
