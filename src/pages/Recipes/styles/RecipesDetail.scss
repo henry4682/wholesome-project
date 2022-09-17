@@ -29,6 +29,7 @@
 }
 .recipe-ingredient {
   width: 90%;
+  margin: 20px 0;
 }
 .recipe-ingredient h3 {
   font-size: 20px;
@@ -54,6 +55,28 @@
   .ingredient {
     font-size: 18px;
     margin: 30px;
+  }
+}
+
+.recipe-product{
+  width: 90%;
+  margin: 30px 0;
+}
+.recipe-product h3{
+  font-size: 20px;
+  margin: 10px 0;
+}
+.recipe-recommend-card{
+  width: 200px;
+  // height: 80%;。
+  margin: 20px;
+}
+.recipe-recommend-display{
+  display: flex;
+}
+@media screen and (max-width: 768px) {
+  .recipe-recommend-display{
+    display: block;
   }
 }
 .recipe-steps {
