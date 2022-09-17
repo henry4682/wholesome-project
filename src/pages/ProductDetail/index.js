@@ -57,6 +57,15 @@ function ProductDetail() {
     getProductDetail();
   }, []);
 
+  useEffect(() => {
+    let isLike = async () => {
+      let response = await axios.post(`${API_URL}.user_like`);
+      setIsLike(response);
+    };
+    // isLike();
+
+  }, [isLike]);
+
   return (
     <div className="container">
       <BreadcrumbForDetail />
@@ -74,8 +83,8 @@ function ProductDetail() {
                 <div className="product_detail-info-box">
                   <h1 className="product_detail-product-title">{v.name}</h1>
                   <div className="product_detail-product-description">
-                  {/* TODO:將資料庫裡的句子後面加上| */}
-                    {v.description.split('|').map((line, i) => {
+                    {/* TODO:將資料庫裡的句子後面加上| */}
+                    {v.description.split('~').map((line, i) => {
                       return (
                         <div key={i}>
                           <p>{line}</p>
@@ -120,7 +129,7 @@ function ProductDetail() {
             <section className="product_detail-section product_detail-product-detail">
               <div className="product_detail-section-title">商品介紹</div>
               <div className="product_detail-detail-content">
-                {v.product_intro.split('|').map((line, i) => {
+                {v.product_intro.split('~').map((line, i) => {
                   return (
                     <div key={i}>
                       <p>{line}</p>
