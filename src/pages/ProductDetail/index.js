@@ -39,6 +39,12 @@ function ProductDetail() {
   const [starCount, setStarCount] = useState(8);
   const [average, setAverage] = useState(0);
 
+  const [totalPage, setTotalPage] = useState(1);
+  const [page, setPage] = useState(1);
+  const [amount, setAmount] = useState(0);
+
+  const [addCart, setAddCart] = useState(false);
+
   useEffect(() => {
     console.log('inside useEffect');
     let getProductDetail = async () => {
@@ -49,10 +55,14 @@ function ProductDetail() {
       setEachStar(response.data.comment.eachStar);
       setStarCount(response.data.comment.starCount);
       setAverage(Number(response.data.comment.average));
-      console.log('commentData', commentData);
+
+      setTotalPage(response.data.pagination.totalPage);
+      setAmount(response.data.pagination.total);
+      // console.log('data', data);
+      // console.log('commentData', commentData);
       console.log('data be', response.data.productData);
-      console.log('data fe', data);
-      console.log('eachStar', eachStar);
+      // console.log('data fe', data);
+      // console.log('eachStar', eachStar);
     };
     getProductDetail();
   }, []);
@@ -63,8 +73,25 @@ function ProductDetail() {
       setIsLike(response);
     };
     // isLike();
-
   }, [isLike]);
+
+  const getPages = () => {
+    let pages = [];
+    for (let i = 1; i <= totalPage; i++) {
+      pages.push(
+        <li
+          className="page-item page-link"
+          key={i}
+          onClick={(e) => {
+            setPage(i);
+          }}
+        >
+          {i}
+        </li>
+      );
+    }
+    return pages;
+  };
 
   return (
     <div className="container">
@@ -87,8 +114,9 @@ function ProductDetail() {
                     {v.description.split('~').map((line, i) => {
                       return (
                         <div key={i}>
-                          <p>{line}</p>
-                          <br />
+                          <div>
+                            <p>{line}</p>
+                          </div>
                         </div>
                       );
                     })}
@@ -100,6 +128,9 @@ function ProductDetail() {
                   <button
                     className="btn product_detail-product-btn product_detail-add-cart-btn"
                     type="button"
+                    onClick={() => {
+                      setAddCart(true);
+                    }}
                   >
                     加入購物車
                   </button>
