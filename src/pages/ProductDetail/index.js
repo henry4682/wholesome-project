@@ -99,8 +99,9 @@ function ProductDetail() {
 
   console.log('商品資訊', data);
 
-  function addCart() {
-    setCart(...cart, data[0]);
+  async function addCart() {
+    if (cart.some((v) => v.id === data[0].id)) return;
+    setCart([...cart, ...data]);
     // try {
     //   let response = await axios.post(`${API_URL}/cart/${user.id}`, cart);
     //   console.log('POST res', response);

@@ -7,7 +7,6 @@ const CartContext = createContext(null);
 
 // 建立一個新的 Provider 元件，內容是提供 user 狀態
 export const CartProvider = ({ children }) => {
-  // const [user, setUser] = useState({ id: '0' });
   const [cart, setCart] = useState([]);
 
   return (
