@@ -88,40 +88,7 @@ function ProductsList() {
     return pages;
   };
 
-  //處理排序
-  const handleSort = (allProducts, order) => {
-    let newProducts = [...allProducts];
-
-    switch (order) {
-      case '1':
-        newProducts = newProducts.sort((a, b) => b.price - a.price);
-        break;
-      case '2':
-        newProducts = newProducts.sort((a, b) => a.price - b.price);
-        break;
-      case '3':
-        newProducts = newProducts.sort((a, b) => {
-          return new Date(b.launch_time) - new Date(a.launch_time);
-        });
-        break;
-      case '4':
-        newProducts = newProducts.sort((a, b) => {
-          return new Date(a.launch_time) - new Date(b.launch_time);
-        });
-      default:
-        break;
-    }
-    console.log('newProducts', newProducts);
-    return newProducts;
-  };
-
-  useEffect(() => {
-    let newProducts = [...allProducts];
-    //資料排序
-    newProducts = handleSort(newProducts, order);
-
-    // setAllProducts(newProducts);
-  }, [allProducts, order, page]);
+  
 
   return (
     <div className="product_list">
