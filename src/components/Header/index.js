@@ -28,11 +28,13 @@ function Header() {
         {/* 手機版 navbar */}
         <MobileNav />
         <div className="logo-container d-md-flex d-none justify-content-center align-items-center">
-          <img
-            className="logo"
-            src={require('../../Assets/Logo/logo.png')}
-            alt="logo"
-          />
+          <Link to="/">
+            <img
+              className="logo"
+              src={require('../../Assets/Logo/logo.png')}
+              alt="logo"
+            />
+          </Link>
           <div className="icon-box d-md-flex d-none">
             {/* 會員 icon -> 下拉式選單 */}
             <div className="dropdown">
@@ -102,13 +104,13 @@ function Header() {
         <nav className="header-nav justify-content-center align-items-center">
           <ul className="header-nav-links d-flex list-unstyled">
             <li>
-              <Link to="productsList/1">植物奶</Link>
+              <Link to="products/植物奶">植物奶</Link>
             </li>
             <li>
-              <Link to="productsList/4">營養蔬果汁</Link>
+              <Link to="products/有機蔬果汁">有機蔬果汁</Link>
             </li>
             <li>
-              <Link to="productsList/7">營養點心</Link>
+              <Link to="products/營養點心">營養點心</Link>
             </li>
             <li>
               <Link to="products/sale">本月優惠</Link>

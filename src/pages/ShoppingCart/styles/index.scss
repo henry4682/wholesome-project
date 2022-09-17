@@ -1,4 +1,4 @@
-.cart_button  {
+.cart_button {
   cursor: pointer;
   background-color: transparent;
   border: none;
@@ -13,8 +13,7 @@
   justify-content: space-around;
 }
 
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   .cart_index_desktop {
     display: none;
   }
@@ -22,7 +21,4 @@
   .cart_index_tablet {
     display: block;
   }
-
 }
-
-

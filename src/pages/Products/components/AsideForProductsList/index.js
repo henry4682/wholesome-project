@@ -1,12 +1,12 @@
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import './AsideForProductsList.scss';
-
-function AsideForProductsList({ setCategory }) {
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
+function AsideForProductsList({ setPage, setSearch, setOrder }) {
+  //設定css
   const theme = createTheme({
     components: {
       // Name of the component
@@ -14,7 +14,6 @@ function AsideForProductsList({ setCategory }) {
         styleOverrides: {
           // Name of the slot
           root: {
-            // Some CSS
             boxShadow: 'none',
           },
         },
@@ -25,52 +24,44 @@ function AsideForProductsList({ setCategory }) {
   return (
     <ThemeProvider theme={theme}>
       <div className="products_layout-aside-accordion">
-        <Accordion disableGutters={true} classes={{}}>
+        <Accordion disableGutters={true}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography
-              onClick={() => {
-                setCategory('植物奶');
-              }}
-            >
+            <Link className="link-decoration" to="../products/植物奶">
               植物奶
-            </Typography>
+            </Link>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
-              <ul className="list-group">
-                <li className="list-group-item products_layout-aside-list-group-item">
-                  <button
-                    onClick={() => {
-                      setCategory('燕麥奶');
-                    }}
-                  >
-                    燕麥奶
-                  </button>
-                </li>
-                <li className="list-group-item products_layout-aside-list-group-item">
-                  <button
-                    onClick={() => {
-                      setCategory('杏仁奶');
-                    }}
-                  >
-                    杏仁奶
-                  </button>
-                </li>
-                <li className="list-group-item products_layout-aside-list-group-item">
-                  <button
-                    onClick={() => {
-                      setCategory('堅果奶');
-                    }}
-                  >
-                    堅果奶
-                  </button>
-                </li>
-              </ul>
-            </Typography>
+            <ul className="list-group">
+              <li className="list-group-item products_layout-aside-list-group-item">
+                <Link
+                  className="link-decoration"
+                  to="../products/植物奶/燕麥奶"
+                >
+                  燕麥奶
+                </Link>
+              </li>
+
+              <li className="list-group-item products_layout-aside-list-group-item">
+                <Link
+                  className="link-decoration"
+                  to="../products/植物奶/杏仁奶"
+                >
+                  杏仁奶
+                </Link>
+              </li>
+              <li className="list-group-item products_layout-aside-list-group-item">
+                <Link
+                  className="link-decoration"
+                  to="../products/植物奶/堅果奶"
+                >
+                  堅果奶
+                </Link>
+              </li>
+            </ul>
           </AccordionDetails>
         </Accordion>
         <Accordion disableGutters={true}>
@@ -79,46 +70,37 @@ function AsideForProductsList({ setCategory }) {
             aria-controls="panel2a-content"
             id="panel2a-header"
           >
-            <Typography
-              onClick={() => {
-                setCategory('有機蔬果汁');
-              }}
-            >
+            <Link className="link-decoration" to="../products/有機蔬果汁">
               有機蔬果汁
-            </Typography>
+            </Link>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
-              <ul className="list-group">
-                <li className="list-group-item products_layout-aside-list-group-item">
-                  <button
-                    onClick={() => {
-                      setCategory('果汁');
-                    }}
-                  >
-                    果汁
-                  </button>
-                </li>
-                <li className="list-group-item products_layout-aside-list-group-item">
-                  <button
-                    onClick={() => {
-                      setCategory('蔬菜汁、氣泡水');
-                    }}
-                  >
-                    蔬菜汁、氣泡水
-                  </button>
-                </li>
-                <li className="list-group-item products_layout-aside-list-group-item">
-                  <button
-                    onClick={() => {
-                      setCategory('果昔、果醋');
-                    }}
-                  >
-                    果昔、果醋
-                  </button>
-                </li>
-              </ul>
-            </Typography>
+            <ul className="list-group">
+              <li className="list-group-item products_layout-aside-list-group-item">
+                <Link
+                  className="link-decoration"
+                  to="../products/有機蔬果汁/果汁"
+                >
+                  果汁
+                </Link>
+              </li>
+              <li className="list-group-item products_layout-aside-list-group-item">
+                <Link
+                  className="link-decoration"
+                  to="../products/有機蔬果汁/蔬菜汁、氣泡水"
+                >
+                  蔬菜汁、氣泡水
+                </Link>
+              </li>
+              <li className="list-group-item products_layout-aside-list-group-item">
+                <Link
+                  className="link-decoration"
+                  to="../products/有機蔬果汁/果昔、果醋"
+                >
+                  果昔、果醋
+                </Link>
+              </li>
+            </ul>
           </AccordionDetails>
         </Accordion>
         <Accordion disableGutters={true}>
@@ -127,46 +109,37 @@ function AsideForProductsList({ setCategory }) {
             aria-controls="panel3a-content"
             id="panel3a-header"
           >
-            <Typography
-              onClick={() => {
-                setCategory('營養點心');
-              }}
-            >
+            <Link className="link-decoration" to="../products/營養點心">
               營養點心
-            </Typography>
+            </Link>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
-              <ul className="list-group">
-                <li className="list-group-item products_layout-aside-list-group-item">
-                  <button
-                    onClick={() => {
-                      setCategory('麥片');
-                    }}
-                  >
-                    麥片
-                  </button>
-                </li>
-                <li className="list-group-item products_layout-aside-list-group-item">
-                  <button
-                    onClick={() => {
-                      setCategory('燕麥棒、蛋白棒');
-                    }}
-                  >
-                    燕麥棒、蛋白棒
-                  </button>
-                </li>
-                <li className="list-group-item products_layout-aside-list-group-item">
-                  <button
-                    onClick={() => {
-                      setCategory('堅果');
-                    }}
-                  >
-                    堅果
-                  </button>
-                </li>
-              </ul>
-            </Typography>
+            <ul className="list-group">
+              <li className="list-group-item products_layout-aside-list-group-item">
+                <Link
+                  className="link-decoration"
+                  to="../products/營養點心/麥片"
+                >
+                  麥片
+                </Link>
+              </li>
+              <li className="list-group-item products_layout-aside-list-group-item">
+                <Link
+                  className="link-decoration"
+                  to="../products/營養點心/燕麥棒、蛋白棒"
+                >
+                  燕麥棒、蛋白棒
+                </Link>
+              </li>
+              <li className="list-group-item products_layout-aside-list-group-item">
+                <Link
+                  className="link-decoration"
+                  to="../products/營養點心/堅果"
+                >
+                  堅果
+                </Link>
+              </li>
+            </ul>
           </AccordionDetails>
         </Accordion>
       </div>
