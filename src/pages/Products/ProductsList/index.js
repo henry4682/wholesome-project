@@ -88,8 +88,6 @@ function ProductsList() {
     return pages;
   };
 
-  
-
   return (
     <div className="product_list">
       <div className="container ">

@@ -52,7 +52,9 @@ function ProductDetail() {
   useEffect(() => {
     console.log('inside useEffect');
     let getProductDetail = async () => {
-      let response = await axios.get(`${API_URL}/productDetail/${productId}`);
+      let response = await axios.get(
+        `${API_URL}/productDetail/${productId}?page=${page}`
+      );
       setData(response.data.productData);
       setCommentData(response.data.comment.productComment);
       setTotalScore(response.data.comment.totalScore);
@@ -69,7 +71,7 @@ function ProductDetail() {
       // console.log('eachStar', eachStar);
     };
     getProductDetail();
-  }, []);
+  }, [page]);
 
   useEffect(() => {
     let isLike = async () => {
@@ -96,7 +98,7 @@ function ProductDetail() {
     }
     return pages;
   };
-
+  
   console.log('商品資訊', data);
 
   async function addCart() {
@@ -213,31 +215,21 @@ function ProductDetail() {
             <div className="product_detail-score-text">評價分佈顯示</div>
             {/* 可能跑迴圈? */}
             {starArr.map((num, i) => {
+              const starBarCount = eachStar.filter((v) => v === num).length;
+              const starPercentage = ((starBarCount / starCount) * 100).toFixed(
+                1
+              );
               return (
                 <div key={i} className="product_detail-star-bar">
                   <p>
                     {num}顆星(
-                    {eachStar.length > 0
-                      ? eachStar.filter((v) => v === num).length
-                      : 0}
-                    )
+                    {eachStar.length > 0 ? starBarCount : 0})
                   </p>
                   <span className="product_detail-bar-section">
                     <ProgressBar
-                      completed={
-                        eachStar.length > 0
-                          ? (eachStar.filter((v) => v === num).length /
-                              starCount) *
-                            100
-                          : 0
-                      }
+                      completed={eachStar.length > 0 ? starPercentage : 0}
                       customLabel={
-                        eachStar.length > 0
-                          ? (eachStar.filter((v) => v === num).length /
-                              starCount) *
-                              100 +
-                            '%'
-                          : '0%'
+                        eachStar.length > 0 ? starPercentage + '%' : '0%'
                       }
                       className="wrapper"
                       bgColor={'#9AAB82'}
@@ -259,7 +251,7 @@ function ProductDetail() {
             </div>
             <div className="product_detail-comment-info">
               <div className="product_detail-comment-top-text">
-                共 {commentData.length} 則
+                共 {amount} 則
               </div>
               <Link className="product_detail-comment-top-text" to="">
                 查看全部
@@ -306,28 +298,28 @@ function ProductDetail() {
 
           <nav aria-label="Page navigation ">
             <ul className="pagination product_detail-pagination">
-              <li className="page-item">
-                <Link
-                  className="page-link"
-                  to="/productDetail/:productId"
-                  aria-label="Previous"
-                >
-                  <span aria-hidden="true">&laquo;</span>
-                </Link>
+              <li
+                className="page-item"
+                aria-label="Previous"
+                onClick={(e) => {
+                  setPage(page - 1 < 1 ? 1 : page - 1);
+                }}
+              >
+                <span className="page-link" aria-hidden="true">
+                  &laquo;
+                </span>
               </li>
-              <li className="page-item">
-                <Link className="page-link" to="/productDetail/:productId">
-                  1
-                </Link>
-              </li>
-              <li className="page-item">
-                <Link
-                  className="page-link"
-                  to="/productDetail/:productId"
-                  aria-label="Next"
-                >
-                  <span aria-hidden="true">&raquo;</span>
-                </Link>
+              {getPages()}
+              <li
+                className="page-item"
+                aria-label="Next"
+                onClick={() => {
+                  setPage(page + 1 > totalPage ? totalPage : page + 1);
+                }}
+              >
+                <span className="page-link" aria-hidden="true">
+                  &raquo;
+                </span>
               </li>
             </ul>
           </nav>
