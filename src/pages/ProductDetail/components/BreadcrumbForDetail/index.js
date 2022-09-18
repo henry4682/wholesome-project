@@ -3,7 +3,10 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { FaHome } from 'react-icons/fa';
 import './ProductDetailBreadcrumb.scss';
 
-function BreadcrumbForDetail() {
+function BreadcrumbForDetail({ data }) {
+  const mainCategory = data.map((v) => v.main_category);
+  const subCategory = data.map((v) => v.sub_category);
+  const productName = data.map((v) => v.name);
   return (
     <>
       <nav
@@ -17,18 +20,18 @@ function BreadcrumbForDetail() {
             </Link>
           </li>
           <li className="breadcrumb-item product_detail-breadcrumb-item ">
-            <Link to="/products/植物奶">植物奶</Link>
+            <Link to={`/products/${mainCategory}`}>{mainCategory}</Link>
           </li>
           <li className="breadcrumb-item product_detail-breadcrumb-item">
-            <Link to="/products/植物奶/燕麥奶"> 燕麥奶</Link>
-            {/* 抽換 用context*/}
+            <Link to={`/products/${mainCategory}/${subCategory}`}>
+              {subCategory}
+            </Link>
           </li>
           <li
             className="breadcrumb-item product_detail-breadcrumb-item active"
             aria-current="page"
           >
-            Pacific Foods Organic Oat Original 植物牛奶,有機燕麥 - 原創,32
-            液體盎司(約 12 毫升)
+            {productName}
           </li>
         </ol>
       </nav>

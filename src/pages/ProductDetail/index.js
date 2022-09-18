@@ -15,6 +15,7 @@ import { useCart } from '../../context/cart';
 function ProductDetail() {
   const { user, isLogin, setIsLogin } = useAuth();
   const { cart, setCart } = useCart();
+
   console.log('user:', user, 'cart:', cart);
   //商品資料
   const [data, setData] = useState([]);
@@ -48,6 +49,8 @@ function ProductDetail() {
   const [amount, setAmount] = useState(0);
 
   // const [addCart, setAddCart] = useState(false);
+
+  const subCategory = data.map((v) => v.sub_category);
 
   useEffect(() => {
     console.log('inside useEffect');
@@ -98,7 +101,7 @@ function ProductDetail() {
     }
     return pages;
   };
-  
+
   console.log('商品資訊', data);
 
   async function addCart() {
@@ -118,7 +121,7 @@ function ProductDetail() {
   console.log('購物車', cart);
   return (
     <div className="container">
-      <BreadcrumbForDetail />
+      <BreadcrumbForDetail data={data} />
       {data.map((v, i) => {
         return (
           <div key={i}>
