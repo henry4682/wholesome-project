@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import './SwiperForDetail.scss';
 
-function SwiperForProduct() {
+function SwiperForProduct({ goods }) {
   return (
     <Swiper
       modules={[Navigation, A11y]}
@@ -28,97 +28,26 @@ function SwiperForProduct() {
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log('slide change')}
     >
-      <SwiperSlide className="card product_detail-card">
-        <img
-          src={require('../../../../Assets/products/milk1002.jpg')}
-          className="card-img-top"
-          alt="..."
-        />
-        <div className="card-body products_detail-card-body">
-          <Link className="card-title product_detail-card-title" to="">
-            咖啡師燕麥奶 (1000ml)
-          </Link>
-          <p className="card-text product_detail-card-text">NT156</p>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide className="card product_detail-card">
-        <img
-          src={require('../../../../Assets/products/milk1002.jpg')}
-          className="card-img-top"
-          alt="..."
-        />
-        <div className="card-body products_detail-card-body">
-          <Link className="card-title product_detail-card-title" to="">
-            咖啡師燕麥奶 (1000ml)
-          </Link>
-          <p className="card-text product_detail-card-text">NT156</p>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide className="card product_detail-card">
-        <img
-          src={require('../../../../Assets/products/milk1002.jpg')}
-          className="card-img-top"
-          alt="..."
-        />
-        <div className="card-body products_detail-card-body">
-          <Link className="card-title product_detail-card-title" to="">
-            咖啡師燕麥奶 (1000ml)
-          </Link>
-          <p className="card-text product_detail-card-text">NT156</p>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide className="card product_detail-card">
-        <img
-          src={require('../../../../Assets/products/milk1002.jpg')}
-          className="card-img-top"
-          alt="..."
-        />
-        <div className="card-body products_detail-card-body">
-          <Link className="card-title product_detail-card-title" to="">
-            咖啡師燕麥奶 (1000ml)
-          </Link>
-          <p className="card-text product_detail-card-text">NT156</p>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide className="card product_detail-card">
-        <img
-          src={require('../../../../Assets/products/milk1002.jpg')}
-          className="card-img-top"
-          alt="..."
-        />
-        <div className="card-body products_detail-card-body">
-          <Link className="card-title product_detail-card-title" to="">
-            咖啡師燕麥奶 (1000ml)
-          </Link>
-          <p className="card-text product_detail-card-text">NT156</p>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide className="card product_detail-card">
-        <img
-          src={require('../../../../Assets/products/milk1002.jpg')}
-          className="card-img-top"
-          alt="..."
-        />
-        <div className="card-body products_detail-card-body">
-          <Link className="card-title product_detail-card-title" to="">
-            咖啡師燕麥奶 (1000ml)
-          </Link>
-          <p className="card-text product_detail-card-text">NT156</p>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide className="card product_detail-card">
-        <img
-          src={require('../../../../Assets/products/milk1002.jpg')}
-          className="card-img-top"
-          alt="..."
-        />
-        <div className="card-body products_detail-card-body">
-          <Link className="card-title product_detail-card-title" to="">
-            咖啡師燕麥奶 (1000ml)
-          </Link>
-          <p className="card-text product_detail-card-text">NT156</p>
-        </div>
-      </SwiperSlide>
+      {goods.map((card, i) => {
+        return (
+          <SwiperSlide key={i} className="card product_detail-card">
+            <img
+              src={require(`../../../../Assets/products/${card.image}`)}
+              className="card-img-top"
+              alt="..."
+            />
+            <div className="card-body products_detail-card-body">
+              <Link
+                className="card-title product_detail-card-title"
+                to={`/productDetail/${card.product_id}`}
+              >
+                {card.name}
+              </Link>
+              <p className="card-text product_detail-card-text"></p>
+            </div>
+          </SwiperSlide>
+        );
+      })}
     </Swiper>
   );
 }

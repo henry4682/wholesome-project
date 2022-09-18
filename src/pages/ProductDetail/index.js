@@ -50,7 +50,7 @@ function ProductDetail() {
 
   // const [addCart, setAddCart] = useState(false);
 
-  const subCategory = data.map((v) => v.sub_category);
+  const [goods, setGoods] = useState([]);
 
   useEffect(() => {
     console.log('inside useEffect');
@@ -67,9 +67,11 @@ function ProductDetail() {
 
       setTotalPage(response.data.pagination.totalPage);
       setAmount(response.data.pagination.total);
+      setGoods(response.data.relatedGoods);
+      console.log('goods',response.data.relatedGoods)
       // console.log('data', data);
       // console.log('commentData', commentData);
-      console.log('data be', response.data.productData);
+      // console.log('data be', response.data.productData);
       // console.log('data fe', data);
       // console.log('eachStar', eachStar);
     };
@@ -331,7 +333,7 @@ function ProductDetail() {
       <div className="product_detail-section">
         <div className="product_detail-section-title">相關商品</div>
         <div className="product_detail-carousel">
-          <SwiperForProduct />
+          <SwiperForProduct goods={goods} />
         </div>
       </div>
     </div>
