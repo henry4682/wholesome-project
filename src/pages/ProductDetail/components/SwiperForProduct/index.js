@@ -39,11 +39,19 @@ function SwiperForProduct({ goods }) {
             <div className="card-body products_detail-card-body">
               <Link
                 className="card-title product_detail-card-title"
-                to={`/productDetail/${card.product_id}`}
+                to={`/productDetail/${card.id}`}
+                onClick={() => {
+                  window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth',
+                  });
+                }}
               >
                 {card.name}
               </Link>
-              <p className="card-text product_detail-card-text"></p>
+              <p className="card-text product_detail-card-text">
+                NT${card.price}
+              </p>
             </div>
           </SwiperSlide>
         );

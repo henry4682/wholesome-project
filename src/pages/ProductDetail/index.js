@@ -21,13 +21,11 @@ function ProductDetail() {
   const [data, setData] = useState([]);
   const [commentData, setCommentData] = useState([]);
   //收藏用TODO:useState裡的true/false要隨著使用者做更換
-  const [isLike, setIsLike] = useState(false);
+  const [isLike, setIsLike] = useState();
 
   //接收來自其他頁的參數
   const { productId } = useParams();
   console.log('productId', productId);
-
-  console.log('commentData', commentData);
 
   //星星平均用
   //測試用:做出star bar的陣列
@@ -38,10 +36,8 @@ function ProductDetail() {
 
   // 星星陣列
   const [eachStar, setEachStar] = useState([]);
-  //加總分數
-  const [totalScore, setTotalScore] = useState();
   //有幾個人的星星
-  const [starCount, setStarCount] = useState(8);
+  const [starCount, setStarCount] = useState();
   const [average, setAverage] = useState(0);
 
   const [totalPage, setTotalPage] = useState(1);
@@ -49,18 +45,17 @@ function ProductDetail() {
   const [amount, setAmount] = useState(0);
 
   // const [addCart, setAddCart] = useState(false);
-
+  //相關商品
   const [goods, setGoods] = useState([]);
 
   useEffect(() => {
     console.log('inside useEffect');
     let getProductDetail = async () => {
       let response = await axios.get(
-        `${API_URL}/productDetail/${productId}?page=${page}`
+        `${API_URL}/productDetail/${productId}?user=${user.id}&page=${page}&like=${isLike}`
       );
       setData(response.data.productData);
       setCommentData(response.data.comment.productComment);
-      setTotalScore(response.data.comment.totalScore);
       setEachStar(response.data.comment.eachStar);
       setStarCount(response.data.comment.starCount);
       setAverage(Number(response.data.comment.average));
@@ -68,7 +63,8 @@ function ProductDetail() {
       setTotalPage(response.data.pagination.totalPage);
       setAmount(response.data.pagination.total);
       setGoods(response.data.relatedGoods);
-      console.log('goods',response.data.relatedGoods)
+      // console.log('goods', response.data.relatedGoods);
+      setIsLike(response.data.likeData);
       // console.log('data', data);
       // console.log('commentData', commentData);
       // console.log('data be', response.data.productData);
@@ -76,14 +72,16 @@ function ProductDetail() {
       // console.log('eachStar', eachStar);
     };
     getProductDetail();
-  }, [page]);
-
+  }, [page, productId]);
   useEffect(() => {
-    let isLike = async () => {
-      let response = await axios.post(`${API_URL}.user_like`);
-      setIsLike(response);
+    let getLike = async () => {
+      let response = await axios.post(
+        `${API_URL}/productDetail/${productId}?user=${user.id}`
+      );
+     
+      console.log('isLike', isLike);
     };
-    // isLike();
+    getLike();
   }, [isLike]);
 
   const getPages = () => {
