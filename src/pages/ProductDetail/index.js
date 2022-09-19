@@ -17,11 +17,12 @@ function ProductDetail() {
   const { cart, setCart } = useCart();
 
   console.log('user:', user, 'cart:', cart);
+  console.log(user.id);
   //商品資料
   const [data, setData] = useState([]);
   const [commentData, setCommentData] = useState([]);
   //收藏用TODO:useState裡的true/false要隨著使用者做更換
-  const [isLike, setIsLike] = useState();
+  const [isLike, setIsLike] = useState(false);
 
   //接收來自其他頁的參數
   const { productId } = useParams();
@@ -52,7 +53,7 @@ function ProductDetail() {
     console.log('inside useEffect');
     let getProductDetail = async () => {
       let response = await axios.get(
-        `${API_URL}/productDetail/${productId}?user=${user.id}&page=${page}&like=${isLike}`
+        `${API_URL}/productDetail/${productId}?user=${user.id}&page=${page}&like=${isLike} `
       );
       setData(response.data.productData);
       setCommentData(response.data.comment.productComment);
@@ -63,26 +64,25 @@ function ProductDetail() {
       setTotalPage(response.data.pagination.totalPage);
       setAmount(response.data.pagination.total);
       setGoods(response.data.relatedGoods);
-      // console.log('goods', response.data.relatedGoods);
-      setIsLike(response.data.likeData);
-      // console.log('data', data);
-      // console.log('commentData', commentData);
-      // console.log('data be', response.data.productData);
-      // console.log('data fe', data);
-      // console.log('eachStar', eachStar);
+      setIsLike(response.data[0].likeData);
+
+      console.log('user:', user, 'cart:', cart);
+      
+      // console.log(user.id);
     };
     getProductDetail();
   }, [page, productId]);
-  useEffect(() => {
-    let getLike = async () => {
-      let response = await axios.post(
-        `${API_URL}/productDetail/${productId}?user=${user.id}`
-      );
-     
-      console.log('isLike', isLike);
-    };
-    getLike();
-  }, [isLike]);
+
+  // useEffect(() => {
+  //   let getLike = async () => {
+  //     let response = await axios.post(
+  //       `${API_URL}/productDetail/${productId}?user=${user.id}`
+  //     );
+
+  //     console.log('isLike', isLike);
+  //   };
+  //   getLike();
+  // }, [isLike]);
 
   const getPages = () => {
     let pages = [];
@@ -107,18 +107,18 @@ function ProductDetail() {
   async function addCart() {
     if (cart.some((v) => v.id === data[0].id)) return;
     setCart([...cart, ...data]);
-    // try {
-    //   let response = await axios.post(`${API_URL}/cart/${user.id}`, cart);
-    //   console.log('POST res', response);
-    //   console.log(response.data);
-    //   // setCart(...cart, response.data);
-    //   alert(response.data);
-    // } catch (e) {
-    //   console.error('cart add Error:', e);
-    // }
+    try {
+      let response = await axios.post(`${API_URL}/cart/${user.id}`, cart);
+      console.log('POST res', response);
+      console.log(response.data);
+      // setCart(...cart, response.data);
+      alert(response.data);
+    } catch (e) {
+      console.error('cart add Error:', e);
+    }
   }
 
-  console.log('購物車', cart);
+  // console.log('購物車', cart);
   return (
     <div className="container">
       <BreadcrumbForDetail data={data} />
@@ -169,7 +169,7 @@ function ProductDetail() {
                   className="btn d-flex align-items-center  product_detail-product-btn product_detail-like-btn"
                   type="button"
                   onClick={() => {
-                    setIsLike(!isLike);
+                    user.id !== '0' ? setIsLike(!isLike) : alert('請先登入');
                   }}
                 >
                   <FaHeart
@@ -238,7 +238,7 @@ function ProductDetail() {
                       bgColor={'#9AAB82'}
                       baseBgColor={'#D9D9D9'}
                       borderRadius="0px"
-                      labelAlignment="inside"
+                      labelAlignment="left"
                       labelSize="11px"
                     />
                   </span>
@@ -256,9 +256,6 @@ function ProductDetail() {
               <div className="product_detail-comment-top-text">
                 共 {amount} 則
               </div>
-              <Link className="product_detail-comment-top-text" to="">
-                查看全部
-              </Link>
             </div>
           </div>
           {commentData.map((comment) => {
