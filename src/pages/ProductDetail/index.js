@@ -17,12 +17,13 @@ function ProductDetail() {
   const { cart, setCart } = useCart();
 
   console.log('user:', user, 'cart:', cart);
-  console.log(user.id);
+  // console.log(user.id);
   //商品資料
   const [data, setData] = useState([]);
   const [commentData, setCommentData] = useState([]);
   //收藏用TODO:useState裡的true/false要隨著使用者做更換
   const [isLike, setIsLike] = useState(false);
+  const [like, setLike] = useState(false);
 
   //接收來自其他頁的參數
   const { productId } = useParams();
@@ -44,8 +45,6 @@ function ProductDetail() {
   const [totalPage, setTotalPage] = useState(1);
   const [page, setPage] = useState(1);
   const [amount, setAmount] = useState(0);
-
-  // const [addCart, setAddCart] = useState(false);
   //相關商品
   const [goods, setGoods] = useState([]);
 
@@ -53,7 +52,7 @@ function ProductDetail() {
     console.log('inside useEffect');
     let getProductDetail = async () => {
       let response = await axios.get(
-        `${API_URL}/productDetail/${productId}?user=${user.id}&page=${page}&like=${isLike} `
+        `${API_URL}/productDetail/${productId}?user=${user.id}&page=${page}`
       );
       setData(response.data.productData);
       setCommentData(response.data.comment.productComment);
@@ -64,25 +63,30 @@ function ProductDetail() {
       setTotalPage(response.data.pagination.totalPage);
       setAmount(response.data.pagination.total);
       setGoods(response.data.relatedGoods);
-      setIsLike(response.data[0].likeData);
+      setLike(response.data.valid);
+      setIsLike(response.data.likeData);
 
       console.log('user:', user, 'cart:', cart);
-      
+
       // console.log(user.id);
     };
     getProductDetail();
   }, [page, productId]);
 
-  // useEffect(() => {
-  //   let getLike = async () => {
-  //     let response = await axios.post(
-  //       `${API_URL}/productDetail/${productId}?user=${user.id}`
-  //     );
+  console.log('like', like);
+  console.log('likeData', isLike);
 
-  //     console.log('isLike', isLike);
-  //   };
-  //   getLike();
-  // }, [isLike]);
+  useEffect(() => {
+    if (isLike !== []) {
+      let insertLike = async () => {
+        let response = await axios.post(
+          `${API_URL}/productTracking/${user.id}?productId=${productId}&isLike=${isLike}`
+        );
+        setIsLike(response.data);
+      };
+      insertLike();
+    }
+  }, []);
 
   const getPages = () => {
     let pages = [];
