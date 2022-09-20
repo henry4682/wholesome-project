@@ -58,7 +58,7 @@ export const CartProvider = ({ children }) => {
     }
 
     localStorage.setItem('shoppingCart', JSON.stringify(cart));
-  }, [cart]);
+  }, []);
 
   return (
     <CartContext.Provider
