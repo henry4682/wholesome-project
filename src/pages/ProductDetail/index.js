@@ -24,15 +24,13 @@ function ProductDetail() {
   const [commentData, setCommentData] = useState([]);
   //收藏用TODO:useState裡的true/false要隨著使用者做更換
   const [isLike, setIsLike] = useState(false);
-  const [like, setLike] = useState(false);
+  
 
   //接收來自其他頁的參數
   const { productId } = useParams();
 
   // console.log('productId', productId);
   // console.log('commentData', commentData);
-
-
 
   //星星平均用
   //測試用:做出star bar的陣列
@@ -77,7 +75,7 @@ function ProductDetail() {
   }, []);
   console.log('商品資訊', data);
 
-  ////// 初始化載入使用者是否收藏這筆商品
+  // 初始化載入使用者是否收藏這筆商品
   useEffect(() => {
     // 判斷是否有登入
     if (!user || user.id === '0') {
@@ -94,7 +92,7 @@ function ProductDetail() {
     getUserLikeProduct();
   }, [user]);
 
-  ////// 收藏的按鈕
+  // 收藏的按鈕
   function handleIsLike() {
     // --- (1) 判斷是否登入
     if (!user || user.id === '0') {
@@ -139,7 +137,7 @@ function ProductDetail() {
     localStorage.setItem('shoppingCart', JSON.stringify(cart));
   }, [cart]);
 
-  ////// 加入購物車按鈕
+  // 加入購物車按鈕
   function addCart() {
     // --- (1) 判斷是否登入
     if (!user || user.id === '0') {
@@ -163,7 +161,6 @@ function ProductDetail() {
   }
   console.log('購物車', cart);
 
-
   const getPages = () => {
     let pages = [];
     for (let i = 1; i <= totalPage; i++) {
@@ -184,19 +181,19 @@ function ProductDetail() {
 
   console.log('商品資訊', data);
 
-  async function addCart() {
-    if (cart.some((v) => v.id === data[0].id)) return;
-    setCart([...cart, ...data]);
-    try {
-      let response = await axios.post(`${API_URL}/cart/${user.id}`, cart);
-      console.log('POST res', response);
-      console.log(response.data);
-      // setCart(...cart, response.data);
-      alert(response.data);
-    } catch (e) {
-      console.error('cart add Error:', e);
-    }
-  }
+  // async function addCart() {
+  // if (cart.some((v) => v.id === data[0].id)) return;
+  // setCart([...cart, ...data]);
+  // try {
+  // let response = await axios.post(`${API_URL}/cart/${user.id}`, cart);
+  // console.log('POST res', response);
+  // console.log(response.data);
+  // setCart(...cart, response.data);
+  // alert(response.data);
+  // } catch (e) {
+  // console.error('cart add Error:', e);
+  // }
+  // }
 
   // console.log('購物車', cart);
 
@@ -249,9 +246,7 @@ function ProductDetail() {
                 <button
                   className="btn d-flex align-items-center  product_detail-product-btn product_detail-like-btn"
                   type="button"
-
                   onClick={handleIsLike}
-
                 >
                   <FaHeart
                     className={
