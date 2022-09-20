@@ -36,7 +36,7 @@ function SwiperForCart() {
             alt="..."
           />
           <div className="card-body products_detail-card-body">
-            <Link className="card-title product_detail-card-title" to="">
+            <Link className="card-title product_detail-card-title" to="#">
               咖啡師燕麥奶 (1000ml)
             </Link>
             <p className="card-text cart_detail_price ">NT156</p>

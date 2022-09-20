@@ -245,7 +245,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
+
   padding: 10px 95px;
   gap: 1rem;
   border:0 0 0 1px solid #E2E0DB  ;
@@ -262,21 +262,19 @@
 .product_detail-user-img{
   max-width:50px;
   height: auto;
+ 
   box-sizing: border-box;
   border-radius: 50%;
   
 }
 .product_detail-user-text{
-  width: 43vw;
   display: flex;
   flex-direction: column;
-  justify-content:center ;
+  justify-content:flex-start ;
   align-items:flex-start;
   gap: 10px;
 }
 .product_detail-user-comment{
-  width:43vw;
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content:space-between ;
@@ -293,11 +291,10 @@
 }
 .product_detail-user-star{
   display: flex;
-  margin: 0 auto ;
   justify-content: space-between;
   align-items: center;
-  width:43vw;
-  
+  width:40vw;
+  margin: 0 auto;
 }
 .product_detail-pagination{
   width: 45vw;

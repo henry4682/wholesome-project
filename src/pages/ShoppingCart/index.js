@@ -6,13 +6,13 @@ import CartCoupon from './components/CartCoupon';
 import Shipping from './components/Shipping';
 import SideSection from './components/SideSection';
 import './styles/index.scss';
-
+import { useCart } from '../../context/cart';
 function ShoppingCart() {
+  const { cart, setCart } = useCart();
   // const [error, setError] = useState(null);
   const [data, setData] = useState([]); //資料最後長相是[]
   const [total, setTotal] = useState(0);
   const [totalAmount, setTotalAmount] = useState(0);
-
   // 阻擋預設表單送出行為
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,16 +20,16 @@ function ShoppingCart() {
 
   //數量增減
   const handleChange = (item, d) => {
-    const ind = data.indexOf(item);
-    const arr = data;
-    arr[ind].amount += d;
-    if (arr[ind].amount === 0) arr[ind].amount = 1;
-    setData([...arr]);
+    // const ind = cart.indexOf(item);
+    // const arr = cart;
+    // arr[ind].amount += d;
+    // if (arr[ind].amount === 0) arr[ind].amount = 1;
+    // setData([...arr]);
   };
 
   //移除產品
   const handleRemove = (id) => {
-    const arr = data.filter((item) => item.product_id !== id);
+    const arr = cart.filter((item) => item.id !== id);
     setData(arr);
     setTotal(); //重新計算總價
     setTotalAmount(); //重新計算總數量
@@ -38,7 +38,7 @@ function ShoppingCart() {
   //計算總價
   const handleTotal = () => {
     let total = 0;
-    data.map((item) => {
+    cart.map((item) => {
       total += item.amount * item.price;
       setTotal(total);
     });
@@ -47,16 +47,16 @@ function ShoppingCart() {
   //計算總數量
   const handleTotalAmount = () => {
     let totalAmount = 0;
-    data.map((item) => {
+    cart.map((item) => {
       totalAmount += item.amount;
       setTotalAmount(totalAmount);
     });
   };
 
-  useEffect(() => {
-    handleTotal();
-    handleTotalAmount();
-  });
+  // useEffect(() => {
+  //   handleTotal();
+  //   handleTotalAmount();
+  // });
 
   return (
     <div className="container">
@@ -78,37 +78,37 @@ function ShoppingCart() {
         </div>
 
         <div className="col-9">
-          <form action="">
-            <CartMain
-              data={data}
-              setData={setData}
-              handleChange={handleChange}
-              handleRemove={handleRemove}
-              total={total}
-              setTotal={setTotal}
-              handleTotal={handleTotal}
-              totalAmount={totalAmount}
-              setTotalAmount={setTotalAmount}
-              handleTotalAmount={handleTotalAmount}
-            />
-            <CartCoupon />
-            <Shipping />
+          {/* <form action=""> */}
+          <CartMain
+            data={data}
+            setData={setData}
+            handleChange={handleChange}
+            handleRemove={handleRemove}
+            total={total}
+            setTotal={setTotal}
+            handleTotal={handleTotal}
+            totalAmount={totalAmount}
+            setTotalAmount={setTotalAmount}
+            handleTotalAmount={handleTotalAmount}
+          />
+          <CartCoupon />
+          <Shipping />
 
-            <div className=" cart_shipping_term my-2">
-              <div className="d-flex align-items-center">
-                <input type="checkbox" id="secret" name="secret" />
-                <label for="secret" className="ps-3">
-                  同意會員責任規範及商家會員條款
-                </label>
-              </div>
-              <button
-                type="submit"
-                className="col-12 btn  btn-primary text-light px-4   my-3 text-center"
-              >
-                結帳
-              </button>
+          <div className=" cart_shipping_term my-2">
+            <div className="d-flex align-items-center">
+              <input type="checkbox" id="secret" name="secret" />
+              <label for="secret" className="ps-3">
+                同意會員責任規範及商家會員條款
+              </label>
             </div>
-          </form>
+            <button
+              type="submit"
+              className="col-12 btn  btn-primary text-light px-4   my-3 text-center"
+            >
+              結帳
+            </button>
+          </div>
+          {/* </form> */}
         </div>
       </div>
       {/* mobile &  tablet */}
