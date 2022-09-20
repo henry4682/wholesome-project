@@ -53,5 +53,14 @@
 }
 
 .cart_sideSection{
-  top: 32px;
+  position: sticky;
+  top: 0px;
+  z-index: 1020;
+}
+
+@media screen and (max-width: 990px) {
+  .cart_sideSection{
+    position: static;
+    top: 32px;
+  }
 }

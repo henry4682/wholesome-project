@@ -8,17 +8,14 @@
   display: none;
 }
 
-.cart_index_desktop {
+.cart_index_layout {
   display: flex;
   justify-content: space-around;
 }
 
 @media screen and (max-width: 992px) {
-  .cart_index_desktop {
-    display: none;
-  }
-
-  .cart_index_tablet {
-    display: block;
+  .cart_index_layout {
+    display: flex;
+    flex-direction: column;
   }
 }
