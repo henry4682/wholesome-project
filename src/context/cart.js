@@ -52,13 +52,13 @@ export const CartProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (!cart.length && localStorage.getItem('shoppingCart')) {
+    if (!cart.length && !localStorage.getItem('shoppingCart')) {
       setCart(JSON.parse(localStorage.getItem('shoppingCart')));
       return;
     }
 
     localStorage.setItem('shoppingCart', JSON.stringify(cart));
-  }, []);
+  }, [cart]);
 
   return (
     <CartContext.Provider

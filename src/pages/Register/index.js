@@ -33,6 +33,7 @@ function Register() {
       console.log(response.data);
       alert('註冊成功');
     } catch (e) {
+      alert(e.response.data.message || e.response.data.errors[0].msg);
       console.error('register Error', e);
     }
   }

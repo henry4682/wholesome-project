@@ -39,6 +39,8 @@ function Login() {
       setUser(response.data);
       setIsLogin(true);
     } catch (e) {
+      // 警告錯誤訊息
+      alert(e.response.data.message);
       console.error('register Error', e);
     }
   }
