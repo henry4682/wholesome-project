@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { BsFillCaretUpFill, BsTypeH1 } from 'react-icons/bs';
 import '../styles/SideSection.scss';
-
+import { useCart } from '../../../context/cart';
 // test
 
 function SideSection({
@@ -13,6 +13,7 @@ function SideSection({
   totalAmount,
   setTotalAmount,
 }) {
+  const { calcTotal } = useCart();
   const [show, setShow] = useState(true);
 
   return (
@@ -23,7 +24,7 @@ function SideSection({
         <span className="d-flex justify-content-between">
           商品小計
           <span>
-            NT$ <em>{total}</em>
+            NT$ <em>{calcTotal()}</em>
           </span>
         </span>
         <hr />
@@ -37,7 +38,7 @@ function SideSection({
         <span className="d-flex justify-content-between  align-items-end">
           應付總額
           <span className=" text-primary ">
-            NT$ <em className="cart_total text-primary">{total + 80}</em>
+            NT$ <em className="cart_total text-primary">{calcTotal() + 80}</em>
           </span>
         </span>
       </div>

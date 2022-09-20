@@ -86,7 +86,7 @@ function AccountCoupons() {
       </form>
       <div className="d-flex justify-content-end mb-2">
         <p>
-          優惠券總計
+          可用優惠券總計
           <span className="account_coupons-count text-primary mx-1">
             {userCouponsData.length}
           </span>
@@ -102,7 +102,6 @@ function AccountCoupons() {
             <th scope="col">優惠券代碼</th>
             <th scope="col">起始時間</th>
             <th scope="col">結束期限</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -115,7 +114,6 @@ function AccountCoupons() {
                 <td>{v.coupon_code}</td>
                 <td>{v.coupon_start ? v.coupon_start : '-'}</td>
                 <td>{v.coupon_end ? v.coupon_end : '-'}</td>
-                <td>{v.valid === 0 ? '已使用' : ''}</td>
               </tr>
             );
           })}

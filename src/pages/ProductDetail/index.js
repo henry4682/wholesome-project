@@ -16,7 +16,6 @@ function ProductDetail() {
   const { user, isLogin, setIsLogin } = useAuth();
   // const [user, setUser] = useState({ id: '0' });
   const { cart, setCart } = useCart();
-
   console.log('user:', user, 'cart:', cart);
   // console.log(user.id);
   //商品資料
@@ -28,7 +27,6 @@ function ProductDetail() {
 
   //接收來自其他頁的參數
   const { productId } = useParams();
-
   // console.log('productId', productId);
   // console.log('commentData', commentData);
 
@@ -41,8 +39,10 @@ function ProductDetail() {
 
   // 星星陣列
   const [eachStar, setEachStar] = useState([]);
+  //加總分數
+  const [totalScore, setTotalScore] = useState();
   //有幾個人的星星
-  const [starCount, setStarCount] = useState();
+  const [starCount, setStarCount] = useState(8);
   const [average, setAverage] = useState(0);
 
   const [totalPage, setTotalPage] = useState(1);
@@ -54,17 +54,15 @@ function ProductDetail() {
   useEffect(() => {
     // console.log('inside useEffect');
     let getProductDetail = async () => {
-      let response = await axios.get(
-        `${API_URL}/productDetail/${productId}?user=${user.id}&page=${page}`
-      );
+      let response = await axios.get(`${API_URL}/productDetail/${productId}`);
       setData(response.data.productData);
       setCommentData(response.data.comment.productComment);
+      setTotalScore(response.data.comment.totalScore);
       setEachStar(response.data.comment.eachStar);
       setStarCount(response.data.comment.starCount);
       setAverage(Number(response.data.comment.average));
       setTotalPage(response.data.pagination.totalPage);
       setAmount(response.data.pagination.total);
-
       // console.log('data', data);
       // console.log('commentData', commentData);
       // console.log('data be', response.data.productData);
@@ -134,7 +132,7 @@ function ProductDetail() {
   // 每當我的 Cart state 有變動， 就更新 localStorage
   useEffect(() => {
     // if (cart.length === 0) return;
-    localStorage.setItem('shoppingCart', JSON.stringify(cart));
+    //localStorage.setItem('shoppingCart', JSON.stringify(cart));
   }, [cart]);
 
   // 加入購物車按鈕
@@ -181,25 +179,11 @@ function ProductDetail() {
 
   console.log('商品資訊', data);
 
-  // async function addCart() {
-  // if (cart.some((v) => v.id === data[0].id)) return;
-  // setCart([...cart, ...data]);
-  // try {
-  // let response = await axios.post(`${API_URL}/cart/${user.id}`, cart);
-  // console.log('POST res', response);
-  // console.log(response.data);
-  // setCart(...cart, response.data);
-  // alert(response.data);
-  // } catch (e) {
-  // console.error('cart add Error:', e);
-  // }
-  // }
-
-  // console.log('購物車', cart);
+  
 
   return (
     <div className="container">
-      <BreadcrumbForDetail data={data} />
+      <BreadcrumbForDetail />
       {data.map((v, i) => {
         return (
           <div key={i}>
@@ -294,27 +278,37 @@ function ProductDetail() {
             <div className="product_detail-score-text">評價分佈顯示</div>
             {/* 可能跑迴圈? */}
             {starArr.map((num, i) => {
-              const starBarCount = eachStar.filter((v) => v === num).length;
-              const starPercentage = ((starBarCount / starCount) * 100).toFixed(
-                1
-              );
               return (
                 <div key={i} className="product_detail-star-bar">
                   <p>
                     {num}顆星(
-                    {eachStar.length > 0 ? starBarCount : 0})
+                    {eachStar.length > 0
+                      ? eachStar.filter((v) => v === num).length
+                      : 0}
+                    )
                   </p>
                   <span className="product_detail-bar-section">
                     <ProgressBar
-                      completed={eachStar.length > 0 ? starPercentage : 0}
+                      completed={
+                        eachStar.length > 0
+                          ? (eachStar.filter((v) => v === num).length /
+                              starCount) *
+                            100
+                          : 0
+                      }
                       customLabel={
-                        eachStar.length > 0 ? starPercentage + '%' : '0%'
+                        eachStar.length > 0
+                          ? (eachStar.filter((v) => v === num).length /
+                              starCount) *
+                              100 +
+                            '%'
+                          : '0%'
                       }
                       className="wrapper"
                       bgColor={'#9AAB82'}
                       baseBgColor={'#D9D9D9'}
                       borderRadius="0px"
-                      labelAlignment="left"
+                      labelAlignment="inside"
                       labelSize="11px"
                     />
                   </span>
@@ -330,8 +324,11 @@ function ProductDetail() {
             </div>
             <div className="product_detail-comment-info">
               <div className="product_detail-comment-top-text">
-                共 {amount} 則
+                共 {commentData.length} 則
               </div>
+              <Link className="product_detail-comment-top-text" to="">
+                查看全部
+              </Link>
             </div>
           </div>
           {commentData.map((comment) => {
@@ -374,28 +371,28 @@ function ProductDetail() {
 
           <nav aria-label="Page navigation ">
             <ul className="pagination product_detail-pagination">
-              <li
-                className="page-item"
-                aria-label="Previous"
-                onClick={(e) => {
-                  setPage(page - 1 < 1 ? 1 : page - 1);
-                }}
-              >
-                <span className="page-link" aria-hidden="true">
-                  &laquo;
-                </span>
+              <li className="page-item">
+                <Link
+                  className="page-link"
+                  to="/productDetail/:productId"
+                  aria-label="Previous"
+                >
+                  <span aria-hidden="true">&laquo;</span>
+                </Link>
               </li>
-              {getPages()}
-              <li
-                className="page-item"
-                aria-label="Next"
-                onClick={() => {
-                  setPage(page + 1 > totalPage ? totalPage : page + 1);
-                }}
-              >
-                <span className="page-link" aria-hidden="true">
-                  &raquo;
-                </span>
+              <li className="page-item">
+                <Link className="page-link" to="/productDetail/:productId">
+                  1
+                </Link>
+              </li>
+              <li className="page-item">
+                <Link
+                  className="page-link"
+                  to="/productDetail/:productId"
+                  aria-label="Next"
+                >
+                  <span aria-hidden="true">&raquo;</span>
+                </Link>
               </li>
             </ul>
           </nav>
@@ -404,7 +401,7 @@ function ProductDetail() {
       <div className="product_detail-section">
         <div className="product_detail-section-title">相關商品</div>
         <div className="product_detail-carousel">
-          <SwiperForProduct goods={goods} />
+          <SwiperForProduct />
         </div>
       </div>
     </div>

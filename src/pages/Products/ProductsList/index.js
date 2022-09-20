@@ -31,8 +31,6 @@ function ProductsList() {
   const [page, setPage] = useState(1);
   const [amount, setAmount] = useState(0);
 
- 
-
   //一開始讀到的分類資料
   useEffect(() => {
     let getAllProducts = async () => {
@@ -53,8 +51,8 @@ function ProductsList() {
 
   //(頁面和總體)資料篩選或變動
   useEffect(() => {
-    console.log('search', search);
-    console.log('page', page);
+    // console.log('search', search);
+    // console.log('page', page);
     let getSearchProducts = async () => {
       // console.log('API_URL', API_URL);
       let response = await axios.get(
@@ -62,8 +60,8 @@ function ProductsList() {
           subCategory ? subCategory : mainCategory
         }&search=${search}&order=${order}&page=${page}`
       );
-      console.log('Category', mainCategory, subCategory);
-      console.log('response.data', response.data);
+      // console.log('Category', mainCategory, subCategory);
+      // console.log('response.data', response.data);
       setAllProducts(response.data.data);
       setTotalPage(response.data.pagination.totalPage);
       setAmount(response.data.pagination.total);
