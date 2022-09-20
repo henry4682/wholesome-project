@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import './ProductDetail.scss';
 import { API_URL } from '../../utils/config';
@@ -14,6 +14,7 @@ import { useCart } from '../../context/cart';
 
 function ProductDetail() {
   const { user, isLogin, setIsLogin } = useAuth();
+  // const [user, setUser] = useState({ id: '0' });
   const { cart, setCart } = useCart();
 
   console.log('user:', user, 'cart:', cart);
@@ -26,7 +27,11 @@ function ProductDetail() {
 
   //接收來自其他頁的參數
   const { productId } = useParams();
-  console.log('productId', productId);
+
+  // console.log('productId', productId);
+  // console.log('commentData', commentData);
+
+
 
   //星星平均用
   //測試用:做出star bar的陣列
@@ -45,12 +50,9 @@ function ProductDetail() {
   const [page, setPage] = useState(1);
   const [amount, setAmount] = useState(0);
 
-  // const [addCart, setAddCart] = useState(false);
-  //相關商品
-  const [goods, setGoods] = useState([]);
 
   useEffect(() => {
-    console.log('inside useEffect');
+    // console.log('inside useEffect');
     let getProductDetail = async () => {
       let response = await axios.get(
         `${API_URL}/productDetail/${productId}?user=${user.id}&page=${page}&like=${isLike} `
@@ -60,29 +62,105 @@ function ProductDetail() {
       setEachStar(response.data.comment.eachStar);
       setStarCount(response.data.comment.starCount);
       setAverage(Number(response.data.comment.average));
-
       setTotalPage(response.data.pagination.totalPage);
       setAmount(response.data.pagination.total);
-      setGoods(response.data.relatedGoods);
-      setIsLike(response.data[0].likeData);
 
-      console.log('user:', user, 'cart:', cart);
-      
-      // console.log(user.id);
+      // console.log('data', data);
+      // console.log('commentData', commentData);
+      // console.log('data be', response.data.productData);
+      // console.log('data fe', data);
+      // console.log('eachStar', eachStar);
     };
     getProductDetail();
-  }, [page, productId]);
+  }, []);
+  console.log('商品資訊', data);
 
-  // useEffect(() => {
-  //   let getLike = async () => {
-  //     let response = await axios.post(
-  //       `${API_URL}/productDetail/${productId}?user=${user.id}`
-  //     );
+  ////// 初始化載入使用者是否收藏這筆商品
+  useEffect(() => {
+    // 判斷是否有登入
+    if (!user || user.id === '0') {
+      setIsLike(false);
+      return;
+    }
+    let getUserLikeProduct = async () => {
+      let response = await axios.get(
+        `${API_URL}/productTracking/${user.id}?product=${productId}`
+      );
+      console.log(response.data.isLike);
+      setIsLike(response.data.isLike);
+    };
+    getUserLikeProduct();
+  }, [user]);
 
-  //     console.log('isLike', isLike);
-  //   };
-  //   getLike();
-  // }, [isLike]);
+  ////// 收藏的按鈕
+  function handleIsLike() {
+    // --- (1) 判斷是否登入
+    if (!user || user.id === '0') {
+      alert('請先登入再進行商品收藏');
+      return;
+    }
+    setIsLike(!isLike);
+    try {
+      let postIsLike = async () => {
+        if (!isLike) {
+          // 如果沒有收藏 isLike === false
+          let response = await axios.post(
+            `${API_URL}/productTracking/${user.id}`,
+            { product_id: productId, isLike: !isLike }
+          );
+          console.log(response.data);
+          setIsLike(response.data.isLike);
+        } else {
+          // 如果沒有收藏 isLike === true
+          let response = await axios.delete(
+            `${API_URL}/productTracking/${user.id}?product=${productId}`
+          );
+          console.log(response.data);
+          setIsLike(response.data.isLike);
+        }
+      };
+      postIsLike();
+    } catch (e) {
+      console.error('tracking error:', e);
+    }
+  }
+
+  // 初始化載入 localStorage 裡面的 shoppingCart
+  useEffect(() => {
+    let currentCart = localStorage.getItem('shoppingCart');
+    setCart(JSON.parse(currentCart));
+  }, []);
+
+  // 每當我的 Cart state 有變動， 就更新 localStorage
+  useEffect(() => {
+    // if (cart.length === 0) return;
+    localStorage.setItem('shoppingCart', JSON.stringify(cart));
+  }, [cart]);
+
+  ////// 加入購物車按鈕
+  function addCart() {
+    // --- (1) 判斷是否登入
+    if (!user || user.id === '0') {
+      alert('請先登入再進行購買');
+      return;
+    }
+    // --- (2) 判斷購物車裡面是不是有這個商品
+    if (cart.some((v) => v.id === data[0].id)) {
+      alert('商品已存在於購物車');
+      return;
+    }
+    // item是指現在加入購物車的這個商品
+    let item = {
+      id: data[0].id,
+      amount: 1,
+      name: data[0].name,
+      price: data[0].price,
+      image: data[0].image,
+    };
+    setCart([...cart, item]);
+  }
+  console.log('購物車', cart);
+
 
   const getPages = () => {
     let pages = [];
@@ -119,6 +197,7 @@ function ProductDetail() {
   }
 
   // console.log('購物車', cart);
+
   return (
     <div className="container">
       <BreadcrumbForDetail data={data} />
@@ -168,16 +247,16 @@ function ProductDetail() {
                 <button
                   className="btn d-flex align-items-center  product_detail-product-btn product_detail-like-btn"
                   type="button"
-                  onClick={() => {
-                    user.id !== '0' ? setIsLike(!isLike) : alert('請先登入');
-                  }}
+
+                  onClick={handleIsLike}
+
                 >
                   <FaHeart
                     className={
                       isLike ? 'product_detail-heart' : 'product_detail-empty'
                     }
                   />
-                  加入最愛
+                  {isLike ? '移除收藏' : '加入收藏'}
                 </button>
               </div>
             </div>

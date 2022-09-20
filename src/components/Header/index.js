@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AiOutlineUser, AiOutlineShoppingCart } from 'react-icons/ai';
 import axios from 'axios';
@@ -10,7 +10,7 @@ import './index.scss';
 function Header() {
   // 把 user, setUser 從 auth context 裡頭拿出來
   const { user, setUser, setIsLogin } = useAuth();
-  const { cart } = useCart();
+  const { cart, setCart } = useCart();
   async function handleLogout() {
     let response = await axios.get(`${API_URL}/auth/logout`, {
       withCredentials: true,
@@ -18,6 +18,9 @@ function Header() {
     console.log('handleLogout', response.data);
     setUser(null);
     setIsLogin(false);
+    // localStorage.clear();
+    setCart([]);
+    localStorage.setItem('shoppingCart', JSON.stringify([]));
   }
 
   return (
@@ -107,7 +110,15 @@ function Header() {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  <AiOutlineShoppingCart />
+                  {/* 顯示購物車商品數量的小框框 */}
+                  <div className="header-cart-icon-box">
+                    <AiOutlineShoppingCart />
+                    <div className="header-cart-icon-count-box">
+                      <div className="header-cart-icon-count">
+                        <span>{cart.length}</span>
+                      </div>
+                    </div>
+                  </div>
                 </Link>
                 <ul
                   className="dropdown-menu"
@@ -121,20 +132,38 @@ function Header() {
                     cart.map((v, i) => {
                       return (
                         <>
-                          <li className="dropdown-item">{v.id}</li>
+                          <li className="dropdown-item  d-flex border-bottom">
+                            <div className="header-cart-item me-1">
+                              <img
+                                className="header-cart-item-img"
+                                src={require(`../../Assets/products/${v.image}`)}
+                                alt="logo"
+                              />
+                            </div>
+                            <div className="d-flex flex-column justify-content-center">
+                              <p>{v.name}</p>
+                              <p>NT${v.price}</p>
+                              <p>數量:{v.amount}</p>
+                            </div>
+                          </li>
                         </>
                       );
                     })
                   )}
-                  {/* <li className="dropdown-item">1</li>
-                  <li className="dropdown-item">2</li> */}
-                  <li>
-                    <div className="dropdown-item">
-                      <button className="btn btn-sm btn-secondary">
-                        前往購物車
-                      </button>
-                    </div>
-                  </li>
+                  {cart.length === 0 ? (
+                    <></>
+                  ) : (
+                    <li>
+                      <div className="dropdown-item">
+                        <Link
+                          to="shoppingCart"
+                          className="btn btn-sm btn-secondary"
+                        >
+                          立即結帳
+                        </Link>
+                      </div>
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>
