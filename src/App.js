@@ -32,7 +32,6 @@ import ProductDetail from './pages/ProductDetail';
 import ProductsSale from './pages/Products/ProductsSale';
 
 //recipe
-import RecipesLayout from './pages/Recipes/RecipesLayout';
 import RecipesList from './pages/Recipes/RecipesList';
 import RecipeDetail from './pages/Recipes/RecipeDetail';
 
@@ -79,10 +78,13 @@ function App() {
           <Route path="/productDetail/:productId" element={<ProductDetail />} />
 
 
-            <Route path="/recipes" element={<RecipesLayout />}>
-              <Route index element={<RecipesList />} />
-              <Route path="recipeDetail/:recipeId" element={<RecipeDetail />} />
-            </Route>
+
+          <Route path="/recipes/:category" element={<RecipesList />} />
+          <Route path="/recipeDetail/:recipeId" element={<RecipeDetail />} />
+
+          
+
+
 
             <Route path="shoppingCart" element={<ShoppingCart />} />
             <Route path="*" element={<NotFound />} />

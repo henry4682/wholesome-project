@@ -185,7 +185,7 @@ function Header() {
               <Link to="products/sale">本月優惠</Link>
             </li>
             <li>
-              <Link to="recipes">美味食譜</Link>
+              <Link to="recipes/飲品">美味食譜</Link>
             </li>
           </ul>
         </nav>
