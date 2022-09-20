@@ -282,13 +282,13 @@ function RecipeDetail() {
             <hr />
             <ul>
               <li>
-                <Link to="/recipes/飲品">飲品</Link>
+                <Link to="/recipes/飲品?search">飲品</Link>
               </li>
               <li>
-                <Link to="/recipes/烘焙">烘焙</Link>
+                <Link to="/recipes/烘焙?search">烘焙</Link>
               </li>
               <li>
-                <Link to="/recipes/輕食">輕食</Link>
+                <Link to="/recipes/輕食?search">輕食</Link>
               </li>
             </ul>
           </div>
