@@ -6,6 +6,12 @@
       height: 30px;
     }
   }
+  &-cart-item {
+    width: 60px;
+    &-img {
+      width: 100%;
+    }
+  }
 }
 .logo-container {
   height: 86px;
@@ -36,4 +42,26 @@
   gap: 15px;
   top: 25px;
   right: 40px;
+}
+
+// 購物車icon
+.header-cart-icon-box {
+  position: relative;
+}
+.header-cart-icon-count-box {
+  position: absolute;
+  top: -20%;
+  right: -50%;
+  width: 18px;
+  height: 16px;
+}
+.header-cart-icon-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  line-height: 1.4;
+  border-radius: 5px;
+  background-color: rgb(228, 84, 84);
+  color: #fff;
 }
