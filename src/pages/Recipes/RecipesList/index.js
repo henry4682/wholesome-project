@@ -7,7 +7,6 @@ import { FaLongArrowAltRight } from 'react-icons/fa';
 import { useParams, useSearchParams } from 'react-router-dom';
 import RecipeNavbar from '../component/RecipeNavbar';
 import { BsSearch, BsSortDownAlt, BsSortDown } from 'react-icons/bs';
-import _ from 'lodash';
 
 function RecipesList() {
   let [searchParams, setSearchParams] = useSearchParams();
