@@ -23,6 +23,9 @@ function RecipeDetail() {
 
   const { recipeId } = useParams();
 
+  const [reviewStar, setReviewStar] = useState(0);
+  const [review, setReview] = useState('');
+
   useEffect(() => {
     let getRecipe = async () => {
       let response = await axios.get(
@@ -41,6 +44,21 @@ function RecipeDetail() {
 
   if (isSearch) {
     return <Navigate to={`/recipes/飲品?search=${searchTerm}`} />;
+  }
+
+  async function handleSubmit(e) {
+    // 關掉submit按鈕的預設行為(跳頁)
+    e.preventDefault();
+    //表單傳送用post
+    try {
+      let result = await axios.post(
+        `http://localhost:3002/api/1.0/recipeReview/${recipeId}`,
+        { reviewStar, review }
+      )
+      console.log(result.data);
+    } catch (e) {
+      console.error('review', e);
+    }
   }
 
   return (
@@ -218,6 +236,43 @@ function RecipeDetail() {
                 </div>
               );
             })}
+            <div className="review-write mt-5">
+              <h3>撰寫評論</h3>
+              <hr />
+              <form>
+                <Rating
+                  name="simple-controlled"
+                  value={reviewStar}
+                  onChange={(event, newValue) => {
+                    setReviewStar(newValue);
+                  }}
+                />
+                <div class="form-group">
+                  <label
+                    for="exampleFormControlTextarea1"
+                    className="mt-3 mb-3"
+                  >
+                    評論內容
+                  </label>
+                  <textarea
+                    className="form-control mb-3"
+                    id="exampleFormControlTextarea1"
+                    rows="3"
+                    value={review.comment}
+                    onChange={(e) => {
+                      setReview(e.target.value);
+                    }}
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  onClick={handleSubmit}
+                >
+                  送出
+                </button>
+              </form>
+            </div>
           </div>
         </div>
 
