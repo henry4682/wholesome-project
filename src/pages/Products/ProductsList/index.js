@@ -31,6 +31,8 @@ function ProductsList() {
   const [page, setPage] = useState(1);
   const [amount, setAmount] = useState(0);
 
+ 
+
   //一開始讀到的分類資料
   useEffect(() => {
     let getAllProducts = async () => {
@@ -87,8 +89,6 @@ function ProductsList() {
     }
     return pages;
   };
-
-  
 
   return (
     <div className="product_list">
