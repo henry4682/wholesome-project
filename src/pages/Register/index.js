@@ -5,7 +5,7 @@ import './index.scss';
 import { FaHome } from 'react-icons/fa';
 import axios from 'axios';
 import { API_URL } from '../../utils/config';
-
+import { BsEye, BsEyeSlash } from 'react-icons/bs';
 function Register() {
   const [user, setUser] = useState({
     name: '邱婉瑜',
@@ -15,6 +15,10 @@ function Register() {
     password: 'test12345',
     confirmPassword: 'test12345',
   });
+
+  // 呈現密碼用
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   function handleFieldChange(e) {
     const newUser = { ...user, [e.target.name]: e.target.value };
@@ -27,6 +31,7 @@ function Register() {
       let response = await axios.post(`${API_URL}/auth/register`, user);
       console.log('POST res', response);
       console.log(response.data);
+      alert('註冊成功');
     } catch (e) {
       console.error('register Error', e);
     }
@@ -100,25 +105,59 @@ function Register() {
               </div>
               <div className="mb-4">
                 <label className="form-label">密碼*</label>
-                <input
-                  type="password"
-                  className="form-control form-control-lg"
-                  placeholder="請輸入您的密碼"
-                  name="password"
-                  value={user.password}
-                  onChange={handleFieldChange}
-                />
+                <div className="register_password_box">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    className="form-control form-control-lg"
+                    placeholder="請輸入您的密碼"
+                    name="password"
+                    value={user.password}
+                    onChange={handleFieldChange}
+                  />
+                  <div className="register_password_icon text-secondary">
+                    {showPassword ? (
+                      <BsEye
+                        onClick={(e) => {
+                          setShowPassword(false);
+                        }}
+                      />
+                    ) : (
+                      <BsEyeSlash
+                        onClick={(e) => {
+                          setShowPassword(true);
+                        }}
+                      />
+                    )}
+                  </div>
+                </div>
               </div>
               <div className="mb-4">
                 <label className="form-label">密碼確認*</label>
-                <input
-                  type="password"
-                  className="form-control form-control-lg"
-                  placeholder="再輸入一次密碼"
-                  name="confirmPassword"
-                  value={user.confirmPassword}
-                  onChange={handleFieldChange}
-                />
+                <div className="register_password_box">
+                  <input
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    className="form-control form-control-lg"
+                    placeholder="再輸入一次密碼"
+                    name="confirmPassword"
+                    value={user.confirmPassword}
+                    onChange={handleFieldChange}
+                  />
+                  <div className="register_password_icon text-secondary">
+                    {showConfirmPassword ? (
+                      <BsEye
+                        onClick={(e) => {
+                          setShowConfirmPassword(false);
+                        }}
+                      />
+                    ) : (
+                      <BsEyeSlash
+                        onClick={(e) => {
+                          setShowConfirmPassword(true);
+                        }}
+                      />
+                    )}
+                  </div>
+                </div>
               </div>
               <button
                 type="submit"

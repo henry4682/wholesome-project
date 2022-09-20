@@ -4,25 +4,45 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../../context/auth';
 import { API_URL } from '../../../utils/config';
 import axios from 'axios';
+import { BsCaretLeft, BsCaretRight } from 'react-icons/bs';
+
 function AccountOrders() {
   const { user, setUser } = useAuth();
   const [data, setData] = useState([]);
 
+  // 分頁: 增加 lastPage (總頁數) 與 page (目前在第幾頁) 的 state
+  const [lastPage, setLastPage] = useState(1);
+  const [page, setPage] = useState(1);
+  const [ordersCount, setOrdersCount] = useState(1);
+
   useEffect(() => {
     let userOrders = async () => {
-      // let response = await axios.get(
-      //   `http://localhost:3002/api/1.0/products/${categoryId}`
-      // );
-      let response = await axios.get(`${API_URL}/user/${user.id}/orders`);
+      let response = await axios.get(
+        `${API_URL}/user/${user.id}/orders?page=${page}`
+      );
       console.log(response.data);
-      setData(response.data);
+      setData(response.data.data);
+      setLastPage(response.data.pagination.lastPage);
+      setOrdersCount(response.data.pagination.total);
     };
     userOrders();
-  }, [user.id]);
+  }, [user.id, page]);
+
+  //製作分頁按鈕
+  let pages = [];
+  for (let i = 1; i <= lastPage; i++) {
+    pages.push(i);
+  }
+  console.log(pages);
 
   return (
     <>
       <div className="account_orders w-100">
+        <div className="d-flex justify-content-end">
+          <p className="mb-2 me-2">
+            第{page}頁，共{ordersCount}筆訂單
+          </p>
+        </div>
         <table className="account_orders-table table table-bordered">
           <thead className="table-secondary">
             <tr>
@@ -42,7 +62,7 @@ function AccountOrders() {
                   <th scope="row">{i + 1}</th>
                   <td>{v.order_sn} </td>
                   <td>{v.create_time}</td>
-                  <td>{v.total_price}</td>
+                  <td>NT${v.total_price}</td>
                   <td>{v.order_status}</td>
                   <td>{v.note}</td>
                   <td>
@@ -86,6 +106,47 @@ function AccountOrders() {
             </Link>
           </li>
         </ul>
+        {/* ------ 分頁 ------ */}
+        <div className="d-flex justify-content-center align-items-center">
+          <nav aria-label="Page navigation example">
+            <ul className="pagination">
+              <li
+                className="page-item page-link"
+                onClick={(e) => {
+                  if (page > 1) setPage(page - 1);
+                }}
+              >
+                <BsCaretLeft />
+              </li>
+              {pages.map((v, i) => {
+                return (
+                  <li
+                    key={i}
+                    className={
+                      page === v
+                        ? 'page-item page-link bg-secondary'
+                        : 'page-item page-link'
+                    }
+                    onClick={(e) => {
+                      setPage(v);
+                    }}
+                  >
+                    {v}
+                  </li>
+                );
+              })}
+
+              <li
+                className="page-item page-link"
+                onClick={(e) => {
+                  if (page < lastPage) setPage(page + 1);
+                }}
+              >
+                <BsCaretRight />
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </>
   );

@@ -17,10 +17,10 @@ function BreadcrumbForDetail() {
             </Link>
           </li>
           <li className="breadcrumb-item product_detail-breadcrumb-item ">
-            <Link to="/products">植物奶</Link>
+            <Link to="/products/植物奶">植物奶</Link>
           </li>
           <li className="breadcrumb-item product_detail-breadcrumb-item">
-            <Link to="/products"> 燕麥奶</Link>
+            <Link to="/products/植物奶/燕麥奶"> 燕麥奶</Link>
             {/* 抽換 用context*/}
           </li>
           <li

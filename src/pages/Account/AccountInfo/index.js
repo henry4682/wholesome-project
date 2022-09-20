@@ -6,7 +6,7 @@ import { API_URL } from '../../../utils/config';
 import axios from 'axios';
 
 function AccountInfo() {
-  const { user, setUser } = useAuth();
+  const { user, setUser, setIsLogin } = useAuth();
 
   // 登出按鈕
   async function handleLogout() {
@@ -15,13 +15,14 @@ function AccountInfo() {
     });
     console.log('handleLogout', response.data);
     setUser(null);
+    setIsLogin(false);
   }
   return (
     <>
       <div className="account_info w-100">
         <div className="account_info-card w-100 d-flex">
           <div className="account_info-card-left ">
-            <p className="account_info-card-name mb-2">{user.name}</p>
+            <p className="account_info-card-name mb-2">{user && user.name}</p>
             <div className="mb-3">
               <Link to="edit">查看個人資訊</Link>
             </div>

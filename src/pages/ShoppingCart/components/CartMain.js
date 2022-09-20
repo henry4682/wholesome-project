@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/CartMain.scss';
 import { RiNumber1 } from 'react-icons/ri';
 import { BiX } from 'react-icons/bi';
@@ -6,19 +7,35 @@ import { BiPlus } from 'react-icons/bi';
 import { BiMinus } from 'react-icons/bi';
 import { IoIosArrowDropleftCircle } from 'react-icons/io';
 import { IoIosArrowDroprightCircle } from 'react-icons/io';
+import SwiperForCart from './SwiperForCart';
+import { useCart } from '../../../context/cart';
+function CartMain({
+  data,
+  setData,
+  total,
+  setTotal,
+  totalAmount,
+  setTotalAmount,
+  handleChange,
+  handleRemove,
+  handleTotal,
+}) {
+  const { cart, setCart, plusOne, minusOne, remove } = useCart();
 
-function CartMain(props) {
   return (
     <div>
       <div>
         <div className="my-4">
-          <div className="position-absolute cart_number rounded-circle bg-secondary  "></div>
-          <RiNumber1 className="mx-auto ms-1 " />
-          {/* 購物車內容 */}
-          <span className="cart_title ms-2"> 購物車內容</span>
+          <div className="d-flex align-items-center">
+            <div className="position-relative cart_number rounded-circle bg-secondary ">
+              <RiNumber1 className="position-absolute top-50 start-50 translate-middle " />
+            </div>
+            <p className="title ms-2">購物車內容</p>
+          </div>
+
           {/* desktop */}
-          <ul className="cart_main_desktop  mt-3 cart_card cart_product_list">
-            <li className="d-flex row bg-secondary cart_heading">
+          <ul className="cart_main_desktop  mt-3 cart_card_main cart_product_list overflow-hidden">
+            <li className="d-flex row mx-0 bg-secondary cart_heading rounded-top">
               <div className="cart_th col-lg-5 col-md-4  d-sm-inline">
                 商品明細
               </div>
@@ -34,47 +51,77 @@ function CartMain(props) {
               <div className="cart_delete col-1"></div>
             </li>
 
-            <li className=" d-flex row align-items-center my-3">
-              <div className="d-flex detail col-lg-5 col-md-4 align-items-center ">
-                <img className="cart_product_pic" src="" alt="" />
-                <div className="ms-3">蘋果醋</div>
-              </div>
-              <div className="cart_price col-2">
-                <div>
-                  NT$ <em className="cart">3,566</em>
+            {cart.map((v, i) => {
+              return (
+                <div key={v.id}>
+                  <li className=" d-flex row align-items-center my-3">
+                    <div className="d-flex detail col-lg-5 col-md-4 align-items-center ">
+                      <img
+                        className="cart_product_pic"
+                        src={require(`../../../Assets/products/${v.image}`)}
+                        // {require(`../../Assets/products/${item.image}`)}
+                        alt="item"
+                      />
+                      <div className="ms-3">{v.name}</div>
+                    </div>
+                    <div className="cart_price col-2">
+                      <div>
+                        NT$ <em className="cart">{v.price}</em>
+                      </div>
+                    </div>
+                    <div className="d-flex cart_counter col-2 align-items-center">
+                      <button
+                        name={v.id}
+                        //onClick={() => handleChange(v, -1)}
+                        onClick={() => minusOne(v.id)}
+                        className="cart_add p-1 border border-secondary rounded"
+                      >
+                        <BiMinus />
+                      </button>
+                      <div className="cart_total_amount mx-2 ">
+                        {/* amount - 與庫存有關 */}
+                        {v.amount}
+                      </div>
+                      <button
+                        //onClick={() => handleChange(v, 1)}
+                        onClick={() => plusOne(v.id)}
+                        className="cart_sub p-1 border border-secondary rounded"
+                      >
+                        <BiPlus />
+                      </button>
+                    </div>
+                    <div className="cart_subtotal col-1">
+                      <div>NT${v.price * v.amount}</div>
+                    </div>
+                    <button
+                      //onClick={() => handleRemove(v.id)}
+                      onClick={() => remove(v.id)}
+                      className="cart_button delete col-1"
+                    >
+                      <BiX size={25} />
+                    </button>
+                  </li>
                 </div>
-              </div>
-              <div className="d-flex cart_counter col-2 align-items-center">
-                <button className="cart_add p-1 border border-secondary rounded">
-                  <BiMinus />
-                </button>
-                <div className="cart_total_amount mx-2 ">1</div>
-                <button className="cart_sub p-1 border border-secondary rounded">
-                  <BiPlus />
-                </button>
-              </div>
-              <div className="cart_subtotal col-1">
-                <div>
-                  NT$ <em>3,566</em>
-                </div>
-              </div>
-              <button className="delete col-1">
-                <BiX size={25} />
-              </button>
-            </li>
+              );
+            })}
             <hr />
 
-            <li className="justify-content-end">購物車內合計有 2 項商品</li>
+            <li className="justify-content-end mb-2 ms-2">
+              購物車內合計有 2 項商品
+            </li>
           </ul>
           {/* table & mobile */}
           <ul className="cart_main_tablet mt-3 cart_card cart_product_list">
             <li className="d-flex bg-secondary cart_heading">
               <div className="cart_th">商品明細</div>
             </li>
-
             <li className=" row align-items-center my-3">
               <div className="d-flex">
-                <img className="cart_item_pic" src="" alt="" />
+                <img
+                  className="cart_item_pic"
+                  src={require('../../../Assets/products/milk1004.jpg')}
+                  alt=""
+                />
                 <div className="flex-grow-1">
                   <div className="d-flex justify-content-between">
                     <div className="ms-4 mt-3 d-flex ">蘋果醋</div>
@@ -82,13 +129,11 @@ function CartMain(props) {
                       <BiX size={25} />
                     </button>
                   </div>
-                  <div className="ms-4 my-3">
-                    NT$ <em className="cart">3,566</em>
-                  </div>
+                  <div className="ms-4 my-3 cart">NT$ 3,566</div>
                 </div>
               </div>
 
-              <div className="d-flex justify-content-between mt-3">
+              <div className=" d-flex justify-content-between mt-3">
                 <div className="d-flex cart_counter col-2 align-items-center">
                   <button className="cart_button cart_add p-2 border border-secondary rounded">
                     <BiMinus />
@@ -98,10 +143,8 @@ function CartMain(props) {
                     <BiPlus />
                   </button>
                 </div>
-                <div className="cart_subtotal col-2  text-primary">
-                  <div>
-                    NT$ <em>3,566</em>
-                  </div>
+                <div className="cart_subtotal col-2  text-primary  d-flex align-items-center">
+                  NT$ 3,566
                 </div>
               </div>
             </li>
@@ -111,76 +154,12 @@ function CartMain(props) {
           </ul>
 
           {/* 訂單加購商品區 */}
+
           <div className="cart_title ms-2 my-3">訂單加購商品區</div>
 
           <hr />
-          <div className="cart_items_wrapper">
-            <ul className="cart_items d-flex justify-content-between">
-              <button className="cart_button bg-secondary">
-                <IoIosArrowDropleftCircle size={30} />
-              </button>
-              <li className="  text-center py-2 ps-md-4 ">
-                <img src="" alt="" className="cart_product_pic" />
 
-                <div className="py-1">梅子醋</div>
-                <div className="my-2 text-primary">
-                  NT$ <em className="add-on text-primary">3,566</em>
-                </div>
-                <button className="cart_button btn btn-primary text-light px-4">
-                  我要加購
-                </button>
-              </li>
-
-              <li className="  text-center py-2  ps-md-4 ">
-                <img src="" alt="" className="cart_product_pic" />
-
-                <div className="py-1">梅子醋</div>
-                <div className="my-2 text-primary">
-                  NT$ <em className="add-on text-primary">3,566</em>
-                </div>
-                <button className="btn btn-primary text-light px-4">
-                  我要加購
-                </button>
-              </li>
-
-              <li className="  text-center py-2  ps-md-4 ">
-                <img src="" alt="" className="cart_product_pic" />
-
-                <div className="py-1">梅子醋</div>
-                <div className="my-2 text-primary">
-                  NT$ <em className="add-on text-primary">3,566</em>
-                </div>
-                <button className="btn btn-primary text-light px-4">
-                  我要加購
-                </button>
-              </li>
-
-              <li className="  text-center py-2 ps-md-4  ">
-                <img src="" alt="" className="cart_product_pic" />
-
-                <div className="py-1">梅子醋</div>
-                <div className="my-2 text-primary">
-                  NT$ <em className="add-on text-primary">3,566</em>
-                </div>
-                <button className="btn btn-primary text-light px-4">
-                  我要加購
-                </button>
-              </li>
-              <li className="  text-center py-2 ps-md-4  ">
-                <img src="" alt="" className="cart_product_pic" />
-                <div className="py-1">梅子醋</div>
-                <div className="my-2 text-primary">
-                  NT$ <em className="add-on text-primary">3,566</em>
-                </div>
-                <button className="btn btn-primary text-light px-4 ">
-                  我要加購
-                </button>
-              </li>
-              <button className="bg-secondary">
-                <IoIosArrowDroprightCircle size={30} />
-              </button>
-            </ul>
-          </div>
+          <SwiperForCart />
         </div>
       </div>
     </div>
