@@ -12,16 +12,18 @@ function SwiperForProduct({ goods }) {
     <Swiper
       modules={[Navigation, A11y]}
       slidesPerView={1}
-      spaceBetween={70}
-      loopedSlides={true}
+      spaceBetween={0}
+      centeredSlides={false}
       breakpoints={{
         756: {
           slidesPerView: 3,
           spaceBetween: 50,
+          centeredSlides: true,
         },
         990: {
           slidesPerView: 4,
           spaceBetween: 50,
+          centeredSlides: false,
         },
       }}
       navigation
