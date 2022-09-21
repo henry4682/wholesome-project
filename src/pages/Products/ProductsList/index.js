@@ -79,6 +79,7 @@ function ProductsList() {
           key={i}
           onClick={(e) => {
             setPage(i);
+            goToTop();
           }}
         >
           {i}
@@ -86,6 +87,13 @@ function ProductsList() {
       );
     }
     return pages;
+  };
+
+  const goToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
   return (
@@ -245,6 +253,7 @@ function ProductsList() {
               aria-label="Previous"
               onClick={(e) => {
                 setPage(page - 1 < 1 ? 1 : page - 1);
+                goToTop();
               }}
             >
               <span className="page-link" aria-hidden="true">
@@ -257,6 +266,7 @@ function ProductsList() {
               aria-label="Next"
               onClick={() => {
                 setPage(page + 1 > totalPage ? totalPage : page + 1);
+                goToTop();
               }}
             >
               <span className="page-link" aria-hidden="true">

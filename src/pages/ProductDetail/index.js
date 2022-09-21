@@ -54,6 +54,7 @@ function ProductDetail() {
       setStar(response.data.stars);
     };
     getProductDetail();
+    goToTop()
   }, [productId]);
   console.log('商品資訊', data);
   console.log('goods', goods);
@@ -175,6 +176,12 @@ function ProductDetail() {
       );
     }
     return pages;
+  };
+  const goToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
   const goToCommentTop = () => {
