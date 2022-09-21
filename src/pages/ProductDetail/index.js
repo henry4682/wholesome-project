@@ -23,7 +23,6 @@ function ProductDetail() {
   const [commentData, setCommentData] = useState([]);
   //收藏用TODO:useState裡的true/false要隨著使用者做更換
   const [isLike, setIsLike] = useState(false);
-  
 
   //接收來自其他頁的參數
   const { productId } = useParams();
@@ -56,22 +55,23 @@ function ProductDetail() {
     let getProductDetail = async () => {
       let response = await axios.get(`${API_URL}/productDetail/${productId}`);
       setData(response.data.productData);
-      setCommentData(response.data.comment.productComment);
-      setTotalScore(response.data.comment.totalScore);
-      setEachStar(response.data.comment.eachStar);
-      setStarCount(response.data.comment.starCount);
-      setAverage(Number(response.data.comment.average));
-      setTotalPage(response.data.pagination.totalPage);
-      setAmount(response.data.pagination.total);
-      // console.log('data', data);
-      // console.log('commentData', commentData);
-      // console.log('data be', response.data.productData);
-      // console.log('data fe', data);
-      // console.log('eachStar', eachStar);
     };
     getProductDetail();
   }, []);
   console.log('商品資訊', data);
+
+  useEffect(() => {
+    let getProductComment = async () => {
+      let response = await axios.get(
+        `${API_URL}/productComments/${productId}?page=${page}`
+      );
+      setCommentData(response.data.commentInfo.commentData);
+      setTotalPage(response.data.commentInfo.totalPage);
+      setAmount(response.data.commentInfo.commentTotal);
+      console.log('來自be的評論資料', response);
+    };
+    getProductComment();
+  }, [page]);
 
   // 初始化載入使用者是否收藏這筆商品
   useEffect(() => {
@@ -179,11 +179,9 @@ function ProductDetail() {
 
   console.log('商品資訊', data);
 
-  
-
   return (
     <div className="container">
-      <BreadcrumbForDetail />
+      <BreadcrumbForDetail data={data} />
       {data.map((v, i) => {
         return (
           <div key={i}>
@@ -324,7 +322,7 @@ function ProductDetail() {
             </div>
             <div className="product_detail-comment-info">
               <div className="product_detail-comment-top-text">
-                共 {commentData.length} 則
+                共 {amount} 則
               </div>
               <Link className="product_detail-comment-top-text" to="">
                 查看全部
@@ -371,28 +369,32 @@ function ProductDetail() {
 
           <nav aria-label="Page navigation ">
             <ul className="pagination product_detail-pagination">
-              <li className="page-item">
-                <Link
+              <li
+                className="page-item"
+                onClick={() => {
+                  setPage(page === 1 ? page : page - 1);
+                }}
+              >
+                <span
                   className="page-link"
-                  to="/productDetail/:productId"
                   aria-label="Previous"
+                  aria-hidden="true"
                 >
-                  <span aria-hidden="true">&laquo;</span>
-                </Link>
+                  &laquo;
+                </span>
               </li>
-              <li className="page-item">
-                <Link className="page-link" to="/productDetail/:productId">
-                  1
-                </Link>
-              </li>
-              <li className="page-item">
-                <Link
+              {getPages()}
+              <li className="page-item"
+                onClick={() => {
+                  setPage(page === totalPage ? totalPage : page + 1);
+                }}>
+                <span
                   className="page-link"
-                  to="/productDetail/:productId"
                   aria-label="Next"
+                  aria-hidden="true"
                 >
-                  <span aria-hidden="true">&raquo;</span>
-                </Link>
+                  &raquo;
+                </span>
               </li>
             </ul>
           </nav>
