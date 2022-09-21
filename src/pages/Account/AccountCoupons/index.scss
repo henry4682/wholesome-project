@@ -14,6 +14,9 @@
   &-table {
     border: 1px solid #dddddd;
     font-size: 14px;
+    .coupon-used {
+      color: #e45454;
+    }
   }
   &-mobile {
     display: none;
