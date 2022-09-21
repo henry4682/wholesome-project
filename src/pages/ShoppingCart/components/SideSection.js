@@ -5,15 +5,8 @@ import '../styles/SideSection.scss';
 import { useCart } from '../../../context/cart';
 // test
 
-function SideSection({
-  data,
-  setData,
-  total,
-  setTotal,
-  totalAmount,
-  setTotalAmount,
-}) {
-  const { calcTotal } = useCart();
+function SideSection() {
+  const { cart, calcTotal } = useCart();
   const [show, setShow] = useState(true);
 
   return (
@@ -56,13 +49,13 @@ function SideSection({
         <hr />
         <span>
           {show
-            ? data.map((item, i) => {
+            ? cart.map((v, i) => {
                 return (
-                  <div key={item.id}>
+                  <div key={v.id}>
                     <div>
-                      <div className="cart_product m-2">{item.name}</div>
+                      <div className="cart_product m-2">{v.name}</div>
                       <div className="d-flex m-2 justify-content-end">
-                        數量 <div>{item.amount}</div>
+                        數量 <div>{v.amount}</div>
                       </div>
                       <hr />
                     </div>
@@ -71,7 +64,7 @@ function SideSection({
               })
             : null}
 
-          <span className="m-2">合計有{totalAmount}項商品</span>
+          <span className="m-2">合計有{cart.length}項商品</span>
         </span>
       </div>
     </div>

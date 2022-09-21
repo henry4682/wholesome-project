@@ -7,7 +7,7 @@ import { BiPlus } from 'react-icons/bi';
 import { BiMinus } from 'react-icons/bi';
 // import { IoIosArrowDropleftCircle } from 'react-icons/io';
 // import { IoIosArrowDroprightCircle } from 'react-icons/io';
-import SwiperForCart from './SwiperForCart';
+// import SwiperForCart from './SwiperForCart';
 import { useCart } from '../../../context/cart';
 function CartMain() {
   const { cart, setCart, plusOne, minusOne, remove } = useCart();
@@ -90,8 +90,9 @@ function CartMain() {
             <td colSpan={6}>購物車內合計有 {cart.length} 項商品</td>
           </tbody>
         </table>
+
         {/* table & mobile */}
-        <ul className="cart_main_tablet mt-3 cart_card cart_product_list">
+        {/* <ul className="cart_main_tablet mt-3 cart_card cart_product_list">
           <li className="d-flex bg-secondary cart_heading">
             <div className="cart_th">商品明細</div>
           </li>
@@ -131,15 +132,7 @@ function CartMain() {
           <hr />
 
           <li className="justify-content-end">購物車內合計有 2 項商品</li>
-        </ul>
-
-        {/* 訂單加購商品區 */}
-
-        <div className="cart_title ms-2 my-3">訂單加購商品區</div>
-
-        <hr />
-
-        <SwiperForCart />
+        </ul> */}
       </div>
     </>
   );
