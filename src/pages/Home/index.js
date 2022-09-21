@@ -54,11 +54,11 @@ function Home() {
                   src={require(`../../Assets/products/${item.image}`)}
                   alt=""
                 />
-                <div className=" py-2 text-center">{item.name}</div>
-                <div className="my-2 text-primary">
+                <div className=" new_card_name  py-2 text-center">{item.name}</div>
+                <div className=" my-2 text-primary">
                   NT$ <em className="add-on text-primary">{item.price}</em>
                 </div>
-                <button className="btn btn-primary text-light px-4">
+                <button className="btn btn-primary text-light mx-auto">
                   加入購物車
                 </button>
               </li>
