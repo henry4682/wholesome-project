@@ -19,7 +19,7 @@ function SwiperForHome() {
       }}
       loop={true}
       navigation
-      autoplay={{ delay: 1500, disableOnInteraction: false }}
+      autoplay={{ delay: 2000, disableOnInteraction: false }}
       pagination={{ clickable: true }}
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log('slide change')}
