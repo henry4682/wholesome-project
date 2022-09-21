@@ -1,17 +1,28 @@
 import React from 'react';
 import './index.scss';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { API_URL } from '../../utils/config';
 import SwiperForHome from './SwiperForHome';
 import { FiArrowLeftCircle } from 'react-icons/fi';
 import { Swiper } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
 import 'swiper/css/pagination';
 
-function Home(props) {
+function Home() {
+  const [newProducts, setNewProducts] = useState([]);
+  useEffect(() => {
+    let getNewestProducts = async () => {
+      let response = await axios.get(`${API_URL}/newProducts`);
+      setNewProducts(response.data);
+    };
+    getNewestProducts();
+  }, []);
+
   return (
     <div>
       {/* // swiper */}
       <SwiperForHome />
-      
 
       <div className="mt-5 d-md-flex justify-content-between">
         <img
@@ -31,66 +42,28 @@ function Home(props) {
         />
       </div>
       <div className="home_recommend my-5">
-        <p className="home_title text-center">Hot Sale</p>
+        <p className="home_title text-center">New Products !!</p>
       </div>
       <div className="container">
         <ul className="d-flex row gy-3 justify-content-center ">
-          <li className=" my-3 col-5 col-lg-2 text-center py-2 ">
-            <img
-              className="cart_product_pic"
-              src={require('../../Assets/products/milk2019.jpg')}
-              alt=""
-            />
-            <div className="py-2 text-center">梅子醋</div>
-            <div className="my-2 text-primary">
-              NT$ <em className="add-on text-primary">3,566</em>
-            </div>
-            <button className="btn btn-primary text-light px-4">
-              加入購物車
-            </button>
-          </li>
-          <li className=" my-3 col-5 col-lg-2 text-center py-2 ">
-            <img
-              className="cart_product_pic"
-              src={require('../../Assets/products/milk2019.jpg')}
-              alt=""
-            />
-            <div className="py-2">梅子醋</div>
-            <div className="my-2 text-primary">
-              NT$ <em className="add-on text-primary">3,566</em>
-            </div>
-            <button className="btn btn-primary text-light px-4">
-              加入購物車
-            </button>
-          </li>
-          <li className=" my-3 col-5 col-lg-2 text-center py-2 ">
-            <img
-              className="cart_product_pic"
-              src={require('../../Assets/products/milk2019.jpg')}
-              alt=""
-            />
-            <div className="py-2">梅子醋</div>
-            <div className="my-2 text-primary">
-              NT$ <em className="add-on text-primary">3,566</em>
-            </div>
-            <button className="btn btn-primary text-light px-4">
-              加入購物車
-            </button>
-          </li>
-          <li className="  my-3 col-5 col-lg-2 text-center py-2 ">
-            <img
-              className="cart_product_pic"
-              src={require('../../Assets/products/milk2019.jpg')}
-              alt=""
-            />
-            <div className="py-2">梅子醋</div>
-            <div className="my-2 text-primary">
-              NT$ <em className="add-on text-primary">3,566</em>
-            </div>
-            <button className="btn btn-primary text-light px-4">
-              加入購物車
-            </button>
-          </li>
+          {newProducts.map((item, i) => {
+            return (
+              <li key={i} className=" my-3 col-5 col-lg-2 text-center py-2 ">
+                <img
+                  className="cart_product_pic"
+                  src={require(`../../Assets/products/${item.image}`)}
+                  alt=""
+                />
+                <div className=" py-2 text-center">{item.name}</div>
+                <div className="my-2 text-primary">
+                  NT$ <em className="add-on text-primary">{item.price}</em>
+                </div>
+                <button className="btn btn-primary text-light px-4">
+                  加入購物車
+                </button>
+              </li>
+            );
+          })}
         </ul>
       </div>
       <div className="home_recommend my-5">
