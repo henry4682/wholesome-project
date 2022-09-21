@@ -1,27 +1,16 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import '../styles/CartMain.scss';
 import { RiNumber1 } from 'react-icons/ri';
 import { BiX } from 'react-icons/bi';
 import { BiPlus } from 'react-icons/bi';
 import { BiMinus } from 'react-icons/bi';
-import { IoIosArrowDropleftCircle } from 'react-icons/io';
-import { IoIosArrowDroprightCircle } from 'react-icons/io';
+// import { IoIosArrowDropleftCircle } from 'react-icons/io';
+// import { IoIosArrowDroprightCircle } from 'react-icons/io';
 import SwiperForCart from './SwiperForCart';
 import { useCart } from '../../../context/cart';
-function CartMain({
-  data,
-  setData,
-  total,
-  setTotal,
-  totalAmount,
-  setTotalAmount,
-  handleChange,
-  handleRemove,
-  handleTotal,
-}) {
+function CartMain() {
   const { cart, setCart, plusOne, minusOne, remove } = useCart();
-
   return (
     <div>
       <div>
@@ -48,66 +37,58 @@ function CartMain({
               <div className="cart_th col-lg-2 col-md-2 d-none d-md-block">
                 小計
               </div>
-              <div className="cart_delete col-1"></div>
+              <div className="cart_delete col-1">刪除商品</div>
             </li>
 
             {cart.map((v, i) => {
               return (
-                <div key={v.id}>
-                  <li className=" d-flex row align-items-center my-3">
-                    <div className="d-flex detail col-lg-5 col-md-4 align-items-center ">
-                      <img
-                        className="cart_product_pic"
-                        src={require(`../../../Assets/products/${v.image}`)}
-                        // {require(`../../Assets/products/${item.image}`)}
-                        alt="item"
-                      />
-                      <div className="ms-3">{v.name}</div>
+                <li key={v.id} className=" d-flex row align-items-center my-3">
+                  <div className="d-flex detail col-lg-5 col-md-4 align-items-center ">
+                    <img
+                      className="cart_product_pic"
+                      src={require(`../../../Assets/products/${v.image}`)}
+                      // {require(`../../Assets/products/${item.image}`)}
+                      alt="item"
+                    />
+                    <div className="ms-3">{v.name}</div>
+                  </div>
+                  <div className="cart_price col-2">
+                    <div>
+                      NT$ <em className="cart">{v.price}</em>
                     </div>
-                    <div className="cart_price col-2">
-                      <div>
-                        NT$ <em className="cart">{v.price}</em>
-                      </div>
-                    </div>
-                    <div className="d-flex cart_counter col-2 align-items-center">
-                      <button
-                        name={v.id}
-                        //onClick={() => handleChange(v, -1)}
-                        onClick={() => minusOne(v.id)}
-                        className="cart_add p-1 border border-secondary rounded"
-                      >
-                        <BiMinus />
-                      </button>
-                      <div className="cart_total_amount mx-2 ">
-                        {/* amount - 與庫存有關 */}
-                        {v.amount}
-                      </div>
-                      <button
-                        //onClick={() => handleChange(v, 1)}
-                        onClick={() => plusOne(v.id)}
-                        className="cart_sub p-1 border border-secondary rounded"
-                      >
-                        <BiPlus />
-                      </button>
-                    </div>
-                    <div className="cart_subtotal col-1">
-                      <div>NT${v.price * v.amount}</div>
-                    </div>
+                  </div>
+                  <div className="d-flex cart_counter col-2 align-items-center">
                     <button
-                      //onClick={() => handleRemove(v.id)}
-                      onClick={() => remove(v.id)}
-                      className="cart_button delete col-1"
+                      name={v.id}
+                      //onClick={() => handleChange(v, -1)}
+                      onClick={() => minusOne(v.id)}
+                      className="cart_add p-1 border border-secondary rounded"
                     >
-                      <BiX size={25} />
+                      <BiMinus />
                     </button>
-                  </li>
-                </div>
+                    <div className="cart_total_amount mx-2 ">{v.amount}</div>
+                    <button
+                      onClick={() => plusOne(v.id)}
+                      className="cart_sub p-1 border border-secondary rounded"
+                    >
+                      <BiPlus />
+                    </button>
+                  </div>
+                  <div className="cart_subtotal col-1">
+                    <div>NT${v.price * v.amount}</div>
+                  </div>
+                  <button
+                    onClick={() => remove(v.id)}
+                    className="cart_button delete col-1"
+                  >
+                    <BiX size={25} />
+                  </button>
+                </li>
               );
             })}
             <hr />
-
             <li className="justify-content-end mb-2 ms-2">
-              購物車內合計有 2 項商品
+              購物車內合計有 {cart.length} 項商品
             </li>
           </ul>
           {/* table & mobile */}
