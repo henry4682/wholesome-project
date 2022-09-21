@@ -2,12 +2,16 @@ import React from 'react';
 import './index.scss';
 import SwiperForHome from './SwiperForHome';
 import { FiArrowLeftCircle } from 'react-icons/fi';
+import { Swiper } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper';
+import 'swiper/css/pagination';
 
 function Home(props) {
   return (
     <div>
       {/* // swiper */}
       <SwiperForHome />
+      
 
       <div className="mt-5 d-md-flex justify-content-between">
         <img
