@@ -371,9 +371,9 @@ color: #565656;
     flex-direction: column;
   
   }
- .products_detail-comment-info{
+  .products_detail-comment-info{
     padding: 9px  0px;
- }
+  }
 
   .product_detail-user-img{
     width: 65px;  
@@ -386,5 +386,12 @@ color: #565656;
     justify-content: start;
     align-items: start;
   }
+  .product_detail-card{
+    max-width: 100%;
+    border:none;
+  }
+
+
+
 }
 
