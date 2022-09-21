@@ -55,10 +55,12 @@ function ProductDetail() {
     let getProductDetail = async () => {
       let response = await axios.get(`${API_URL}/productDetail/${productId}`);
       setData(response.data.productData);
+      setGoods(response.data.relatedGoods);
     };
     getProductDetail();
   }, []);
   console.log('商品資訊', data);
+  console.log('goods', goods);
 
   useEffect(() => {
     let getProductComment = async () => {
@@ -384,10 +386,12 @@ function ProductDetail() {
                 </span>
               </li>
               {getPages()}
-              <li className="page-item"
+              <li
+                className="page-item"
                 onClick={() => {
                   setPage(page === totalPage ? totalPage : page + 1);
-                }}>
+                }}
+              >
                 <span
                   className="page-link"
                   aria-label="Next"
@@ -403,7 +407,7 @@ function ProductDetail() {
       <div className="product_detail-section">
         <div className="product_detail-section-title">相關商品</div>
         <div className="product_detail-carousel">
-          <SwiperForProduct />
+          <SwiperForProduct goods={goods} />
         </div>
       </div>
     </div>
