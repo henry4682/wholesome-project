@@ -17,6 +17,7 @@ function SwiperForHome() {
           slidesPerView: 1,
         },
       }}
+      loop={true}
       navigation
       autoplay={{ delay: 1500 }}
       pagination={{ clickable: true }}

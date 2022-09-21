@@ -37,7 +37,7 @@ function ProductDetail() {
   //下面幾個是測試用之後可能會用json格式把star的內容包起來
 
   // 星星陣列
-  const [star, setStar] = useState([]);
+  const [star, setStar] = useState({});
 
   const [totalPage, setTotalPage] = useState(1);
   const [page, setPage] = useState(1);
@@ -54,7 +54,7 @@ function ProductDetail() {
       setStar(response.data.stars);
     };
     getProductDetail();
-    goToTop()
+    goToTop();
   }, [productId]);
   console.log('商品資訊', data);
   console.log('goods', goods);
