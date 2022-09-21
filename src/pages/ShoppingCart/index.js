@@ -9,7 +9,7 @@ import CartCoupon from './components/CartCoupon';
 import Shipping from './components/Shipping';
 // import SideSection from './components/SideSection';
 import { BsFillCaretUpFill } from 'react-icons/bs';
-import '../styles/SideSection.scss';
+import './styles/SideSection.scss';
 import './styles/index.scss';
 import { useCart } from '../../context/cart';
 function ShoppingCart() {
@@ -113,7 +113,7 @@ function ShoppingCart() {
                       <td>
                         <img
                           className="cart_product_pic"
-                          src={require(`../../../Assets/products/${v.image}`)}
+                          src={require(`../../Assets/products/${v.image}`)}
                           alt="item"
                         />
                       </td>
