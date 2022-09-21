@@ -8,6 +8,7 @@
 }
 .recipe-title h4 {
   font-size: 18px;
+  line-height: 30px;
 }
 .recipe-info {
   margin: 20px 0;
@@ -28,6 +29,7 @@
 }
 .recipe-ingredient {
   width: 90%;
+  margin: 20px 0;
 }
 .recipe-ingredient h3 {
   font-size: 20px;
@@ -55,6 +57,28 @@
     margin: 30px;
   }
 }
+
+.recipe-product{
+  width: 90%;
+  margin: 30px 0;
+}
+.recipe-product h3{
+  font-size: 20px;
+  margin: 10px 0;
+}
+.recipe-recommend-card{
+  width: 200px;
+  // height: 80%;。
+  margin: 20px;
+}
+.recipe-recommend-display{
+  display: flex;
+}
+@media screen and (max-width: 768px) {
+  .recipe-recommend-display{
+    display: block;
+  }
+}
 .recipe-steps {
   width: 90%;
 }
@@ -77,6 +101,15 @@
   width: 90%;
 }
 
+.review{
+  margin: 50px 10px;
+}
+@media screen and (max-width: 1200px) {
+  .review-left {
+    display: none;
+  }
+  
+}
 .recipe-review h3{
   font-size: 20px;
 }
