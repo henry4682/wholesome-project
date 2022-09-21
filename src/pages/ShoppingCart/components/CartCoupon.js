@@ -4,7 +4,7 @@ import { RiNumber2 } from 'react-icons/ri';
 
 function CartCoupon(props) {
   return (
-    <div className="mt-5">
+    <div className="mt-3">
       <div className="d-flex align-items-center">
         <div className="position-relative cart_number rounded-circle bg-secondary ">
           <RiNumber2 className="position-absolute top-50 start-50 translate-middle " />
