@@ -4,7 +4,7 @@ import { RiNumber3 } from 'react-icons/ri';
 
 function Shipping() {
   return (
-    <div className="my-5">
+    <div className="my-3">
       <div className="d-flex align-items-center">
         <div className="position-relative cart_number rounded-circle bg-secondary ">
           <RiNumber3 className="position-absolute top-50 start-50 translate-middle " />
@@ -12,7 +12,13 @@ function Shipping() {
         <p className="title ms-2">付款</p>
       </div>
       <div className="cart_card mt-3">
-        <div className="subtitle">結帳須知</div>
+        <div className="subtitle">付款方式</div>
+        <div className="my-3 text-primary">
+          <p>貨到付款</p>
+        </div>
+        <hr />
+
+        {/* <div className="subtitle">結帳須知</div>
         <div className="my-3 p-3 bg-secondary">
           <p> 親愛的顧客您好：</p>
           <br />
@@ -26,7 +32,7 @@ function Shipping() {
           <br />
           <p>請注意：ATM僅會將您的錢轉出，無法取消分期設定、轉入退款…等。</p>
         </div>
-        <hr />
+        <hr /> */}
         <div className="subtitle mt-4">購買人資訊</div>
 
         <div className="cart_ship member">
