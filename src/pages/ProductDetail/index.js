@@ -37,12 +37,7 @@ function ProductDetail() {
   //下面幾個是測試用之後可能會用json格式把star的內容包起來
 
   // 星星陣列
-  const [eachStar, setEachStar] = useState([]);
-  //加總分數
-  const [totalScore, setTotalScore] = useState();
-  //有幾個人的星星
-  const [starCount, setStarCount] = useState(8);
-  const [average, setAverage] = useState(0);
+  const [star, setStar] = useState([]);
 
   const [totalPage, setTotalPage] = useState(1);
   const [page, setPage] = useState(1);
@@ -56,11 +51,13 @@ function ProductDetail() {
       let response = await axios.get(`${API_URL}/productDetail/${productId}`);
       setData(response.data.productData);
       setGoods(response.data.relatedGoods);
+      setStar(response.data.stars);
     };
     getProductDetail();
-  }, []);
+  }, [productId]);
   console.log('商品資訊', data);
   console.log('goods', goods);
+  console.log('star', star);
 
   useEffect(() => {
     let getProductComment = async () => {
@@ -73,7 +70,7 @@ function ProductDetail() {
       console.log('來自be的評論資料', response);
     };
     getProductComment();
-  }, [page]);
+  }, [productId, page]);
 
   // 初始化載入使用者是否收藏這筆商品
   useEffect(() => {
@@ -170,6 +167,7 @@ function ProductDetail() {
           key={i}
           onClick={(e) => {
             setPage(i);
+            goToCommentTop();
           }}
         >
           {i}
@@ -177,6 +175,13 @@ function ProductDetail() {
       );
     }
     return pages;
+  };
+
+  const goToCommentTop = () => {
+    window.scrollTo({
+      top: 1800,
+      behavior: 'smooth',
+    });
   };
 
   console.log('商品資訊', data);
@@ -262,13 +267,11 @@ function ProductDetail() {
         <div className="product_detail-section-title">買家評論</div>
         <div className="product_detail-score-box">
           <div className="product_detail-average-score-box">
-            <div className="product_detail-average-score">
-              {eachStar.length > 0 ? average : 0}
-            </div>
+            <div className="product_detail-average-score">{star.average}</div>
             <div className="product_detail-stars">
               <Rating
                 name="half-rating-read"
-                value={eachStar.length > 0 ? average : 0}
+                value={Number(star.average)}
                 precision={0.1}
                 readOnly
               />
@@ -282,26 +285,27 @@ function ProductDetail() {
                 <div key={i} className="product_detail-star-bar">
                   <p>
                     {num}顆星(
-                    {eachStar.length > 0
-                      ? eachStar.filter((v) => v === num).length
+                    {star.starCount > 0
+                      ? star.eachStar.filter((v) => v === num).length
                       : 0}
                     )
                   </p>
                   <span className="product_detail-bar-section">
                     <ProgressBar
                       completed={
-                        eachStar.length > 0
-                          ? (eachStar.filter((v) => v === num).length /
-                              starCount) *
+                        star.starCount > 0
+                          ? (star.eachStar.filter((v) => v === num).length /
+                              star.starCount) *
                             100
                           : 0
                       }
                       customLabel={
-                        eachStar.length > 0
-                          ? (eachStar.filter((v) => v === num).length /
-                              starCount) *
-                              100 +
-                            '%'
+                        star.starCount > 0
+                          ? (
+                              (star.eachStar.filter((v) => v === num).length /
+                                star.starCount) *
+                              100
+                            ).toFixed(1) + '%'
                           : '0%'
                       }
                       className="wrapper"
@@ -320,15 +324,12 @@ function ProductDetail() {
         <div className="product_detail-comment-box">
           <div className="product_detail-comment-top">
             <div className="product_detail-comment-title">
-              <p>留言</p>
+              <p>評論</p>
             </div>
             <div className="product_detail-comment-info">
               <div className="product_detail-comment-top-text">
                 共 {amount} 則
               </div>
-              <Link className="product_detail-comment-top-text" to="">
-                查看全部
-              </Link>
             </div>
           </div>
           {commentData.map((comment) => {
@@ -375,6 +376,7 @@ function ProductDetail() {
                 className="page-item"
                 onClick={() => {
                   setPage(page === 1 ? page : page - 1);
+                  goToCommentTop();
                 }}
               >
                 <span
@@ -390,6 +392,7 @@ function ProductDetail() {
                 className="page-item"
                 onClick={() => {
                   setPage(page === totalPage ? totalPage : page + 1);
+                  goToCommentTop();
                 }}
               >
                 <span

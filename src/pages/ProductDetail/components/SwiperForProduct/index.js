@@ -1,8 +1,8 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper';
+import { Navigation, A11y } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import './SwiperForDetail.scss';
@@ -37,7 +37,16 @@ function SwiperForProduct({ goods }) {
               alt="..."
             />
             <div className="card-body products_detail-card-body">
-              <Link className="card-title product_detail-card-title" to="">
+              <Link
+                className="card-title product_detail-card-title"
+                to={`/productDetail/${item.id}`}
+                onClick={() => {
+                  window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth',
+                  });
+                }}
+              >
                 {item.name}
               </Link>
               <p className="card-text product_detail-card-text">
