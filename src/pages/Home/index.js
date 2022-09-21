@@ -11,7 +11,6 @@ function Home(props) {
     <div>
       {/* // swiper */}
       <SwiperForHome />
-      
 
       <div className="mt-5 d-md-flex justify-content-between">
         <img
@@ -93,12 +92,12 @@ function Home(props) {
           </li>
         </ul>
       </div>
-      <div className="home_recommend my-5">
+      <div className="home_recommend my-4">
         <p className="home_title text-center">Recipe</p>
       </div>
       <div className="container">
         <ul className="d-flex row my-5  justify-content-center">
-          <li className=" col-sm-5  col-md-4  col-lg-3 text-center py-2 ">
+          <li className="  my-3 col-5 col-lg-2 text-center py-2  ">
             <img
               className="home_recipe_pic"
               src={require('../../Assets/products/milk2019.jpg')}
@@ -107,7 +106,7 @@ function Home(props) {
             <div className="py-2">隔日燕麥</div>
             <a className="home_read"> 繼續閱讀</a>
           </li>
-          <li className="col-sm-5  col-md-4  col-lg-3 text-center py-2 ">
+          <li className=" my-3 col-5 col-lg-2 text-center py-2  ">
             <img
               className="home_recipe_pic"
               src={require('../../Assets/products/milk2019.jpg')}
@@ -116,7 +115,7 @@ function Home(props) {
             <div className="py-2">隔日燕麥</div>
             <a className="home_read"> 繼續閱讀</a>
           </li>
-          <li className="col-sm-5  col-md-4  col-lg-3 text-center py-2 ">
+          <li className=" my-3 col-5 col-lg-2 text-center py-2  ">
             <img
               className="home_recipe_pic"
               src={require('../../Assets/products/milk2019.jpg')}
@@ -125,7 +124,7 @@ function Home(props) {
             <div className="py-2">隔日燕麥</div>
             <a className="home_read"> 繼續閱讀</a>
           </li>
-          <li className="col-sm-5  col-md-4  col-lg-3 text-center py-2 ">
+          <li className=" my-3 col-5 col-lg-2 text-center py-2  ">
             <img
               className="home_recipe_pic"
               src={require('../../Assets/products/milk2019.jpg')}

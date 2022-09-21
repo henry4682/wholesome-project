@@ -12,23 +12,20 @@
 
 .home_recipe_pic {
   border-radius: 10px;
-  width: 235px;
-  height: 175px;
+  max-width: 100%;
 }
 
 @media screen and (max-width: 768px) {
   .home_recipe_pic {
     border-radius: 10px;
-    width: 146px;
-    height: 108px;
+    max-width: 100%;
   }
 }
 
 @media screen and (max-width: 576px) {
   .home_recipe_pic {
     border-radius: 10px;
-    width: 235px;
-    height: 175px;
+    max-width: 100%;
   }
 }
 
