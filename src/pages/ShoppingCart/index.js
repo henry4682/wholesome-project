@@ -1,24 +1,17 @@
 import { React, useState } from 'react';
-// import CartMain from './components/CartMain';
-import './styles/CartMain.scss';
-import { RiNumber1 } from 'react-icons/ri';
-import { BiX } from 'react-icons/bi';
-import { BiPlus } from 'react-icons/bi';
-import { BiMinus } from 'react-icons/bi';
-import CartCoupon from './components/CartCoupon';
-import Shipping from './components/Shipping';
-// import SideSection from './components/SideSection';
+import { RiNumber1, RiNumber2, RiNumber3 } from 'react-icons/ri';
+import { BiX, BiPlus, BiMinus } from 'react-icons/bi';
 import { BsFillCaretUpFill } from 'react-icons/bs';
-import './styles/SideSection.scss';
 import './styles/index.scss';
 import { useCart } from '../../context/cart';
+
 function ShoppingCart() {
   const { cart, setCart, minusOne, plusOne, remove, calcTotal } = useCart();
   const [show, setShow] = useState(true);
 
   return (
     <div className="container">
-      <div className="mt-4 row  cart_index_desktop ">
+      <div className="mt-4 row cart_index_desktop ">
         {/* sideSection 側邊部分 */}
         <div className="col-2">
           <div className="sticky-top cart_sideSection">
@@ -42,7 +35,7 @@ function ShoppingCart() {
               <span className="d-flex justify-content-between  align-items-end">
                 應付總額
                 <span className=" text-primary ">
-                  NT${' '}
+                  NT$
                   <em className="cart_total text-primary">
                     {calcTotal() + 80}
                   </em>
@@ -160,13 +153,77 @@ function ShoppingCart() {
                     </tr>
                   );
                 })}
-                <td colSpan={6}>購物車內合計有 {cart.length} 項商品</td>
+                <tr>
+                  <td colSpan={6}>購物車內合計有 {cart.length} 項商品</td>
+                </tr>
               </tbody>
             </table>
           </div>
           <form>
-            <CartCoupon />
-            <Shipping />
+            {/* 優惠券 */}
+            <div className="mt-3">
+              <div className="d-flex align-items-center">
+                <div className="position-relative cart_number rounded-circle bg-secondary ">
+                  <RiNumber2 className="position-absolute top-50 start-50 translate-middle " />
+                </div>
+                <p className="title ms-2">選擇優惠券</p>
+              </div>
+              <div className="cart_card mt-3">
+                <div className="cart_coupon">
+                  <select
+                    className="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>請選擇優惠券</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            {/* 購買資訊 */}
+            <div className="my-3">
+              <div className="d-flex align-items-center">
+                <div className="position-relative cart_number rounded-circle bg-secondary ">
+                  <RiNumber3 className="position-absolute top-50 start-50 translate-middle " />
+                </div>
+                <p className="title ms-2">付款</p>
+              </div>
+              <div className="cart_card mt-3">
+                <div className="subtitle">付款方式</div>
+                <div className="my-3 text-primary">
+                  <p>貨到付款</p>
+                </div>
+                <hr />
+                <div className="subtitle mt-4">購買人資訊</div>
+
+                <div className="cart_ship member">
+                  <label className="mt-4">姓名</label>
+                  <br />
+                  <input
+                    className=" mt-3 px-4"
+                    type="text"
+                    placeholder="購買人姓名"
+                  />
+                  <br />
+                  <label className="mt-4">聯絡電話</label>
+                  <br />
+                  <input
+                    className=" mt-3 px-4"
+                    type="text"
+                    placeholder="購買人聯絡電話"
+                  />
+                  <br />
+                  <label className="mt-4 ">購買人地址</label>
+                  <input
+                    className=" mt-3 px-4"
+                    type="text"
+                    placeholder="請填寫詳細地址"
+                  />
+                </div>
+              </div>
+            </div>
             <button
               type="submit"
               className="mb-4 col-12 btn btn-primary text-light text-center"
@@ -176,15 +233,6 @@ function ShoppingCart() {
           </form>
         </div>
       </div>
-      {/* mobile &  tablet */}
-      {/* <div className="my-4  cart_index_tablet ">
-        <div>
-          <CartMain />
-          <CartCoupon />
-          <SideSection />
-          <Shipping />
-        </div>
-      </div> */}
     </div>
   );
 }
