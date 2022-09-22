@@ -14,6 +14,8 @@ function ShoppingCart() {
   const { user } = useAuth();
   const [show, setShow] = useState(true);
   const cartTotalPrice = calcTotal();
+  const [isFinish, setIsFinish] = useState(false);
+  const [orderId, setOrderId] = useState();
 
   console.log(user);
   // 控制優惠券下拉選單的狀態
@@ -27,8 +29,6 @@ function ShoppingCart() {
     receiver_address: 'AAA',
   });
 
-
-  
   useEffect(() => {
     let userCoupons = async () => {
       // let response = await axios.get(
@@ -55,9 +55,20 @@ function ShoppingCart() {
         selectCoupon,
         cartTotalPrice,
       });
-    } catch (e) {}
-    return <Navigate to="" />;
+      console.log(submit.data.message);
+      //  <Navigate to="/account" />;
+      alert(submit.data.message);
+      setCart([]);
+      setIsFinish(true);
+      setOrderId(submit.data.lastOrder)
+    } catch (e) {
+      console.error(e);
+    }
   }
+  if (isFinish) {
+    return <Navigate to={`/account/orders/${orderId}`} />;
+  }
+
   return (
     <div className="container">
       <div className="mt-4 row cart_index_desktop ">
@@ -229,7 +240,11 @@ function ShoppingCart() {
                   >
                     <option selected>--- 請選擇優惠券 ---</option>
                     {userCouponsData.map((v, i) => {
-                      return <option value={v.id}>{v.coupon_name}</option>;
+                      return (
+                        <option key={v.id} value={v.id}>
+                          {v.coupon_name}
+                        </option>
+                      );
                     })}
                     {/* <option value="2">Two</option>
                     <option value="3">Three</option> */}
