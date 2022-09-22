@@ -31,12 +31,9 @@ function AccountCoupons() {
 
   useEffect(() => {
     let userCoupons = async () => {
-      // let response = await axios.get(
-      //   `http://localhost:3002/api/1.0/products/${categoryId}`
-      // );
       let response = await axios.get(`${API_URL}/user/${user.id}/coupons`);
       console.log(response.data);
-      setUserCouponsData(response.data);
+      setUserCouponsData(response.data.couponsAll);
     };
     userCoupons();
   }, [user.id]);

@@ -50,6 +50,8 @@ function AccountModifyPassword() {
       );
       alert('密碼更改成功');
     } catch (e) {
+      // alert 錯誤訊息
+      alert(e.response.data.message);
       console.error('Modify Password Error', e);
     }
   }
