@@ -13,17 +13,16 @@ function SwiperForProduct({ goods }) {
       modules={[Navigation, A11y]}
       slidesPerView={1}
       spaceBetween={0}
-      centeredSlides={false}
+      centeredSlides={true}
       breakpoints={{
         756: {
           slidesPerView: 3,
           spaceBetween: 50,
-          centeredSlides: true,
+          centeredSlides: false,
         },
         990: {
           slidesPerView: 4,
           spaceBetween: 50,
-          centeredSlides: false,
         },
       }}
       navigation
