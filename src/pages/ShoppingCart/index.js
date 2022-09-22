@@ -18,8 +18,8 @@ function ShoppingCart() {
   const [orderId, setOrderId] = useState();
 
   console.log(user);
-  // 控制優惠券下拉選單的狀態
-  const [selectCoupon, setSelectCoupon] = useState('');
+  // 控制優惠券下拉選單的狀態(注意資料類型)
+  const [selectCoupon, setSelectCoupon] = useState(0);
   // 取得會員所有優惠券資料的狀態
   const [userCouponsData, setUserCouponsData] = useState([]);
   // 控制收件人資訊的狀態
@@ -235,10 +235,10 @@ function ShoppingCart() {
                       setSelectCoupon(e.target.value);
                     }}
                   >
-                    <option selected>--- 請選擇優惠券 ---</option>
+                    <option value={null}>--- 請選擇優惠券 ---</option>
                     {userCouponsData.map((v, i) => {
                       return (
-                        <option key={v.id} value={v.coupon_id}>
+                        <option key={v.id} value={+v.coupon_id}>
                           {v.coupon_name}
                         </option>
                       );
