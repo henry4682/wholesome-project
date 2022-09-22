@@ -1,13 +1,34 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { RiNumber1, RiNumber2, RiNumber3 } from 'react-icons/ri';
 import { BiX, BiPlus, BiMinus } from 'react-icons/bi';
 import { BsFillCaretUpFill } from 'react-icons/bs';
 import './styles/index.scss';
 import { useCart } from '../../context/cart';
+import { useAuth } from '../../context/auth';
+import axios from 'axios';
+import { API_URL } from '../../utils/config';
 
 function ShoppingCart() {
   const { cart, setCart, minusOne, plusOne, remove, calcTotal } = useCart();
+  const { user } = useAuth();
   const [show, setShow] = useState(true);
+
+  console.log(user);
+  const [selectCoupon, setSelectCoupon] = useState('');
+  //取得會員所有優惠券資料的狀態
+  const [userCouponsData, setUserCouponsData] = useState([]);
+
+  useEffect(() => {
+    let userCoupons = async () => {
+      // let response = await axios.get(
+      //   `http://localhost:3002/api/1.0/products/${categoryId}`
+      // );
+      let response = await axios.get(`${API_URL}/user/${user.id}/coupons`);
+      console.log(response.data);
+      setUserCouponsData(response.data);
+    };
+    userCoupons();
+  }, [user.id]);
 
   return (
     <div className="container">
@@ -173,11 +194,17 @@ function ShoppingCart() {
                   <select
                     className="form-select"
                     aria-label="Default select example"
+                    // value={selectCoupon}
+                    onChange={(e) => {
+                      setSelectCoupon(e.target.value);
+                    }}
                   >
-                    <option selected>請選擇優惠券</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    <option selected>--- 請選擇優惠券 ---</option>
+                    {userCouponsData.map((v, i) => {
+                      return <option value={v.id}>{v.coupon_name}</option>;
+                    })}
+                    {/* <option value="2">Two</option>
+                    <option value="3">Three</option> */}
                   </select>
                 </div>
               </div>
