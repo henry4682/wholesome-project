@@ -31,12 +31,9 @@ function ShoppingCart() {
 
   useEffect(() => {
     let userCoupons = async () => {
-      // let response = await axios.get(
-      //   `http://localhost:3002/api/1.0/products/${categoryId}`
-      // );
       let response = await axios.get(`${API_URL}/user/${user.id}/coupons`);
       console.log(response.data);
-      setUserCouponsData(response.data);
+      setUserCouponsData(response.data.couponsCanUse);
     };
     userCoupons();
   }, [user.id]);
@@ -241,7 +238,7 @@ function ShoppingCart() {
                     <option selected>--- 請選擇優惠券 ---</option>
                     {userCouponsData.map((v, i) => {
                       return (
-                        <option key={v.id} value={v.id}>
+                        <option key={v.id} value={v.coupon_id}>
                           {v.coupon_name}
                         </option>
                       );
