@@ -60,7 +60,7 @@ function ShoppingCart() {
       alert(submit.data.message);
       setCart([]);
       setIsFinish(true);
-      setOrderId(submit.data.lastOrder)
+      setOrderId(submit.data.newestOrderId);
     } catch (e) {
       console.error(e);
     }
