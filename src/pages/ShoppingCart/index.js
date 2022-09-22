@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from 'react';
+import { Navigate } from 'react-router-dom';
 import { RiNumber1, RiNumber2, RiNumber3 } from 'react-icons/ri';
 import { BiX, BiPlus, BiMinus } from 'react-icons/bi';
 import { BsFillCaretUpFill } from 'react-icons/bs';
@@ -12,6 +13,7 @@ function ShoppingCart() {
   const { cart, setCart, minusOne, plusOne, remove, calcTotal } = useCart();
   const { user } = useAuth();
   const [show, setShow] = useState(true);
+  const cartTotalPrice = calcTotal();
 
   console.log(user);
   // 控制優惠券下拉選單的狀態
@@ -25,6 +27,8 @@ function ShoppingCart() {
     receiver_address: 'AAA',
   });
 
+
+  
   useEffect(() => {
     let userCoupons = async () => {
       // let response = await axios.get(
@@ -41,6 +45,19 @@ function ShoppingCart() {
     setReceiver({ ...receiver, [e.target.name]: e.target.value });
   };
 
+  async function orderSubmit(e) {
+    e.preventDefault();
+    try {
+      let submit = await axios.post(`${API_URL}/cart/${user.id}`, {
+        user,
+        cart,
+        receiver,
+        selectCoupon,
+        cartTotalPrice,
+      });
+    } catch (e) {}
+    return <Navigate to="" />;
+  }
   return (
     <div className="container">
       <div className="mt-4 row cart_index_desktop ">
@@ -270,6 +287,7 @@ function ShoppingCart() {
             <button
               type="submit"
               className="mb-4 col-12 btn btn-primary text-light text-center"
+              onClick={orderSubmit}
             >
               結帳
             </button>
