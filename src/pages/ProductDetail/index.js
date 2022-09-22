@@ -123,11 +123,6 @@ function ProductDetail() {
     }
   }
 
-  // 初始化載入 localStorage 裡面的 shoppingCart
-  useEffect(() => {
-    let currentCart = localStorage.getItem('shoppingCart');
-    setCart(JSON.parse(currentCart));
-  }, []);
 
   // 每當我的 Cart state 有變動， 就更新 localStorage
   useEffect(() => {
@@ -319,7 +314,7 @@ function ProductDetail() {
                       bgColor={'#9AAB82'}
                       baseBgColor={'#D9D9D9'}
                       borderRadius="0px"
-                      labelAlignment="inside"
+                      labelAlignment="left"
                       labelSize="11px"
                     />
                   </span>

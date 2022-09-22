@@ -8,9 +8,14 @@ import { FiArrowLeftCircle } from 'react-icons/fi';
 import { Swiper } from 'swiper/react';
 import { Navigation, Pagination } from 'swiper';
 import 'swiper/css/pagination';
+import { useAuth } from '../../context/auth';
+import { useCart } from '../../context/cart';
 
 function Home() {
+  const { user, setUser } = useAuth();
+  const { cart, setCart } = useCart();
   const [newProducts, setNewProducts] = useState([]);
+  //初始化載入日期最新4筆商品
   useEffect(() => {
     let getNewestProducts = async () => {
       let response = await axios.get(`${API_URL}/newProducts`);
@@ -19,6 +24,11 @@ function Home() {
     getNewestProducts();
   }, []);
 
+  // 初始化載入 localStorage 裡面的 shoppingCart
+  // useEffect(() => {
+  //   let currentCart = localStorage.getItem('shoppingCart');
+  //   setCart(JSON.parse(currentCart));
+  // }, []);
   return (
     <div>
       {/* // swiper */}
@@ -54,11 +64,36 @@ function Home() {
                   src={require(`../../Assets/products/${item.image}`)}
                   alt=""
                 />
-                <div className=" new_card_name  py-2 text-center">{item.name}</div>
+                <div className=" new_card_name  py-2 ">{item.name}</div>
                 <div className=" my-2 text-primary">
                   NT$ <em className="add-on text-primary">{item.price}</em>
                 </div>
-                <button className="btn btn-primary text-light mx-auto">
+                <button
+                  className="btn btn-primary text-light mx-auto"
+                  onClick={() => {
+                    // --- (1) 判斷是否登入
+                    if (!user || user.id === '0') {
+                      alert('請先登入再進行購買');
+                      return;
+                    }
+                    // --- (2) 判斷購物車裡面是不是有這個商品
+                    if (cart.some((v) => v.id === item.id)) {
+                      alert('商品已存在於購物車');
+                      return;
+                    }
+                    // product是指現在加入購物車的這個商品
+                    let product = {
+                      id: item.id,
+                      amount: 1,
+                      name: item.name,
+                      price: item.price,
+                      image: item.image,
+                    };
+                    setCart([...cart, product]);
+
+                    console.log('購物車', cart);
+                  }}
+                >
                   加入購物車
                 </button>
               </li>

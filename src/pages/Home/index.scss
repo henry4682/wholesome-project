@@ -79,6 +79,17 @@
 .home_ad {
   width: 33%;
 }
+.new_card_name{
+  line-height: 2rem;
+  height: 2rem;
+  align-self: center;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
 
 @media screen and (max-width: 768px) {
   .home_ad {

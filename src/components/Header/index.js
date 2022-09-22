@@ -23,6 +23,12 @@ function Header() {
     localStorage.setItem('shoppingCart', JSON.stringify([]));
   }
 
+  // 為全站載入 localStorage 裡面的 shoppingCart
+  useEffect(() => {
+    let currentCart = localStorage.getItem('shoppingCart');
+    setCart(JSON.parse(currentCart));
+  }, []);
+
   return (
     <header className="header">
       <div className="container-fluid p-0">
@@ -131,22 +137,23 @@ function Header() {
                   ) : (
                     cart.map((v, i) => {
                       return (
-                        <>
-                          <li className="dropdown-item  d-flex border-bottom">
-                            <div className="header-cart-item me-1">
-                              <img
-                                className="header-cart-item-img"
-                                src={require(`../../Assets/products/${v.image}`)}
-                                alt="logo"
-                              />
-                            </div>
-                            <div className="d-flex flex-column justify-content-center">
-                              <p>{v.name}</p>
-                              <p>NT${v.price}</p>
-                              <p>數量:{v.amount}</p>
-                            </div>
-                          </li>
-                        </>
+                        <li
+                          key={i}
+                          className="dropdown-item  d-flex border-bottom"
+                        >
+                          <div className="header-cart-item me-1">
+                            <img
+                              className="header-cart-item-img"
+                              src={require(`../../Assets/products/${v.image}`)}
+                              alt="logo"
+                            />
+                          </div>
+                          <div className="d-flex flex-column justify-content-center">
+                            <p>{v.name}</p>
+                            <p>NT${v.price}</p>
+                            <p>數量:{v.amount}</p>
+                          </div>
+                        </li>
                       );
                     })
                   )}

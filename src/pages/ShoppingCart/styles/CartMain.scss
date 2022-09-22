@@ -23,17 +23,6 @@
   height: 100px;
 }
 
-.new_card_name{
-  height: 2.4rem;
-  text-align: center;
-
-  text-overflow: ellipsis;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-}
-
 .cart_product_pic {
   max-height: 150px;
   object-fit:cover;
@@ -42,7 +31,7 @@
 @media screen and (max-width: 768px) {
   .cart_product_pic {
     border-radius: 10px;
-    max-width: 200px;
+    max-width: 100px;
     
   }
 }
@@ -50,7 +39,7 @@
 @media screen and (max-width: 576px) {
   .cart_product_pic {
     border-radius: 10px;
-    max-height:100px;
+    max-width: 100%;
   }
 }
 
