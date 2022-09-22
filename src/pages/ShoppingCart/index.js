@@ -238,7 +238,7 @@ function ShoppingCart() {
                     <option value={null}>--- 請選擇優惠券 ---</option>
                     {userCouponsData.map((v, i) => {
                       return (
-                        <option key={v.id} value={+v.coupon_id}>
+                        <option key={v.id} value={v.coupon_id}>
                           {v.coupon_name}
                         </option>
                       );
