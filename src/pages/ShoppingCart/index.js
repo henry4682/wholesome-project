@@ -14,9 +14,16 @@ function ShoppingCart() {
   const [show, setShow] = useState(true);
 
   console.log(user);
+  // 控制優惠券下拉選單的狀態
   const [selectCoupon, setSelectCoupon] = useState('');
-  //取得會員所有優惠券資料的狀態
+  // 取得會員所有優惠券資料的狀態
   const [userCouponsData, setUserCouponsData] = useState([]);
+  // 控制收件人資訊的狀態
+  const [receiver, setReceiver] = useState({
+    receiver_name: '張婷婷',
+    receiver_phone: '0912121212',
+    receiver_address: 'AAA',
+  });
 
   useEffect(() => {
     let userCoupons = async () => {
@@ -29,6 +36,10 @@ function ShoppingCart() {
     };
     userCoupons();
   }, [user.id]);
+
+  const handleFieldChange = (e) => {
+    setReceiver({ ...receiver, [e.target.name]: e.target.value });
+  };
 
   return (
     <div className="container">
@@ -227,26 +238,31 @@ function ShoppingCart() {
 
                 <div className="cart_ship member">
                   <label className="mt-4">姓名</label>
-                  <br />
                   <input
                     className=" mt-3 px-4"
                     type="text"
                     placeholder="購買人姓名"
+                    name="receiver_name"
+                    value={receiver.receiver_name}
+                    onChange={handleFieldChange}
                   />
-                  <br />
                   <label className="mt-4">聯絡電話</label>
-                  <br />
                   <input
                     className=" mt-3 px-4"
                     type="text"
                     placeholder="購買人聯絡電話"
+                    name="receiver_phone"
+                    value={receiver.receiver_phone}
+                    onChange={handleFieldChange}
                   />
-                  <br />
                   <label className="mt-4 ">購買人地址</label>
                   <input
                     className=" mt-3 px-4"
                     type="text"
                     placeholder="請填寫詳細地址"
+                    name="receiver_address"
+                    value={receiver.receiver_address}
+                    onChange={handleFieldChange}
                   />
                 </div>
               </div>
