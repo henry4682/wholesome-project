@@ -12,11 +12,8 @@ function AccountOrderDetail() {
 
   useEffect(() => {
     let getOrders = async () => {
-      // let response = await axios.get(
-      //   `http://localhost:3002/api/1.0/products/${categoryId}`
-      // );
       let response = await axios.get(`${API_URL}/orders/${orderId}`);
-      console.log(response.data);
+      // console.log(response.data);
       setOrderDetail(response.data.orderDetail);
       setOrderData(response.data.orderData);
     };
