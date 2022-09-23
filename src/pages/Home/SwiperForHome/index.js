@@ -22,7 +22,7 @@ function SwiperForHome() {
       autoplay={{ delay: 2000, disableOnInteraction: false }}
       pagination={{ clickable: true }}
       onSwiper={(swiper) => console.log(swiper)}
-      onSlideChange={() => console.log('slide change')}
+      // onSlideChange={() => console.log('slide change')}
     >
       <SwiperSlide>
         <div className=" home_banner d-flex align-items-center">
