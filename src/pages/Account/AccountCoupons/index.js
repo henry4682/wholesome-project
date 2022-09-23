@@ -112,8 +112,8 @@ function AccountCoupons() {
                 <td>{v.coupon_code}</td>
                 <td>{v.coupon_start ? v.coupon_start : '-'}</td>
                 <td>{v.coupon_end ? v.coupon_end : '-'}</td>
-                <td className={v.valid === 0 ? 'coupon-used' : ''}>
-                  {v.valid === 0 ? '已使用' : ''}
+                <td className={v.valid === 0 ? 'coupon-used' : 'text-primary'}>
+                  {v.valid === 0 ? '已使用' : '可使用'}
                 </td>
               </tr>
             );
@@ -148,8 +148,12 @@ function AccountCoupons() {
             </li>
             <li className="d-flex p-1">
               <div>使用狀態:</div>
-              <div className={v.valid === 0 ? 'coupon-used ms-1' : 'ms-1'}>
-                {v.valid === 0 ? '已使用' : ''}
+              <div
+                className={
+                  v.valid === 0 ? 'coupon-used ms-1' : 'ms-1 text-primary'
+                }
+              >
+                {v.valid === 0 ? '已使用' : '可使用'}
               </div>
             </li>
           </ul>
