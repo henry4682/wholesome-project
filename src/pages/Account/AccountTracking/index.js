@@ -49,6 +49,29 @@ function AccountTracking() {
     recipePages.push(i);
   }
 
+  //刪除商品收藏
+  async function removeProductItem(productId, userId) {
+    console.log(productId, userId);
+    try {
+      let response = await axios.delete(
+        `${API_URL}/productTracking/${userId}?product=${productId}`
+      );
+      console.log(response.data);
+      alert('收藏商品移除成功');
+
+      // 重新取得使用者產品收藏資訊
+      let productResponse = await axios.get(
+        `${API_URL}/user/${user.id}/tracking?page=${productPage}`
+      );
+      setProductData(productResponse.data.productData);
+      setProductLastPage(
+        productResponse.data.productPagination.productLastPage
+      );
+    } catch (e) {
+      console.error('刪除收藏錯誤訊息', e);
+    }
+  }
+
   return (
     <div className="account_tracking w-100">
       {/* 頁籤 */}
@@ -113,7 +136,12 @@ function AccountTracking() {
                       <button className="account_tracking_btn mb-1 btn btn-sm btn-primary text-white">
                         加入購物車
                       </button>
-                      <button className="account_tracking_btn btn btn-sm btn-secondary text-primary">
+                      <button
+                        className="account_tracking_btn btn btn-sm btn-secondary text-primary"
+                        onClick={() => {
+                          removeProductItem(v.product_id, v.user_id);
+                        }}
+                      >
                         移除收藏
                       </button>
                     </div>
