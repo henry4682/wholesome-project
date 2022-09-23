@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from 'react';
 import './index.scss';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useAuth } from '../../../context/auth';
 import { API_URL } from '../../../utils/config';
 import axios from 'axios';
@@ -167,6 +167,11 @@ function AccountOrderDetail() {
             </div>
           </li>
         </ul>
+        <div className="account_order_detail-back mt-2">
+          <Link className="btn btn-sm btn-secondary" to="/account/orders">
+            查看所有訂單
+          </Link>
+        </div>
       </div>
     </>
   );
