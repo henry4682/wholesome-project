@@ -124,7 +124,7 @@ function AccountOrderDetail() {
               <li className="border-bottom d-flex p-2">
                 <img
                   src={require(`../../../Assets/products/${v.image}`)}
-                  alt="product image"
+                  alt="product"
                 />
                 <div className="ms-1">
                   <div className="mb-1">
