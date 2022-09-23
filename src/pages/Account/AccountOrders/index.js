@@ -20,7 +20,7 @@ function AccountOrders() {
       let response = await axios.get(
         `${API_URL}/user/${user.id}/orders?page=${page}`
       );
-      console.log(response.data);
+      // console.log(response.data);
       setData(response.data.data);
       setLastPage(response.data.pagination.lastPage);
       setOrdersCount(response.data.pagination.total);
@@ -33,7 +33,7 @@ function AccountOrders() {
   for (let i = 1; i <= lastPage; i++) {
     pages.push(i);
   }
-  console.log(pages);
+  // console.log(pages);
 
   return (
     <>
@@ -79,33 +79,41 @@ function AccountOrders() {
           </tbody>
         </table>
         {/* mobile */}
-        <ul className="account_orders-mobile">
-          <li className="d-flex p-1">
-            <div>訂單編號:</div>
-            <div className="ms-1">A20220728Q12</div>
-          </li>
-          <li className="d-flex p-1">
-            <div>訂購時間:</div>
-            <div className="ms-1">2022-07-28 11:30</div>
-          </li>
-          <li className="d-flex p-1">
-            <div>訂單金額:</div>
-            <div className="ms-1">NT$598</div>
-          </li>
-          <li className="d-flex p-1">
-            <div>訂單狀態:</div>
-            <div className="ms-1">已完成</div>
-          </li>
-          <li className="d-flex p-1">
-            <div>備註:</div>
-            <div className="ms-1">無</div>
-          </li>
-          <li className="d-flex p-1">
-            <Link to=":orderId" className="btn btn-primary btn-sm text-white">
-              查看明細
-            </Link>
-          </li>
-        </ul>
+        {data.map((v, i) => {
+          return (
+            <ul key={v.id} className="account_orders-mobile mb-2">
+              <li className="d-flex p-1">
+                <div>訂單編號:</div>
+                <div className="ms-1">{v.order_sn}</div>
+              </li>
+              <li className="d-flex p-1">
+                <div>訂購時間:</div>
+                <div className="ms-1">{v.create_time}</div>
+              </li>
+              <li className="d-flex p-1">
+                <div>訂單金額:</div>
+                <div className="ms-1">NT${v.total_price}</div>
+              </li>
+              <li className="d-flex p-1">
+                <div>訂單狀態:</div>
+                <div className="ms-1">{v.order_status}</div>
+              </li>
+              <li className="d-flex p-1">
+                <div>備註:</div>
+                <div className="ms-1">{v.note ? v.note : '無'}</div>
+              </li>
+              <li className="d-flex p-1">
+                <Link
+                  to={`${v.id}`}
+                  className="btn btn-primary btn-sm text-white"
+                >
+                  查看明細
+                </Link>
+              </li>
+            </ul>
+          );
+        })}
+
         {/* ------ 分頁 ------ */}
         <div className="d-flex justify-content-center align-items-center">
           <nav aria-label="Page navigation example">

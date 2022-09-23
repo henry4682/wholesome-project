@@ -39,7 +39,7 @@ function AccountCoupons() {
   }, [user.id]);
 
   async function handleCouponSubmit(e) {
-    e.preventDefault();
+    // e.preventDefault();
     try {
       let response = await axios.post(
         `${API_URL}/user/${user.id}/coupon`,
@@ -56,8 +56,8 @@ function AccountCoupons() {
 
   return (
     <div className="account_coupons w-100">
-      <form className="account_coupons-title d-flex align-items-center">
-        <div className="row g-3 align-items-center">
+      <form className="account_coupons-title d-flex  align-items-center">
+        <div className="w-100 row align-items-center">
           <div className="col-auto">
             <label className="col-form-label">優惠券代碼:</label>
           </div>
@@ -81,7 +81,7 @@ function AccountCoupons() {
           </div>
         </div>
       </form>
-      <div className="d-flex justify-content-end mb-2">
+      <div className="d-flex justify-content-md-end mb-2">
         <p>
           優惠券總計
           <span className="account_coupons-count text-primary mx-1">
@@ -121,28 +121,40 @@ function AccountCoupons() {
         </tbody>
       </table>
       {/* mobile */}
-      <ul className="account_coupons-mobile">
-        <li className="d-flex p-1">
-          <div>優惠活動名稱:</div>
-          <div className="ms-1">註冊禮金</div>
-        </li>
-        <li className="d-flex p-1">
-          <div>優惠券金額:</div>
-          <div className="ms-1">NT$100</div>
-        </li>
-        <li className="d-flex p-1">
-          <div>優惠券代碼:</div>
-          <div className="ms-1">NEW100</div>
-        </li>
-        <li className="d-flex p-1">
-          <div>起始時間:</div>
-          <div className="ms-1">無</div>
-        </li>
-        <li className="d-flex p-1">
-          <div>結束期限:</div>
-          <div className="ms-1">無</div>
-        </li>
-      </ul>
+      {userCouponsData.map((v, i) => {
+        return (
+          <ul key={v.id} className="account_coupons-mobile mb-2">
+            <li className="d-flex p-1">
+              <div>優惠活動名稱:</div>
+              <div className="ms-1">{v.coupon_name}</div>
+            </li>
+            <li className="d-flex p-1">
+              <div>優惠券金額:</div>
+              <div className="ms-1">NT${v.coupon_price}</div>
+            </li>
+            <li className="d-flex p-1">
+              <div>優惠券代碼:</div>
+              <div className="ms-1">{v.coupon_code}</div>
+            </li>
+            <li className="d-flex p-1">
+              <div>起始時間:</div>
+              <div className="ms-1">
+                {v.coupon_start ? v.coupon_start : '無'}
+              </div>
+            </li>
+            <li className="d-flex p-1">
+              <div>結束期限:</div>
+              <div className="ms-1">{v.coupon_end ? v.coupon_end : '無'}</div>
+            </li>
+            <li className="d-flex p-1">
+              <div>使用狀態:</div>
+              <div className={v.valid === 0 ? 'coupon-used ms-1' : 'ms-1'}>
+                {v.valid === 0 ? '已使用' : ''}
+              </div>
+            </li>
+          </ul>
+        );
+      })}
     </div>
   );
 }

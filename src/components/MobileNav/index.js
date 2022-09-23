@@ -31,7 +31,7 @@ function MobileNav() {
 
           <div
             className="offcanvas offcanvas-start w-75"
-            tabindex="-1"
+            tabIndex="-1"
             id="offcanvasNavbar"
             aria-labelledby="offcanvasNavbarLabel"
           >
