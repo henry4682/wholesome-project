@@ -54,7 +54,7 @@ function AccountOrderDetail() {
           <tbody>
             {orderDetail.map((v, i) => {
               return (
-                <tr className="border">
+                <tr key={v.id} className="border">
                   <td>
                     <img
                       src={require(`../../../Assets/products/${v.image}`)}
@@ -80,12 +80,12 @@ function AccountOrderDetail() {
                   <li className="d-flex justify-content-end">
                     <div>優惠券折抵</div>
                     <div>
-                      {orderData.map((v) => (
-                        <>
+                      {orderData.map((v, i) => (
+                        <div key={i}>
                           (<span>{v.coupon_name ? v.coupon_name : '無'}</span>
                           ):-NT$
                           {v.coupon_price ? v.coupon_price : '0'}
-                        </>
+                        </div>
                       ))}
                     </div>
                   </li>
@@ -121,7 +121,7 @@ function AccountOrderDetail() {
         <ul className="account_order_detail-mobile ">
           {orderDetail.map((v, i) => {
             return (
-              <li className="border-bottom d-flex p-2">
+              <li key={v.id} className="border-bottom d-flex p-2">
                 <img
                   src={require(`../../../Assets/products/${v.image}`)}
                   alt="product"
@@ -143,39 +143,17 @@ function AccountOrderDetail() {
               </li>
             );
           })}
-
-          <li className="border-bottom d-flex p-2">
-            <img
-              src="https://cdn.cybassets.com/media/W1siZiIsIjEzODUwL3Byb2R1Y3RzLzMxOTUxMTA1LzE2MDM0MzQ5NTNfZjFlNjEwOTcxYzcwMWZkMmM3MjEucG5nIl0sWyJwIiwidGh1bWIiLCI2MDB4NjAwIl1d.png?sha=a134d4f53b04b833"
-              alt="apple juice"
-            />
-            <div className="ms-1">
-              <div className="mb-1">
-                商品名稱:<span>Voelkel黑棗汁</span>
-              </div>
-              <div className="mb-1">
-                商品價格:<span>NT$399</span>
-              </div>
-              <div className="mb-1">
-                商品數量:<span>2</span>
-              </div>
-              <div className="mb-1">
-                小計:<span>NT$798</span>
-              </div>
-            </div>
-          </li>
-
           <li className="p-2">
             <div className="mb-1">
               商品總計:<span>NT${orderData.map((v) => v.total_price)}</span>
             </div>
             <div className="mb-1">
-              {orderData.map((v) => (
-                <>
+              {orderData.map((v, i) => (
+                <div key={i}>
                   優惠券折抵(<span>{v.coupon_name ? v.coupon_name : '無'}</span>
                   ) :-NT$
                   {v.coupon_price ? v.coupon_price : '0'}
-                </>
+                </div>
               ))}
             </div>
             <div className="mb-1">
