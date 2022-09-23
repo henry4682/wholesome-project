@@ -104,19 +104,36 @@ function AccountOrderDetail() {
                                 aria-label="Close"
                               ></button>
                             </div>
-                            <div className="modal-body">...</div>
-                            <div className="modal-footer">
-                              <button
-                                type="button"
-                                className="btn btn-secondary"
-                                data-bs-dismiss="modal"
-                              >
-                                Close
-                              </button>
-                              <button type="button" className="btn btn-primary">
-                                Save changes
-                              </button>
-                            </div>
+                            <form>
+                              <div className="modal-body">
+                                <img
+                                  src={require(`../../../Assets/products/${v.image}`)}
+                                  alt="product"
+                                />
+                                <div className="m-3">
+                                  <label className="form-label">撰寫評論</label>
+                                  <textarea
+                                    className="form-control"
+                                    rows="3"
+                                  ></textarea>
+                                </div>
+                              </div>
+                              <div className="modal-footer">
+                                <button
+                                  type="button"
+                                  className="btn btn-secondary"
+                                  data-bs-dismiss="modal"
+                                >
+                                  取消評論
+                                </button>
+                                <button
+                                  type="submit"
+                                  className="btn btn-primary text-white"
+                                >
+                                  送出評論
+                                </button>
+                              </div>
+                            </form>
                           </div>
                         </div>
                       </div>
@@ -128,7 +145,7 @@ function AccountOrderDetail() {
               );
             })}
             <tr>
-              <td colSpan={5}>
+              <td colSpan={orderStatus === 1 ? 6 : 5}>
                 <ul className="account_order_detail-price">
                   <li className="d-flex justify-content-end">
                     <div>商品總計:</div>
@@ -158,7 +175,7 @@ function AccountOrderDetail() {
               </td>
             </tr>
             <tr>
-              <td colSpan={5}>
+              <td colSpan={orderStatus === 1 ? 6 : 5}>
                 <div className="account_order_detail-total d-flex justify-content-end text-primary">
                   <div>總金額:</div>
                   <div>
