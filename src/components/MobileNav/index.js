@@ -72,7 +72,7 @@ function MobileNav() {
                 <li className="nav-item dropdown">
                   <Link
                     className="nav-link dropdown-toggle"
-                    to="products"
+                    to="products/植物奶"
                     id="offcanvasNavbarDropdown"
                     role="button"
                     data-bs-toggle="dropdown"
@@ -85,17 +85,26 @@ function MobileNav() {
                     aria-labelledby="offcanvasNavbarDropdown"
                   >
                     <li>
-                      <Link className="dropdown-item" to="products">
+                      <Link
+                        className="dropdown-item"
+                        to="products/植物奶/燕麥奶"
+                      >
                         燕麥奶
                       </Link>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="products">
+                      <Link
+                        className="dropdown-item"
+                        to="products/植物奶/杏仁奶"
+                      >
                         杏仁奶
                       </Link>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="products">
+                      <Link
+                        className="dropdown-item"
+                        to="products/植物奶/堅果奶"
+                      >
                         堅果奶
                       </Link>
                     </li>
@@ -104,7 +113,7 @@ function MobileNav() {
                 <li className="nav-item dropdown">
                   <Link
                     className="nav-link dropdown-toggle"
-                    to="products"
+                    to="products/有機蔬果汁"
                     id="offcanvasNavbarDropdown"
                     role="button"
                     data-bs-toggle="dropdown"
@@ -117,17 +126,26 @@ function MobileNav() {
                     aria-labelledby="offcanvasNavbarDropdown"
                   >
                     <li>
-                      <Link className="dropdown-item" to="products">
+                      <Link
+                        className="dropdown-item"
+                        to="products/有機蔬果汁/果汁"
+                      >
                         果汁
                       </Link>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="products">
+                      <Link
+                        className="dropdown-item"
+                        to="products/有機蔬果汁/蔬菜汁、氣泡水"
+                      >
                         蔬菜汁、氣泡水
                       </Link>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="products">
+                      <Link
+                        className="dropdown-item"
+                        to="products/有機蔬果汁/果昔、果醋"
+                      >
                         果昔、果醋
                       </Link>
                     </li>
@@ -136,7 +154,7 @@ function MobileNav() {
                 <li className="nav-item dropdown">
                   <Link
                     className="nav-link dropdown-toggle"
-                    to="products"
+                    to="products/營養點心"
                     id="offcanvasNavbarDropdown"
                     role="button"
                     data-bs-toggle="dropdown"
@@ -149,17 +167,26 @@ function MobileNav() {
                     aria-labelledby="offcanvasNavbarDropdown"
                   >
                     <li>
-                      <Link className="dropdown-item" to="products">
+                      <Link
+                        className="dropdown-item"
+                        to="products/營養點心/麥片"
+                      >
                         麥片
                       </Link>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="products">
+                      <Link
+                        className="dropdown-item"
+                        to="products/營養點心/燕麥棒、蛋白棒"
+                      >
                         燕麥棒、蛋白棒
                       </Link>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="products">
+                      <Link
+                        className="dropdown-item"
+                        to="products/營養點心/堅果"
+                      >
                         堅果
                       </Link>
                     </li>
@@ -168,7 +195,7 @@ function MobileNav() {
                 <li className="nav-item dropdown">
                   <Link
                     className="nav-link dropdown-toggle"
-                    to="recipes"
+                    to="recipes/飲品?search"
                     id="offcanvasNavbarDropdown"
                     role="button"
                     data-bs-toggle="dropdown"
@@ -181,17 +208,17 @@ function MobileNav() {
                     aria-labelledby="offcanvasNavbarDropdown"
                   >
                     <li>
-                      <Link className="dropdown-item" to="recipes">
+                      <Link className="dropdown-item" to="/recipes/飲品?search">
                         飲品
                       </Link>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="recipes">
-                        烘培
+                      <Link className="dropdown-item" to="/recipes/烘焙?search">
+                        烘焙
                       </Link>
                     </li>
                     <li>
-                      <Link className="dropdown-item" to="recipes">
+                      <Link className="dropdown-item" to="/recipes/輕食?search">
                         輕食
                       </Link>
                     </li>
