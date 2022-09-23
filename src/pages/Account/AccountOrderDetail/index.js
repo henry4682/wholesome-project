@@ -4,11 +4,14 @@ import { Link, useParams } from 'react-router-dom';
 import { useAuth } from '../../../context/auth';
 import { API_URL } from '../../../utils/config';
 import axios from 'axios';
+import { BsPencil } from 'react-icons/bs';
 function AccountOrderDetail() {
   const { user, setUser } = useAuth();
   const { orderId } = useParams();
   const [orderData, setOrderData] = useState([]);
   const [orderDetail, setOrderDetail] = useState([]);
+  // 訂單狀態
+  const [orderStatus, setOrderStatus] = useState(0);
 
   useEffect(() => {
     let getOrders = async () => {
@@ -16,9 +19,11 @@ function AccountOrderDetail() {
       // console.log(response.data);
       setOrderDetail(response.data.orderDetail);
       setOrderData(response.data.orderData);
+      setOrderStatus(response.data.orderData[0].status_id);
     };
     getOrders();
   }, [orderId]);
+  console.log(orderStatus);
 
   return (
     <>
@@ -46,6 +51,7 @@ function AccountOrderDetail() {
               <th scope="col">商品價格</th>
               <th scope="col">商品數量</th>
               <th scope="col">小計</th>
+              {orderStatus === 1 ? <th>評論商品</th> : <></>}
             </tr>
           </thead>
           <tbody>
@@ -64,6 +70,60 @@ function AccountOrderDetail() {
                   <td className="align-middle">
                     NT${v.product_price * v.amount}
                   </td>
+                  {orderStatus === 1 ? (
+                    <td className="align-middle">
+                      <button
+                        type="button"
+                        className="btn btn-sm btn-secondary"
+                        data-bs-toggle="modal"
+                        data-bs-target={`#Modal${i}`}
+                      >
+                        <BsPencil />
+                      </button>
+                      {/* 商品評論 modal */}
+                      <div
+                        className="modal fade"
+                        id={`Modal${i}`}
+                        tabIndex="-1"
+                        aria-labelledby="exampleModalLabel"
+                        aria-hidden="true"
+                      >
+                        <div className="modal-dialog">
+                          <div className="modal-content">
+                            <div className="modal-header">
+                              <h5
+                                className="modal-title"
+                                id="exampleModalLabel"
+                              >
+                                {v.name}
+                              </h5>
+                              <button
+                                type="button"
+                                className="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                              ></button>
+                            </div>
+                            <div className="modal-body">...</div>
+                            <div className="modal-footer">
+                              <button
+                                type="button"
+                                className="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                              >
+                                Close
+                              </button>
+                              <button type="button" className="btn btn-primary">
+                                Save changes
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  ) : (
+                    <></>
+                  )}
                 </tr>
               );
             })}
@@ -114,6 +174,7 @@ function AccountOrderDetail() {
             </tr>
           </tbody>
         </table>
+
         {/* mobile */}
         <ul className="account_order_detail-mobile ">
           {orderDetail.map((v, i) => {
