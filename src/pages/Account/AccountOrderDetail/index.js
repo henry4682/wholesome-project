@@ -35,6 +35,12 @@ function AccountOrderDetail() {
           </p>
           <p> {orderData.map((v) => v.create_time)}</p>
         </div>
+        <div className="account_order_detail-reciever">
+          <p>購買人資訊</p>
+          <p>姓名:{orderData.map((v) => v.receiver_name)}</p>
+          <p>電話:{orderData.map((v) => v.receiver_phone)}</p>
+          <p>收件地址:{orderData.map((v) => v.receiver_address)}</p>
+        </div>
         <table className="account_order_detail-table table table-bordered">
           <thead className="table-secondary">
             <tr>
@@ -64,18 +70,6 @@ function AccountOrderDetail() {
                 </tr>
               );
             })}
-            {/* <tr className="border">
-              <td>
-                <img
-                  src="https://cdn.cybassets.com/media/W1siZiIsIjEzODUwL3Byb2R1Y3RzLzMxOTUxMTA1LzE2MDM0MzQ5NTNfZjFlNjEwOTcxYzcwMWZkMmM3MjEucG5nIl0sWyJwIiwidGh1bWIiLCI2MDB4NjAwIl1d.png?sha=a134d4f53b04b833"
-                  alt="apple juice"
-                />
-              </td>
-              <td className="align-middle">Voelkel黑棗汁</td>
-              <td className="align-middle">NT$399</td>
-              <td className="align-middle">2</td>
-              <td className="align-middle">NT$798</td>
-            </tr> */}
             <tr>
               <td colSpan={5}>
                 <ul className="account_order_detail-price">
@@ -125,26 +119,31 @@ function AccountOrderDetail() {
         </table>
         {/* mobile */}
         <ul className="account_order_detail-mobile ">
-          <li className="border-bottom d-flex p-2">
-            <img
-              src="https://cdn.cybassets.com/media/W1siZiIsIjEzODUwL3Byb2R1Y3RzLzMxOTUxMTA1LzE2MDM0MzQ5NTNfZjFlNjEwOTcxYzcwMWZkMmM3MjEucG5nIl0sWyJwIiwidGh1bWIiLCI2MDB4NjAwIl1d.png?sha=a134d4f53b04b833"
-              alt="apple juice"
-            />
-            <div className="ms-1">
-              <div className="mb-1">
-                商品名稱:<span>Voelkel黑棗汁</span>
-              </div>
-              <div className="mb-1">
-                商品價格:<span>NT$399</span>
-              </div>
-              <div className="mb-1">
-                商品數量:<span>2</span>
-              </div>
-              <div className="mb-1">
-                小計:<span>NT$798</span>
-              </div>
-            </div>
-          </li>
+          {orderDetail.map((v, i) => {
+            return (
+              <li className="border-bottom d-flex p-2">
+                <img
+                  src={require(`../../../Assets/products/${v.image}`)}
+                  alt="product image"
+                />
+                <div className="ms-1">
+                  <div className="mb-1">
+                    商品名稱:<span>{v.name}</span>
+                  </div>
+                  <div className="mb-1">
+                    商品價格:<span>NT${v.product_price}</span>
+                  </div>
+                  <div className="mb-1">
+                    商品數量:<span>{v.amount}</span>
+                  </div>
+                  <div className="mb-1">
+                    小計:<span>NT${v.product_price * v.amount}</span>
+                  </div>
+                </div>
+              </li>
+            );
+          })}
+
           <li className="border-bottom d-flex p-2">
             <img
               src="https://cdn.cybassets.com/media/W1siZiIsIjEzODUwL3Byb2R1Y3RzLzMxOTUxMTA1LzE2MDM0MzQ5NTNfZjFlNjEwOTcxYzcwMWZkMmM3MjEucG5nIl0sWyJwIiwidGh1bWIiLCI2MDB4NjAwIl1d.png?sha=a134d4f53b04b833"
@@ -166,21 +165,30 @@ function AccountOrderDetail() {
             </div>
           </li>
 
-          <li className="p-2 text-end">
+          <li className="p-2">
             <div className="mb-1">
-              商品總計:<span>NT$1596</span>
+              商品總計:<span>NT${orderData.map((v) => v.total_price)}</span>
             </div>
             <div className="mb-1">
-              優惠券折抵(<span>會員註冊購物金</span>):-NT$100
+              {orderData.map((v) => (
+                <>
+                  優惠券折抵(<span>{v.coupon_name ? v.coupon_name : '無'}</span>
+                  ) :-NT$
+                  {v.coupon_price ? v.coupon_price : '0'}
+                </>
+              ))}
             </div>
             <div className="mb-1">
               付款方式:<span>貨到付款</span>
             </div>
             <div className="mb-1">
-              運費:<span>NT$0</span>
+              運費:<span>NT$80</span>
             </div>
             <div className="mb-1 text-primary">
-              總金額:NT$<span>1696</span>
+              總金額:NT$
+              <span>
+                {orderData.map((v) => v.total_price - v.coupon_price + 80)}
+              </span>
             </div>
           </li>
         </ul>
