@@ -24,18 +24,18 @@ function AccountOrderDetail() {
     <>
       <div className="account_order_detail w-100">
         <div className="account_order_detail-info">
-          <p>
+          <p className="mb-1">
             訂單編號:
             <span className="text-primary">
               {orderData.map((v) => v.order_sn)}
             </span>
           </p>
-          <p> {orderData.map((v) => v.create_time)}</p>
+          <p>訂單成立時間:{orderData.map((v) => v.create_time)}</p>
         </div>
         <div className="account_order_detail-reciever">
-          <p>購買人資訊</p>
-          <p>姓名:{orderData.map((v) => v.receiver_name)}</p>
-          <p>電話:{orderData.map((v) => v.receiver_phone)}</p>
+          <p className="mb-1">購買人資訊</p>
+          <p className="mb-1">姓名:{orderData.map((v) => v.receiver_name)}</p>
+          <p className="mb-1">電話:{orderData.map((v) => v.receiver_phone)}</p>
           <p>收件地址:{orderData.map((v) => v.receiver_address)}</p>
         </div>
         <table className="account_order_detail-table table table-bordered">
@@ -79,8 +79,8 @@ function AccountOrderDetail() {
                     <div>
                       {orderData.map((v, i) => (
                         <div key={i}>
-                          (<span>{v.coupon_name ? v.coupon_name : '無'}</span>
-                          ):-NT$
+                          <span>({v.coupon_name ? v.coupon_name : '無'})</span>
+                          :-NT$
                           {v.coupon_price ? v.coupon_price : '0'}
                         </div>
                       ))}
