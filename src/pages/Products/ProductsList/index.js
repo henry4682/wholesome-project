@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { fadeInDown } from 'react-animations';
 import './Products.scss';
 import { API_URL } from '../../../utils/config';
 import axios from 'axios';
@@ -17,6 +18,12 @@ function ProductsList() {
   const dropdownList = [...dropdownElementList].map(
     (dropdownToggleEl) => new Dropdown(dropdownToggleEl)
   );
+
+  const cardFadeIn = {
+    fadeInDown: {
+      animation: 'x 0.5s',
+    },
+  };
 
   //正式資料
   const { mainCategory, subCategory } = useParams();
@@ -75,7 +82,9 @@ function ProductsList() {
     for (let i = 1; i <= totalPage; i++) {
       pages.push(
         <li
-          className="page-item page-link"
+          className={
+            page === i ? 'active  page-item page-link ' : 'page-item page-link '
+          }
           key={i}
           onClick={(e) => {
             setPage(i);
@@ -105,7 +114,7 @@ function ProductsList() {
           subCategory={subCategory}
         />
         {/* TODO:content要改CSS */}
-        <div className=" product_list-container ">
+        <div className=" product_list-container d-flex justify-content-center ">
           {/* 側欄選單 待測試 */}
           <AsideForProductsList
             setPage={setPage}
@@ -217,32 +226,34 @@ function ProductsList() {
               </div>
             </div>
             {/* 商品列表 */}
-            <div className="card-list products_list-card-list ">
+
+            <ul className="d-flex row products_list-card-list gy-3 justify-content-between ">
               {allProducts.map((item, index) => {
                 return (
-                  <div key={index} className="card products_list-card">
+                  <li
+                    key={index}
+                    className=" products_list-card  my-3 col-6 col-lg-4  d-flex flex-column  align-items-center   "
+                  >
                     <img
+                      className="productList_product_pic"
                       src={require(`../../../Assets/products/${item.image}`)}
-                      className="card-img-top products_list-card-img-top"
-                      alt="..."
+                      alt=""
                     />
-
-                    <div className=" card-body products_list-card-body">
+                    <div className="  py-2 ">
                       <Link
                         className=" card-title products_list-card-title word-wrap"
                         to={`/productDetail/${item.id}`}
                       >
                         {item.name}
                       </Link>
-
-                      <p className=" card-text products_list-card-text">
-                        NT${item.price}
-                      </p>
                     </div>
-                  </div>
+                    <div className=" my-2 text-primary products_list-card-text">
+                      <em className="add-on text-primary">NT${item.price}</em>
+                    </div>
+                  </li>
                 );
               })}
-            </div>
+            </ul>
           </div>
         </div>
         {/* 頁數元件化? */}
@@ -262,7 +273,7 @@ function ProductsList() {
             </li>
             {getPages()}
             <li
-              className="page-item"
+              className="page-item "
               aria-label="Next"
               onClick={() => {
                 setPage(page + 1 > totalPage ? totalPage : page + 1);

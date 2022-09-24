@@ -22,7 +22,8 @@ function SwiperForProduct({ goods }) {
         },
         990: {
           slidesPerView: 4,
-          spaceBetween: 50,
+          spaceBetween: 40,
+          centeredSlides: false,
         },
       }}
       navigation
@@ -31,15 +32,18 @@ function SwiperForProduct({ goods }) {
     >
       {goods.map((item, i) => {
         return (
-          <SwiperSlide key={i} className="card product_detail-card">
+          <SwiperSlide
+            key={i}
+            className="card product_detail-card  d-flex flex-column  align-items-center"
+          >
             <img
+              className="productList_product_pic"
               src={require(`../../../../Assets/products/${item.image}`)}
-              className="card-img-top"
-              alt="..."
+              alt=""
             />
-            <div className="card-body products_detail-card-body">
+            <div className="  py-2 ">
               <Link
-                className="card-title product_detail-card-title"
+                className=" card-title products_list-card-title word-wrap"
                 to={`/productDetail/${item.id}`}
                 onClick={() => {
                   window.scrollTo({
@@ -50,9 +54,9 @@ function SwiperForProduct({ goods }) {
               >
                 {item.name}
               </Link>
-              <p className="card-text product_detail-card-text">
-                NT{item.price}
-              </p>
+            </div>
+            <div className=" my-2 text-primary products_list-card-text">
+              <em className="add-on text-primary">NT${item.price}</em>
             </div>
           </SwiperSlide>
         );

@@ -5,7 +5,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import './AsideForProductsList.scss';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
-function AsideForProductsList({ setPage, setSearch, setOrder }) {
+function AsideForProductsList() {
   //設定css
   const theme = createTheme({
     components: {
@@ -13,7 +13,7 @@ function AsideForProductsList({ setPage, setSearch, setOrder }) {
       MuiAccordion: {
         styleOverrides: {
           // Name of the slot
-          root: {
+          root: {       
             boxShadow: 'none',
           },
         },

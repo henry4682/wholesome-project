@@ -4,9 +4,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../utils/config';
 import SwiperForHome from './SwiperForHome';
-import { FiArrowLeftCircle } from 'react-icons/fi';
-import { Swiper } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper';
 import 'swiper/css/pagination';
 import { useAuth } from '../../context/auth';
 import { useCart } from '../../context/cart';
@@ -24,11 +21,6 @@ function Home() {
     getNewestProducts();
   }, []);
 
-  // 初始化載入 localStorage 裡面的 shoppingCart
-  // useEffect(() => {
-  //   let currentCart = localStorage.getItem('shoppingCart');
-  //   setCart(JSON.parse(currentCart));
-  // }, []);
   return (
     <div>
       {/* // swiper */}

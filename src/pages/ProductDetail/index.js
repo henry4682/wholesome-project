@@ -9,6 +9,7 @@ import SwiperForProduct from './components/SwiperForProduct';
 import Rating from '@mui/material/Rating';
 import ProgressBar from '@ramonak/react-progress-bar';
 import axios from 'axios';
+import { BsFillPersonFill } from 'react-icons/bs';
 import { useAuth } from '../../context/auth';
 import { useCart } from '../../context/cart';
 
@@ -36,12 +37,13 @@ function ProductDetail() {
     .map((num, index) => num - index);
   //下面幾個是測試用之後可能會用json格式把star的內容包起來
 
-  // 星星陣列
+  // 評論評分
   const [star, setStar] = useState({});
-
   const [totalPage, setTotalPage] = useState(1);
   const [page, setPage] = useState(1);
   const [amount, setAmount] = useState(0);
+  const [size, setSize] = useState();
+
   //相關商品
   const [goods, setGoods] = useState([]);
 
@@ -68,7 +70,7 @@ function ProductDetail() {
       setCommentData(response.data.commentInfo.commentData);
       setTotalPage(response.data.commentInfo.totalPage);
       setAmount(response.data.commentInfo.commentTotal);
-      console.log('來自be的評論資料', response);
+      console.log('來自be的評論資料', response.data);
     };
     getProductComment();
   }, [productId, page]);
@@ -123,7 +125,6 @@ function ProductDetail() {
     }
   }
 
-
   // 每當我的 Cart state 有變動， 就更新 localStorage
   useEffect(() => {
     // if (cart.length === 0) return;
@@ -159,7 +160,9 @@ function ProductDetail() {
     for (let i = 1; i <= totalPage; i++) {
       pages.push(
         <li
-          className="page-item page-link"
+          className={
+            page === i ? ' active page-item page-link' : 'page-item page-link'
+          }
           key={i}
           onClick={(e) => {
             setPage(i);
@@ -178,14 +181,23 @@ function ProductDetail() {
       behavior: 'smooth',
     });
   };
-
   const goToCommentTop = () => {
-    window.scrollTo({
-      top: 1800,
-      behavior: 'smooth',
-    });
+    window.scrollTo(
+      size < 768
+        ? {
+            top: 2100,
+            behavior: 'smooth',
+          }
+        : {
+            top: 1800,
+            behavior: 'smooth',
+          }
+    );
   };
 
+  window.addEventListener('resize', function () {
+    setSize(window.innerWidth);
+  });
   console.log('商品資訊', data);
 
   return (
@@ -339,11 +351,7 @@ function ProductDetail() {
               <div key={comment.id}>
                 <section className="product_detail-section product_detail-user-comment-box">
                   <div className="product_detail-user-img-box">
-                    <img
-                      className="product_detail-user-img"
-                      src={require('../../Assets/member.png')}
-                      alt="圖片"
-                    />
+                    <BsFillPersonFill size={100} color="#9aab82" />
                   </div>
                   <div className="product_detail-user-text">
                     <div className="product_detail-user-comment">
@@ -363,6 +371,7 @@ function ProductDetail() {
                         value={comment.grade}
                         precision={0.5}
                         readOnly
+                        size="small"
                       />
                     </div>
                   </div>

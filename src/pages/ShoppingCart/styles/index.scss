@@ -127,7 +127,7 @@
 
 .cart_product_pic {
   max-height: 150px;
-  object-fit: cover;
+  object-fit:contain;
 }
 
 @media screen and (max-width: 768px) {
