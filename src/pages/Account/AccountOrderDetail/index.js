@@ -5,6 +5,8 @@ import { useAuth } from '../../../context/auth';
 import { API_URL } from '../../../utils/config';
 import axios from 'axios';
 import { BsPencil } from 'react-icons/bs';
+import Rating from '@mui/material/Rating';
+
 function AccountOrderDetail() {
   const { user, setUser } = useAuth();
   const { orderId } = useParams();
@@ -12,6 +14,7 @@ function AccountOrderDetail() {
   const [orderDetail, setOrderDetail] = useState([]);
   // 訂單狀態
   const [orderStatus, setOrderStatus] = useState(0);
+  const [star, setStar] = useState(0);
 
   useEffect(() => {
     let getOrders = async () => {
@@ -104,12 +107,28 @@ function AccountOrderDetail() {
                                 aria-label="Close"
                               ></button>
                             </div>
+                            {/* 商品評論表單 */}
                             <form>
                               <div className="modal-body">
-                                <img
-                                  src={require(`../../../Assets/products/${v.image}`)}
-                                  alt="product"
-                                />
+                                {/* 商品圖片 */}
+                                <div className="m-3">
+                                  <img
+                                    src={require(`../../../Assets/products/${v.image}`)}
+                                    alt="product"
+                                  />
+                                </div>
+
+                                {/* 星星數量 */}
+                                <div className="m-3">
+                                  <Rating
+                                    name="simple-controlled"
+                                    value={star}
+                                    onChange={(event, newValue) => {
+                                      setStar(newValue);
+                                    }}
+                                  />
+                                </div>
+                                {/* 撰寫評論的欄位 */}
                                 <div className="m-3">
                                   <label className="form-label">撰寫評論</label>
                                   <textarea
@@ -129,6 +148,10 @@ function AccountOrderDetail() {
                                 <button
                                   type="submit"
                                   className="btn btn-primary text-white"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    console.log(v);
+                                  }}
                                 >
                                   送出評論
                                 </button>
