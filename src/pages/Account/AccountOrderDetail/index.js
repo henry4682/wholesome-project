@@ -5,6 +5,8 @@ import { useAuth } from '../../../context/auth';
 import { API_URL } from '../../../utils/config';
 import axios from 'axios';
 import { BsPencil } from 'react-icons/bs';
+import Rating from '@mui/material/Rating';
+
 function AccountOrderDetail() {
   const { user, setUser } = useAuth();
   const { orderId } = useParams();
@@ -12,6 +14,10 @@ function AccountOrderDetail() {
   const [orderDetail, setOrderDetail] = useState([]);
   // 訂單狀態
   const [orderStatus, setOrderStatus] = useState(0);
+  // 撰寫評論的星星數
+  const [star, setStar] = useState(0);
+  // 撰寫評論的內容
+  const [comment, setComment] = useState('');
 
   useEffect(() => {
     let getOrders = async () => {
@@ -24,6 +30,27 @@ function AccountOrderDetail() {
     getOrders();
   }, [orderId]);
   console.log(orderStatus);
+
+  async function handleCommentSubmit(userId, productId, content, grade) {
+    console.log('--- user ---', userId);
+    console.log('--- product ---', productId);
+    console.log('--- 星星數 ---', grade);
+    console.log('--- 評論內容 ---', content);
+    try {
+      let response = await axios.post(
+        `${API_URL}/user/${userId}/productComment?product=${productId}`,
+        { grade: grade, comment: comment }
+      );
+      console.log('POST res', response);
+      console.log(response.data.message);
+      alert(response.data.message);
+      setStar(0);
+      setComment('');
+    } catch (e) {
+      alert(e.response.data.message);
+      console.error('POST comment Error', e.response.data.message);
+    }
+  }
 
   return (
     <>
@@ -104,17 +131,35 @@ function AccountOrderDetail() {
                                 aria-label="Close"
                               ></button>
                             </div>
+                            {/* 商品評論表單 */}
                             <form>
                               <div className="modal-body">
-                                <img
-                                  src={require(`../../../Assets/products/${v.image}`)}
-                                  alt="product"
-                                />
+                                {/* 商品圖片 */}
+                                <div className="m-3">
+                                  <img
+                                    src={require(`../../../Assets/products/${v.image}`)}
+                                    alt="product"
+                                  />
+                                </div>
+
+                                {/* 星星數量 */}
+                                <div className="m-3">
+                                  <Rating
+                                    name="simple-controlled"
+                                    value={star}
+                                    onChange={(event, newValue) => {
+                                      setStar(newValue);
+                                    }}
+                                  />
+                                </div>
+                                {/* 撰寫評論的欄位 */}
                                 <div className="m-3">
                                   <label className="form-label">撰寫評論</label>
                                   <textarea
                                     className="form-control"
                                     rows="3"
+                                    value={comment}
+                                    onChange={(e) => setComment(e.target.value)}
                                   ></textarea>
                                 </div>
                               </div>
@@ -129,6 +174,16 @@ function AccountOrderDetail() {
                                 <button
                                   type="submit"
                                   className="btn btn-primary text-white"
+                                  data-bs-dismiss="modal"
+                                  onClick={(e) => {
+                                    e.preventDefault();
+                                    handleCommentSubmit(
+                                      v.user_id,
+                                      v.product_id,
+                                      comment,
+                                      star
+                                    );
+                                  }}
                                 >
                                   送出評論
                                 </button>
