@@ -30,9 +30,13 @@ function RecipeDetail() {
 
   const { user } = useAuth();
 
-  const [isLike, setIsLike] = useState(1);
+  const [isLike, setIsLike] = useState(false);
 
   useEffect(() => {
+    if (!user || user.id == '0') {
+      setIsLike(false);
+      return;
+    }
     let likeRecipe = async () => {
       let response = await axios.get(
         `http://localhost:3002/api/1.0/recipeTracking/${recipeId}/${user.id}`,
@@ -43,12 +47,14 @@ function RecipeDetail() {
       setIsLike(response.data);
     };
     likeRecipe();
-  }, []);
+  }, [user]);
 
-  if (!user) {
-    setIsLike(false);
-  }
+  
   useEffect(() => {
+    if (!user || user.id == '0') {
+      setIsLike(false);
+      return;
+    }
     let setLikeRecipe = async () => {
       try {
         let result = await axios.post(
@@ -125,32 +131,18 @@ function RecipeDetail() {
                     src={require(`../Asset/recipe-image/${intro.main_img}`)}
                   ></img>
                 </div>
-                {user && user.id !== '0' && 
-                  <button
-                    type="button"
-                    className="btn btn-outline-secondary mt-5"
-                    onClick={() => {
-                      if (isLike == true) {
-                        setIsLike(false);
-                      } else if (isLike == false) {
-                        setIsLike(true);
-                      }
-                    }}
-                  >
-                  <FaHeart
-                    className={
-                      isLike ? 'product_detail-heart' : 'product_detail-empty'
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary mt-5"
+                  onClick={() => {
+                    if (!user || user.id === '0') {
+                      alert('請登入後再收藏');
+                      return;
                     }
-                  />
-                  {isLike ? '移除收藏' : '加入收藏'}
-                   </button>
-                }
-                {user && 
-                  <button
-                    type="button"
-                    className="btn btn-outline-secondary mt-5"
-                    disabled
-                  >
+          
+                      setIsLike(!isLike);
+                  }}
+                >
                   <FaHeart
                     className={
                       isLike ? 'product_detail-heart' : 'product_detail-empty'
@@ -158,7 +150,6 @@ function RecipeDetail() {
                   />
                   {isLike ? '移除收藏' : '加入收藏'}
                 </button>
-                }
               </div>
             );
           })}
