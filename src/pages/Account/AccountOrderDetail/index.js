@@ -14,7 +14,10 @@ function AccountOrderDetail() {
   const [orderDetail, setOrderDetail] = useState([]);
   // 訂單狀態
   const [orderStatus, setOrderStatus] = useState(0);
+  // 撰寫評論的星星數
   const [star, setStar] = useState(0);
+  // 撰寫評論的內容
+  const [comment, setComment] = useState('');
 
   useEffect(() => {
     let getOrders = async () => {
@@ -27,6 +30,27 @@ function AccountOrderDetail() {
     getOrders();
   }, [orderId]);
   console.log(orderStatus);
+
+  async function handleCommentSubmit(userId, productId, content, grade) {
+    console.log('--- user ---', userId);
+    console.log('--- product ---', productId);
+    console.log('--- 星星數 ---', grade);
+    console.log('--- 評論內容 ---', content);
+    try {
+      let response = await axios.post(
+        `${API_URL}/user/${userId}/productComment?product=${productId}`,
+        { grade: grade, comment: comment }
+      );
+      console.log('POST res', response);
+      console.log(response.data.message);
+      alert(response.data.message);
+      setStar(0);
+      setComment('');
+    } catch (e) {
+      alert(e.response.data.message);
+      console.error('POST comment Error', e.response.data.message);
+    }
+  }
 
   return (
     <>
@@ -134,6 +158,8 @@ function AccountOrderDetail() {
                                   <textarea
                                     className="form-control"
                                     rows="3"
+                                    value={comment}
+                                    onChange={(e) => setComment(e.target.value)}
                                   ></textarea>
                                 </div>
                               </div>
@@ -148,9 +174,15 @@ function AccountOrderDetail() {
                                 <button
                                   type="submit"
                                   className="btn btn-primary text-white"
+                                  data-bs-dismiss="modal"
                                   onClick={(e) => {
                                     e.preventDefault();
-                                    console.log(v);
+                                    handleCommentSubmit(
+                                      v.user_id,
+                                      v.product_id,
+                                      comment,
+                                      star
+                                    );
                                   }}
                                 >
                                   送出評論
