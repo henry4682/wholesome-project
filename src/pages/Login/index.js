@@ -8,6 +8,7 @@ import axios from 'axios';
 import { API_URL } from '../../utils/config';
 import { useAuth } from '../../context/auth';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
+import { errorAlert } from '../../components/Alert';
 
 function Login() {
   const { user, setUser, isLogin, setIsLogin } = useAuth();
@@ -40,7 +41,8 @@ function Login() {
       setIsLogin(true);
     } catch (e) {
       // 警告錯誤訊息
-      alert(e.response.data.message);
+      errorAlert('登入錯誤', e.response.data.message);
+      // alert(e.response.data.message);
       console.error('register Error', e);
     }
   }

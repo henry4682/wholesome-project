@@ -2,11 +2,13 @@ import React from 'react';
 import './index.scss';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../../context/auth';
+import { useCart } from '../../../context/cart';
 import { API_URL } from '../../../utils/config';
 import axios from 'axios';
-
+import { successToastAlert } from '../../../components/Alert';
 function AccountInfo() {
   const { user, setUser, setIsLogin } = useAuth();
+  const { cart, setCart } = useCart();
 
   // 登出按鈕
   async function handleLogout() {
@@ -16,6 +18,9 @@ function AccountInfo() {
     console.log('handleLogout', response.data);
     setUser(null);
     setIsLogin(false);
+    setCart([]);
+    localStorage.setItem('shoppingCart', JSON.stringify([]));
+    successToastAlert(response.data.message, 1200, false);
   }
   return (
     <>

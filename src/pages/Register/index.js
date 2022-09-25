@@ -5,6 +5,7 @@ import axios from 'axios';
 import { API_URL } from '../../utils/config';
 import { FaHome } from 'react-icons/fa';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
+import { successAlert, warningAlert } from '../../components/Alert';
 function Register() {
   const [user, setUser] = useState({
     name: '',
@@ -34,7 +35,8 @@ function Register() {
       let response = await axios.post(`${API_URL}/auth/register`, user);
       console.log('POST res', response);
       console.log(response.data);
-      alert('註冊成功');
+      successAlert('註冊成功', '歡迎登入～～～');
+      // alert('註冊成功');
       // 註冊成功清空欄位
       setUser({
         name: '',
@@ -46,7 +48,11 @@ function Register() {
       });
       setIsFinish(true);
     } catch (e) {
-      alert(e.response.data.message || e.response.data.errors[0].msg);
+      // alert(e.response.data.message || e.response.data.errors[0].msg);
+      warningAlert(
+        '註冊欄位填寫錯誤',
+        e.response.data.message || e.response.data.errors[0].msg
+      );
       console.error('register Error', e);
     }
   }
