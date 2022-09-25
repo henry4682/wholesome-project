@@ -7,6 +7,7 @@ import { useAuth } from '../../context/auth';
 import { useCart } from '../../context/cart';
 import MobileNav from '../MobileNav';
 import './index.scss';
+import { successToastAlert } from '../Alert';
 function Header() {
   // 把 user, setUser 從 auth context 裡頭拿出來
   const { user, setUser, setIsLogin } = useAuth();
@@ -21,6 +22,7 @@ function Header() {
     // localStorage.clear();
     setCart([]);
     localStorage.setItem('shoppingCart', JSON.stringify([]));
+    successToastAlert(response.data.message, 1200, false);
   }
 
   // 為全站載入 localStorage 裡面的 shoppingCart
