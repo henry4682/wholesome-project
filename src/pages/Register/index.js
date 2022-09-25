@@ -15,7 +15,7 @@ function Register() {
     password: '',
     confirmPassword: '',
   });
-
+  // 控制表單錯誤訊息的狀態
   const [fieldErrors, setFieldErrors] = useState({
     name: '',
     email: '',
@@ -54,7 +54,7 @@ function Register() {
       let response = await axios.post(`${API_URL}/auth/register`, user);
       console.log('POST res', response);
       console.log(response.data);
-      successAlert('註冊成功', '歡迎登入～～～');
+      successAlert('註冊成功', '歡迎登入');
       // alert('註冊成功');
       // 註冊成功清空欄位
       setUser({
@@ -80,8 +80,6 @@ function Register() {
     // 阻擋檢查的泡泡訊息(預設行為)
     e.preventDefault();
 
-    // console.log(e.target.validationMessage);
-
     // 技巧：用 js 來 focus 第一個錯誤欄位
     document.querySelector('input:invalid').focus();
 
@@ -98,8 +96,6 @@ function Register() {
       [e.target.name]: '',
     });
   };
-
-  console.log(fieldErrors);
 
   // 註冊成功跳到登入頁面
   if (isFinish) {
@@ -139,8 +135,8 @@ function Register() {
                   onChange={handleFieldChange}
                   required
                 />
-                <div>
-                  <span className="error">{fieldErrors.name}</span>
+                <div className="error">
+                  <span>{fieldErrors.name}</span>
                 </div>
               </div>
               <div className="mb-4">
@@ -154,8 +150,8 @@ function Register() {
                   onChange={handleFieldChange}
                   required
                 />
-                <div>
-                  <span className="error">{fieldErrors.email}</span>
+                <div className="error">
+                  <span>{fieldErrors.email}</span>
                 </div>
               </div>
               <div className="mb-4">
@@ -169,12 +165,15 @@ function Register() {
                   onChange={handleFieldChange}
                   required
                 />
-                <div>
-                  <span className="error">{fieldErrors.phone}</span>
+                <div className="error">
+                  <span>{fieldErrors.phone}</span>
                 </div>
               </div>
               <div className="mb-4">
-                <label className="form-label">生日</label>
+                <label className="form-label">生日*</label>{' '}
+                <span className="text-primary">
+                  請正確填寫，註冊成功後將無法修改
+                </span>
                 <input
                   className="form-control form-control-lg"
                   type="date"
@@ -183,12 +182,9 @@ function Register() {
                   onChange={handleFieldChange}
                   required
                 />
-                <div>
-                  <span className="error">{fieldErrors.birthday}</span>
+                <div className="error">
+                  <span>{fieldErrors.birthday}</span>
                 </div>
-                <p className="mt-1 text-primary">
-                  * 請正確填寫，註冊成功後將無法修改
-                </p>
               </div>
               <div className="mb-4">
                 <label className="form-label">密碼*</label>
@@ -218,8 +214,8 @@ function Register() {
                     )}
                   </div>
                 </div>
-                <div>
-                  <span className="error">{fieldErrors.password}</span>
+                <div className="error">
+                  <span>{fieldErrors.password}</span>
                 </div>
               </div>
               <div className="mb-4">
@@ -250,8 +246,8 @@ function Register() {
                     )}
                   </div>
                 </div>
-                <div>
-                  <span className="error">{fieldErrors.confirmPassword}</span>
+                <div className="error">
+                  <span>{fieldErrors.confirmPassword}</span>
                 </div>
               </div>
               <button

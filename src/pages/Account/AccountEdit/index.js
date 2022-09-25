@@ -4,21 +4,20 @@ import './index.scss';
 import { useAuth } from '../../../context/auth';
 import axios from 'axios';
 import { API_URL } from '../../../utils/config';
+import { warningAlert, successAlert } from '../../../components/Alert';
 
 function AccountEdit() {
-  // const { user, setUser } = useAuth();
-
-  // const [editUser, setEditUser] = useState({
-  //   name: user.name,
-  //   phone: user.phone,
-  //   email: user.email,
-  //   birthday: user.birthday,
-  //   address: user.address,
-  //   gender: user.gender,
-  // });
   const genderOptions = ['男', '女', '不提供'];
-
   const [editUser, setEditUser] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    birthday: '',
+    address: '',
+    gender: '',
+  });
+  // 控制表單錯誤訊息的狀態
+  const [fieldErrors, setFieldErrors] = useState({
     name: '',
     phone: '',
     email: '',
@@ -60,41 +59,80 @@ function AccountEdit() {
       console.log('PUT res', response);
       console.log(response.data);
       setEditUser(response.data);
-      alert('修改成功');
+      successAlert('會員資料更新成功');
+      // alert('修改成功');
     } catch (e) {
       console.error('Account edit Error', e);
+      warningAlert('會員資料更新失敗', e.response.data.message);
     }
   }
+
+  const handleInvalid = (e) => {
+    // 阻擋檢查的泡泡訊息(預設行為)
+    e.preventDefault();
+    console.log(e.target.validationMessage);
+
+    // 技巧：用 js 來 focus 第一個錯誤欄位
+    document.querySelector('input:invalid').focus();
+
+    setFieldErrors({
+      ...fieldErrors,
+      [e.target.name]: e.target.validationMessage,
+    });
+  };
+
+  const handleFormChange = (e) => {
+    if (e.target.name === 'showPassword') return;
+    setFieldErrors({
+      ...fieldErrors,
+      [e.target.name]: '',
+    });
+  };
+
+  console.log(fieldErrors);
 
   return (
     <>
       <div className="account_edit w-100">
-        <form className="account_edit-form">
+        <form
+          className="account_edit-form"
+          onSubmit={handleEdit}
+          onInvalid={handleInvalid}
+          onChange={handleFormChange}
+        >
           <div>
             <label className="form-label">姓名</label>
             <input
-              type="text"
               className="form-control"
+              type="text"
               name="name"
               value={editUser.name}
               onChange={handleFieldChange}
+              required
             />
+            <div className="error">
+              <span>{fieldErrors.name}</span>
+            </div>
           </div>
           <div>
             <label className="form-label">手機</label>
             <input
-              type="phone"
               className="form-control"
+              type="phone"
               name="phone"
               value={editUser.phone}
               onChange={handleFieldChange}
+              required
             />
+            <div className="error">
+              <span>{fieldErrors.phone}</span>
+            </div>
           </div>
           <div>
             <label className="form-label">電子信箱</label>
             <input
-              type="email"
               className="form-control"
+              type="email"
               name="email"
               value={editUser.email}
               onChange={handleFieldChange}
@@ -104,8 +142,8 @@ function AccountEdit() {
           <div>
             <label className="form-label">出生日期</label>
             <input
-              type="date"
               className="form-control"
+              type="date"
               name="birthday"
               value={editUser.birthday}
               onChange={handleFieldChange}
@@ -115,12 +153,16 @@ function AccountEdit() {
           <div>
             <label className="form-label">收件地址</label>
             <input
-              type="text"
               className="form-control"
+              type="text"
               name="address"
               value={editUser.address}
               onChange={handleFieldChange}
+              required
             />
+            <div className="error">
+              <span>{fieldErrors.address}</span>
+            </div>
           </div>
           <div>
             <label className="form-label">性別</label>
@@ -144,7 +186,7 @@ function AccountEdit() {
             <button
               className="btn btn btn-primary text-white"
               type="submit"
-              onClick={handleEdit}
+              // onClick={handleEdit}
             >
               確定修改
             </button>
