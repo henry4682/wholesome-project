@@ -1,25 +1,28 @@
-import React from 'react';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { React, useState } from 'react';
+import { Link, Navigate } from 'react-router-dom';
 import './index.scss';
-import { FaHome } from 'react-icons/fa';
 import axios from 'axios';
 import { API_URL } from '../../utils/config';
+import { FaHome } from 'react-icons/fa';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 function Register() {
   const [user, setUser] = useState({
-    name: '邱婉瑜',
-    email: '123@test.com',
-    phone: '0900000000',
-    birthday: '2000-10-10',
-    password: 'test12345',
-    confirmPassword: 'test12345',
+    name: '',
+    email: '',
+    phone: '',
+    birthday: '',
+    password: '',
+    confirmPassword: '',
   });
 
   // 呈現密碼用
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+  // 註冊成功與否 ---> 跳轉頁面
+  const [isFinish, setIsFinish] = useState(false);
+
+  console.log(isFinish);
   function handleFieldChange(e) {
     const newUser = { ...user, [e.target.name]: e.target.value };
     setUser(newUser);
@@ -32,10 +35,25 @@ function Register() {
       console.log('POST res', response);
       console.log(response.data);
       alert('註冊成功');
+      // 註冊成功清空欄位
+      setUser({
+        name: '',
+        email: '',
+        phone: '',
+        birthday: '',
+        password: '',
+        confirmPassword: '',
+      });
+      setIsFinish(true);
     } catch (e) {
       alert(e.response.data.message || e.response.data.errors[0].msg);
       console.error('register Error', e);
     }
+  }
+
+  // 註冊成功跳到登入頁面
+  if (isFinish) {
+    return <Navigate to="/login" />;
   }
 
   return (
