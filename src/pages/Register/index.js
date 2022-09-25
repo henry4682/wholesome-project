@@ -16,14 +16,23 @@ function Register() {
     confirmPassword: '',
   });
 
+  const [fieldErrors, setFieldErrors] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    birthday: '',
+    password: '',
+    confirmPassword: '',
+  });
+
   // 呈現密碼用
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   // 註冊成功與否 ---> 跳轉頁面
   const [isFinish, setIsFinish] = useState(false);
-
   console.log(isFinish);
+
   function handleFieldChange(e) {
     const newUser = { ...user, [e.target.name]: e.target.value };
     setUser(newUser);
@@ -31,6 +40,16 @@ function Register() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (user.password !== user.confirmPassword) {
+      setFieldErrors({
+        ...fieldErrors,
+        password: '密碼與確認密碼需一致',
+        confirmPassword: '密碼與確認密碼需一致',
+      });
+      return; // 終止之後的函式動作
+    }
+
     try {
       let response = await axios.post(`${API_URL}/auth/register`, user);
       console.log('POST res', response);
@@ -57,6 +76,31 @@ function Register() {
     }
   }
 
+  const handleInvalid = (e) => {
+    // 阻擋檢查的泡泡訊息(預設行為)
+    e.preventDefault();
+
+    // console.log(e.target.validationMessage);
+
+    // 技巧：用 js 來 focus 第一個錯誤欄位
+    document.querySelector('input:invalid').focus();
+
+    setFieldErrors({
+      ...fieldErrors,
+      [e.target.name]: e.target.validationMessage,
+    });
+  };
+
+  const handleFormChange = (e) => {
+    if (e.target.name === 'showPassword') return;
+    setFieldErrors({
+      ...fieldErrors,
+      [e.target.name]: '',
+    });
+  };
+
+  console.log(fieldErrors);
+
   // 註冊成功跳到登入頁面
   if (isFinish) {
     return <Navigate to="/login" />;
@@ -78,52 +122,70 @@ function Register() {
         <div className="d-flex justify-content-center p-2">
           <div className="register">
             <p className="text-center register-title">註冊新帳號</p>
-            <form className="register-form ">
+            <form
+              className="register-form"
+              onSubmit={handleSubmit}
+              onInvalid={handleInvalid}
+              onChange={handleFormChange}
+            >
               <div className="mb-4">
                 <label className="form-label">姓名*</label>
                 <input
-                  type="text"
                   className="form-control form-control-lg"
-                  required
                   placeholder="請輸入您的姓名"
+                  type="text"
                   name="name"
                   value={user.name}
                   onChange={handleFieldChange}
+                  required
                 />
+                <div>
+                  <span className="error">{fieldErrors.name}</span>
+                </div>
               </div>
               <div className="mb-4">
                 <label className="form-label">電子信箱*</label>
                 <input
-                  type="email"
                   className="form-control form-control-lg"
-                  required
                   placeholder="請輸入您的 E-MAIL"
+                  type="email"
                   name="email"
                   value={user.email}
                   onChange={handleFieldChange}
+                  required
                 />
+                <div>
+                  <span className="error">{fieldErrors.email}</span>
+                </div>
               </div>
               <div className="mb-4">
                 <label className="form-label">手機*</label>
                 <input
-                  type="tel"
                   className="form-control form-control-lg"
-                  required
                   placeholder="請輸入您的手機"
+                  type="tel"
                   name="phone"
                   value={user.phone}
                   onChange={handleFieldChange}
+                  required
                 />
+                <div>
+                  <span className="error">{fieldErrors.phone}</span>
+                </div>
               </div>
               <div className="mb-4">
                 <label className="form-label">生日</label>
                 <input
-                  type="date"
                   className="form-control form-control-lg"
+                  type="date"
                   name="birthday"
                   value={user.birthday}
                   onChange={handleFieldChange}
+                  required
                 />
+                <div>
+                  <span className="error">{fieldErrors.birthday}</span>
+                </div>
                 <p className="mt-1 text-primary">
                   * 請正確填寫，註冊成功後將無法修改
                 </p>
@@ -132,12 +194,13 @@ function Register() {
                 <label className="form-label">密碼*</label>
                 <div className="register_password_box">
                   <input
-                    type={showPassword ? 'text' : 'password'}
                     className="form-control form-control-lg"
                     placeholder="請輸入您的密碼"
+                    type={showPassword ? 'text' : 'password'}
                     name="password"
                     value={user.password}
                     onChange={handleFieldChange}
+                    required
                   />
                   <div className="register_password_icon text-secondary">
                     {showPassword ? (
@@ -155,17 +218,21 @@ function Register() {
                     )}
                   </div>
                 </div>
+                <div>
+                  <span className="error">{fieldErrors.password}</span>
+                </div>
               </div>
               <div className="mb-4">
                 <label className="form-label">密碼確認*</label>
                 <div className="register_password_box">
                   <input
-                    type={showConfirmPassword ? 'text' : 'password'}
                     className="form-control form-control-lg"
                     placeholder="再輸入一次密碼"
+                    type={showConfirmPassword ? 'text' : 'password'}
                     name="confirmPassword"
                     value={user.confirmPassword}
                     onChange={handleFieldChange}
+                    required
                   />
                   <div className="register_password_icon text-secondary">
                     {showConfirmPassword ? (
@@ -183,11 +250,14 @@ function Register() {
                     )}
                   </div>
                 </div>
+                <div>
+                  <span className="error">{fieldErrors.confirmPassword}</span>
+                </div>
               </div>
               <button
                 type="submit"
                 className="btn btn-primary btn-lg text-white"
-                onClick={handleSubmit}
+                // onClick={handleSubmit}
               >
                 加入會員
               </button>
