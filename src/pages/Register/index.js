@@ -79,10 +79,8 @@ function Register() {
   const handleInvalid = (e) => {
     // 阻擋檢查的泡泡訊息(預設行為)
     e.preventDefault();
-
     // 技巧：用 js 來 focus 第一個錯誤欄位
     document.querySelector('input:invalid').focus();
-
     setFieldErrors({
       ...fieldErrors,
       [e.target.name]: e.target.validationMessage,
