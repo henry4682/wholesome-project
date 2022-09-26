@@ -59,7 +59,7 @@ function ProductsList() {
     };
     getAllProducts();
   }, [mainCategory, subCategory]);
-  console.log('visible',isVisibled)
+  console.log('visible', isVisibled);
 
   //(頁面和總體)資料篩選或變動
   useEffect(() => {
@@ -77,7 +77,6 @@ function ProductsList() {
       setAllProducts(response.data.data);
       setTotalPage(response.data.pagination.totalPage);
       setAmount(response.data.pagination.total);
-     
     };
     getSearchProducts();
   }, [search, order, page]);

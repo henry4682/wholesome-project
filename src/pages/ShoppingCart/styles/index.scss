@@ -126,21 +126,22 @@
 }
 
 .cart_product_pic {
-  max-height: 150px;
+  max-height: 200px;
+  max-width: 100%;
   object-fit:contain;
 }
 
 @media screen and (max-width: 768px) {
   .cart_product_pic {
     border-radius: 10px;
-    max-width: 200px;
+    
   }
 }
 
 @media screen and (max-width: 576px) {
   .cart_product_pic {
     border-radius: 10px;
-    max-height: 100px;
+   
   }
 }
 
