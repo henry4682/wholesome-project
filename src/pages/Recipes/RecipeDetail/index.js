@@ -10,6 +10,7 @@ import ProgressBar from '@ramonak/react-progress-bar';
 import Rating from '@mui/material/Rating';
 import { useAuth } from '../../../context/auth';
 import { FaHeart } from 'react-icons/fa';
+import { successToastAlert,errorToastAlert } from '../../../components/Alert';
 
 function RecipeDetail() {
   const [introData, setIntroData] = useState([]);
@@ -49,7 +50,6 @@ function RecipeDetail() {
     likeRecipe();
   }, [user]);
 
-  
   useEffect(() => {
     if (!user || user.id === '0') {
       setIsLike(false);
@@ -72,6 +72,7 @@ function RecipeDetail() {
     };
     setLikeRecipe();
   }, [isLike]);
+
   useEffect(() => {
     let getRecipe = async () => {
       let response = await axios.get(
@@ -86,7 +87,7 @@ function RecipeDetail() {
       setGradeInfo(response.data.gradeInfo);
     };
     getRecipe();
-  }, []);
+  }, [recipeId]);
 
   if (isSearch) {
     return <Navigate to={`/recipes/飲品?search=${searchTerm}`} />;
@@ -94,7 +95,7 @@ function RecipeDetail() {
 
   async function handleSubmit(e) {
     // 關掉submit按鈕的預設行為(跳頁)
-    // e.preventDefault();
+    e.preventDefault();
     //表單傳送用post
     try {
       let result = await axios.post(
@@ -105,10 +106,21 @@ function RecipeDetail() {
         }
       );
       console.log(result.data);
+      let response = await axios.get(
+        `http://localhost:3002/api/1.0/recipeDetail/${recipeId}`
+      );
+      console.log(response.data);
+      setCommentData(response.data.commentData);
+      setStarInfo(response.data.starInfo);
+      setGradeInfo(response.data.gradeInfo);
+      successToastAlert('新增評論成功!',1200,false);
+      setReviewStar(0);
+      setReview('');
     } catch (e) {
-      console.error('review', e.response.data.message);
-      alert(e.response.data.message);
+      console.error('review', e.response.data);
+      errorToastAlert(e.response.data.message,1200,false);
     }
+
   }
 
   return (
@@ -136,11 +148,11 @@ function RecipeDetail() {
                   className="btn btn-outline-secondary mt-5"
                   onClick={() => {
                     if (!user || user.id === '0') {
-                      alert('請登入後再收藏');
+                      errorToastAlert('請登入後再收藏',1200,false);
                       return;
                     }
-          
-                      setIsLike(!isLike);
+
+                    setIsLike(!isLike);
                   }}
                 >
                   <FaHeart
@@ -188,7 +200,7 @@ function RecipeDetail() {
                     <div className="card recipe-recommend-card ">
                       <img
                         src={require(`../../../Assets/products/${product.image}`)}
-                        // className="card-img-top products_list-card-img-top"
+                        className="card-img-top products_list-card-img-top"
                         alt="..."
                       />
 
@@ -197,9 +209,7 @@ function RecipeDetail() {
                           className=" card-title products_list-card-title word-wrap "
                           to={`/productDetail/${product.product_id}`}
                         >
-                        <div className='text-truncate'>
-                          {product.name}
-                        </div>
+                          <div className="text-truncate">{product.name}</div>
                         </Link>
                         <p className="card-text products_list-card-text">
                           NT${product.price}
@@ -326,7 +336,7 @@ function RecipeDetail() {
                       className="form-control mb-3"
                       id="exampleFormControlTextarea1"
                       rows="3"
-                      value={review.comment}
+                      value={review}
                       onChange={(e) => {
                         setReview(e.target.value);
                       }}
