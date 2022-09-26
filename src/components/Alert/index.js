@@ -36,6 +36,22 @@ export function errorAlert(title, text) {
   });
 }
 
+// alert 錯誤的 toast 訊息
+export function errorToastAlert(title, timer, timerProgressBar = true) {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: timer,
+    timerProgressBar: timerProgressBar,
+  });
+
+  Toast.fire({
+    icon: 'error',
+    title: title,
+  });
+}
+
 // alert 警告訊息
 export function warningAlert(title, text) {
   Swal.fire({
