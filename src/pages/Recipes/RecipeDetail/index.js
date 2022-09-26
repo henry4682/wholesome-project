@@ -90,7 +90,7 @@ function RecipeDetail() {
       setGradeInfo(response.data.gradeInfo);
     };
     getRecipe();
-  }, []);
+  }, [recipeId]);
   console.log('productData',productData)
 
   if (isSearch) {
