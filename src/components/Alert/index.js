@@ -37,10 +37,15 @@ export function errorAlert(title, text) {
 }
 
 // alert 錯誤的 toast 訊息
-export function errorToastAlert(title, timer, timerProgressBar = true) {
+export function errorToastAlert(
+  title,
+  timer,
+  timerProgressBar = true,
+  position = 'top-end'
+) {
   const Toast = Swal.mixin({
     toast: true,
-    position: 'top-end',
+    position: position,
     showConfirmButton: false,
     timer: timer,
     timerProgressBar: timerProgressBar,

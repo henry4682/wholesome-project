@@ -6,6 +6,7 @@ import { API_URL } from '../../../utils/config';
 import axios from 'axios';
 import { BsPencil } from 'react-icons/bs';
 import Rating from '@mui/material/Rating';
+import { errorToastAlert } from '../../../components/Alert';
 
 function AccountOrderDetail() {
   const { user, setUser } = useAuth();
@@ -30,6 +31,20 @@ function AccountOrderDetail() {
     getOrders();
   }, [orderId]);
   console.log(orderStatus);
+
+  // 使用者可不可以對這筆商品評論
+  async function handleCommentWrite(userId, productId) {
+    try {
+      let response = await axios.get(
+        `${API_URL}/user/${userId}/productComment?product=${productId}`
+      );
+      console.log('POST res', response);
+      console.log(response.data.message);
+    } catch (e) {
+      errorToastAlert(e.response.data.message, 1200, false, 'center');
+      console.error(e);
+    }
+  }
 
   async function handleCommentSubmit(userId, productId, content, grade) {
     console.log('--- user ---', userId);
@@ -104,6 +119,9 @@ function AccountOrderDetail() {
                         className="btn btn-sm btn-secondary"
                         data-bs-toggle="modal"
                         data-bs-target={`#Modal${i}`}
+                        onClick={() => {
+                          handleCommentWrite(v.user_id, v.product_id);
+                        }}
                       >
                         <BsPencil />
                       </button>
