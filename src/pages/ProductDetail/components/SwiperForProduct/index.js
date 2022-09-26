@@ -43,7 +43,7 @@ function SwiperForProduct({ goods }) {
             />
             <div className="  py-2 ">
               <Link
-                className=" card-title products_list-card-title word-wrap"
+                className=" card-title products_list-card-title word-wrap "
                 to={`/productDetail/${item.id}`}
                 onClick={() => {
                   window.scrollTo({
@@ -52,7 +52,7 @@ function SwiperForProduct({ goods }) {
                   });
                 }}
               >
-                {item.name}
+                <div className="text-truncate">{item.name}</div>
               </Link>
             </div>
             <div className=" my-2 text-primary products_list-card-text">
