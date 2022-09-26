@@ -6,6 +6,7 @@ import { useCart } from '../../../context/cart';
 import { API_URL } from '../../../utils/config';
 import axios from 'axios';
 import { BsCaretLeft, BsCaretRight } from 'react-icons/bs';
+import { successToastAlert } from '../../../components/Alert';
 
 function AccountTracking() {
   const { user, setUser } = useAuth();
@@ -61,7 +62,8 @@ function AccountTracking() {
         `${API_URL}/productTracking/${userId}?product=${productId}`
       );
       console.log(response.data);
-      alert('收藏商品移除成功');
+      // alert('收藏商品移除成功');
+      successToastAlert('收藏商品移除成功', 1200, false);
 
       // 重新取得使用者產品收藏資訊
       let productResponse = await axios.get(
@@ -157,6 +159,7 @@ function AccountTracking() {
                             image: item.product_img,
                           };
                           setCart([...cart, product]);
+                          successToastAlert('商品加入購物車成功', 1200, false);
                         }}
                       >
                         加入購物車
@@ -229,13 +232,10 @@ function AccountTracking() {
           <div className="row">
             {recipeData.map((v, i) => {
               return (
-                <div
-                  key={v.id}
-                  className="account_tracking-product col-lg-4 col-6 mt-2"
-                >
+                <div key={v.id} className="account_tracking-product col-6 mt-2">
                   <div>
                     <img
-                      src="https://cdn.cybassets.com/media/W1siZiIsIjEzODUwL3Byb2R1Y3RzLzMxOTUxMTA1LzE2MDM0MzQ5NTNfZjFlNjEwOTcxYzcwMWZkMmM3MjEucG5nIl0sWyJwIiwidGh1bWIiLCI2MDB4NjAwIl1d.png?sha=a134d4f53b04b833"
+                      src={require(`../../Recipes/Asset/recipe-image/${v.recipe_img}`)}
                       alt="apple juice"
                     />
                   </div>
