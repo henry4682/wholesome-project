@@ -45,3 +45,19 @@ export function warningAlert(title, text) {
     confirmButtonColor: '#9aab82',
   });
 }
+
+// alert 警告的 toast 訊息
+export function warningToastAlert(title, timer, timerProgressBar = true) {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: timer,
+    timerProgressBar: timerProgressBar,
+  });
+
+  Toast.fire({
+    icon: 'warning',
+    title: title,
+  });
+}
