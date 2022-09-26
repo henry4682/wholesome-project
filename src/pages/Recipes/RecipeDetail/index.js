@@ -219,7 +219,7 @@ function RecipeDetail() {
                           NT${product.price}
                         </p>
                         <button
-                          className="account_tracking_btn mb-1 btn btn-sm btn-primary text-white"
+                          className="account_tracking_btn mb-1 btn btn-sm btn-primary text-white mt-2"
                           onClick={() => {
                             // --- 判斷購物車裡面是不是有這個商品
                             if (cart.some((v) => v.id === product.id)) {
