@@ -33,7 +33,7 @@ function RecipeDetail() {
   const [isLike, setIsLike] = useState(false);
 
   useEffect(() => {
-    if (!user || user.id == '0') {
+    if (!user || user.id === '0') {
       setIsLike(false);
       return;
     }
@@ -51,7 +51,7 @@ function RecipeDetail() {
 
   
   useEffect(() => {
-    if (!user || user.id == '0') {
+    if (!user || user.id === '0') {
       setIsLike(false);
       return;
     }
@@ -172,7 +172,7 @@ function RecipeDetail() {
             </div>
           </div>
           <div className="recipe-product ">
-            {productData.length == 0 ? (
+            {productData.length === 0 ? (
               <></>
             ) : (
               <>
@@ -188,19 +188,20 @@ function RecipeDetail() {
                     <div className="card recipe-recommend-card ">
                       <img
                         src={require(`../../../Assets/products/${product.image}`)}
-                        className="card-img-top products_list-card-img-top"
+                        // className="card-img-top products_list-card-img-top"
                         alt="..."
                       />
 
-                      <div className=" card-body products_list-card-body">
+                      <div className=" card-body products_list-card-body text-center">
                         <Link
-                          className=" card-title products_list-card-title word-wrap"
+                          className=" card-title products_list-card-title word-wrap "
                           to={`/productDetail/${product.product_id}`}
                         >
+                        <div className='text-truncate'>
                           {product.name}
+                        </div>
                         </Link>
-
-                        <p className=" card-text products_list-card-text">
+                        <p className="card-text products_list-card-text">
                           NT${product.price}
                         </p>
                       </div>
