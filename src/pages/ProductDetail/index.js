@@ -195,9 +195,6 @@ function ProductDetail() {
     );
   };
 
-  window.addEventListener('resize', function () {
-    setSize(window.innerWidth);
-  });
   console.log('商品資訊', data);
 
   return (

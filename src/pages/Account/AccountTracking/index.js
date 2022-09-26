@@ -2,14 +2,18 @@ import { React, useState, useEffect } from 'react';
 import './index.scss';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../../context/auth';
+import { useCart } from '../../../context/cart';
 import { API_URL } from '../../../utils/config';
 import axios from 'axios';
 import { BsCaretLeft, BsCaretRight } from 'react-icons/bs';
 
 function AccountTracking() {
   const { user, setUser } = useAuth();
+  const { cart, setCart } = useCart();
   const [productData, setProductData] = useState([]); // 商品
   const [recipeData, setRecipeData] = useState([]); // 食譜
+
+  console.log('cart', cart);
 
   // 分頁: 增加 lastPage (總頁數) 與 page (目前在第幾頁) 的 state
   const [productLastPage, setProductLastPage] = useState(1); // 商品
@@ -112,34 +116,55 @@ function AccountTracking() {
         >
           {/* 商品收藏內容 */}
           <div className="row">
-            {productData.map((v, i) => {
+            {productData.map((item, i) => {
               return (
-                <div className="account_tracking-product col-lg-4 col-6 mt-2">
+                <div
+                  key={item.id}
+                  className="account_tracking-product col-lg-4 col-6 mt-2"
+                >
                   <div>
                     <img
-                      src={require(`../../../Assets/products/${v.product_img}`)}
+                      src={require(`../../../Assets/products/${item.product_img}`)}
                       alt="apple juice"
                     />
                   </div>
                   <div className="account_tracking-product-content align-items-center">
                     <div>
                       <p className="account_tracking-product-content-name">
-                        {v.product_name}
+                        {item.product_name}
                       </p>
                       <p className="account_tracking-product-content-price">
-                        NT${v.product_price}
+                        NT${item.product_price}
                       </p>
                     </div>
                   </div>
                   <div className=" text-center">
                     <div>
-                      <button className="account_tracking_btn mb-1 btn btn-sm btn-primary text-white">
+                      <button
+                        className="account_tracking_btn mb-1 btn btn-sm btn-primary text-white"
+                        onClick={() => {
+                          // --- 判斷購物車裡面是不是有這個商品
+                          if (cart.some((v) => v.id === item.id)) {
+                            alert('商品已存在於購物車');
+                            return;
+                          }
+                          // item是指現在加入購物車的這個商品
+                          let product = {
+                            id: item.product_id,
+                            amount: 1,
+                            name: item.product_name,
+                            price: item.product_price,
+                            image: item.product_img,
+                          };
+                          setCart([...cart, product]);
+                        }}
+                      >
                         加入購物車
                       </button>
                       <button
                         className="account_tracking_btn btn btn-sm btn-secondary text-primary"
                         onClick={() => {
-                          removeProductItem(v.product_id, v.user_id);
+                          removeProductItem(item.product_id, item.user_id);
                         }}
                       >
                         移除收藏
@@ -204,7 +229,10 @@ function AccountTracking() {
           <div className="row">
             {recipeData.map((v, i) => {
               return (
-                <div className="account_tracking-product col-lg-4 col-6 mt-2">
+                <div
+                  key={v.id}
+                  className="account_tracking-product col-lg-4 col-6 mt-2"
+                >
                   <div>
                     <img
                       src="https://cdn.cybassets.com/media/W1siZiIsIjEzODUwL3Byb2R1Y3RzLzMxOTUxMTA1LzE2MDM0MzQ5NTNfZjFlNjEwOTcxYzcwMWZkMmM3MjEucG5nIl0sWyJwIiwidGh1bWIiLCI2MDB4NjAwIl1d.png?sha=a134d4f53b04b833"
