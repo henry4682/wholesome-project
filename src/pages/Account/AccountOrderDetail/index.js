@@ -19,6 +19,7 @@ function AccountOrderDetail() {
   const [star, setStar] = useState(0);
   // 撰寫評論的內容
   const [comment, setComment] = useState('');
+  const [userIsComment, setUserIsComment] = useState(false);
 
   useEffect(() => {
     let getOrders = async () => {
@@ -40,9 +41,11 @@ function AccountOrderDetail() {
       );
       console.log('POST res', response);
       console.log(response.data.message);
+      setUserIsComment(response.data.userIsComment);
     } catch (e) {
       errorToastAlert(e.response.data.message, 1200, false, 'center');
       console.error(e);
+      setUserIsComment(e.response.data.userIsComment);
     }
   }
 
