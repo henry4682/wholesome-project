@@ -9,9 +9,12 @@ import { useParams, Navigate } from 'react-router-dom';
 import ProgressBar from '@ramonak/react-progress-bar';
 import Rating from '@mui/material/Rating';
 import { useAuth } from '../../../context/auth';
+import { useCart } from '../../../context/cart';
 import { FaHeart } from 'react-icons/fa';
 
 function RecipeDetail() {
+  const { cart, setCart } = useCart();
+
   const [introData, setIntroData] = useState([]);
   const [ingData, setIngData] = useState([]);
   const [productData, setProductData] = useState([]);
@@ -49,7 +52,6 @@ function RecipeDetail() {
     likeRecipe();
   }, [user]);
 
-  
   useEffect(() => {
     if (!user || user.id === '0') {
       setIsLike(false);
@@ -87,6 +89,7 @@ function RecipeDetail() {
     };
     getRecipe();
   }, []);
+  console.log('productData',productData)
 
   if (isSearch) {
     return <Navigate to={`/recipes/飲品?search=${searchTerm}`} />;
@@ -139,8 +142,8 @@ function RecipeDetail() {
                       alert('請登入後再收藏');
                       return;
                     }
-          
-                      setIsLike(!isLike);
+
+                    setIsLike(!isLike);
                   }}
                 >
                   <FaHeart
@@ -197,13 +200,32 @@ function RecipeDetail() {
                           className=" card-title products_list-card-title word-wrap "
                           to={`/productDetail/${product.product_id}`}
                         >
-                        <div className='text-truncate'>
-                          {product.name}
-                        </div>
+                          <div className="text-truncate">{product.name}</div>
                         </Link>
                         <p className="card-text products_list-card-text">
                           NT${product.price}
                         </p>
+                        <button
+                          className="account_tracking_btn mb-1 btn btn-sm btn-primary text-white"
+                          onClick={() => {
+                            // --- 判斷購物車裡面是不是有這個商品
+                            if (cart.some((v) => v.id === product.id)) {
+                              alert('商品已存在於購物車');
+                              return;
+                            }
+                            // item是指現在加入購物車的這個商品
+                            let item = {
+                              id: product.id,
+                              amount: 1,
+                              name: product.name,
+                              price: product.price,
+                              image: product.image,
+                            };
+                            setCart([...cart, item]);
+                          }}
+                        >
+                          加入購物車
+                        </button>
                       </div>
                     </div>
                   </div>
