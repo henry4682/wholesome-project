@@ -12,6 +12,10 @@ import { Dropdown } from 'bootstrap';
 import BreadcrumbForProductsList from '../components/BreadcrumbForProductsList';
 import AsideForProductsList from '../components/AsideForProductsList';
 
+//動畫
+import { motion } from 'framer-motion';
+import { ListMotionContainer, ListMotionItem } from './ListMotion';
+
 function ProductsList() {
   //排序選單用
   const dropdownElementList = document.querySelectorAll('.dropdown-toggle');
@@ -19,11 +23,7 @@ function ProductsList() {
     (dropdownToggleEl) => new Dropdown(dropdownToggleEl)
   );
 
-  const cardFadeIn = {
-    fadeInDown: {
-      animation: 'x 0.5s',
-    },
-  };
+  const [isVisibled, setIsVisable] = useState(false);
 
   //正式資料
   const { mainCategory, subCategory } = useParams();
@@ -40,6 +40,10 @@ function ProductsList() {
 
   //一開始讀到的分類資料
   useEffect(() => {
+    setIsVisable(true);
+  }, []);
+
+  useEffect(() => {
     let getAllProducts = async () => {
       let response = await axios.get(
         `${API_URL}/products?category=${
@@ -55,6 +59,7 @@ function ProductsList() {
     };
     getAllProducts();
   }, [mainCategory, subCategory]);
+  console.log('visible', isVisibled);
 
   //(頁面和總體)資料篩選或變動
   useEffect(() => {
@@ -116,11 +121,7 @@ function ProductsList() {
         {/* TODO:content要改CSS */}
         <div className=" product_list-container d-flex justify-content-center ">
           {/* 側欄選單 待測試 */}
-          <AsideForProductsList
-            setPage={setPage}
-            setSearch={setSearch}
-            setOrder={setOrder}
-          />
+          <AsideForProductsList setIsVisable={setIsVisable} />
           <div className="products_list-content col-lg-9 ">
             <div className="products_list-category-product-box  ">
               <div className="products_list-category-title ">
@@ -205,6 +206,7 @@ function ProductsList() {
                       if (e.key === 'Enter') {
                         setSearch(inputValue);
                       }
+                      setPage(1);
                       setInputValue('');
                     }}
                   />
@@ -217,6 +219,7 @@ function ProductsList() {
                       const inputVal =
                         document.querySelector('#list-search').value;
                       setSearch(inputVal);
+                      setPage(1);
                       setInputValue('');
                     }}
                   >
@@ -226,34 +229,47 @@ function ProductsList() {
               </div>
             </div>
             {/* 商品列表 */}
-
-            <ul className="d-flex row products_list-card-list gy-3 justify-content-between ">
-              {allProducts.map((item, index) => {
-                return (
-                  <li
-                    key={index}
-                    className=" products_list-card  my-3 col-6 col-lg-4  d-flex flex-column  align-items-center   "
-                  >
-                    <img
-                      className="productList_product_pic"
-                      src={require(`../../../Assets/products/${item.image}`)}
-                      alt=""
-                    />
-                    <div className="  py-2 ">
-                      <Link
-                        className=" card-title products_list-card-title word-wrap"
-                        to={`/productDetail/${item.id}`}
-                      >
-                        {item.name}
-                      </Link>
-                    </div>
-                    <div className=" my-2 text-primary products_list-card-text">
-                      <em className="add-on text-primary">NT${item.price}</em>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
+            {allProducts.length === 0 ? (
+              <h2>查無結果</h2>
+            ) : (
+              <ListMotionContainer
+                element="ul"
+                visible={isVisibled}
+                className="d-flex row products_list-card-list gy-3 justify-content-start "
+              >
+                {allProducts.map((item, index) => {
+                  return (
+                    <ListMotionItem
+                      key={item.id}
+                      element="li"
+                      noShift
+                      className={
+                        item.stock === '0'
+                          ? ' products_list-card  my-3 col-6 col-lg-4  d-flex flex-column  align-items-center '
+                          : '  my-3 col-6 col-lg-4  d-flex flex-column  align-items-center no-stock'
+                      }
+                    >
+                      <img
+                        className="productList_product_pic"
+                        src={require(`../../../Assets/products/${item.image}`)}
+                        alt=""
+                      />
+                      <div className="  py-2 ">
+                        <Link
+                          className=" card-title products_list-card-title word-wrap"
+                          to={`/productDetail/${item.id}`}
+                        >
+                          {item.name}
+                        </Link>
+                      </div>
+                      <div className=" my-2 text-primary products_list-card-text">
+                        <em className="add-on text-primary">NT${item.price}</em>
+                      </div>
+                    </ListMotionItem>
+                  );
+                })}
+              </ListMotionContainer>
+            )}
           </div>
         </div>
         {/* 頁數元件化? */}

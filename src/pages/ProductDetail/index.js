@@ -29,6 +29,7 @@ function ProductDetail() {
   const [commentData, setCommentData] = useState([]);
   //收藏用TODO:useState裡的true/false要隨著使用者做更換
   const [isLike, setIsLike] = useState(false);
+  const [go, setGo] = useState(false);
 
   //接收來自其他頁的參數
   const { productId } = useParams();
@@ -203,9 +204,6 @@ function ProductDetail() {
     );
   };
 
-  window.addEventListener('resize', function () {
-    setSize(window.innerWidth);
-  });
   console.log('商品資訊', data);
 
   return (
@@ -247,12 +245,13 @@ function ProductDetail() {
                   >
                     加入購物車
                   </button>
-                  <button
+                  <Link
                     className="btn  product_detail-product-btn product_detail-checkout-btn"
-                    type="submit"
+                    onClick={addCart}
+                    to="/shoppingCart"
                   >
                     立即購買
-                  </button>
+                  </Link>
                 </div>
                 <button
                   className="btn d-flex align-items-center  product_detail-product-btn product_detail-like-btn"

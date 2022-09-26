@@ -9,10 +9,13 @@ import { useParams, Navigate } from 'react-router-dom';
 import ProgressBar from '@ramonak/react-progress-bar';
 import Rating from '@mui/material/Rating';
 import { useAuth } from '../../../context/auth';
+import { useCart } from '../../../context/cart';
 import { FaHeart } from 'react-icons/fa';
 import { successToastAlert,errorToastAlert } from '../../../components/Alert';
 
 function RecipeDetail() {
+  const { cart, setCart } = useCart();
+
   const [introData, setIntroData] = useState([]);
   const [ingData, setIngData] = useState([]);
   const [productData, setProductData] = useState([]);
@@ -87,7 +90,12 @@ function RecipeDetail() {
       setGradeInfo(response.data.gradeInfo);
     };
     getRecipe();
+<<<<<<< HEAD
   }, [recipeId]);
+=======
+  }, []);
+  console.log('productData',productData)
+>>>>>>> 092bdf3ec01e1a326630b45c3524fc6ea8a9427f
 
   if (isSearch) {
     return <Navigate to={`/recipes/飲品?search=${searchTerm}`} />;
@@ -214,6 +222,27 @@ function RecipeDetail() {
                         <p className="card-text products_list-card-text">
                           NT${product.price}
                         </p>
+                        <button
+                          className="account_tracking_btn mb-1 btn btn-sm btn-primary text-white"
+                          onClick={() => {
+                            // --- 判斷購物車裡面是不是有這個商品
+                            if (cart.some((v) => v.id === product.id)) {
+                              alert('商品已存在於購物車');
+                              return;
+                            }
+                            // item是指現在加入購物車的這個商品
+                            let item = {
+                              id: product.id,
+                              amount: 1,
+                              name: product.name,
+                              price: product.price,
+                              image: product.image,
+                            };
+                            setCart([...cart, item]);
+                          }}
+                        >
+                          加入購物車
+                        </button>
                       </div>
                     </div>
                   </div>
