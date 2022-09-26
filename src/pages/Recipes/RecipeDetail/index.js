@@ -90,12 +90,8 @@ function RecipeDetail() {
       setGradeInfo(response.data.gradeInfo);
     };
     getRecipe();
-<<<<<<< HEAD
-  }, [recipeId]);
-=======
   }, []);
   console.log('productData',productData)
->>>>>>> 092bdf3ec01e1a326630b45c3524fc6ea8a9427f
 
   if (isSearch) {
     return <Navigate to={`/recipes/飲品?search=${searchTerm}`} />;
