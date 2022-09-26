@@ -145,8 +145,8 @@ function RecipesList() {
           <div className="row">
             <div className="recipe-title d-flex justify-content-between py-3">
               <h1>{myCategory === 'search' ? searchTerm : category}</h1>
-              <div>
-                {/* TODO:共幾篇 */}
+              <div className="recipe-info">
+                <div className='ms-3'>
                 <h6 className="d-inline-flex">共 {total} 篇食譜</h6>
                 <h6 className="d-inline-flex"> | </h6>
                 <h6 className="d-inline-flex">依更新時間排序</h6>
@@ -163,6 +163,7 @@ function RecipesList() {
                 >
                   {sorts === 'ASC' ? <BsSortDownAlt /> : <BsSortDown />}
                 </h6>
+                </div>
                 <form class="d-inline-flex ms-3 d-flex searchbar" role="search">
                   <input
                     class="me-2 form-control recipe-form-control"

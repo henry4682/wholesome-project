@@ -3,6 +3,7 @@ import './index.scss';
 import axios from 'axios';
 import { API_URL } from '../../../utils/config';
 import { useAuth } from '../../../context/auth';
+import { successToastAlert, errorToastAlert } from '../../../components/Alert';
 
 function AccountCoupons() {
   const { user, setUser } = useAuth();
@@ -39,18 +40,24 @@ function AccountCoupons() {
   }, [user.id]);
 
   async function handleCouponSubmit(e) {
-    // e.preventDefault();
+    e.preventDefault();
     try {
       let response = await axios.post(
         `${API_URL}/user/${user.id}/coupon`,
         coupons
       );
-      console.log('POST res', response);
+      // console.log('POST res', response);
       console.log(response.data);
-      alert('優惠券新增成功');
+      let couponResponse = await axios.get(
+        `${API_URL}/user/${user.id}/coupons`
+      );
+      setUserCouponsData(couponResponse.data.couponsAll);
+      // alert('優惠券新增成功');
+      successToastAlert('優惠券新增成功', 1200, false);
     } catch (e) {
       console.error('Coupon add Error:', e);
-      alert(e.response.data.message);
+      // alert(e.response.data.message);
+      errorToastAlert(e.response.data.message, 1200, false);
     }
   }
 

@@ -8,6 +8,8 @@ import { useState, useEffect } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import ProgressBar from '@ramonak/react-progress-bar';
 import Rating from '@mui/material/Rating';
+import { useAuth } from '../../../context/auth';
+import { FaHeart } from 'react-icons/fa';
 
 function RecipeDetail() {
   const [introData, setIntroData] = useState([]);
@@ -26,6 +28,50 @@ function RecipeDetail() {
   const [reviewStar, setReviewStar] = useState(0);
   const [review, setReview] = useState('');
 
+  const { user } = useAuth();
+
+  const [isLike, setIsLike] = useState(false);
+
+  useEffect(() => {
+    if (!user || user.id === '0') {
+      setIsLike(false);
+      return;
+    }
+    let likeRecipe = async () => {
+      let response = await axios.get(
+        `http://localhost:3002/api/1.0/recipeTracking/${recipeId}/${user.id}`,
+        {
+          withCredentials: true,
+        }
+      );
+      setIsLike(response.data);
+    };
+    likeRecipe();
+  }, [user]);
+
+  
+  useEffect(() => {
+    if (!user || user.id === '0') {
+      setIsLike(false);
+      return;
+    }
+    let setLikeRecipe = async () => {
+      try {
+        let result = await axios.post(
+          `http://localhost:3002/api/1.0/recipeTracking/${recipeId}`,
+          { isLike, user },
+          {
+            withCredential: true,
+          }
+        );
+        console.log(result.data);
+      } catch (e) {
+        console.error('review', e.response.data.message);
+        alert(e.response.data.message);
+      }
+    };
+    setLikeRecipe();
+  }, [isLike]);
   useEffect(() => {
     let getRecipe = async () => {
       let response = await axios.get(
@@ -48,16 +94,20 @@ function RecipeDetail() {
 
   async function handleSubmit(e) {
     // 關掉submit按鈕的預設行為(跳頁)
-    e.preventDefault();
+    // e.preventDefault();
     //表單傳送用post
     try {
       let result = await axios.post(
         `http://localhost:3002/api/1.0/recipeReview/${recipeId}`,
-        { reviewStar, review }
-      )
+        { reviewStar, review, user },
+        {
+          withCredential: true,
+        }
+      );
       console.log(result.data);
     } catch (e) {
-      console.error('review', e);
+      console.error('review', e.response.data.message);
+      alert(e.response.data.message);
     }
   }
 
@@ -80,10 +130,26 @@ function RecipeDetail() {
                   <img
                     src={require(`../Asset/recipe-image/${intro.main_img}`)}
                   ></img>
-                  <button type="button" class="btn btn-outline-secondary">
-                    收藏
-                  </button>
                 </div>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary mt-5"
+                  onClick={() => {
+                    if (!user || user.id === '0') {
+                      alert('請登入後再收藏');
+                      return;
+                    }
+          
+                      setIsLike(!isLike);
+                  }}
+                >
+                  <FaHeart
+                    className={
+                      isLike ? 'product_detail-heart' : 'product_detail-empty'
+                    }
+                  />
+                  {isLike ? '移除收藏' : '加入收藏'}
+                </button>
               </div>
             );
           })}
@@ -106,7 +172,7 @@ function RecipeDetail() {
             </div>
           </div>
           <div className="recipe-product ">
-            {productData.length == 0 ? (
+            {productData.length === 0 ? (
               <></>
             ) : (
               <>
@@ -122,19 +188,20 @@ function RecipeDetail() {
                     <div className="card recipe-recommend-card ">
                       <img
                         src={require(`../../../Assets/products/${product.image}`)}
-                        className="card-img-top products_list-card-img-top"
+                        // className="card-img-top products_list-card-img-top"
                         alt="..."
                       />
 
-                      <div className=" card-body products_list-card-body">
+                      <div className=" card-body products_list-card-body text-center">
                         <Link
-                          className=" card-title products_list-card-title word-wrap"
+                          className=" card-title products_list-card-title word-wrap "
                           to={`/productDetail/${product.product_id}`}
                         >
+                        <div className='text-truncate'>
                           {product.name}
+                        </div>
                         </Link>
-
-                        <p className=" card-text products_list-card-text">
+                        <p className="card-text products_list-card-text">
                           NT${product.price}
                         </p>
                       </div>
@@ -236,43 +303,45 @@ function RecipeDetail() {
                 </div>
               );
             })}
-            <div className="review-write mt-5">
-              <h3>撰寫評論</h3>
-              <hr />
-              <form>
-                <Rating
-                  name="simple-controlled"
-                  value={reviewStar}
-                  onChange={(event, newValue) => {
-                    setReviewStar(newValue);
-                  }}
-                />
-                <div class="form-group">
-                  <label
-                    for="exampleFormControlTextarea1"
-                    className="mt-3 mb-3"
-                  >
-                    評論內容
-                  </label>
-                  <textarea
-                    className="form-control mb-3"
-                    id="exampleFormControlTextarea1"
-                    rows="3"
-                    value={review.comment}
-                    onChange={(e) => {
-                      setReview(e.target.value);
+            {user && user.id !== '0' && (
+              <div className="review-write mt-5">
+                <h3>撰寫評論</h3>
+                <hr />
+                <form>
+                  <Rating
+                    name="simple-controlled"
+                    value={reviewStar}
+                    onChange={(event, newValue) => {
+                      setReviewStar(newValue);
                     }}
-                  ></textarea>
-                </div>
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  onClick={handleSubmit}
-                >
-                  送出
-                </button>
-              </form>
-            </div>
+                  />
+                  <div className="form-group">
+                    <label
+                      for="exampleFormControlTextarea1"
+                      className="mt-3 mb-3"
+                    >
+                      評論內容
+                    </label>
+                    <textarea
+                      className="form-control mb-3"
+                      id="exampleFormControlTextarea1"
+                      rows="3"
+                      value={review.comment}
+                      onChange={(e) => {
+                        setReview(e.target.value);
+                      }}
+                    ></textarea>
+                  </div>
+                  <button
+                    type="submit"
+                    className="btn btn-primary"
+                    onClick={handleSubmit}
+                  >
+                    送出
+                  </button>
+                </form>
+              </div>
+            )}
           </div>
         </div>
 
@@ -295,9 +364,9 @@ function RecipeDetail() {
           <div className="recipe-search">
             <h3>搜尋食譜</h3>
             <hr />
-            <form class="d-flex searchbar" role="search">
+            <form className="d-flex searchbar" role="search">
               <input
-                class="me-2 form-control recipe-form-control"
+                className="me-2 form-control recipe-form-control"
                 type="search"
                 placeholder="搜尋食譜"
                 aria-label="Search"
@@ -307,7 +376,7 @@ function RecipeDetail() {
                 }}
               />
               <button
-                class="btn"
+                className="btn"
                 type="submit"
                 onClick={(e) => {
                   e.preventDefault();

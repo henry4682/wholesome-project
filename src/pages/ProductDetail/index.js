@@ -12,6 +12,11 @@ import axios from 'axios';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { useAuth } from '../../context/auth';
 import { useCart } from '../../context/cart';
+import {
+  successToastAlert,
+  warningAlert,
+  warningToastAlert,
+} from '../../components/Alert';
 
 function ProductDetail() {
   const { user, isLogin, setIsLogin } = useAuth();
@@ -110,6 +115,7 @@ function ProductDetail() {
           );
           console.log(response.data);
           setIsLike(response.data.isLike);
+          successToastAlert('加入收藏成功', 1200, false);
         } else {
           // 如果沒有收藏 isLike === true
           let response = await axios.delete(
@@ -117,6 +123,7 @@ function ProductDetail() {
           );
           console.log(response.data);
           setIsLike(response.data.isLike);
+          successToastAlert('移除收藏成功', 1200, false);
         }
       };
       postIsLike();
@@ -135,12 +142,12 @@ function ProductDetail() {
   function addCart() {
     // --- (1) 判斷是否登入
     if (!user || user.id === '0') {
-      alert('請先登入再進行購買');
+      warningAlert('您尚未登入', '請先登入再進行購買');
       return;
     }
     // --- (2) 判斷購物車裡面是不是有這個商品
     if (cart.some((v) => v.id === data[0].id)) {
-      alert('商品已存在於購物車');
+      warningToastAlert('商品已存在於購物車', 1200, false);
       return;
     }
     // item是指現在加入購物車的這個商品
@@ -152,6 +159,7 @@ function ProductDetail() {
       image: data[0].image,
     };
     setCart([...cart, item]);
+    successToastAlert('商品加入購物車成功', 1200, false);
   }
   console.log('購物車', cart);
 

@@ -18,8 +18,15 @@
   margin-right: 10px;
 }
 
+.recipe-image {
+  height: 400px;
+  
+}
 .recipe-image img {
   width: 90%;
+  height:100% ;
+  object-fit: cover;
+  object-position: center center;
 }
 .recipe-image button {
   color: #999;
