@@ -136,15 +136,16 @@ function AccountOrderDetail() {
                             <form>
                               <div className="modal-body">
                                 {/* 商品圖片 */}
-                                <div className="m-3">
+                                <div className="m-3 text-center">
                                   <img
+                                    className="product_comment_img"
                                     src={require(`../../../Assets/products/${v.image}`)}
                                     alt="product"
                                   />
                                 </div>
 
                                 {/* 星星數量 */}
-                                <div className="m-3">
+                                <div className="m-4 text-center">
                                   <Rating
                                     name="simple-controlled"
                                     value={star}
