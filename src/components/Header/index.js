@@ -30,7 +30,7 @@ function Header() {
     let currentCart = localStorage.getItem('shoppingCart');
     setCart(JSON.parse(currentCart));
   }, []);
-
+  console.log('cart', cart);
   return (
     <header className="header">
       <div className="container-fluid p-0">
