@@ -11,6 +11,9 @@
   &-table {
     border: 1px solid #dddddd;
     font-size: 14px;
+    .product_comment_img {
+      width: 200px;
+    }
   }
   &-mobile {
     display: none;
