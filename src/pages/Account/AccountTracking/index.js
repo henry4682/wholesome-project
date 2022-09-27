@@ -78,6 +78,25 @@ function AccountTracking() {
     }
   }
 
+  async function removeRecipeItem(recipeId, userId) {
+    console.log(recipeId, userId);
+    try {
+      let response = await axios.delete(
+        `${API_URL}/recipeTracking/${userId}?recipe=${recipeId}`
+      );
+      console.log(response.data);
+      successToastAlert('收藏食譜移除成功', 1200, false);
+
+      let recipeResponse = await axios.get(
+        `${API_URL}/user/${user.id}/tracking?page=${recipePage}`
+      );
+      setRecipeData(recipeResponse.data.recipeData);
+      setRecipeLastPage(recipeResponse.data.recipePagination.recipeLastPage);
+    } catch (e) {
+      console.error('刪除食譜收藏錯誤訊息', e);
+    }
+  }
+
   return (
     <div className="account_tracking w-100">
       {/* 頁籤 */}
@@ -251,7 +270,12 @@ function AccountTracking() {
                       <div>
                         <Link to="#">閱讀內容</Link>
                       </div>
-                      <button className="account_tracking_btn btn btn-sm btn-secondary text-primary mt-1">
+                      <button
+                        className="account_tracking_btn btn btn-sm btn-secondary text-primary mt-1"
+                        onClick={() => {
+                          removeRecipeItem(v.recipe_id, v.user_id);
+                        }}
+                      >
                         移除收藏
                       </button>
                     </div>
