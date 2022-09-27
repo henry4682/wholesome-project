@@ -6,7 +6,7 @@ import { API_URL } from '../../../utils/config';
 import axios from 'axios';
 import { BsPencil } from 'react-icons/bs';
 import Rating from '@mui/material/Rating';
-import { errorToastAlert } from '../../../components/Alert';
+import { errorToastAlert, successToastAlert } from '../../../components/Alert';
 
 function AccountOrderDetail() {
   const { user, setUser } = useAuth();
@@ -19,12 +19,10 @@ function AccountOrderDetail() {
   const [star, setStar] = useState(0);
   // 撰寫評論的內容
   const [comment, setComment] = useState('');
-  const [userIsComment, setUserIsComment] = useState(false);
 
   useEffect(() => {
     let getOrders = async () => {
       let response = await axios.get(`${API_URL}/orders/${orderId}`);
-      // console.log(response.data);
       setOrderDetail(response.data.orderDetail);
       setOrderData(response.data.orderData);
       setOrderStatus(response.data.orderData[0].status_id);
@@ -33,27 +31,8 @@ function AccountOrderDetail() {
   }, [orderId]);
   console.log(orderStatus);
 
-  // 使用者可不可以對這筆商品評論
-  async function handleCommentWrite(userId, productId) {
-    try {
-      let response = await axios.get(
-        `${API_URL}/user/${userId}/productComment?product=${productId}`
-      );
-      console.log('POST res', response);
-      console.log(response.data.message);
-      setUserIsComment(response.data.userIsComment);
-    } catch (e) {
-      errorToastAlert(e.response.data.message, 1200, false, 'center');
-      console.error(e);
-      setUserIsComment(e.response.data.userIsComment);
-    }
-  }
-
+  // 轉撰寫商品評論
   async function handleCommentSubmit(userId, productId, content, grade) {
-    console.log('--- user ---', userId);
-    console.log('--- product ---', productId);
-    console.log('--- 星星數 ---', grade);
-    console.log('--- 評論內容 ---', content);
     try {
       let response = await axios.post(
         `${API_URL}/user/${userId}/productComment?product=${productId}`,
@@ -61,12 +40,14 @@ function AccountOrderDetail() {
       );
       console.log('POST res', response);
       console.log(response.data.message);
-      alert(response.data.message);
+      successToastAlert(response.data.message, 1500, false, 'center');
       setStar(0);
       setComment('');
     } catch (e) {
-      alert(e.response.data.message);
+      errorToastAlert(e.response.data.message, 1500, false, 'center');
       console.error('POST comment Error', e.response.data.message);
+      setStar(0);
+      setComment('');
     }
   }
 
@@ -104,10 +85,12 @@ function AccountOrderDetail() {
               return (
                 <tr key={v.id} className="border">
                   <td>
-                    <img
-                      src={require(`../../../Assets/products/${v.image}`)}
-                      alt="apple juice"
-                    />
+                    <Link to={`/productDetail/${v.id}`}>
+                      <img
+                        src={require(`../../../Assets/products/${v.image}`)}
+                        alt="apple juice"
+                      />
+                    </Link>
                   </td>
                   <td className="align-middle">{v.name}</td>
                   <td className="align-middle">NT${v.product_price}</td>
@@ -122,9 +105,6 @@ function AccountOrderDetail() {
                         className="btn btn-sm btn-secondary"
                         data-bs-toggle="modal"
                         data-bs-target={`#Modal${i}`}
-                        onClick={() => {
-                          handleCommentWrite(v.user_id, v.product_id);
-                        }}
                       >
                         <BsPencil />
                       </button>

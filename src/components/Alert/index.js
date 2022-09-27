@@ -11,10 +11,15 @@ export function successAlert(title, text) {
 }
 
 // alert 成功的 toast 訊息
-export function successToastAlert(title, timer, timerProgressBar = true) {
+export function successToastAlert(
+  title,
+  timer,
+  timerProgressBar = true,
+  position = 'top-end'
+) {
   const Toast = Swal.mixin({
     toast: true,
-    position: 'top-end',
+    position: position,
     showConfirmButton: false,
     timer: timer,
     timerProgressBar: timerProgressBar,
