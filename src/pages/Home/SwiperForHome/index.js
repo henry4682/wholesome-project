@@ -11,6 +11,7 @@ import './SwiperForHome.scss';
 function SwiperForHome() {
   return (
     <Swiper
+      className="mt-1"
       modules={[Navigation, Pagination, Autoplay]}
       breakpoints={{
         '@0.00': {
@@ -21,8 +22,6 @@ function SwiperForHome() {
       navigation
       autoplay={{ delay: 2500, disableOnInteraction: false }}
       pagination={{ clickable: true }}
-      onSwiper={(swiper) => console.log(swiper)}
-      // onSlideChange={() => console.log('slide change')}
     >
       <SwiperSlide>
         <div className=" home_banner d-flex align-items-center">

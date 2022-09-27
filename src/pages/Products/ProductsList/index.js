@@ -52,7 +52,7 @@ function ProductsList() {
       );
       setAllProducts(response.data.data);
       setTotalPage(response.data.pagination.totalPage);
-      setAmount(response.data.pagination.total);
+      setAmount(response.data.pagination.productsTotal);
       setPage(1);
       setOrder('');
       setSearch('');
@@ -76,7 +76,7 @@ function ProductsList() {
       // console.log('response.data', response.data);
       setAllProducts(response.data.data);
       setTotalPage(response.data.pagination.totalPage);
-      setAmount(response.data.pagination.total);
+      setAmount(response.data.pagination.productsTotal);
     };
     getSearchProducts();
   }, [search, order, page]);

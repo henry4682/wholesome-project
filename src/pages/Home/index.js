@@ -1,12 +1,15 @@
 import React from 'react';
 import './index.scss';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from '../../utils/config';
 import SwiperForHome from './SwiperForHome';
 import 'swiper/css/pagination';
 import { useAuth } from '../../context/auth';
 import { useCart } from '../../context/cart';
+
+import { motion } from 'framer-motion';
 
 function Home() {
   const { user, setUser } = useAuth();
@@ -44,20 +47,39 @@ function Home() {
           alt="..."
         />
       </div>
-      <div className="home_recommend my-5">
-        <p className="home_title text-center">New Products !!</p>
+      <div className="w-50 mx-auto home_recommend my-5">
+        <motion.p
+          whileInView={{ scale: 2 }}
+          viewport={{ once: true }}
+          className=" text-primary home_title text-center"
+        >
+          New Products !!
+        </motion.p>
       </div>
-      <div className="container">
+      <motion.div
+        initial={{ opacity: 0, y: -100 }}
+        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
+        viewport={{ once: true }}
+        className="container"
+      >
         <ul className="d-flex row gy-3 justify-content-center ">
           {newProducts.map((item, i) => {
             return (
-              <li key={i} className=" my-3 col-5 col-lg-2 text-center py-2 ">
+              <li
+                key={i}
+                className=" d-flex flex-column my-3 col-5 col-lg-2 text-center py-2 "
+              >
                 <img
                   className="cart_product_pic"
                   src={require(`../../Assets/products/${item.image}`)}
                   alt=""
                 />
-                <div className=" text-truncate py-2">{item.name}</div>
+                <Link
+                  className="text-dark text-truncate py-2"
+                  to={`/productDetail/${item.id}`}
+                >
+                  {item.name}
+                </Link>
                 <div className=" my-2 text-primary">
                   NT$ <em className="add-on text-primary">{item.price}</em>
                 </div>
@@ -98,7 +120,7 @@ function Home() {
             );
           })}
         </ul>
-      </div>
+      </motion.div>
       <div className="home_recommend my-4">
         <p className="home_title text-center">Recipe</p>
       </div>

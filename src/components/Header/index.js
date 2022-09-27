@@ -8,6 +8,8 @@ import { useCart } from '../../context/cart';
 import MobileNav from '../MobileNav';
 import './index.scss';
 import { successToastAlert } from '../Alert';
+//動畫
+import { motion } from 'framer-motion';
 function Header() {
   // 把 user, setUser 從 auth context 裡頭拿出來
   const { user, setUser, setIsLogin } = useAuth();
@@ -32,7 +34,11 @@ function Header() {
   }, []);
   console.log('cart', cart);
   return (
-    <header className="header">
+    <motion.header
+      initial={{ opacity: 0, y: -100 }}
+      whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
+      className="header"
+    >
       <div className="container-fluid p-0">
         <div className="header-highlight bg-primary"></div>
         {/* 手機版 navbar */}
@@ -199,7 +205,7 @@ function Header() {
           </ul>
         </nav>
       </div>
-    </header>
+    </motion.header>
   );
 }
 
