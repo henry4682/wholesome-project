@@ -438,7 +438,7 @@ function ProductDetail() {
       <div className="product_detail-section">
         <div className="product_detail-section-title">相關商品</div>
         <div className="product_detail-carousel">
-          <SwiperForProduct goods={goods} />
+          <SwiperForProduct goods={goods} setPage={setPage} />
         </div>
       </div>
     </div>

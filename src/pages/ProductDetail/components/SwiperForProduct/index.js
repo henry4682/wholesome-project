@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import './SwiperForDetail.scss';
 
-function SwiperForProduct({ goods }) {
+function SwiperForProduct({ goods, setPage }) {
   return (
     <Swiper
       modules={[Navigation, A11y]}
@@ -50,6 +50,7 @@ function SwiperForProduct({ goods }) {
                     top: 0,
                     behavior: 'smooth',
                   });
+                  setPage(1)
                 }}
               >
                 <div className="text-truncate">{item.name}</div>
