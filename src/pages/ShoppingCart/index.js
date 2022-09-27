@@ -24,9 +24,9 @@ function ShoppingCart() {
   const [userCouponsData, setUserCouponsData] = useState([]);
   // 控制收件人資訊的狀態
   const [receiver, setReceiver] = useState({
-    receiver_name: '張婷婷',
-    receiver_phone: '0912121212',
-    receiver_address: 'AAA',
+    receiver_name: user.name,
+    receiver_phone: user.phone,
+    receiver_address: user.address,
   });
 
   useEffect(() => {
