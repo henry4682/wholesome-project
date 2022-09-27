@@ -246,8 +246,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-  padding: 10px 95px;
+  padding: 10px 0px;
   gap: 1rem;
   border:0 0 0 1px solid #E2E0DB  ;
 
@@ -259,6 +258,8 @@
   align-self: flex-start;
   object-fit: contain;
 }
+
+
 
 .product_detail-user-img{
   max-width:50px;
@@ -348,6 +349,16 @@ color: #565656;
     grid-template-columns: 100%;
     grid-template-rows: auto auto;
     margin:0 auto;
+  }
+  .product_detail-user-img-box{
+    display: none;
+  }
+  .product_detail-user-comment-box{
+    display: block;
+  }
+  .product_detail-user-comment{
+    margin: 0 auto;
+    width: 40vw;
   }
 }
 

@@ -148,7 +148,7 @@ function RecipeDetail() {
                 </div>
                 <button
                   type="button"
-                  className="btn btn-outline-secondary mt-5"
+                  className="btn btn-secondary  mt-5"
                   onClick={() => {
                     if (!user || user.id === '0') {
                       errorToastAlert('請登入後再收藏', 1200, false);
@@ -233,7 +233,6 @@ function RecipeDetail() {
                                 name: product.name,
                                 price: product.price,
                                 image: product.image,
-                                stock: product.stock,
                               };
                               setCart([...cart, item]);
                             }}
@@ -299,7 +298,7 @@ function RecipeDetail() {
                   return (
                     <div key={v.id} className="product_detail-star-bar">
                       <p>
-                        {i + 1}顆星({v.gradeCount})
+                        {5 - i}顆星({v.gradeCount})
                       </p>
 
                       <span className="product_detail-bar-section">

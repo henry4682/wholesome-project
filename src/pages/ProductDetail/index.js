@@ -159,7 +159,6 @@ function ProductDetail() {
       name: data[0].name,
       price: data[0].price,
       image: data[0].image,
-      stock: data[0].stock,
     };
     setCart([...cart, item]);
     successToastAlert('商品加入購物車成功', 1200, false);
@@ -366,8 +365,8 @@ function ProductDetail() {
           </div>
           {commentData.map((comment) => {
             return (
-              <div key={comment.id}>
-                <section className="product_detail-section product_detail-user-comment-box">
+              <div className="" key={comment.id}>
+                <section className=" w-100 product_detail-section product_detail-user-comment-box ">
                   <div className="product_detail-user-img-box">
                     <BsFillPersonFill size={100} color="#9aab82" />
                   </div>

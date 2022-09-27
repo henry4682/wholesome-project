@@ -22,7 +22,6 @@ export const CartProvider = ({ children }) => {
 
   const plusOne = (id) => {
     const newCart = cart.map((v, i) => {
-      if (v.amount === v.stock) return { ...v, amount: v.amount };
       if (v.id === id) return { ...v, amount: v.amount + 1 };
       return v;
     });

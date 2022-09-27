@@ -15,11 +15,13 @@ function Home() {
   const { user, setUser } = useAuth();
   const { cart, setCart } = useCart();
   const [newProducts, setNewProducts] = useState([]);
+  const [newRecipe, setNewRecipe] = useState([]);
   //初始化載入日期最新4筆商品
   useEffect(() => {
     let getNewestProducts = async () => {
       let response = await axios.get(`${API_URL}/newProducts`);
-      setNewProducts(response.data);
+      setNewProducts(response.data.productData);
+      setNewRecipe(response.data.recipeData);
     };
     getNewestProducts();
   }, []);
@@ -47,19 +49,17 @@ function Home() {
           alt="..."
         />
       </div>
-      <div className="w-50 mx-auto home_recommend my-5">
+      <div className="w-50 mx-auto home_recommend ">
         <motion.p
-          whileInView={{ scale: 2 }}
-          viewport={{ once: true }}
+          whileInView={{ scale: 1.5 }}
           className=" text-primary home_title text-center"
         >
-          New Products !!
+          NEW PRODUCTS
         </motion.p>
       </div>
       <motion.div
         initial={{ opacity: 0, y: -100 }}
         whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
-        viewport={{ once: true }}
         className="container"
       >
         <ul className="d-flex row gy-3 justify-content-center ">
@@ -104,7 +104,6 @@ function Home() {
                         name: item.name,
                         price: item.price,
                         image: item.image,
-                        stock: item.stock,
                       };
                       setCart([...cart, product]);
 
@@ -121,49 +120,40 @@ function Home() {
           })}
         </ul>
       </motion.div>
-      <div className="home_recommend my-4">
-        <p className="home_title text-center">Recipe</p>
+      <div className="w-50 mx-auto home_recommend ">
+        <motion.p
+          whileInView={{ scale: 1.5 }}
+          className="home_title text-primary text-center"
+        >
+          RECIPE
+        </motion.p>
       </div>
-      <div className="container">
+      <motion.div
+        initial={{ opacity: 0, y: -100 }}
+        whileInView={{ opacity: 1, y: 0, transition: { duration: 0.5 } }}
+        className="container"
+      >
         <ul className="d-flex row my-5  justify-content-center">
-          <li className="  my-3 col-5 col-lg-2 text-center py-2  ">
-            <img
-              className="home_recipe_pic"
-              src={require('../../Assets/products/milk2019.jpg')}
-              alt=""
-            />
-            <div className="py-2">隔日燕麥</div>
-            <a className="home_read"> 繼續閱讀</a>
-          </li>
-          <li className=" my-3 col-5 col-lg-2 text-center py-2  ">
-            <img
-              className="home_recipe_pic"
-              src={require('../../Assets/products/milk2019.jpg')}
-              alt=""
-            />
-            <div className="py-2">隔日燕麥</div>
-            <a className="home_read"> 繼續閱讀</a>
-          </li>
-          <li className=" my-3 col-5 col-lg-2 text-center py-2  ">
-            <img
-              className="home_recipe_pic"
-              src={require('../../Assets/products/milk2019.jpg')}
-              alt=""
-            />
-            <div className="py-2">隔日燕麥</div>
-            <a className="home_read"> 繼續閱讀</a>
-          </li>
-          <li className=" my-3 col-5 col-lg-2 text-center py-2  ">
-            <img
-              className="home_recipe_pic"
-              src={require('../../Assets/products/milk2019.jpg')}
-              alt=""
-            />
-            <div className="py-2">隔日燕麥</div>
-            <a className="home_read"> 繼續閱讀</a>
-          </li>
+          {newRecipe.map((v, i) => {
+            return (
+              <li className="d-flex flex-column home_recipe_card my-3 mx-2 col-5 col-lg-2 text-center py-2  ">
+                <div className="home_recipe_img_container justify-content-center">
+                  <img
+                    className="home_recipe_pic "
+                    src={require(`../Recipes/Asset/recipe-image/${v.main_img}`)}
+                    alt=""
+                  />
+                </div>
+                <div className="py-2">{v.title}</div>
+                <Link to={`/recipeDetail/${v.id}`} className="home_read">
+                  {' '}
+                  繼續閱讀
+                </Link>
+              </li>
+            );
+          })}
         </ul>
-      </div>
+      </motion.div>
     </div>
   );
 }
