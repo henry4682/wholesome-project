@@ -20,10 +20,16 @@ export const CartProvider = ({ children }) => {
     setCart(newCart);
   };
 
-  const plusOne = (id) => {
+  const plusOne = (id, stock, amount) => {
     const newCart = cart.map((v, i) => {
+      console.log('v.amount', v.amount);
+      console.log('v.stock', v.stock);
+      console.log('amount', amount);
+      console.log('stock', stock);
+      if ((v.amount = v.stock)) {
+        return v;
+      }
       if (v.id === id) return { ...v, amount: v.amount + 1 };
-
       return v;
     });
 
@@ -52,6 +58,11 @@ export const CartProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    if (!localStorage.getItem('shoppingCart')) {
+      localStorage.setItem('shoppingCart', '[]');
+      return;
+    }
+
     if (!cart.length && !localStorage.getItem('shoppingCart')) {
       setCart(JSON.parse(localStorage.getItem('shoppingCart')));
       return;

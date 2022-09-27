@@ -11,7 +11,7 @@ import Rating from '@mui/material/Rating';
 import { useAuth } from '../../../context/auth';
 import { useCart } from '../../../context/cart';
 import { FaHeart } from 'react-icons/fa';
-import { successToastAlert,errorToastAlert } from '../../../components/Alert';
+import { successToastAlert, errorToastAlert } from '../../../components/Alert';
 
 function RecipeDetail() {
   const { cart, setCart } = useCart();
@@ -91,7 +91,7 @@ function RecipeDetail() {
     };
     getRecipe();
   }, [recipeId]);
-  console.log('productData',productData)
+  console.log('productData', productData);
 
   if (isSearch) {
     return <Navigate to={`/recipes/飲品?search=${searchTerm}`} />;
@@ -117,14 +117,13 @@ function RecipeDetail() {
       setCommentData(response.data.commentData);
       setStarInfo(response.data.starInfo);
       setGradeInfo(response.data.gradeInfo);
-      successToastAlert('新增評論成功!',1200,false);
+      successToastAlert('新增評論成功!', 1200, false);
       setReviewStar(0);
       setReview('');
     } catch (e) {
       console.error('review', e.response.data);
-      errorToastAlert(e.response.data.message,1200,false);
+      errorToastAlert(e.response.data.message, 1200, false);
     }
-
   }
 
   return (
@@ -152,7 +151,7 @@ function RecipeDetail() {
                   className="btn btn-outline-secondary mt-5"
                   onClick={() => {
                     if (!user || user.id === '0') {
-                      errorToastAlert('請登入後再收藏',1200,false);
+                      errorToastAlert('請登入後再收藏', 1200, false);
                       return;
                     }
 
@@ -218,27 +217,34 @@ function RecipeDetail() {
                         <p className="card-text products_list-card-text">
                           NT${product.price}
                         </p>
-                        <button
-                          className="account_tracking_btn mb-1 btn btn-sm btn-primary text-white mt-2"
-                          onClick={() => {
-                            // --- 判斷購物車裡面是不是有這個商品
-                            if (cart.some((v) => v.id === product.id)) {
-                              alert('商品已存在於購物車');
-                              return;
-                            }
-                            // item是指現在加入購物車的這個商品
-                            let item = {
-                              id: product.id,
-                              amount: 1,
-                              name: product.name,
-                              price: product.price,
-                              image: product.image,
-                            };
-                            setCart([...cart, item]);
-                          }}
-                        >
-                          加入購物車
-                        </button>
+                        {product.stock > 0 ? (
+                          <button
+                            className="account_tracking_btn mb-1 btn btn-sm btn-primary text-white mt-2"
+                            onClick={() => {
+                              // --- 判斷購物車裡面是不是有這個商品
+                              if (cart.some((v) => v.id === product.id)) {
+                                alert('商品已存在於購物車');
+                                return;
+                              }
+                              // item是指現在加入購物車的這個商品
+                              let item = {
+                                id: product.id,
+                                amount: 1,
+                                name: product.name,
+                                price: product.price,
+                                image: product.image,
+                                stock: product.stock,
+                              };
+                              setCart([...cart, item]);
+                            }}
+                          >
+                            加入購物車
+                          </button>
+                        ) : (
+                          <button className="btn disabled mt-2 mx-auto ">
+                            已售完
+                          </button>
+                        )}
                       </div>
                     </div>
                   </div>

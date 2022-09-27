@@ -29,7 +29,7 @@ function ProductDetail() {
   const [commentData, setCommentData] = useState([]);
   //收藏用TODO:useState裡的true/false要隨著使用者做更換
   const [isLike, setIsLike] = useState(false);
-  const [go, setGo] = useState(false);
+  const [stock, setStock] = useState(0);
 
   //接收來自其他頁的參數
   const { productId } = useParams();
@@ -60,6 +60,7 @@ function ProductDetail() {
       setData(response.data.productData);
       setGoods(response.data.relatedGoods);
       setStar(response.data.stars);
+      setStock(response.data.productData[0].stock);
     };
     getProductDetail();
     goToTop();
@@ -158,6 +159,7 @@ function ProductDetail() {
       name: data[0].name,
       price: data[0].price,
       image: data[0].image,
+      stock: data[0].stock,
     };
     setCart([...cart, item]);
     successToastAlert('商品加入購物車成功', 1200, false);
@@ -236,22 +238,30 @@ function ProductDetail() {
                   </div>
                   <h2 className="product_detail-product-price">NT${v.price}</h2>
                 </div>
-
+                <div className="d-flex mx-2 align-items-center">
+                  庫存: {stock}
+                </div>
                 <div className="product_detail-detail-btn-group">
-                  <button
-                    className="btn product_detail-product-btn product_detail-add-cart-btn"
-                    type="button"
-                    onClick={addCart}
-                  >
-                    加入購物車
-                  </button>
-                  <Link
-                    className="btn  product_detail-product-btn product_detail-checkout-btn"
-                    onClick={addCart}
-                    to="/shoppingCart"
-                  >
-                    立即購買
-                  </Link>
+                  {stock > 0 ? (
+                    <>
+                      <button
+                        className="btn product_detail-product-btn product_detail-add-cart-btn"
+                        type="button"
+                        onClick={addCart}
+                      >
+                        加入購物車
+                      </button>
+                      <Link
+                        className="btn  product_detail-product-btn product_detail-checkout-btn"
+                        onClick={addCart}
+                        to="/shoppingCart"
+                      >
+                        立即購買
+                      </Link>
+                    </>
+                  ) : (
+                    <button className="btn disabled w-100">已售完</button>
+                  )}
                 </div>
                 <button
                   className="btn d-flex align-items-center  product_detail-product-btn product_detail-like-btn"
