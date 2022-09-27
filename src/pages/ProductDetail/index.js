@@ -237,10 +237,11 @@ function ProductDetail() {
                     })}
                   </div>
                   <h2 className="product_detail-product-price">NT${v.price}</h2>
+                  <div className="d-flex my-2 align-items-center">
+                    庫存: {stock}
+                  </div>
                 </div>
-                <div className="d-flex mx-2 align-items-center">
-                  庫存: {stock}
-                </div>
+
                 <div className="product_detail-detail-btn-group">
                   {stock > 0 ? (
                     <>

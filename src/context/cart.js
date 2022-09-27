@@ -20,15 +20,9 @@ export const CartProvider = ({ children }) => {
     setCart(newCart);
   };
 
-  const plusOne = (id, stock, amount) => {
+  const plusOne = (id) => {
     const newCart = cart.map((v, i) => {
-      console.log('v.amount', v.amount);
-      console.log('v.stock', v.stock);
-      console.log('amount', amount);
-      console.log('stock', stock);
-      if ((v.amount = v.stock)) {
-        return v;
-      }
+      if (v.amount === v.stock) return { ...v, amount: v.amount };
       if (v.id === id) return { ...v, amount: v.amount + 1 };
       return v;
     });

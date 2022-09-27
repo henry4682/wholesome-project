@@ -201,7 +201,7 @@ function ShoppingCart() {
                       </td>
                       <td className="align-middle">
                         <button
-                          onClick={() => remove(v.id)}
+                          onClick={() => remove(v.id, v.amount, v.stock)}
                           className="cart_button delete col-1"
                         >
                           <BiX size={25} />
