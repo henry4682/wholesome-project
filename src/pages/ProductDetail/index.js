@@ -29,7 +29,6 @@ function ProductDetail() {
   const [commentData, setCommentData] = useState([]);
   //收藏用TODO:useState裡的true/false要隨著使用者做更換
   const [isLike, setIsLike] = useState(false);
-  const [stock, setStock] = useState(0);
 
   //接收來自其他頁的參數
   const { productId } = useParams();
@@ -60,7 +59,7 @@ function ProductDetail() {
       setData(response.data.productData);
       setGoods(response.data.relatedGoods);
       setStar(response.data.stars);
-      setStock(response.data.productData[0].stock);
+      
     };
     getProductDetail();
     goToTop();
@@ -239,26 +238,20 @@ function ProductDetail() {
                 </div>
 
                 <div className="product_detail-detail-btn-group">
-                  {stock > 0 ? (
-                    <>
-                      <button
-                        className="btn product_detail-product-btn product_detail-add-cart-btn"
-                        type="button"
-                        onClick={addCart}
-                      >
-                        加入購物車
-                      </button>
-                      <Link
-                        className="btn  product_detail-product-btn product_detail-checkout-btn"
-                        onClick={addCart}
-                        to="/shoppingCart"
-                      >
-                        立即購買
-                      </Link>
-                    </>
-                  ) : (
-                    <button className="btn disabled w-100">已售完</button>
-                  )}
+                  <button
+                    className="btn product_detail-product-btn product_detail-add-cart-btn"
+                    type="button"
+                    onClick={addCart}
+                  >
+                    加入購物車
+                  </button>
+                  <Link
+                    className="btn  product_detail-product-btn product_detail-checkout-btn"
+                    onClick={addCart}
+                    to="/shoppingCart"
+                  >
+                    立即購買
+                  </Link>
                 </div>
                 <button
                   className="btn d-flex align-items-center  product_detail-product-btn product_detail-like-btn"
