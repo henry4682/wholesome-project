@@ -361,40 +361,44 @@ function ProductDetail() {
               </div>
             </div>
           </div>
-          {commentData.map((comment) => {
-            return (
-              <div className="" key={comment.id}>
-                <section className=" w-100 product_detail-section product_detail-user-comment-box ">
-                  <div className="product_detail-user-img-box">
-                    <BsFillPersonFill size={100} color="#9aab82" />
-                  </div>
-                  <div className="product_detail-user-text">
-                    <div className="product_detail-user-comment">
-                      <div className="product_detail-comment-text">
-                        {comment.name}
-                      </div>
-                      <p className="product_detail-comment-text">
-                        {comment.comment}
-                      </p>
+          {commentData.length <= 0 ? (
+            <div className="mx-auto">尚無評論</div>
+          ) : (
+            commentData.map((comment) => {
+              return (
+                <div className="" key={comment.id}>
+                  <section className=" w-100 product_detail-section product_detail-user-comment-box ">
+                    <div className="product_detail-user-img-box">
+                      <BsFillPersonFill size={100} color="#9aab82" />
                     </div>
-                    <div className="product_detail-user-star">
-                      <div className="product_detail-comment-text">
-                        {comment.time}
+                    <div className="product_detail-user-text">
+                      <div className="product_detail-user-comment">
+                        <div className="product_detail-comment-text">
+                          {comment.name}
+                        </div>
+                        <p className="product_detail-comment-text">
+                          {comment.comment}
+                        </p>
                       </div>
-                      <Rating
-                        name="half-rating-read"
-                        value={comment.grade}
-                        precision={0.5}
-                        readOnly
-                        size="small"
-                      />
+                      <div className="product_detail-user-star">
+                        <div className="product_detail-comment-text">
+                          {comment.time}
+                        </div>
+                        <Rating
+                          name="half-rating-read"
+                          value={comment.grade}
+                          precision={0.5}
+                          readOnly
+                          size="small"
+                        />
+                      </div>
                     </div>
-                  </div>
-                </section>
-                <hr className="product_detail-br" />
-              </div>
-            );
-          })}
+                  </section>
+                  <hr className="product_detail-br" />
+                </div>
+              );
+            })
+          )}
 
           <nav aria-label="Page navigation ">
             <ul className="pagination product_detail-pagination">
