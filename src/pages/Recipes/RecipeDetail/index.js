@@ -159,8 +159,14 @@ function RecipeDetail() {
                       errorToastAlert('請登入後再收藏', 1200, false);
                       return;
                     }
+                    
 
                     setIsLike(!isLike);
+                    if (!isLike === true) {
+                      successToastAlert('食譜收藏成功', 1200, false);
+                    } else {
+                      successToastAlert('取消收藏成功', 1200, false);
+                    }
                   }}
                 >
                   <FaHeart
