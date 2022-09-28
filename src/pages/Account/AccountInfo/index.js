@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './index.scss';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../../context/auth';
@@ -9,6 +9,16 @@ import { successToastAlert } from '../../../components/Alert';
 function AccountInfo() {
   const { user, setUser, setIsLogin } = useAuth();
   const { cart, setCart } = useCart();
+  const [couponsCanUse, setCouponsCanUse] = useState([]);
+
+  useEffect(() => {
+    let userCoupons = async () => {
+      let response = await axios.get(`${API_URL}/user/${user.id}/coupons`);
+      console.log(response.data);
+      setCouponsCanUse(response.data.couponsCanUse);
+    };
+    userCoupons();
+  }, [user.id]);
 
   // 登出按鈕
   async function handleLogout() {
@@ -28,6 +38,7 @@ function AccountInfo() {
         <div className="account_info-card w-100 d-flex">
           <div className="account_info-card-left ">
             <p className="account_info-card-name mb-2">{user && user.name}</p>
+            <p className="mb-2">{user && user.email}</p>
             <div className="mb-3">
               <Link to="edit">查看個人資訊</Link>
             </div>
@@ -40,13 +51,13 @@ function AccountInfo() {
           </div>
           <div className="account_info-card-right">
             <div className="d-flex account_info-card-text">
-              <p className="pe-lg-4 pe-md-2">
+              {/* <p className="pe-lg-4 pe-md-2">
                 總累計消費金額 NT$<span>1000</span>
-              </p>
+              </p> */}
               <p>
                 可用優惠券
                 <Link to="coupons">
-                  <span className="px-2">1</span>
+                  <span className="px-2">{couponsCanUse.length}</span>
                 </Link>
                 張
               </p>

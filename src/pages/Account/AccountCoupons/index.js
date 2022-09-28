@@ -12,6 +12,7 @@ function AccountCoupons() {
   // const [userData, setUserData] = useState({ id: null });
   //取得會員所有優惠券資料的狀態
   const [userCouponsData, setUserCouponsData] = useState([]);
+  const [couponsCanUse, setCouponsCanUse] = useState([]);
 
   function handleFieldChange(e) {
     setCoupons({ ...coupons, [e.target.name]: e.target.value });
@@ -35,6 +36,7 @@ function AccountCoupons() {
       let response = await axios.get(`${API_URL}/user/${user.id}/coupons`);
       console.log(response.data);
       setUserCouponsData(response.data.couponsAll);
+      setCouponsCanUse(response.data.couponsCanUse);
     };
     userCoupons();
   }, [user.id]);
@@ -52,6 +54,7 @@ function AccountCoupons() {
         `${API_URL}/user/${user.id}/coupons`
       );
       setUserCouponsData(couponResponse.data.couponsAll);
+      setCouponsCanUse(couponResponse.data.couponsCanUse);
       // alert('優惠券新增成功');
       successToastAlert('優惠券新增成功', 1200, false);
     } catch (e) {
@@ -93,6 +96,10 @@ function AccountCoupons() {
           優惠券總計
           <span className="account_coupons-count text-primary mx-1">
             {userCouponsData.length}
+          </span>
+          張，可使用
+          <span className="account_coupons-count text-primary mx-1">
+            {couponsCanUse.length}
           </span>
           張
         </p>

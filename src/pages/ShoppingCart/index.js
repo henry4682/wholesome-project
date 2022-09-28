@@ -20,6 +20,7 @@ function ShoppingCart() {
   console.log(user);
   // 控制優惠券下拉選單的狀態(注意資料類型)
   const [selectCoupon, setSelectCoupon] = useState(0);
+  const [selectCouponPrice, setSelectCouponPrice] = useState(0);
   // 取得會員所有優惠券資料的狀態
   const [userCouponsData, setUserCouponsData] = useState([]);
   // 控制收件人資訊的狀態
@@ -37,6 +38,15 @@ function ShoppingCart() {
     };
     userCoupons();
   }, [user.id]);
+
+  useEffect(() => {
+    let getSelectCouponPrice = async () => {
+      let response = await axios.get(`${API_URL}/coupons/${selectCoupon}`);
+      console.log(response.data);
+      setSelectCouponPrice(response.data[0] && response.data[0].discount_price);
+    };
+    getSelectCouponPrice();
+  }, [selectCoupon]);
 
   const handleFieldChange = (e) => {
     setReceiver({ ...receiver, [e.target.name]: e.target.value });
@@ -84,7 +94,7 @@ function ShoppingCart() {
               <span className="d-flex justify-content-between">
                 優惠券
                 <span>
-                  -NT$ <em>{selectCoupon}</em>
+                  -NT$ <em>{selectCouponPrice ? selectCouponPrice : 0}</em>
                 </span>
               </span>
               <span className="d-flex justify-content-between">
@@ -99,7 +109,9 @@ function ShoppingCart() {
                 <span className=" text-primary ">
                   NT$
                   <em className="cart_total text-primary">
-                    {calcTotal() + 80}
+                    {calcTotal() +
+                      80 -
+                      (selectCouponPrice ? selectCouponPrice : 0)}
                   </em>
                 </span>
               </span>
