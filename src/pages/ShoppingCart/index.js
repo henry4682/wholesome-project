@@ -81,7 +81,12 @@ function ShoppingCart() {
                   NT$ <em>{calcTotal()}</em>
                 </span>
               </span>
-              <hr />
+              <span className="d-flex justify-content-between">
+                優惠券
+                <span>
+                  -NT$ <em>{selectCoupon}</em>
+                </span>
+              </span>
               <span className="d-flex justify-content-between">
                 運費
                 <span>

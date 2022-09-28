@@ -62,7 +62,7 @@ function AccountOrders() {
                   <th scope="row">{i + 1}</th>
                   <td>{v.order_sn} </td>
                   <td>{v.create_time}</td>
-                  <td>NT${v.total_price}</td>
+                  <td>NT${v.total_price - v.coupon_price + 80}</td>
                   <td>{v.order_status}</td>
                   <td>{v.note}</td>
                   <td>
