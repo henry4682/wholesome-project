@@ -217,33 +217,28 @@ function RecipeDetail() {
                         <p className="card-text products_list-card-text">
                           NT${product.price}
                         </p>
-                        {product.stock > 0 ? (
-                          <button
-                            className="account_tracking_btn mb-1 btn btn-sm btn-primary text-white mt-2"
-                            onClick={() => {
-                              // --- 判斷購物車裡面是不是有這個商品
-                              if (cart.some((v) => v.id === product.id)) {
-                                alert('商品已存在於購物車');
-                                return;
-                              }
-                              // item是指現在加入購物車的這個商品
-                              let item = {
-                                id: product.id,
-                                amount: 1,
-                                name: product.name,
-                                price: product.price,
-                                image: product.image,
-                              };
-                              setCart([...cart, item]);
-                            }}
-                          >
-                            加入購物車
-                          </button>
-                        ) : (
-                          <button className="btn disabled mt-2 mx-auto ">
-                            已售完
-                          </button>
-                        )}
+
+                        <button
+                          className="account_tracking_btn mb-1 btn btn-sm btn-primary text-white mt-2"
+                          onClick={() => {
+                            // --- 判斷購物車裡面是不是有這個商品
+                            if (cart.some((v) => v.id === product.id)) {
+                              alert('商品已存在於購物車');
+                              return;
+                            }
+                            // item是指現在加入購物車的這個商品
+                            let item = {
+                              id: product.id,
+                              amount: 1,
+                              name: product.name,
+                              price: product.price,
+                              image: product.image,
+                            };
+                            setCart([...cart, item]);
+                          }}
+                        >
+                          加入購物車
+                        </button>
                       </div>
                     </div>
                   </div>
