@@ -59,7 +59,6 @@ function ProductDetail() {
       setData(response.data.productData);
       setGoods(response.data.relatedGoods);
       setStar(response.data.stars);
-      
     };
     getProductDetail();
     goToTop();
@@ -245,13 +244,22 @@ function ProductDetail() {
                   >
                     加入購物車
                   </button>
-                  <Link
-                    className="btn  product_detail-product-btn product_detail-checkout-btn"
-                    onClick={addCart}
-                    to="/shoppingCart"
-                  >
-                    立即購買
-                  </Link>
+                  {!user || user.id === '0' ? (
+                    <button
+                      className="btn  product_detail-product-btn product_detail-checkout-btn"
+                      onClick={addCart}
+                    >
+                      立即購買
+                    </button>
+                  ) : (
+                    <Link
+                      className="btn  product_detail-product-btn product_detail-checkout-btn"
+                      onClick={addCart}
+                      to="/shoppingCart"
+                    >
+                      立即購買
+                    </Link>
+                  )}
                 </div>
                 <button
                   className="btn d-flex align-items-center  product_detail-product-btn product_detail-like-btn"
