@@ -101,7 +101,7 @@ function ProductDetail() {
   function handleIsLike() {
     // --- (1) 判斷是否登入
     if (!user || user.id === '0') {
-      alert('請先登入再進行商品收藏');
+      warningAlert('您尚未登入', '請先登入再進行商品收藏');
       return;
     }
     setIsLike(!isLike);

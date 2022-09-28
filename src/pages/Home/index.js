@@ -8,6 +8,11 @@ import SwiperForHome from './SwiperForHome';
 import 'swiper/css/pagination';
 import { useAuth } from '../../context/auth';
 import { useCart } from '../../context/cart';
+import {
+  successToastAlert,
+  warningAlert,
+  warningToastAlert,
+} from '../../components/Alert';
 
 import { motion } from 'framer-motion';
 
@@ -89,12 +94,12 @@ function Home() {
                   onClick={() => {
                     // --- (1) 判斷是否登入
                     if (!user || user.id === '0') {
-                      alert('請先登入再進行購買');
+                      warningAlert('您尚未登入', '請先登入再進行購買');
                       return;
                     }
                     // --- (2) 判斷購物車裡面是不是有這個商品
                     if (cart.some((v) => v.id === item.id)) {
-                      alert('商品已存在於購物車');
+                      warningToastAlert('商品已存在於購物車', 1200, false);
                       return;
                     }
                     // product是指現在加入購物車的這個商品
@@ -106,7 +111,7 @@ function Home() {
                       image: item.image,
                     };
                     setCart([...cart, product]);
-
+                    successToastAlert('商品加入購物車成功', 1200, false);
                     console.log('購物車', cart);
                   }}
                 >

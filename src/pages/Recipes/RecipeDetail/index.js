@@ -11,7 +11,12 @@ import Rating from '@mui/material/Rating';
 import { useAuth } from '../../../context/auth';
 import { useCart } from '../../../context/cart';
 import { FaHeart } from 'react-icons/fa';
-import { successToastAlert, errorToastAlert } from '../../../components/Alert';
+import {
+  successToastAlert,
+  warningAlert,
+  warningToastAlert,
+  errorToastAlert,
+} from '../../../components/Alert';
 
 function RecipeDetail() {
   const { cart, setCart } = useCart();
@@ -221,9 +226,18 @@ function RecipeDetail() {
                         <button
                           className="account_tracking_btn mb-1 btn btn-sm btn-primary text-white mt-2"
                           onClick={() => {
+                            // --- (1) 判斷是否登入
+                            if (!user || user.id === '0') {
+                              warningAlert('您尚未登入', '請先登入再進行購買');
+                              return;
+                            }
                             // --- 判斷購物車裡面是不是有這個商品
                             if (cart.some((v) => v.id === product.id)) {
-                              alert('商品已存在於購物車');
+                              warningToastAlert(
+                                '商品已存在於購物車',
+                                1200,
+                                false
+                              );
                               return;
                             }
                             // item是指現在加入購物車的這個商品
@@ -235,6 +249,11 @@ function RecipeDetail() {
                               image: product.image,
                             };
                             setCart([...cart, item]);
+                            successToastAlert(
+                              '商品加入購物車成功',
+                              1200,
+                              false
+                            );
                           }}
                         >
                           加入購物車
