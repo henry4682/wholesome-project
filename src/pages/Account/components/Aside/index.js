@@ -27,9 +27,9 @@ function Aside() {
           <li>
             <Link to="tracking">收藏清單</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="messages">詢問紀錄</Link>
-          </li>
+          </li> */}
         </ul>
       </aside>
     </>
