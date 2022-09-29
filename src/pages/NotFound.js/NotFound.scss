@@ -1,5 +1,12 @@
 .page-height {
   margin:  0 auto;
   width: 50%;
-  height: 40vh;
+  min-height: 40vh;
+}
+
+@media screen and (max-width:990px) {
+  .page-height{
+    height: 30vh;
+  }
+  
 }
