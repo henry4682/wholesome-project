@@ -33,7 +33,7 @@ function AccountOrders() {
   for (let i = 1; i <= lastPage; i++) {
     pages.push(i);
   }
-  // console.log(pages);
+  console.log('---分頁---', pages);
 
   return (
     <>
@@ -129,46 +129,50 @@ function AccountOrders() {
         )}
 
         {/* ------ 分頁 ------ */}
-        <div className="d-flex justify-content-center align-items-center">
-          <nav aria-label="Page navigation example">
-            <ul className="pagination">
-              <li
-                className="page-item page-link"
-                onClick={(e) => {
-                  if (page > 1) setPage(page - 1);
-                }}
-              >
-                <BsCaretLeft />
-              </li>
-              {pages.map((v, i) => {
-                return (
-                  <li
-                    key={i}
-                    className={
-                      page === v
-                        ? 'page-item page-link bg-secondary'
-                        : 'page-item page-link'
-                    }
-                    onClick={(e) => {
-                      setPage(v);
-                    }}
-                  >
-                    {v}
-                  </li>
-                );
-              })}
+        {pages.length === 0 ? (
+          <></>
+        ) : (
+          <div className="d-flex justify-content-center align-items-center">
+            <nav aria-label="Page navigation example">
+              <ul className="pagination">
+                <li
+                  className="page-item page-link"
+                  onClick={(e) => {
+                    if (page > 1) setPage(page - 1);
+                  }}
+                >
+                  <BsCaretLeft />
+                </li>
+                {pages.map((v, i) => {
+                  return (
+                    <li
+                      key={i}
+                      className={
+                        page === v
+                          ? 'page-item page-link bg-secondary'
+                          : 'page-item page-link'
+                      }
+                      onClick={(e) => {
+                        setPage(v);
+                      }}
+                    >
+                      {v}
+                    </li>
+                  );
+                })}
 
-              <li
-                className="page-item page-link"
-                onClick={(e) => {
-                  if (page < lastPage) setPage(page + 1);
-                }}
-              >
-                <BsCaretRight />
-              </li>
-            </ul>
-          </nav>
-        </div>
+                <li
+                  className="page-item page-link"
+                  onClick={(e) => {
+                    if (page < lastPage) setPage(page + 1);
+                  }}
+                >
+                  <BsCaretRight />
+                </li>
+              </ul>
+            </nav>
+          </div>
+        )}
       </div>
     </>
   );
