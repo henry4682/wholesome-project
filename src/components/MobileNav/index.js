@@ -26,7 +26,7 @@ function MobileNav() {
             </Link>
           </div>
           <div>
-            <BsSearch className="header_nav_mobile-search-icon" />
+            {/* <BsSearch className="header_nav_mobile-search-icon" /> */}
           </div>
 
           <div
