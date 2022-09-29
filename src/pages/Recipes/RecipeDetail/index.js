@@ -96,7 +96,7 @@ function RecipeDetail() {
     };
     getRecipe();
   }, [recipeId]);
-  console.log('productData', productData);
+  // console.log('productData', productData);
 
   if (isSearch) {
     return <Navigate to={`/recipes/飲品?search=${searchTerm}`} />;
@@ -114,11 +114,11 @@ function RecipeDetail() {
           withCredential: true,
         }
       );
-      console.log(result.data);
+      // console.log(result.data);
       let response = await axios.get(
         `http://localhost:3002/api/1.0/recipeDetail/${recipeId}`
       );
-      console.log(response.data);
+      // console.log(response.data);
       setCommentData(response.data.commentData);
       setStarInfo(response.data.starInfo);
       setGradeInfo(response.data.gradeInfo);

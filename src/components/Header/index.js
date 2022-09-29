@@ -32,7 +32,7 @@ function Header() {
     let currentCart = localStorage.getItem('shoppingCart');
     setCart(JSON.parse(currentCart));
   }, []);
-  console.log('cart', cart);
+  // console.log('cart', cart);
   return (
     <motion.header
       initial={{ opacity: 0, y: -100 }}

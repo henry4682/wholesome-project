@@ -22,7 +22,7 @@ function ProductDetail() {
   const { user, isLogin, setIsLogin } = useAuth();
   // const [user, setUser] = useState({ id: '0' });
   const { cart, setCart } = useCart();
-  console.log('user:', user, 'cart:', cart);
+ 
   // console.log(user.id);
   //商品資料
   const [data, setData] = useState([]);
@@ -51,7 +51,7 @@ function ProductDetail() {
 
   //相關商品
   const [goods, setGoods] = useState([]);
-
+  // 商品詳細資料
   useEffect(() => {
     // console.log('inside useEffect');
     let getProductDetail = async () => {
@@ -63,10 +63,10 @@ function ProductDetail() {
     getProductDetail();
     goToTop();
   }, [productId]);
-  console.log('商品資訊', data);
-  console.log('goods', goods);
-  console.log('star', star);
-
+  // console.log('商品資訊', data);
+  // console.log('goods', goods);
+  // console.log('star', star);
+  //評論資料
   useEffect(() => {
     let getProductComment = async () => {
       let response = await axios.get(
@@ -75,7 +75,7 @@ function ProductDetail() {
       setCommentData(response.data.commentInfo.commentData);
       setTotalPage(response.data.commentInfo.totalPage);
       setAmount(response.data.commentInfo.commentTotal);
-      console.log('來自be的評論資料', response.data);
+    
     };
     getProductComment();
   }, [productId, page]);
@@ -91,7 +91,7 @@ function ProductDetail() {
       let response = await axios.get(
         `${API_URL}/productTracking/${user.id}?product=${productId}`
       );
-      console.log(response.data.isLike);
+    
       setIsLike(response.data.isLike);
     };
     getUserLikeProduct();
@@ -113,7 +113,7 @@ function ProductDetail() {
             `${API_URL}/productTracking/${user.id}`,
             { product_id: productId, isLike: !isLike }
           );
-          console.log(response.data);
+          
           setIsLike(response.data.isLike);
           successToastAlert('加入收藏成功', 1200, false);
         } else {
@@ -121,7 +121,7 @@ function ProductDetail() {
           let response = await axios.delete(
             `${API_URL}/productTracking/${user.id}?product=${productId}`
           );
-          console.log(response.data);
+         
           setIsLike(response.data.isLike);
           successToastAlert('移除收藏成功', 1200, false);
         }
@@ -161,8 +161,8 @@ function ProductDetail() {
     setCart([...cart, item]);
     successToastAlert('商品加入購物車成功', 1200, false);
   }
-  console.log('購物車', cart);
 
+  //評論分頁
   const getPages = () => {
     let pages = [];
     for (let i = 1; i <= totalPage; i++) {
@@ -183,27 +183,29 @@ function ProductDetail() {
     }
     return pages;
   };
+  //點擊相關商品卡時的動畫
   const goToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
   };
+  //評論換頁時自動回到評論頂
   const goToCommentTop = () => {
     window.scrollTo(
-      size < 768
+      window.innerWidth < 768
         ? {
-            top: 2100,
+            top: 1946,
             behavior: 'smooth',
           }
         : {
-            top: 1800,
+            top: 1600,
             behavior: 'smooth',
           }
     );
   };
 
-  console.log('商品資訊', data);
+  // console.log('商品資訊', data);
 
   return (
     <div className="container">
