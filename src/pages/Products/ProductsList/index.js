@@ -128,7 +128,7 @@ function ProductsList() {
                 {/* 商品種類標題 */}
                 <h2>
                   {subCategory ? subCategory : mainCategory}
-                  {search !== '' ? ' - 搜尋' + '"' + search + '"' : ''}
+                  {search !== '' ? ' - 搜尋"' + search + '"' : ''}
                 </h2>
               </div>
               <div className="products_list-order_search ">
