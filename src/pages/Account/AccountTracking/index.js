@@ -137,109 +137,123 @@ function AccountTracking() {
         >
           {/* 商品收藏內容 */}
           <div className="row">
-            {productData.map((item, i) => {
-              return (
-                <div
-                  key={item.id}
-                  className="account_tracking-product col-lg-4 col-6 mt-2"
-                >
-                  <div>
-                    <img
-                      src={require(`../../../Assets/products/${item.product_img}`)}
-                      alt="apple juice"
-                    />
-                  </div>
-                  <div className="account_tracking-product-content align-items-center">
+            {productData.length === 0 ? (
+              <div className="text-center text-primary my-3">
+                ------ 目前尚無商品收藏 ------
+              </div>
+            ) : (
+              productData.map((item, i) => {
+                return (
+                  <div
+                    key={item.id}
+                    className="account_tracking-product col-lg-4 col-6 mt-2"
+                  >
                     <div>
-                      <p className="account_tracking-product-content-name">
-                        {item.product_name}
-                      </p>
-                      <p className="account_tracking-product-content-price">
-                        NT${item.product_price}
-                      </p>
+                      <img
+                        src={require(`../../../Assets/products/${item.product_img}`)}
+                        alt="apple juice"
+                      />
+                    </div>
+                    <div className="account_tracking-product-content align-items-center">
+                      <div>
+                        <p className="account_tracking-product-content-name">
+                          {item.product_name}
+                        </p>
+                        <p className="account_tracking-product-content-price">
+                          NT${item.product_price}
+                        </p>
+                      </div>
+                    </div>
+                    <div className=" text-center">
+                      <div>
+                        <button
+                          className="account_tracking_btn mb-1 btn btn-sm btn-primary text-white"
+                          onClick={() => {
+                            // --- 判斷購物車裡面是不是有這個商品
+                            if (cart.some((v) => v.id === item.id)) {
+                              alert('商品已存在於購物車');
+                              return;
+                            }
+                            // item是指現在加入購物車的這個商品
+                            let product = {
+                              id: item.product_id,
+                              amount: 1,
+                              name: item.product_name,
+                              price: item.product_price,
+                              image: item.product_img,
+                            };
+                            setCart([...cart, product]);
+                            successToastAlert(
+                              '商品加入購物車成功',
+                              1200,
+                              false
+                            );
+                          }}
+                        >
+                          加入購物車
+                        </button>
+                        <button
+                          className="account_tracking_btn btn btn-sm btn-secondary text-primary"
+                          onClick={() => {
+                            removeProductItem(item.product_id, item.user_id);
+                          }}
+                        >
+                          移除收藏
+                        </button>
+                      </div>
                     </div>
                   </div>
-                  <div className=" text-center">
-                    <div>
-                      <button
-                        className="account_tracking_btn mb-1 btn btn-sm btn-primary text-white"
-                        onClick={() => {
-                          // --- 判斷購物車裡面是不是有這個商品
-                          if (cart.some((v) => v.id === item.id)) {
-                            alert('商品已存在於購物車');
-                            return;
-                          }
-                          // item是指現在加入購物車的這個商品
-                          let product = {
-                            id: item.product_id,
-                            amount: 1,
-                            name: item.product_name,
-                            price: item.product_price,
-                            image: item.product_img,
-                          };
-                          setCart([...cart, product]);
-                          successToastAlert('商品加入購物車成功', 1200, false);
-                        }}
-                      >
-                        加入購物車
-                      </button>
-                      <button
-                        className="account_tracking_btn btn btn-sm btn-secondary text-primary"
-                        onClick={() => {
-                          removeProductItem(item.product_id, item.user_id);
-                        }}
-                      >
-                        移除收藏
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })
+            )}
           </div>
 
           {/* 分頁 */}
-          <div className="d-flex justify-content-center align-items-center mt-2">
-            <nav aria-label="Page navigation example">
-              <ul className="pagination">
-                <li
-                  className="page-item page-link"
-                  onClick={(e) => {
-                    if (productPage > 1) setProductPage(productPage - 1);
-                  }}
-                >
-                  <BsCaretLeft />
-                </li>
-                {productPages.map((v, i) => {
-                  return (
-                    <li
-                      key={i}
-                      className={
-                        productPage === v
-                          ? 'page-item page-link bg-secondary'
-                          : 'page-item page-link'
-                      }
-                      onClick={(e) => {
-                        setProductPage(v);
-                      }}
-                    >
-                      {v}
-                    </li>
-                  );
-                })}
+          {productPages.length === 0 ? (
+            <></>
+          ) : (
+            <div className="d-flex justify-content-center align-items-center mt-2">
+              <nav aria-label="Page navigation example">
+                <ul className="pagination">
+                  <li
+                    className="page-item page-link"
+                    onClick={(e) => {
+                      if (productPage > 1) setProductPage(productPage - 1);
+                    }}
+                  >
+                    <BsCaretLeft />
+                  </li>
+                  {productPages.map((v, i) => {
+                    return (
+                      <li
+                        key={i}
+                        className={
+                          productPage === v
+                            ? 'page-item page-link bg-secondary'
+                            : 'page-item page-link'
+                        }
+                        onClick={(e) => {
+                          setProductPage(v);
+                        }}
+                      >
+                        {v}
+                      </li>
+                    );
+                  })}
 
-                <li
-                  className="page-item page-link"
-                  onClick={(e) => {
-                    if (productPage < productLastPage)
-                      setProductPage(productPage + 1);
-                  }}
-                >
-                  <BsCaretRight />
-                </li>
-              </ul>
-            </nav>
-          </div>
+                  <li
+                    className="page-item page-link"
+                    onClick={(e) => {
+                      if (productPage < productLastPage)
+                        setProductPage(productPage + 1);
+                    }}
+                  >
+                    <BsCaretRight />
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          )}
         </div>
         <div
           className="tab-pane fade"
@@ -249,84 +263,97 @@ function AccountTracking() {
         >
           {/* 食譜收藏內容 */}
           <div className="row">
-            {recipeData.map((v, i) => {
-              return (
-                <div key={v.id} className="account_tracking-product col-6 mt-2">
-                  <div>
-                    <img
-                      src={require(`../../Recipes/Asset/recipe-image/${v.recipe_img}`)}
-                      alt="apple juice"
-                    />
-                  </div>
-                  <div className="account_tracking-product-content align-items-center">
+            {recipeData.length === 0 ? (
+              <div className="text-center text-primary my-3">
+                ------ 目前尚無食譜收藏 ------
+              </div>
+            ) : (
+              recipeData.map((v, i) => {
+                return (
+                  <div
+                    key={v.id}
+                    className="account_tracking-product col-6 mt-2"
+                  >
                     <div>
-                      <p className="account_tracking-product-content-name">
-                        {v.recipe_name}
-                      </p>
+                      <img
+                        src={require(`../../Recipes/Asset/recipe-image/${v.recipe_img}`)}
+                        alt="apple juice"
+                      />
                     </div>
-                  </div>
-                  <div className=" text-center">
-                    <div>
+                    <div className="account_tracking-product-content align-items-center">
                       <div>
-                        <Link to="#">閱讀內容</Link>
+                        <p className="account_tracking-product-content-name">
+                          {v.recipe_name}
+                        </p>
                       </div>
-                      <button
-                        className="account_tracking_btn btn btn-sm btn-secondary text-primary mt-1"
-                        onClick={() => {
-                          removeRecipeItem(v.recipe_id, v.user_id);
-                        }}
-                      >
-                        移除收藏
-                      </button>
+                    </div>
+                    <div className=" text-center">
+                      <div>
+                        <div>
+                          <Link to="#">閱讀內容</Link>
+                        </div>
+                        <button
+                          className="account_tracking_btn btn btn-sm btn-secondary text-primary mt-1"
+                          onClick={() => {
+                            removeRecipeItem(v.recipe_id, v.user_id);
+                          }}
+                        >
+                          移除收藏
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })
+            )}
           </div>
 
           {/* 分頁 */}
-          <div className="d-flex justify-content-center align-items-center mt-2">
-            <nav aria-label="Page navigation example">
-              <ul className="pagination">
-                <li
-                  className="page-item page-link"
-                  onClick={(e) => {
-                    if (recipePage > 1) setRecipePage(recipePage - 1);
-                  }}
-                >
-                  <BsCaretLeft />
-                </li>
-                {recipePages.map((v, i) => {
-                  return (
-                    <li
-                      key={i}
-                      className={
-                        recipePage === v
-                          ? 'page-item page-link bg-secondary'
-                          : 'page-item page-link'
-                      }
-                      onClick={(e) => {
-                        setRecipePage(v);
-                      }}
-                    >
-                      {v}
-                    </li>
-                  );
-                })}
+          {recipePages.length === 0 ? (
+            <></>
+          ) : (
+            <div className="d-flex justify-content-center align-items-center mt-2">
+              <nav aria-label="Page navigation example">
+                <ul className="pagination">
+                  <li
+                    className="page-item page-link"
+                    onClick={(e) => {
+                      if (recipePage > 1) setRecipePage(recipePage - 1);
+                    }}
+                  >
+                    <BsCaretLeft />
+                  </li>
+                  {recipePages.map((v, i) => {
+                    return (
+                      <li
+                        key={i}
+                        className={
+                          recipePage === v
+                            ? 'page-item page-link bg-secondary'
+                            : 'page-item page-link'
+                        }
+                        onClick={(e) => {
+                          setRecipePage(v);
+                        }}
+                      >
+                        {v}
+                      </li>
+                    );
+                  })}
 
-                <li
-                  className="page-item page-link"
-                  onClick={(e) => {
-                    if (recipePage < recipeLastPage)
-                      setRecipePage(recipePage + 1);
-                  }}
-                >
-                  <BsCaretRight />
-                </li>
-              </ul>
-            </nav>
-          </div>
+                  <li
+                    className="page-item page-link"
+                    onClick={(e) => {
+                      if (recipePage < recipeLastPage)
+                        setRecipePage(recipePage + 1);
+                    }}
+                  >
+                    <BsCaretRight />
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          )}
         </div>
       </div>
     </div>

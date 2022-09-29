@@ -63,7 +63,7 @@ function AccountCoupons() {
       errorToastAlert(e.response.data.message, 1200, false);
     }
   }
-
+  console.log('使用者優惠券資料', userCouponsData);
   return (
     <div className="account_coupons w-100">
       <form className="account_coupons-title d-flex  align-items-center">
@@ -117,62 +117,78 @@ function AccountCoupons() {
           </tr>
         </thead>
         <tbody>
-          {userCouponsData.map((v, i) => {
-            return (
-              <tr key={v.id}>
-                <th scope="row">{i + 1}</th>
-                <td>{v.coupon_name}</td>
-                <td>NT${v.coupon_price}</td>
-                <td>{v.coupon_code}</td>
-                <td>{v.coupon_start ? v.coupon_start : '-'}</td>
-                <td>{v.coupon_end ? v.coupon_end : '-'}</td>
-                <td className={v.valid === 0 ? 'coupon-used' : 'text-primary'}>
-                  {v.valid === 0 ? '已使用' : '可使用'}
-                </td>
-              </tr>
-            );
-          })}
+          {userCouponsData.length === 0 ? (
+            <tr>
+              <td colSpan={7} className="text-center text-primary">
+                ------ 目前尚無優惠券 ------
+              </td>
+            </tr>
+          ) : (
+            userCouponsData.map((v, i) => {
+              return (
+                <tr key={v.id}>
+                  <th scope="row">{i + 1}</th>
+                  <td>{v.coupon_name}</td>
+                  <td>NT${v.coupon_price}</td>
+                  <td>{v.coupon_code}</td>
+                  <td>{v.coupon_start ? v.coupon_start : '-'}</td>
+                  <td>{v.coupon_end ? v.coupon_end : '-'}</td>
+                  <td
+                    className={v.valid === 0 ? 'coupon-used' : 'text-primary'}
+                  >
+                    {v.valid === 0 ? '已使用' : '可使用'}
+                  </td>
+                </tr>
+              );
+            })
+          )}
         </tbody>
       </table>
       {/* mobile */}
-      {userCouponsData.map((v, i) => {
-        return (
-          <ul key={v.id} className="account_coupons-mobile mb-2">
-            <li className="d-flex p-1">
-              <div>優惠活動名稱:</div>
-              <div className="ms-1">{v.coupon_name}</div>
-            </li>
-            <li className="d-flex p-1">
-              <div>優惠券金額:</div>
-              <div className="ms-1">NT${v.coupon_price}</div>
-            </li>
-            <li className="d-flex p-1">
-              <div>優惠券代碼:</div>
-              <div className="ms-1">{v.coupon_code}</div>
-            </li>
-            <li className="d-flex p-1">
-              <div>起始時間:</div>
-              <div className="ms-1">
-                {v.coupon_start ? v.coupon_start : '無'}
-              </div>
-            </li>
-            <li className="d-flex p-1">
-              <div>結束期限:</div>
-              <div className="ms-1">{v.coupon_end ? v.coupon_end : '無'}</div>
-            </li>
-            <li className="d-flex p-1">
-              <div>使用狀態:</div>
-              <div
-                className={
-                  v.valid === 0 ? 'coupon-used ms-1' : 'ms-1 text-primary'
-                }
-              >
-                {v.valid === 0 ? '已使用' : '可使用'}
-              </div>
-            </li>
-          </ul>
-        );
-      })}
+      {userCouponsData.length === 0 ? (
+        <div className="account_coupons-mobile text-center text-primary my-3">
+          --- 目前尚無優惠券 ---
+        </div>
+      ) : (
+        userCouponsData.map((v, i) => {
+          return (
+            <ul key={v.id} className="account_coupons-mobile mb-2">
+              <li className="d-flex p-1">
+                <div>優惠活動名稱:</div>
+                <div className="ms-1">{v.coupon_name}</div>
+              </li>
+              <li className="d-flex p-1">
+                <div>優惠券金額:</div>
+                <div className="ms-1">NT${v.coupon_price}</div>
+              </li>
+              <li className="d-flex p-1">
+                <div>優惠券代碼:</div>
+                <div className="ms-1">{v.coupon_code}</div>
+              </li>
+              <li className="d-flex p-1">
+                <div>起始時間:</div>
+                <div className="ms-1">
+                  {v.coupon_start ? v.coupon_start : '無'}
+                </div>
+              </li>
+              <li className="d-flex p-1">
+                <div>結束期限:</div>
+                <div className="ms-1">{v.coupon_end ? v.coupon_end : '無'}</div>
+              </li>
+              <li className="d-flex p-1">
+                <div>使用狀態:</div>
+                <div
+                  className={
+                    v.valid === 0 ? 'coupon-used ms-1' : 'ms-1 text-primary'
+                  }
+                >
+                  {v.valid === 0 ? '已使用' : '可使用'}
+                </div>
+              </li>
+            </ul>
+          );
+        })
+      )}
     </div>
   );
 }
