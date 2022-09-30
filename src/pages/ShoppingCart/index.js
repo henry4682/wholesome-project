@@ -8,6 +8,7 @@ import { useCart } from '../../context/cart';
 import { useAuth } from '../../context/auth';
 import axios from 'axios';
 import { API_URL } from '../../utils/config';
+import { successAlert } from '../../components/Alert';
 
 function ShoppingCart() {
   const { cart, setCart, minusOne, plusOne, remove, calcTotal } = useCart();
@@ -17,7 +18,6 @@ function ShoppingCart() {
   const [isFinish, setIsFinish] = useState(false);
   const [orderId, setOrderId] = useState();
 
-  console.log(user);
   // 控制優惠券下拉選單的狀態(注意資料類型)
   const [selectCoupon, setSelectCoupon] = useState(0);
   const [selectCouponPrice, setSelectCouponPrice] = useState(0);
@@ -33,7 +33,6 @@ function ShoppingCart() {
   useEffect(() => {
     let userCoupons = async () => {
       let response = await axios.get(`${API_URL}/user/${user.id}/coupons`);
-      console.log(response.data);
       setUserCouponsData(response.data.couponsCanUse);
     };
     userCoupons();
@@ -42,7 +41,6 @@ function ShoppingCart() {
   useEffect(() => {
     let getSelectCouponPrice = async () => {
       let response = await axios.get(`${API_URL}/coupons/${selectCoupon}`);
-      console.log(response.data);
       setSelectCouponPrice(response.data[0] && response.data[0].discount_price);
     };
     getSelectCouponPrice();
@@ -62,9 +60,7 @@ function ShoppingCart() {
         selectCoupon,
         cartTotalPrice,
       });
-      console.log(submit.data.message);
-      //  <Navigate to="/account" />;
-      alert(submit.data.message);
+      successAlert(submit.data.message, '查看訂單明細');
       setCart([]);
       setIsFinish(true);
       setOrderId(submit.data.newestOrderId);
@@ -160,8 +156,6 @@ function ShoppingCart() {
               </div>
               <p className="title ms-2">購物車內容</p>
             </div>
-
-            {/* desktop */}
             <table className="table border border-secondary">
               <thead className="table-secondary">
                 <tr>
