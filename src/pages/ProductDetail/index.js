@@ -194,17 +194,9 @@ function ProductDetail() {
   };
   //評論換頁時自動回到評論頂
   const goToCommentTop = () => {
-    window.scrollTo(
-      window.innerWidth < 768
-        ? {
-            top: 1946,
-            behavior: 'smooth',
-          }
-        : {
-            top: 1600,
-            behavior: 'smooth',
-          }
-    );
+    document
+      .querySelector('.product_detail-comment-box')
+      .scrollIntoView({ behavior: 'smooth' });
   };
 
   // console.log('商品資訊', data);
