@@ -6,7 +6,7 @@
 * [部屬步驟](##部屬步驟)
 * [使用技術](##使用技術)
 
-##部屬步驟
+## 部屬步驟
 
 ```
 git clone https://github.com/carolynchiu/wholesome-project.git
@@ -14,7 +14,7 @@ npm install
 npm start
 ```
 
-##使用技術
+## 使用技術
   * 設計/原形工具：Figma
   * 前端：HTML, CSS, Javascript, Axios, Bootstrap 5, SASS
   * 前端框架：React
