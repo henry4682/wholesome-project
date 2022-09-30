@@ -197,10 +197,10 @@ function Header() {
               <Link to="products/營養點心">營養點心</Link>
             </li>
             <li>
-              <Link to="products/sale">本月優惠</Link>
+              <Link to="recipes/飲品?search">美味食譜</Link>
             </li>
             <li>
-              <Link to="recipes/飲品?search">美味食譜</Link>
+              <Link to="about">關於我們</Link>
             </li>
           </ul>
         </nav>

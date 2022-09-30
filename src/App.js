@@ -20,6 +20,7 @@ import AccountTracking from './pages/Account/AccountTracking';
 import AccountMessages from './pages/Account/AccountMessages';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import About from './pages/About';
 // <<<<<<< HEAD
 import Recipes from './pages/Recipes';
 // =======
@@ -66,6 +67,7 @@ function App() {
 
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
+            <Route path="about" element={<About />} />
 
             <Route path="/products/:mainCategory" element={<ProductsList />} />
             <Route
