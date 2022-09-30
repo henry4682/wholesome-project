@@ -1,6 +1,6 @@
 # MFEE27 前端工程師養成班畢業專題 - Wholesome  
 
-![]('/src/Assets/Logo/logo.png')
+![](src/Assets/Logo/logo.png)
 
 使用技術：
   * 設計/原形工具：Figma
