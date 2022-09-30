@@ -10,6 +10,17 @@
       line-height: 21px;
     }
   }
+  &-recipe {
+    &-img {
+      height: 120px;
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: center center;
+      }
+    }
+  }
   img {
     width: 130px;
   }

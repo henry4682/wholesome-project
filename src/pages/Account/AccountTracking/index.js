@@ -157,7 +157,7 @@ function AccountTracking() {
                     </div>
                     <div className="account_tracking-product-content align-items-center">
                       <div>
-                        <p className="account_tracking-product-content-name">
+                        <p className="account_tracking-product-content-name text-truncate">
                           {item.product_name}
                         </p>
                         <p className="account_tracking-product-content-price">
@@ -273,9 +273,9 @@ function AccountTracking() {
                 return (
                   <div
                     key={v.id}
-                    className="account_tracking-product col-6 mt-2"
+                    className="account_tracking-product col-lg-4 col-6 mt-2"
                   >
-                    <div>
+                    <div className="account_tracking-recipe-img">
                       <img
                         src={require(`../../Recipes/Asset/recipe-image/${v.recipe_img}`)}
                         alt="apple juice"
