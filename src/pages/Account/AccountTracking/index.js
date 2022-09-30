@@ -62,7 +62,6 @@ function AccountTracking() {
         `${API_URL}/productTracking/${userId}?product=${productId}`
       );
       console.log(response.data);
-      // alert('收藏商品移除成功');
       successToastAlert('收藏商品移除成功', 1200, false);
 
       // 重新取得使用者產品收藏資訊
@@ -149,10 +148,12 @@ function AccountTracking() {
                     className="account_tracking-product col-lg-4 col-6 mt-2"
                   >
                     <div>
-                      <img
-                        src={require(`../../../Assets/products/${item.product_img}`)}
-                        alt="apple juice"
-                      />
+                      <Link to={`/productDetail/${item.product_id}`}>
+                        <img
+                          src={require(`../../../Assets/products/${item.product_img}`)}
+                          alt="apple juice"
+                        />
+                      </Link>
                     </div>
                     <div className="account_tracking-product-content align-items-center">
                       <div>
@@ -290,7 +291,9 @@ function AccountTracking() {
                     <div className=" text-center">
                       <div>
                         <div>
-                          <Link to="#">閱讀內容</Link>
+                          <Link to={`/recipeDetail/${v.recipe_id}`}>
+                            <p>閱讀內容</p>
+                          </Link>
                         </div>
                         <button
                           className="account_tracking_btn btn btn-sm btn-secondary text-primary mt-1"
