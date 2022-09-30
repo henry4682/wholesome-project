@@ -57,10 +57,12 @@ function AccountCoupons() {
       setCouponsCanUse(couponResponse.data.couponsCanUse);
       // alert('優惠券新增成功');
       successToastAlert('優惠券新增成功', 1200, false);
+      setCoupons({ discount_code: '' });
     } catch (e) {
       console.error('Coupon add Error:', e);
       // alert(e.response.data.message);
       errorToastAlert(e.response.data.message, 1200, false);
+      setCoupons({ discount_code: '' });
     }
   }
   console.log('使用者優惠券資料', userCouponsData);
