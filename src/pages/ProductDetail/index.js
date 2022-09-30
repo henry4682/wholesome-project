@@ -20,10 +20,8 @@ import {
 
 function ProductDetail() {
   const { user, isLogin, setIsLogin } = useAuth();
-  // const [user, setUser] = useState({ id: '0' });
   const { cart, setCart } = useCart();
 
-  // console.log(user.id);
   //商品資料
   const [data, setData] = useState([]);
   const [commentData, setCommentData] = useState([]);
@@ -32,8 +30,6 @@ function ProductDetail() {
 
   //接收來自其他頁的參數
   const { productId } = useParams();
-  // console.log('productId', productId);
-  // console.log('commentData', commentData);
 
   //星星平均用
   //測試用:做出star bar的陣列
@@ -57,7 +53,6 @@ function ProductDetail() {
     // console.log('inside useEffect');
     let getProductDetail = async () => {
       let response = await axios.get(`${API_URL}/productDetail/${productId}`);
-
       setData(response.data.productData);
       setGoods(response.data.relatedGoods);
       setStar(response.data.stars);
@@ -66,9 +61,7 @@ function ProductDetail() {
     getProductDetail();
     goToTop();
   }, [productId]);
-  console.log('商品資訊', data);
-  // console.log('goods', goods);
-  // console.log('star', star);
+
   //評論資料
   useEffect(() => {
     let getProductComment = async () => {
@@ -199,8 +192,6 @@ function ProductDetail() {
       .scrollIntoView({ behavior: 'smooth' });
   };
 
-  // console.log('商品資訊', data);
-
   return (
     <div className="container">
       {message === 'none' ? (
@@ -211,6 +202,7 @@ function ProductDetail() {
           {data.map((v, i) => {
             return (
               <div key={i}>
+                {/* 商品詳細資訊 */}
                 <div className="product_detail-product-intro">
                   <img
                     className="product_detail-img"
@@ -279,6 +271,7 @@ function ProductDetail() {
                     </button>
                   </div>
                 </div>
+                {/* 商品說明 */}
                 <section className="product_detail-section product_detail-product-detail">
                   <div className="product_detail-section-title">商品介紹</div>
                   <div className="product_detail-detail-content">
@@ -296,6 +289,7 @@ function ProductDetail() {
               </div>
             );
           })}
+          {/* 商品評論 */}
           <section className="product_detail-section product_detail-product-comment-score">
             <div className="product_detail-section-title">買家評論</div>
             <div className="product_detail-score-box">
@@ -444,6 +438,7 @@ function ProductDetail() {
               </nav>
             </div>
           </section>
+          {/* 相關商品 */}
           <div className="product_detail-section">
             <div className="product_detail-section-title">相關商品</div>
             <div className="product_detail-carousel">
