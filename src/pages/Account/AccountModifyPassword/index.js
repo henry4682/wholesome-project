@@ -4,8 +4,10 @@ import axios from 'axios';
 import { API_URL } from '../../../utils/config';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
 import { warningAlert, successAlert } from '../../../components/Alert';
+import { useOutletContext } from 'react-router-dom';
 
 function AccountModifyPassword() {
+  const [setBreadcrumbData] = useOutletContext();
   // 設定取得會員資料的狀態
   const [userData, setUserData] = useState({ id: null });
 
@@ -27,6 +29,10 @@ function AccountModifyPassword() {
   const [showCurrentPassword, setShowCurrentPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
+
+  useEffect(() => {
+    setBreadcrumbData('更改密碼');
+  }, []);
 
   // 在元件取得登入資料
   useEffect(() => {

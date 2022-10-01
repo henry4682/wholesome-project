@@ -5,8 +5,10 @@ import { useAuth } from '../../../context/auth';
 import axios from 'axios';
 import { API_URL } from '../../../utils/config';
 import { warningAlert, successAlert } from '../../../components/Alert';
+import { useOutletContext } from 'react-router-dom';
 
 function AccountEdit() {
+  const [setBreadcrumbData] = useOutletContext();
   const genderOptions = ['男', '女', '不提供'];
   const [editUser, setEditUser] = useState({
     name: '',
@@ -25,6 +27,10 @@ function AccountEdit() {
     address: '',
     gender: '',
   });
+
+  useEffect(() => {
+    setBreadcrumbData('更新個人資訊');
+  }, []);
 
   // 在元件取得登入資料
   useEffect(() => {

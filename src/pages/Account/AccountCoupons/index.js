@@ -4,8 +4,10 @@ import axios from 'axios';
 import { API_URL } from '../../../utils/config';
 import { useAuth } from '../../../context/auth';
 import { successToastAlert, errorToastAlert } from '../../../components/Alert';
+import { useOutletContext } from 'react-router-dom';
 
 function AccountCoupons() {
+  const [setBreadcrumbData] = useOutletContext();
   const { user, setUser } = useAuth();
   const [coupons, setCoupons] = useState({ discount_code: '' });
   //設定取得會員資料狀態
@@ -18,6 +20,9 @@ function AccountCoupons() {
     setCoupons({ ...coupons, [e.target.name]: e.target.value });
   }
 
+  useEffect(() => {
+    setBreadcrumbData('專屬優惠券');
+  }, []);
   // useEffect(() => {
   //   let getUserData = async () => {
   //     console.log('in APP: check if login');

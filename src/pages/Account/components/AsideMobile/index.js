@@ -28,7 +28,7 @@ function AsideMobile() {
           >
             <li>
               <Link className="dropdown-item" to="">
-                我的帳戶
+                帳戶總覽
               </Link>
             </li>
             <li>
@@ -57,11 +57,11 @@ function AsideMobile() {
                 收藏清單
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link className="dropdown-item" to="messages">
                 詢問紀錄
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
