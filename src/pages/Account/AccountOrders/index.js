@@ -5,8 +5,10 @@ import { useAuth } from '../../../context/auth';
 import { API_URL } from '../../../utils/config';
 import axios from 'axios';
 import { BsCaretLeft, BsCaretRight } from 'react-icons/bs';
+import { useOutletContext } from 'react-router-dom';
 
 function AccountOrders() {
+  const [setBreadcrumbData] = useOutletContext();
   const { user, setUser } = useAuth();
   const [data, setData] = useState([]);
 
@@ -14,6 +16,10 @@ function AccountOrders() {
   const [lastPage, setLastPage] = useState(1);
   const [page, setPage] = useState(1);
   const [ordersCount, setOrdersCount] = useState(1);
+
+  useEffect(() => {
+    setBreadcrumbData('訂單查詢');
+  }, []);
 
   useEffect(() => {
     let userOrders = async () => {

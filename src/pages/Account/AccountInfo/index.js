@@ -6,10 +6,17 @@ import { useCart } from '../../../context/cart';
 import { API_URL } from '../../../utils/config';
 import axios from 'axios';
 import { successToastAlert } from '../../../components/Alert';
+import { useOutletContext } from 'react-router-dom';
+
 function AccountInfo() {
+  const [setBreadcrumbData] = useOutletContext();
   const { user, setUser, setIsLogin } = useAuth();
   const { cart, setCart } = useCart();
   const [couponsCanUse, setCouponsCanUse] = useState([]);
+
+  useEffect(() => {
+    setBreadcrumbData('帳戶總覽');
+  }, []);
 
   useEffect(() => {
     let userCoupons = async () => {

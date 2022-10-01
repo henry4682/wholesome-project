@@ -7,8 +7,10 @@ import axios from 'axios';
 import { BsPencil } from 'react-icons/bs';
 import Rating from '@mui/material/Rating';
 import { errorToastAlert, successToastAlert } from '../../../components/Alert';
+import { useOutletContext } from 'react-router-dom';
 
 function AccountOrderDetail() {
+  const [setBreadcrumbData] = useOutletContext();
   const { user, setUser } = useAuth();
   const { orderId } = useParams();
   const [orderData, setOrderData] = useState([]);
@@ -19,6 +21,10 @@ function AccountOrderDetail() {
   const [star, setStar] = useState(0);
   // 撰寫評論的內容
   const [comment, setComment] = useState('');
+
+  useEffect(() => {
+    setBreadcrumbData('訂單查詢');
+  }, []);
 
   useEffect(() => {
     let getOrders = async () => {

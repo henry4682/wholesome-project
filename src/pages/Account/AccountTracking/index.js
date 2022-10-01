@@ -7,8 +7,10 @@ import { API_URL } from '../../../utils/config';
 import axios from 'axios';
 import { BsCaretLeft, BsCaretRight } from 'react-icons/bs';
 import { successToastAlert } from '../../../components/Alert';
+import { useOutletContext } from 'react-router-dom';
 
 function AccountTracking() {
+  const [setBreadcrumbData] = useOutletContext();
   const { user, setUser } = useAuth();
   const { cart, setCart } = useCart();
   const [productData, setProductData] = useState([]); // 商品
@@ -21,6 +23,10 @@ function AccountTracking() {
   const [recipeLastPage, setRecipeLastPage] = useState(1); // 食譜
   const [productPage, setProductPage] = useState(1); // 商品
   const [recipePage, setRecipePage] = useState(1); // 食譜
+
+  useEffect(() => {
+    setBreadcrumbData('收藏清單');
+  }, []);
 
   useEffect(() => {
     let userTrackings = async () => {

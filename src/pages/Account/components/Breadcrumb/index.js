@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './index.scss';
 import { FaHome } from 'react-icons/fa';
 
-function Breadcrumb() {
+function Breadcrumb({ breadcrumbData }) {
   return (
     <>
       <div className="account-breadcrumb d-flex align-items-center">
@@ -16,6 +16,9 @@ function Breadcrumb() {
             </li>
             <li className="breadcrumb-item active" aria-current="page">
               我的帳戶
+            </li>
+            <li className="breadcrumb-item active" aria-current="page">
+              {breadcrumbData}
             </li>
           </ol>
         </nav>
