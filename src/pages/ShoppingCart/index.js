@@ -12,7 +12,7 @@ import { successAlert } from '../../components/Alert';
 
 function ShoppingCart() {
   const { cart, setCart, minusOne, plusOne, remove, calcTotal } = useCart();
-  const { user } = useAuth();
+  const { user, isLogin } = useAuth();
   const [show, setShow] = useState(true);
   const cartTotalPrice = calcTotal();
   const [isFinish, setIsFinish] = useState(false);
@@ -25,18 +25,19 @@ function ShoppingCart() {
   const [userCouponsData, setUserCouponsData] = useState([]);
   // 控制收件人資訊的狀態
   const [receiver, setReceiver] = useState({
-    receiver_name: user.name,
-    receiver_phone: user.phone,
-    receiver_address: user.address,
+    receiver_name: user && user.name,
+    receiver_phone: user && user.phone,
+    receiver_address: user && user.address,
   });
 
   useEffect(() => {
+    if (!user) return;
     let userCoupons = async () => {
       let response = await axios.get(`${API_URL}/user/${user.id}/coupons`);
       setUserCouponsData(response.data.couponsCanUse);
     };
     userCoupons();
-  }, [user.id]);
+  }, [user && user.id]);
 
   useEffect(() => {
     let getSelectCouponPrice = async () => {
@@ -67,6 +68,9 @@ function ShoppingCart() {
     } catch (e) {
       console.error(e);
     }
+  }
+  if (!isLogin) {
+    return <Navigate to="/" />;
   }
   if (isFinish) {
     return <Navigate to={`/account/orders/${orderId}`} />;
