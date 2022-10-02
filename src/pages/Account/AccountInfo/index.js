@@ -11,17 +11,18 @@ import { useOutletContext } from 'react-router-dom';
 function AccountInfo() {
   const [setBreadcrumbData] = useOutletContext();
   const { user, setUser, setIsLogin } = useAuth();
-  const { cart, setCart } = useCart();
+  const { setCart } = useCart();
   const [couponsCanUse, setCouponsCanUse] = useState([]);
 
+  // 載入 Breadcrumb Data
   useEffect(() => {
     setBreadcrumbData('帳戶總覽');
   }, []);
 
+  // 獲取使用者優惠券資料
   useEffect(() => {
     let userCoupons = async () => {
       let response = await axios.get(`${API_URL}/user/${user.id}/coupons`);
-      console.log(response.data);
       setCouponsCanUse(response.data.couponsCanUse);
     };
     userCoupons();
@@ -32,13 +33,13 @@ function AccountInfo() {
     let response = await axios.get(`${API_URL}/auth/logout`, {
       withCredentials: true,
     });
-    console.log('handleLogout', response.data);
     setUser(null);
     setIsLogin(false);
     setCart([]);
     localStorage.setItem('shoppingCart', JSON.stringify([]));
     successToastAlert(response.data.message, 1200, false);
   }
+
   return (
     <>
       <div className="account_info w-100">
@@ -58,9 +59,6 @@ function AccountInfo() {
           </div>
           <div className="account_info-card-right">
             <div className="d-flex account_info-card-text">
-              {/* <p className="pe-lg-4 pe-md-2">
-                總累計消費金額 NT$<span>1000</span>
-              </p> */}
               <p>
                 可用優惠券
                 <Link to="coupons">

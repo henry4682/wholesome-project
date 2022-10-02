@@ -23,6 +23,7 @@ function AccountCoupons() {
   useEffect(() => {
     setBreadcrumbData('專屬優惠券');
   }, []);
+
   // useEffect(() => {
   //   let getUserData = async () => {
   //     console.log('in APP: check if login');
@@ -39,7 +40,7 @@ function AccountCoupons() {
   useEffect(() => {
     let userCoupons = async () => {
       let response = await axios.get(`${API_URL}/user/${user.id}/coupons`);
-      console.log(response.data);
+      // console.log(response.data);
       setUserCouponsData(response.data.couponsAll);
       setCouponsCanUse(response.data.couponsCanUse);
     };
@@ -54,7 +55,7 @@ function AccountCoupons() {
         coupons
       );
       // console.log('POST res', response);
-      console.log(response.data);
+      // console.log(response.data);
       let couponResponse = await axios.get(
         `${API_URL}/user/${user.id}/coupons`
       );
@@ -64,13 +65,14 @@ function AccountCoupons() {
       successToastAlert('優惠券新增成功', 1200, false);
       setCoupons({ discount_code: '' });
     } catch (e) {
-      console.error('Coupon add Error:', e);
+      // console.error('Coupon add Error:', e);
       // alert(e.response.data.message);
       errorToastAlert(e.response.data.message, 1200, false);
       setCoupons({ discount_code: '' });
     }
   }
-  console.log('使用者優惠券資料', userCouponsData);
+  // console.log('使用者優惠券資料', userCouponsData);
+
   return (
     <div className="account_coupons w-100">
       <form className="account_coupons-title d-flex  align-items-center">

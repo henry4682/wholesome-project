@@ -5,7 +5,7 @@ function Footer() {
   return (
     <>
       <footer className="footer bg-primary text-white p-lg-5 p-md-4 p-3">
-        <div className="container">
+        <div className="container py-3">
           <div className="footer_content ">
             <div>
               <div className="footer_about mb-md-0 mb-3">

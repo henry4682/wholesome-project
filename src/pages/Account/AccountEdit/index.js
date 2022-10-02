@@ -18,6 +18,7 @@ function AccountEdit() {
     address: '',
     gender: '',
   });
+
   // 控制表單錯誤訊息的狀態
   const [fieldErrors, setFieldErrors] = useState({
     name: '',
@@ -28,18 +29,19 @@ function AccountEdit() {
     gender: '',
   });
 
+  // 載入 Breadcrumb Data
   useEffect(() => {
     setBreadcrumbData('更新個人資訊');
   }, []);
 
-  // 在元件取得登入資料
+  // 取得登入資料
   useEffect(() => {
     let getUser = async () => {
       console.log('in APP: check if login');
       let response = await axios.get(`${API_URL}/user`, {
         withCredentials: true,
       });
-      console.log(response.data);
+      // console.log(response.data);
       setEditUser(response.data);
     };
     getUser();
@@ -49,7 +51,7 @@ function AccountEdit() {
     setEditUser({ ...editUser, [e.target.name]: e.target.value });
   }
 
-  // '確定修改'按鈕
+  // '確定修改' 按鈕
   async function handleEdit(e) {
     e.preventDefault();
     try {
@@ -62,21 +64,21 @@ function AccountEdit() {
           withCredentials: true,
         }
       );
-      console.log('PUT res', response);
-      console.log(response.data);
+      // console.log('PUT res', response);
+      // console.log(response.data);
       setEditUser(response.data);
       successAlert('會員資料更新成功');
-      // alert('修改成功');
     } catch (e) {
       console.error('Account edit Error', e);
       warningAlert('會員資料更新失敗', e.response.data.message);
     }
   }
 
+  // 表單驗證
   const handleInvalid = (e) => {
     // 阻擋檢查的泡泡訊息(預設行為)
     e.preventDefault();
-    console.log(e.target.validationMessage);
+    // console.log(e.target.validationMessage);
 
     // 技巧：用 js 來 focus 第一個錯誤欄位
     document.querySelector('input:invalid').focus();
@@ -94,8 +96,6 @@ function AccountEdit() {
       [e.target.name]: '',
     });
   };
-
-  console.log(fieldErrors);
 
   return (
     <>

@@ -39,7 +39,7 @@ function AccountOrders() {
   for (let i = 1; i <= lastPage; i++) {
     pages.push(i);
   }
-  console.log('---分頁---', pages);
+  // console.log('---分頁---', pages);
 
   return (
     <>

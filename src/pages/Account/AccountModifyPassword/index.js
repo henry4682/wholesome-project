@@ -30,6 +30,7 @@ function AccountModifyPassword() {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmNewPassword, setShowConfirmNewPassword] = useState(false);
 
+  // 載入 Breadcrumb Data
   useEffect(() => {
     setBreadcrumbData('更改密碼');
   }, []);
@@ -41,7 +42,7 @@ function AccountModifyPassword() {
       let response = await axios.get(`${API_URL}/user`, {
         withCredentials: true,
       });
-      console.log(response.data);
+      // console.log(response.data);
       setUserData(response.data);
     };
     getUser();
