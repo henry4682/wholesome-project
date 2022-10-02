@@ -14,8 +14,8 @@ function Login() {
   const { user, setUser, isLogin, setIsLogin } = useAuth();
 
   const [loginUser, setLoginUser] = useState({
-    email: '123@test.com',
-    password: 'test12345',
+    email: '',
+    password: '',
   });
 
   // 呈現密碼用

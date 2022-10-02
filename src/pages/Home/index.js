@@ -30,7 +30,6 @@ function Home() {
     };
     getNewestProducts();
   }, []);
-  console.log('newproducts', newProducts);
 
   return (
     <div>
@@ -39,17 +38,17 @@ function Home() {
 
       <div className="mt-5 d-md-flex justify-content-between">
         <img
-          src={require('../../Assets/Home/ad/ad_1.png')}
+          src={require('../../Assets/Home/ad/ad-1.png')}
           className="card-img-top home_ad"
           alt="..."
         />
         <img
-          src={require('../../Assets/Home/ad/ad_2.png')}
+          src={require('../../Assets/Home/ad/ad-2.png')}
           className="card-img-top home_ad"
           alt="..."
         />
         <img
-          src={require('../../Assets/Home/ad/ad_3.png')}
+          src={require('../../Assets/Home/ad/ad-3.png')}
           className="card-img-top home_ad"
           alt="..."
         />
@@ -138,7 +137,10 @@ function Home() {
         <ul className="d-flex row my-5  justify-content-center">
           {newRecipe.map((v, i) => {
             return (
-              <li className="d-flex flex-column home_recipe_card my-3 mx-2 col-5 col-lg-2 text-center py-2  ">
+              <li
+                key={i}
+                className="d-flex flex-column home_recipe_card my-3 mx-2 col-5 col-lg-2 text-center py-2  "
+              >
                 <div className="home_recipe_img_container justify-content-center">
                   <img
                     className="home_recipe_pic "
