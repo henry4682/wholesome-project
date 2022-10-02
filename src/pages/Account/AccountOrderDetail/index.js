@@ -35,7 +35,7 @@ function AccountOrderDetail() {
     };
     getOrders();
   }, [orderId]);
-  console.log(orderStatus);
+  // console.log(orderStatus);
 
   // 轉撰寫商品評論
   async function handleCommentSubmit(userId, productId, content, grade) {
@@ -44,8 +44,8 @@ function AccountOrderDetail() {
         `${API_URL}/user/${userId}/productComment?product=${productId}`,
         { grade: grade, comment: comment }
       );
-      console.log('POST res', response);
-      console.log(response.data.message);
+      // console.log('POST res', response);
+      // console.log(response.data.message);
       successToastAlert(response.data.message, 1500, false, 'center');
       setStar(0);
       setComment('');

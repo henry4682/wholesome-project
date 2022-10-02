@@ -16,7 +16,7 @@ function AccountTracking() {
   const [productData, setProductData] = useState([]); // 商品
   const [recipeData, setRecipeData] = useState([]); // 食譜
 
-  console.log('cart', cart);
+  // console.log('cart', cart);
 
   // 分頁: 增加 lastPage (總頁數) 與 page (目前在第幾頁) 的 state
   const [productLastPage, setProductLastPage] = useState(1); // 商品
@@ -43,9 +43,8 @@ function AccountTracking() {
       setRecipeData(recipeResponse.data.recipeData);
       setRecipeLastPage(recipeResponse.data.recipePagination.recipeLastPage);
 
-      console.log(productResponse.data);
-      console.log(recipeResponse.data);
-      // setLastPage(response.data.pagination.lastPage);
+      // console.log(productResponse.data);
+      // console.log(recipeResponse.data);
     };
     userTrackings();
   }, [user.id, productPage, recipePage]);
@@ -67,7 +66,7 @@ function AccountTracking() {
       let response = await axios.delete(
         `${API_URL}/productTracking/${userId}?product=${productId}`
       );
-      console.log(response.data);
+      // console.log(response.data);
       successToastAlert('收藏商品移除成功', 1200, false);
 
       // 重新取得使用者產品收藏資訊
@@ -89,7 +88,7 @@ function AccountTracking() {
       let response = await axios.delete(
         `${API_URL}/recipeTracking/${userId}?recipe=${recipeId}`
       );
-      console.log(response.data);
+      // console.log(response.data);
       successToastAlert('收藏食譜移除成功', 1200, false);
 
       let recipeResponse = await axios.get(
