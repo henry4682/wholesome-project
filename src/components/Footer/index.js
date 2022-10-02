@@ -39,7 +39,11 @@ function Footer() {
           </div>
 
           <div className="footer-copyright py-3">
-            <p>copyright</p>
+            <p>
+              Copyright&copy;
+              <span className="mx-2 footer-copyright-name">WHOLESOME</span>All
+              Rights Reserved.
+            </p>
           </div>
         </div>
       </footer>

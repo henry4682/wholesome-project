@@ -39,6 +39,11 @@
   }
 
   &-copyright {
+    font-size: 14px;
     border-top: 1px solid #fff;
+    &-name {
+      font-weight: 500;
+      color: slategray;
+    }
   }
 }
