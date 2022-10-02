@@ -12,7 +12,7 @@ import { successAlert } from '../../components/Alert';
 
 function ShoppingCart() {
   const { cart, setCart, minusOne, plusOne, remove, calcTotal } = useCart();
-  const { user, isLogin } = useAuth();
+  const { user } = useAuth();
   const [show, setShow] = useState(true);
   const cartTotalPrice = calcTotal();
   const [isFinish, setIsFinish] = useState(false);
@@ -69,7 +69,8 @@ function ShoppingCart() {
       console.error(e);
     }
   }
-  if (!isLogin) {
+  // console.log(user);
+  if (!user) {
     return <Navigate to="/" />;
   }
   if (isFinish) {
