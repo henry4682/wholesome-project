@@ -6,7 +6,7 @@ import { useCart } from '../../../context/cart';
 import { API_URL } from '../../../utils/config';
 import axios from 'axios';
 import { BsCaretLeft, BsCaretRight } from 'react-icons/bs';
-import { successToastAlert } from '../../../components/Alert';
+import { successToastAlert, errorToastAlert } from '../../../components/Alert';
 import { useOutletContext } from 'react-router-dom';
 
 function AccountTracking() {
@@ -176,8 +176,12 @@ function AccountTracking() {
                           className="account_tracking_btn mb-1 btn btn-sm btn-primary text-white"
                           onClick={() => {
                             // --- 判斷購物車裡面是不是有這個商品
-                            if (cart.some((v) => v.id === item.id)) {
-                              alert('商品已存在於購物車');
+                            if (cart.some((v) => v.id === item.product_id)) {
+                              errorToastAlert(
+                                '商品已存在於購物車',
+                                1200,
+                                false
+                              );
                               return;
                             }
                             // item是指現在加入購物車的這個商品
