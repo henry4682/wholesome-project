@@ -41,6 +41,7 @@ function RecipeDetail() {
 
   const [isLike, setIsLike] = useState(false);
 
+  // 會員登入後將收藏狀態顯示於畫面上
   useEffect(() => {
     if (!user || user.id === '0') {
       setIsLike(false);
@@ -58,29 +59,7 @@ function RecipeDetail() {
     likeRecipe();
   }, [user]);
 
-  useEffect(() => {
-    if (!user || user.id === '0') {
-      setIsLike(false);
-      return;
-    }
-    let setLikeRecipe = async () => {
-      try {
-        let result = await axios.post(
-          `http://localhost:3002/api/1.0/recipeTracking/${recipeId}`,
-          { isLike, user },
-          {
-            withCredential: true,
-          }
-        );
-        console.log(result.data);
-      } catch (e) {
-        console.error('review', e.response.data.message);
-        alert(e.response.data.message);
-      }
-    };
-    setLikeRecipe();
-  }, [isLike]);
-
+  // 顯示食譜、評論資料
   useEffect(() => {
     let getRecipe = async () => {
       let response = await axios.get(
@@ -96,16 +75,15 @@ function RecipeDetail() {
     };
     getRecipe();
   }, [recipeId]);
-  // console.log('productData', productData);
 
+  // 若有輸入搜尋則導回列表頁搜尋狀態
   if (isSearch) {
     return <Navigate to={`/recipes/飲品?search=${searchTerm}`} />;
   }
 
+  // 提交評論
   async function handleSubmit(e) {
-    // 關掉submit按鈕的預設行為(跳頁)
     e.preventDefault();
-    //表單傳送用post
     try {
       let result = await axios.post(
         `http://localhost:3002/api/1.0/recipeReview/${recipeId}`,
@@ -114,11 +92,9 @@ function RecipeDetail() {
           withCredential: true,
         }
       );
-      // console.log(result.data);
       let response = await axios.get(
         `http://localhost:3002/api/1.0/recipeDetail/${recipeId}`
       );
-      // console.log(response.data);
       setCommentData(response.data.commentData);
       setStarInfo(response.data.starInfo);
       setGradeInfo(response.data.gradeInfo);
@@ -149,23 +125,39 @@ function RecipeDetail() {
                 <div className="recipe-image mt-5">
                   <img
                     src={require(`../Asset/recipe-image/${intro.main_img}`)}
-                  ></img>
+                    alt="recipe"
+                  />
                 </div>
                 <button
                   type="button"
                   className="btn btn-secondary  mt-5"
-                  onClick={() => {
+                  onClick={async () => {
                     if (!user || user.id === '0') {
                       errorToastAlert('請登入後再收藏', 1200, false);
                       return;
                     }
-                    
 
                     setIsLike(!isLike);
+
                     if (!isLike === true) {
                       successToastAlert('食譜收藏成功', 1200, false);
                     } else {
                       successToastAlert('取消收藏成功', 1200, false);
+                    }
+
+                    // 將收藏動作寫入資料庫
+                    try {
+                      let result = await axios.post(
+                        `http://localhost:3002/api/1.0/recipeTracking/${recipeId}`,
+                        { isLike: !isLike, user },
+                        {
+                          withCredential: true,
+                        }
+                      );
+                      console.log(result.data);
+                    } catch (e) {
+                      console.error('review', e.response.data.message);
+                      alert(e.response.data.message);
                     }
                   }}
                 >
@@ -212,12 +204,13 @@ function RecipeDetail() {
                 return (
                   <div key={product.id}>
                     <div className="card recipe-recommend-card ">
+                      <div className='recipe-product-image-container'>
                       <img
                         src={require(`../../../Assets/products/${product.image}`)}
                         className="card-img-top products_list-card-img-top"
                         alt="..."
                       />
-
+                      </div>
                       <div className=" card-body products_list-card-body text-center">
                         <Link
                           className=" card-title products_list-card-title word-wrap "
@@ -281,7 +274,8 @@ function RecipeDetail() {
                   <div className="recipe-step-image col-12 col-md-4">
                     <img
                       src={require(`../Asset/recipe-image/${steps.step_img}`)}
-                    ></img>
+                      alt="recipe"
+                    />
                   </div>
                   <div className="recipe-step-text col-12 col-md-8">
                     {steps.step_content}
@@ -324,7 +318,9 @@ function RecipeDetail() {
                       <span className="product_detail-bar-section">
                         <ProgressBar
                           completed={v.gradePercent}
-                          customLabel={v.gradePercent + '%'}
+                          customLabel={
+                            v.gradePercent ? v.gradePercent : 0 + '%'
+                          }
                           className="wrapper"
                           bgColor={'#9AAB82'}
                           baseBgColor={'#D9D9D9'}

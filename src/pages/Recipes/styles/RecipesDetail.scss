@@ -81,6 +81,15 @@
 .recipe-recommend-display{
   display: flex;
 }
+.recipe-product-image-container{
+  height: 200px;
+}
+.recipe-product-image-container img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
 @media screen and (max-width: 768px) {
   .recipe-recommend-display{
     display: block;
