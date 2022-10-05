@@ -90,7 +90,7 @@ function ProductDetail() {
       setIsLike(response.data.isLike);
     };
     getUserLikeProduct();
-  }, [user]);
+  }, [user,productId]);
 
   // 收藏的按鈕
   function handleIsLike() {
