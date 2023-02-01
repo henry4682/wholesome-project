@@ -42,7 +42,7 @@ import NotFound from './pages/NotFound.js';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/wholesome-project">
       <AuthProvider>
         <CartProvider>
           <Header />
